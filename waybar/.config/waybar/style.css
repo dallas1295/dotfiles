@@ -1,0 +1,131 @@
+@import "./mocha.css";
+
+/* margin: top right bottom left */
+/* Spacing outside the element */
+
+/* padding: top right bottom left */
+/* Spacing inside the element */
+
+* {
+    font-family: Geist Mono Nerd Font;
+    font-size: 17px;
+}
+
+window#waybar {
+    background-color: rgba(17, 17, 27, 0.75);
+    color: @text;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    border-radius: 0px;
+    transition-duration: 0.5s;
+    margin: 13px 13px;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces button {
+    color: @mantle;
+    background: @mauve;
+    border-radius: 8px;
+    padding: 0px 10px 0px 10px;
+    margin: 7px 5px 10px 5px;
+    border: 1px solid @subtext1;
+}
+
+#workspaces button:hover {
+    background: transparent;
+    color: @peach;
+    border-color: @peach;
+}
+
+#workspaces button.active {
+    color: @mauve;
+    background: transparent;
+}
+
+#custom-launcher,
+#clock,
+#battery,
+#cpu,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-powermenu {
+    padding: 0px 20px;
+    margin: 7px 0px 10px 0px;
+    border-radius: 8px;
+    color: @crust;
+}
+
+#window,
+#custom-launcher {
+    padding: 0px 25px 0px 20px;
+    margin: 7px 0px 10px 20px;
+    background-color: @mauve;
+}
+
+#cpu {
+    background-color: @lavender;
+}
+
+#temperature {
+    background-color: @blue;
+}
+
+#backlight {
+    background-color: @sapphire;
+}
+
+#pulseaudio {
+    padding: 0px 20px 0px 17px;
+    background-color: @teal;
+}
+
+#network {
+    padding: 0px 15px 0px 20px;
+    background-color: @green;
+}
+
+#battery {
+    background-color: @yellow;
+}
+
+#clock {
+    background-color: @peach;
+}
+
+#custom-powermenu {
+    padding: 0px 25px 0px 20px;
+    margin: 7px 20px 10px 0px;
+    background-color: @red;
+}
+
+@keyframes blink {
+    to {
+        background-color: rgba(30, 34, 42, 0.5);
+        color: #abb2bf;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#tray {
+    background-color: @maroon;
+    padding: 0px 15px 0px 20px;
+    margin: 7px 0px 10px 0px;
+    border-radius: 8px;
+}
