@@ -46,6 +46,9 @@ theme = catppuccin-mocha
 font-family = Geist Mono Nerd Font
 unfocused-split-opacity = .9
 window-save-state = always
+background-blur-radius = true 
+background-opacity = 0.85
+
 
 #keyboard
 #### window management ####
