@@ -1,4 +1,4 @@
-sleep 0.5 
+sleep 0.5
 fastfetch
 
 export PATH=$HOME/.local/bin:$PATH
