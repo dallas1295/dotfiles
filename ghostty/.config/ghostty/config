@@ -42,11 +42,11 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = catppuccin-mocha
+theme = rose-pine
 font-family = Geist Mono Nerd Font
 unfocused-split-opacity = .9
 window-save-state = always
-background-blur-radius = true 
+background-blur-radius = true
 background-opacity = 0.85
 
 
