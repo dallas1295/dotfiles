@@ -50,23 +50,10 @@ background-blur-radius = true
 background-opacity = 0.85
 
 
-#keyboard
-#### window management ####
-keybind = ctrl+space>+h=new_split:left
-keybind = ctrl+space>j=new_split:down
-keybind = ctrl+space>k=new_split:up
-keybind = ctrl+space>l=new_split:right
-keybind = ctrl+space>x=close_surface
-keybind = alt+h=goto_split:left
-keybind = alt+j=goto_split:bottom
-keybind = alt+k=goto_split:top
-keybind = alt+l=goto_split:right
-
 # cursor
 cursor-style = block
 cursor-style-blink = true
 mouse-hide-while-typing = true
 copy-on-select = true
 
-window-save-state = always
 shell-integration = zsh

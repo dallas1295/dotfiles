@@ -1,3 +1,7 @@
+if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; then
+  tmux attach -t default || tmux new -s default
+fi
+
 sleep 0.5
 fastfetch
 
