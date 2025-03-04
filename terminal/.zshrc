@@ -1,5 +1,11 @@
 if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; then
-  tmux attach -t default || tmux new -s default
+  if tmux attach -t default 2>/dev/null; then
+    tmux new-window # Create a new window (tab)
+  else
+    tmux new-session -d -s default #Create Detached session.
+    tmux source-file ~/.tmux/tmux.conf #Source the config.
+    tmux attach-session -t default #Attach to the session.
+  fi
 fi
 
 sleep 0.5
