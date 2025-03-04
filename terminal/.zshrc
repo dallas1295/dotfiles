@@ -2,16 +2,14 @@ if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; t
   if tmux attach -t default 2>/dev/null; then
     tmux new-window # Create a new window (tab)
   else
-    tmux new-session -d -s default #Create Detached session.
-    tmux source-file ~/.tmux/tmux.conf #Source the config.
-    tmux attach-session -t default #Attach to the session.
+    tmux source-file ~/.tmux.conf #Source the config.
   fi
 fi
 
 sleep 0.5
 fastfetch
 
-export EDITOR='nvim'
+export EDITOR='neovim'
 export PATH=$HOME/.local/bin:$PATH
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
