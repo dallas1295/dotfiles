@@ -94,6 +94,7 @@ return {
 						deno = {
 							enable = true,
 							enablePaths = true,
+							lint = true,
 						},
 					},
 				})
