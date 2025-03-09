@@ -35,6 +35,8 @@ keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer
 keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
+keymap.set("n", "<leader>qq", ":qall<CR>", { noremap = true, silent = true })
+
 -- Lazy & Plugins
 
 keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })
