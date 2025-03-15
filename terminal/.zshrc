@@ -23,7 +23,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # environment calls
-export EDITOR='neovim'
+export EDITOR='nvim'
 export PATH=$HOME/.local/bin:$PATH
 
 

@@ -24,7 +24,7 @@ return {
 				trim_right = ">",
 			},
 		})
-		require("mini.icons").setup()
+		require("mini.indentscope").setup()
 		-- extra cool stuff
 		require("mini.git").setup()
 		require("mini.notify").setup()
