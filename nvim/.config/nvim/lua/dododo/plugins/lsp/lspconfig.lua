@@ -86,10 +86,10 @@ return {
 				})
 			end,
 			["denols"] = function()
-				-- configure emmet language server
 				lspconfig["denols"].setup({
 					capabilities = capabilities,
 					filetypes = { "typescriptreact", "javascriptreact", "javascript", "typescript" },
+					root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 					settings = {
 						deno = {
 							enable = true,
@@ -97,6 +97,28 @@ return {
 							lint = true,
 						},
 					},
+				})
+			end,
+			["ts_ls"] = function()
+				lspconfig["ts_ls"].setup({
+					capabilities = capabilities,
+					filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+					-- Only use ts_ls if we're not in a Deno project
+					root_dir = function(fname)
+						local is_deno = lspconfig.util.root_pattern("deno.json", "deno.jsonc")(fname)
+						if is_deno then
+							return nil
+						end
+						-- Normal node project detection
+						return lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(fname)
+							or vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
+					end,
+					on_attach = function(client, bufnr)
+						if vim.lsp.get_clients({ bufnr = bufnr, name = "denols" })[1] then
+							client.stop()
+							return
+						end
+					end,
 				})
 			end,
 			["lua_ls"] = function()
