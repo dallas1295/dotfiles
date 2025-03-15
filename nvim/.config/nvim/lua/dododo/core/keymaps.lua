@@ -43,3 +43,5 @@ keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })
 
 keymap.set("n", "<leader>go", "<cmd>CopilotChatToggle<CR>", { desc = "Toggle Copilot chat" })
 keymap.set("n", "<leader>gm", "<cmd>CopilotChatModel<CR>", { desc = "Change Copilot model" })
+
+keymap.set("n", "<leader>m", "<cmd>lua MiniFiles.open()<CR>", { desc = "Open explorer" })
