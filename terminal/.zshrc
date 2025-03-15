@@ -1,3 +1,4 @@
+# tmux rules
 if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; then
   if tmux attach -t Main 2>/dev/null; then
     :
@@ -8,10 +9,23 @@ if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; t
   fi
 fi
 
+# auto starts
 sleep 0.5
 fastfetch
 
+# zsh-completions
+fpath=(/usr/share/zsh/site-functions $fpath)
+autoload -Uz compinit
+compinit
+# zsh-syntax-highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh-autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# environment calls
 export EDITOR='neovim'
 export PATH=$HOME/.local/bin:$PATH
+
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
