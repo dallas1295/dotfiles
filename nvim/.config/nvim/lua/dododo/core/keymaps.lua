@@ -40,8 +40,13 @@ keymap.set("n", "<leader>qq", ":qall<CR>", { noremap = true, silent = true })
 -- Lazy & Plugins
 
 keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })
+keymap.set("n", "<leader>lm", "<cmd>Mason<CR>", { desc = "Open Mason menu"})
+keymap.set("n", "<leader>lg", "<cmd>LazyGit<CR>", {desc = "Open Lazygit"})
 
-keymap.set("n", "<leader>go", "<cmd>CopilotChatToggle<CR>", { desc = "Toggle Copilot chat" })
-keymap.set("n", "<leader>gm", "<cmd>CopilotChatModel<CR>", { desc = "Change Copilot model" })
+keymap.set("n", "<leader>aa", "<cmd>CopilotChatToggle<CR>", { desc = "Toggle Copilot chat" })
+keymap.set("n", "<leader>am", "<cmd>CopilotChatModel<CR>", { desc = "Change Copilot model" })
+keymap.set("n", "<leader>ar", "<cmd>CopilotChatReset<CR>", { desc = "Reset Copilot chat log" })
+keymap.set("n", "<leader>as", "<cmd>CopilotChatStop<CR>", { desc = "Stop the current Copilot output" })
+keymap.set("n", "<leader>at", "<cmd>CopilotChatTests<CR>", { desc = "Generate test" })
 
 keymap.set("n", "<leader>e", "<cmd>lua MiniFiles.open()<CR>", { desc = "Open explorer" })
