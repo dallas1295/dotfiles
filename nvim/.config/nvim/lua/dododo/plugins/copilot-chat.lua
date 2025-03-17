@@ -14,7 +14,7 @@ return {
 				question_header = "  " .. user .. " ",
 				answer_header = "  Copilot ",
 				window = {
-					width = 0.4,
+					width = 0.3,
 				},
 				model = "claude-3.7-sonnet",
 				mappings = {
