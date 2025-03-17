@@ -30,9 +30,9 @@ return {
 				"html",
 				"cssls",
 				"tailwindcss",
-				"pyright",
 				"denols",
 				"gopls",
+        "ts_ls",
 			},
 			mason_tool_installer.setup({
 				ensure_installed = {
@@ -41,7 +41,7 @@ return {
 					"isort", -- python formatter
 					"black", -- python formatter
 					"gofumpt", -- go formatter
-					"pylint", -- python linter
+          "goimports", -- go imports
 				},
 			}),
 		})
