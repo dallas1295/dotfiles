@@ -29,6 +29,10 @@ return {
 						normal = "q",
 						insert = "<C-c>",
 					},
+					reset = {
+						normal = false,
+						insert = false,
+					},
 				},
 			}
 		end,
