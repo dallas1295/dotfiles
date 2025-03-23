@@ -32,16 +32,14 @@ return {
 				"tailwindcss",
 				"denols",
 				"gopls",
-        "ts_ls",
+				"ts_ls",
 			},
 			mason_tool_installer.setup({
 				ensure_installed = {
 					"prettier", -- prettier formatter
 					"stylua", -- lua formatter
-					"isort", -- python formatter
-					"black", -- python formatter
 					"gofumpt", -- go formatter
-          "goimports", -- go imports
+					"goimports", -- go imports
 				},
 			}),
 		})

@@ -15,7 +15,8 @@
     ],
     "modules-right": [
         "idle_inhibitor",
-        "pulseaudio",
+        "backlight",
+        "pulseaudio", 
         "network",
         "cpu",
         "memory",

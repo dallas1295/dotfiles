@@ -16,7 +16,7 @@ return {
 				window = {
 					width = 0.45,
 				},
-				model = "claude-3.7-sonnet",
+				model = "claude-3.5-sonnet",
 				mappings = {
 					submit_prompt = {
 						normal = "<CR>",
