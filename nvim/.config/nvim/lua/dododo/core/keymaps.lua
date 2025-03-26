@@ -14,7 +14,7 @@ keymap.set("i", "<C-k>", "<C-p>", { remap = true, silent = true })
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- clear search highlights
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- delete single character without copying into register
 -- keymap.set("n", "x", '"_x')
@@ -36,10 +36,15 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>bf", "<cmd>bf<CR>", { desc = "go to first buffer" })
+keymap.set("n", "<leader>bl", "<cmd>bl<CR>", { desc = "go to last buffer" })
+keymap.set("n", "<leader>ba", "<cmd>buffers<CR>", { desc = "list all buffers" })
+
 keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
-keymap.set("n", "<leader>qq", ":qall<CR>", { desc = "Close Neovim", noremap = true, silent = true })
+keymap.set("n", "<leader>qq", "<cmd>qall<CR>", { desc = "Close Neovim", noremap = true, silent = true })
+keymap.set("n", "<leader>qw", "<cmd>wq<CR>", { desc = "Write Quit Buffer", noremap = true, silent = true })
 
 -- Lazy & Plugins
 
