@@ -47,8 +47,8 @@ font-family = Jetbrains Mono Nerd Font
 font-size = 13
 unfocused-split-opacity = .9
 window-save-state = always
-# background-blur-radius = true
-# background-opacity = 0.85
+background-blur-radius = true
+background-opacity = 0.85
 
 
 # cursor
