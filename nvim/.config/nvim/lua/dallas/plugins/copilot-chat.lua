@@ -31,12 +31,10 @@ return {
 					},
 					reset = {
 						normal = false,
-						insert = false,
+						insert = "<C-r>",
 					},
 				},
 			}
 		end,
-		-- See Configuration section for options
-		-- See Commands section for default commands if you want to lazy load on them
 	},
 }

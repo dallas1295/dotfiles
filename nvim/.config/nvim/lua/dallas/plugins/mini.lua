@@ -34,28 +34,23 @@ return {
 		})
 		require("mini.move").setup({
 			mappings = {
-				-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
 				left = "<M-S-h>",
 				right = "<M-S-l>",
 				down = "<M-S-j>",
 				up = "<M-S-k>",
 
-				-- Move current line in Normal mode
 				line_left = "<M-S-h>",
 				line_right = "<M-S-l>",
 				line_down = "<M-S-j>",
 				line_up = "<M-S-k>",
 			},
 
-			-- Options which control moving behavior
 			options = {
-				-- Automatically reindent selection during linewise vertical move
 				reindent_linewise = true,
 			},
 		})
 		-- mini.icons installed via dependency
 		require("mini.icons").setup()
-		-- mini.snippets installed via dependency
-		-- require("mini.snippets").setup()
+		require("mini.snippets").setup()
 	end,
 }

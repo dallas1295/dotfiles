@@ -7,8 +7,4 @@ return {
 			require("copilot").setup({})
 		end,
 	},
-	-- completions
-	{
-		"giuxtaposition/blink-cmp-copilot",
-	},
 }
