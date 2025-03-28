@@ -1,7 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	-- optional: provides snippets for the snippet source
-	dependencies = { "rafamadriz/friendly-snippets" },
+	dependencies = { "echasnovski/mini.snippets" },
 
 	-- use a release tag to download pre-built binaries
 	version = "1.*",
@@ -23,9 +23,13 @@ return {
 		-- C-n/C-p or Up/Down: Select next/previous item
 		-- C-e: Hide menu
 		-- C-k: Toggle signature help (if signature.enabled = true)
-		--
 		-- See :h blink-cmp-config-keymap for defining your own keymap
-		keymap = { preset = "default" },
+		keymap = {
+			preset = "default",
+			["<C-j>"] = { "select_next", "fallback" },
+			["<C-k>"] = { "select_prev", "fallback" },
+			["<Tab>"] = { "accept" },
+		},
 
 		appearance = {
 			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'

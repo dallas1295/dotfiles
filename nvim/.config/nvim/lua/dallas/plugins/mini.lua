@@ -10,11 +10,11 @@ return {
 		require("mini.pairs").setup()
 		require("mini.diff").setup()
 		require("mini.comment").setup()
-		require("mini.icons").setup()
 		require("mini.statusline").setup()
 		require("mini.tabline").setup()
 		require("mini.trailspace").setup()
 		require("mini.operators").setup()
+		require("mini.animate").setup()
 		require("mini.files").setup({
 			mappings = {
 				close = "q",
@@ -53,10 +53,9 @@ return {
 				reindent_linewise = true,
 			},
 		})
-		require("mini.snippets").setup({
-			mappings = {
-				expand = "C-p",
-			},
-		})
+		-- mini.icons installed via dependency
+		require("mini.icons").setup()
+		-- mini.snippets installed via dependency
+		-- require("mini.snippets").setup()
 	end,
 }
