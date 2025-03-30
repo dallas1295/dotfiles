@@ -2,19 +2,14 @@ return {
 	"echasnovski/mini.nvim",
 	version = false,
 	config = function()
+		--appearance
 		require("mini.notify").setup()
-		require("mini.git").setup()
-		require("mini.ai").setup()
-		require("mini.surround").setup()
-		require("mini.indentscope").setup()
-		require("mini.pairs").setup()
-		require("mini.diff").setup()
-		require("mini.comment").setup()
+		require("mini.icons").setup()
 		require("mini.statusline").setup()
 		require("mini.tabline").setup()
-		require("mini.trailspace").setup()
-		require("mini.operators").setup()
-		require("mini.animate").setup()
+		require("mini.indentscope").setup()
+		require("mini.git").setup()
+		require("mini.diff").setup()
 		require("mini.files").setup({
 			mappings = {
 				close = "q",
@@ -32,6 +27,14 @@ return {
 				trim_right = ">",
 			},
 		})
+
+		-- simplifiers
+		require("mini.surround").setup()
+		require("mini.pairs").setup()
+		require("mini.ai").setup()
+		require("mini.comment").setup()
+		require("mini.trailspace").setup()
+		require("mini.operators").setup()
 		require("mini.move").setup({
 			mappings = {
 				left = "<M-S-h>",
@@ -49,8 +52,5 @@ return {
 				reindent_linewise = true,
 			},
 		})
-		-- mini.icons installed via dependency
-		require("mini.icons").setup()
-		require("mini.snippets").setup()
 	end,
 }

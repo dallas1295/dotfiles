@@ -11,6 +11,8 @@ return {
 
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 		local keymap = vim.keymap -- for conciseness
 
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -66,11 +68,28 @@ return {
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+		vim.diagnostic.config({
+			signs = {
+				text = signs,
+				numhl = "",
+				texthl = "",
+			},
+			virtual_text = {
+				prefix = "●", -- Could be '■', '▎', 'x'
+				spacing = 4,
+				source = "if_many",
+				severity = {
+					min = vim.diagnostic.severity.INFO,
+				},
+			},
+			float = {
+				source = "always",
+				border = "rounded",
+			},
+			severity_sort = true,
+			update_in_insert = false,
+		})
 
 		mason_lspconfig.setup_handlers({
 			-- default handler for installed servers
@@ -100,7 +119,7 @@ return {
 					root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
 					on_attach = function(client, bufnr)
 						if vim.lsp.get_clients({ bufnr = bufnr, name = "denols" })[1] then
-							client.stop()
+							client:stop()
 							return
 						end
 					end,
