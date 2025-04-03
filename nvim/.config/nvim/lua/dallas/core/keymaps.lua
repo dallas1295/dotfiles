@@ -11,7 +11,7 @@ keymap.set("i", "<C-j>", "<C-n>", { remap = true, silent = true })
 keymap.set("i", "<C-k>", "<C-p>", { remap = true, silent = true })
 
 -- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+-- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- clear search highlights
 keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })
