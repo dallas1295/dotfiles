@@ -19,7 +19,8 @@
     "persistent_workspaces": {
       "1": [],
       "2": [],
-      "3": []
+      "3": [],
+      "4": []
     }
   },
 
@@ -54,7 +55,7 @@
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
-    "on-click": "rofi-wifi-menu"
+    "on-click": "nm-applet"
   },
   "cpu": {
     "format": "  {usage}%",

@@ -42,13 +42,10 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = rose-pine
+theme = NvimDark
 font-family = Jetbrains Mono Nerd Font
 font-size = 13
-unfocused-split-opacity = .9
 window-save-state = always
-background-blur-radius = true
-background-opacity = 0.65
 
 
 # cursor
