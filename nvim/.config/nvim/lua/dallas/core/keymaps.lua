@@ -65,4 +65,6 @@ keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "Fuzzy find r
 keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })
 keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Fuzzy find visual selection" })
 keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Fuzzy in project" })
+keymap.set("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume grep" })
 keymap.set("n", "<leader>fh", "<cmd>FzfLua search_history<CR>", { desc = "Search History" })
+keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
