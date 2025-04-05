@@ -23,17 +23,9 @@
       "4": []
     }
   },
-
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": ""
-    }
-  },
   "pulseaudio": {
     "format": "{icon}  {volume}%",
-    "format-bluetooth": "   {icon}  {volume}%",
+    "format-bluetooth": " {icon}  {volume}%",
     "format-bluetooth-muted": "󰝟 {icon} ",
     "format-muted": "󰝟 ",
     "format-source": "{volume}%",
@@ -50,7 +42,7 @@
     "on-click": "pavucontrol"
   },
   "network": {
-    "format-wifi": "    {essid} ({signalStrength}%)",
+    "format-wifi": "  {essid} ({signalStrength}%)",
     "format-ethernet": "{ipaddr}/{cidr} ",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
@@ -73,7 +65,7 @@
     "format": " {temperatureC}°C"
   },
   "backlight": {
-    "format": "{icon}  {percent}%",
+    "format": "{icon} {percent}%",
     "format-icons": [
       "󱩎 ",
       "󱩏 ",
@@ -111,7 +103,7 @@
     "format-alt": "{:%Y-%m-%d}"
   },
   "tray": {
-    "icon-size": 17,
+    "icon-size": 20,
     "spacing": 10
   }
 }
