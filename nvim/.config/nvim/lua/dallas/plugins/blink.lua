@@ -29,7 +29,7 @@ return {
 			preset = "default",
 			["<C-j>"] = { "select_next", "fallback" },
 			["<C-k>"] = { "select_prev", "fallback" },
-			["<C-y>"] = { "accept" },
+			["<Tab>"] = { "accept" },
 		},
 
 		appearance = {

@@ -6,28 +6,17 @@
     "tooltip-format": "btw"
   },
 
-  "hyprland/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": true,
-    "warp-on-scroll": false,
-    "format": "{name}",
-    "format-icons": {
-      "urgent": "",
-      "active": "",
-      "default": ""
-    },
-    "persistent_workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": []
-    }
+  "persistent_workspaces": {
+    "1": [],
+    "2": [],
+    "3": []
   },
+
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
-    "format-bluetooth": " {icon}  {volume}%",
-    "format-bluetooth-muted": "󰝟 {icon} ",
-    "format-muted": "󰝟 ",
+    "format": "{icon}   {volume}%",
+    "format-bluetooth": "{icon}  {volume}%",
+    "format-bluetooth-muted": "󰝟  {icon}",
+    "format-muted": "󰝟  ",
     "format-source": "{volume}%",
     "format-source-muted": "",
     "format-icons": {
@@ -50,11 +39,11 @@
     "on-click": "nm-applet"
   },
   "cpu": {
-    "format": "  {usage}%",
+    "format": "   {usage}%",
     "tooltip": true
   },
   "memory": {
-    "format": "  {}%",
+    "format": "   {}%",
     "tooltip": true
   },
   "temperature": {
@@ -65,7 +54,7 @@
     "format": " {temperatureC}°C"
   },
   "backlight": {
-    "format": "{icon} {percent}%",
+    "format": "{icon}  {percent}%",
     "format-icons": [
       "󱩎 ",
       "󱩏 ",
