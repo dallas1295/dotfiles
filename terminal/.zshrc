@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/dallas/.zsh/completions:"* ]]; then export FPATH="/home/dallas/.zsh/completions:$FPATH"; fi
 # tmux rules
 if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; then
   if tmux attach -t Main 2>/dev/null; then
@@ -25,3 +27,4 @@ export PATH=$HOME/.local/bin:$PATH
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+. "/home/dallas/.deno/env"
