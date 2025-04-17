@@ -16,7 +16,7 @@ return {
 				window = {
 					width = 0.45,
 				},
-				model = "claude-3.5-sonnet",
+				model = "gpt-4.1",
 				mappings = {
 					submit_prompt = {
 						normal = "<CR>",
@@ -30,8 +30,8 @@ return {
 						insert = "<C-c>",
 					},
 					reset = {
-						normal = false,
-						insert = "<C-r>",
+						normal = "<C-r>",
+						insert = "<M-a>",
 					},
 				},
 			}

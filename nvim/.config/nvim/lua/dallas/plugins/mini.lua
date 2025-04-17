@@ -3,6 +3,7 @@ return {
 	version = false,
 	config = function()
 		--appearance
+		require("mini.animate").setup()
 		require("mini.notify").setup()
 		local hi = require("mini.hipatterns")
 		hi.setup({
@@ -12,6 +13,7 @@ return {
 				hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
 				todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
 				note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+
 				-- Hexcode highlighting
 				hex_color = hi.gen_highlighter.hex_color({ priority = 2000 }),
 				shorthand = {
@@ -29,7 +31,7 @@ return {
 		})
 		require("mini.icons").setup()
 		require("mini.statusline").setup()
-		require("mini.tabline").setup()
+		-- require("mini.tabline").setup()
 		require("mini.indentscope").setup()
 		require("mini.diff").setup()
 		require("mini.clue").setup({
@@ -40,7 +42,7 @@ return {
 		})
 		require("mini.files").setup({
 			mappings = {
-				close = "q",
+				close = "<Esc>",
 				go_in = "l",
 				go_in_plus = "<CR>",
 				go_out = "h",
@@ -50,7 +52,7 @@ return {
 				reset = "<BS>",
 				reveal_cwd = "@",
 				show_help = "g?",
-				synchronize = "=",
+				synchronize = "q",
 				trim_left = "<",
 				trim_right = ">",
 			},
