@@ -40,7 +40,7 @@ return {
 		})
 		require("mini.icons").setup()
 		require("mini.statusline").setup()
-		-- require("mini.tabline").setup()
+		require("mini.tabline").setup()
 		require("mini.indentscope").setup()
 		require("mini.diff").setup()
 		local miniclue = require("mini.clue")
