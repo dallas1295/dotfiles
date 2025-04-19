@@ -24,12 +24,7 @@ keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- 
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
 -- Buffers
-keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
-keymap.set("n", "<leader>bf", "<cmd>bf<CR>", { desc = "go to first buffer" })
-keymap.set("n", "<leader>bl", "<cmd>bl<CR>", { desc = "go to last buffer" })
-keymap.set("n", "<leader>ba", "<cmd>buffers<CR>", { desc = "list all buffers" })
-keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
-keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+keymap.set("n", "<leader>d", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 
 -- quits
 keymap.set("n", "<leader>qq", "<cmd>qall<CR>", { desc = "Close Neovim", noremap = true, silent = true })
