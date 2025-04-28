@@ -43,11 +43,11 @@
 # resize-overlay-duration = 4s 200ms
 
 theme = NvimDark
-background = #14161b
 font-family = Jetbrains Mono Nerd Font
 font-size = 13
 window-save-state = always
-
+gtk-titlebar = false
+maximize = true
 
 # cursor
 cursor-style = block
