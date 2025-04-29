@@ -16,15 +16,19 @@ fpath=(/usr/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
 # zsh-syntax-highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # zsh-autosuggestions
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # environment calls
 export EDITOR='nvim'
 export PATH=$HOME/.local/bin:$PATH
 
-alias dnf='sudo dnf'
+# for fedora alias dnf='sudo dnf'
+# for arch
+alias yay='paru'
+
+alias vi ='nvim'
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

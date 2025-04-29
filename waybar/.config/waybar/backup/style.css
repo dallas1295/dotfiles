@@ -7,7 +7,7 @@
 }
 
 window#waybar {
-  background: rgba(7, 8, 13, 0);
+  background: rgb(7, 8, 13);
   color: #e0def4;
   font-family:
     JetbrainsMonoNL Nerd Font,
@@ -15,13 +15,12 @@ window#waybar {
   transition: background-color 0.5s;
 }
 
-.modules-center,
 .modules-left,
 .modules-right {
-  background: #21202e;
+  background: #2c2e33;
   margin: 0px 10px;
   padding: 1 5px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .modules-left {
   padding: 0;
@@ -77,14 +76,14 @@ window#waybar {
     feather;
   font-weight: 900;
   font-size: 13pt;
-  color: #9ccfd8;
+  color: #a6dbff;
   border: none;
   border-radius: 15px;
 }
 
 #workspaces button.active {
-  background: #403d52;
-  color: #f6c177;
+  background: #4f5258;
+  color: #b4f6c0;
 }
 
 #workspaces button:hover {
@@ -97,11 +96,11 @@ window#waybar {
   margin-left: 5px;
   padding: 0 10px;
   font-size: 23px;
-  color: #31748f;
+  color: #8cf8f7;
   transition: color 0.5s;
 }
 #custom-arch:hover {
-  color: #8cf8f7;
+  color: #31748f;
 }
 
 #pulseaudio,
