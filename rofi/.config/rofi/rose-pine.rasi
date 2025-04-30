@@ -12,7 +12,7 @@
 	red: #eb6f92;
 	yel: #f6c177;
 
-	font: "Geist Mono Nerd Font 12";
+	font: "Jetbrains Mono Nerd Font 12";
 
 	foreground: @fgd;
 	background: @bg;
