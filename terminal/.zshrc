@@ -28,7 +28,7 @@ export PATH=$HOME/.local/bin:$PATH
 # for arch
 alias yay='paru'
 
-alias vi ='nvim'
+alias vi='nvim'
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

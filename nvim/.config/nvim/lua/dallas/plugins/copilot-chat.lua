@@ -30,7 +30,7 @@ return {
 						insert = "<C-c>",
 					},
 					reset = {
-						normal = "",
+						normal = "<M-a>",
 						insert = "<M-a>",
 					},
 				},
