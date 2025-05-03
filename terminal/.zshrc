@@ -19,9 +19,11 @@ compinit
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # zsh-autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
 export EDITOR='nvim'
+export TERM='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 
 # for fedora alias dnf='sudo dnf'
@@ -29,6 +31,17 @@ export PATH=$HOME/.local/bin:$PATH
 alias yay='paru'
 
 alias vi='nvim'
+
+# git setup
+alias gs='git status --short'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gu='git pull'
+alias gl='git log'
+alias gb='git branch'
+alias gi='git init'
+alias gcl='git clone'
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
