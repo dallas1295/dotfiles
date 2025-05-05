@@ -11,6 +11,8 @@ if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; t
   fi
 fi
 
+bindkey -v
+
 # zsh-completions
 fpath=(/usr/share/zsh/site-functions $fpath)
 autoload -Uz compinit
