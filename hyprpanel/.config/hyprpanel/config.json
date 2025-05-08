@@ -239,6 +239,7 @@
       "left": [
         "dashboard",
         "workspaces",
+        "tray",
         "windowtitle"
       ],
       "middle": [
