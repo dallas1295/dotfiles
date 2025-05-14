@@ -27,8 +27,6 @@ return {
 			end,
 		})
 
-		-- used to enable autocompletion (assign to every lsp server config)
-
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
@@ -54,85 +52,81 @@ return {
 			update_in_insert = false,
 		})
 
-		mason_lspconfig.setup_handlers({
-			-- default handler for installed servers
-			function(server_name)
+		-- Dynamically set up all installed LSP servers with default capabilities
+		local installed_servers = mason_lspconfig.get_installed_servers()
+		for _, server_name in ipairs(installed_servers) do
+			if lspconfig[server_name] then
 				lspconfig[server_name].setup({
 					capabilities = capabilities,
+					-- Add any default configuration options here if needed
 				})
+			end
+		end
+
+		-- Now, configure specific LSP servers with custom settings
+		lspconfig["denols"].setup({
+			capabilities = capabilities,
+			filetypes = { "typescriptreact", "javascriptreact", "javascript", "typescript" },
+			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+			settings = {
+				deno = {
+					enable = true,
+					enablePaths = true,
+					lint = true,
+				},
+			},
+		})
+
+		lspconfig["ts_ls"].setup({
+			capabilities = capabilities,
+			filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+			root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+			on_attach = function(client, bufnr)
+				if vim.lsp.get_clients({ bufnr = bufnr, name = "denols" })[1] then
+					client:stop()
+					return
+				end
 			end,
-			["denols"] = function()
-				lspconfig["denols"].setup({
-					capabilities = capabilities,
-					filetypes = { "typescriptreact", "javascriptreact", "javascript", "typescript" },
-					root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-					settings = {
-						deno = {
-							enable = true,
-							enablePaths = true,
-							lint = true,
-						},
+		})
+
+		lspconfig["lua_ls"].setup({
+			capabilities = capabilities,
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
 					},
-				})
-			end,
-			["ts_ls"] = function()
-				lspconfig["ts_ls"].setup({
-					capabilities = capabilities,
-					filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-					root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
-					on_attach = function(client, bufnr)
-						if vim.lsp.get_clients({ bufnr = bufnr, name = "denols" })[1] then
-							client:stop()
-							return
-						end
-					end,
-				})
-			end,
-			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
+					completion = {
+						callSnippet = "Replace",
 					},
-				})
-			end,
-			["tailwindcss"] = function()
-				lspconfig["tailwindcss"].setup({
-					capabilities = capabilities,
-					filetypes = {
-						"html",
-						"css",
-						"javascriptreact",
-						"typescriptreact",
+				},
+			},
+		})
+
+		lspconfig["tailwindcss"].setup({
+			capabilities = capabilities,
+			filetypes = {
+				"html",
+				"css",
+				"javascriptreact",
+				"typescriptreact",
+			},
+		})
+
+		lspconfig["gopls"].setup({
+			cmd = { "gopls" },
+			filetypes = { "go", "gomod", "gowork", "gotmpl" },
+			settings = {
+				gopls = {
+					analyses = {
+						unusedparams = true,
+						shadow = true,
+						undeclarednames = true,
 					},
-				})
-			end,
-			["gopls"] = function()
-				lspconfig["gopls"].setup({
-					cmd = { "gopls" },
-					filetypes = { "go", "gomod", "gowork", "gotmpl" },
-					settings = {
-						gopls = {
-							analyses = {
-								unusedparams = true,
-								shadow = true,
-								undeclarednames = true,
-							},
-							staticcheck = true,
-							usePlaceholders = true,
-						},
-					},
-				})
-			end,
+					staticcheck = true,
+					usePlaceholders = true,
+				},
+			},
 		})
 	end,
 }
