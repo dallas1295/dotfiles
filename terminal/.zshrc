@@ -48,3 +48,6 @@ alias gcl='git clone'
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 . "/home/dallas/.deno/env"
+# Initialize zsh completions (added by deno install script)
+autoload -Uz compinit
+compinit
