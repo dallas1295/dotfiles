@@ -31,9 +31,14 @@ vim.diagnostic.config({
 
 vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float)
 
+-- TODO need to add other servers (and install them)
+-- TODO is there a way for me to use my mason installs for ease of use???
 
--- this will need to be sorted out eventually Deno only attaches to vanilla projects
--- this will still breaks the interaction on vanilla files with both attaching (it ruins node projects in vanilla ts/js essentially)
+
+
+-- HACK this will need to be sorted out eventually Deno only attaches to vanilla projects
+-- HACK this will still breaks the interaction on vanilla files with both attaching (it ruins node projects in vanilla ts/js essentially)
+-- TODO maybe the solution is to create a truthy/falsy response for enabling deno?
 vim.api.nvim_create_autocmd('FileType', {
   pattern = {
     'javascript',
@@ -92,6 +97,7 @@ vim.api.nvim_create_autocmd('FileType', {
     })
   end,
 })
+
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'lua' },
   callback = function()
