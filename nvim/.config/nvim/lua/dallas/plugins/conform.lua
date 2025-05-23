@@ -16,7 +16,7 @@ return {
 				yaml = { "prettier" },
 				markdown = { "prettier" },
 				lua = { "stylua" },
-				go = { "gofumpt" },
+				go = { "goimports", "gofumpt" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
@@ -31,6 +31,6 @@ return {
 				async = false,
 				timeout_ms = 1000,
 			})
-		end, { desc = "Format file or range (in visual mode)" })
+		end, { desc = "Format file" })
 	end,
 }
