@@ -1,0 +1,207 @@
+# ~/.config/sway/config
+
+### Output (Monitor) ###
+output * bg #26233a solid_color
+
+### Mod Key to Super
+
+set $mod Mod4
+
+### Set variables for programs ###
+set $terminal wezterm 
+set $fileManager thunar
+set $menu rofi -show drun
+set $music spotify
+set $browser zen-browser
+
+
+### Autostart ###
+# exec waybar
+exec swaync -s ~/.config/sway/theme/rose-pine.css
+exec flameshot
+exec blueman-applet
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+
+# Launch apps
+exec $terminal
+
+### Swaybar ###
+bar {
+    position bottom
+    status_command i3status
+    font pango:Nebula Sans Book 10
+    colors {
+        background #26233a
+        statusline #eeeeee
+        separator  #666666
+        focused_workspace  #4c7899 #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+    }
+}
+
+
+### Input ###
+input "type:touchpad" {
+    natural_scroll enabled
+    scroll_factor 0.35
+}
+
+input * {
+    xkb_layout us
+    xkb_options caps:swapescape
+}
+
+### Gaps (requires sway-gaps) ###
+gaps inner 1 
+gaps outer 2
+
+### Borders ###
+client.focused          #9ccfd8 #9ccfd8 #232136 #9ccfd8 #9ccfd8
+client.unfocused        #393552 #393552 #908caa #393552 #393552
+client.urgent           #eb6f92 #eb6f92 #232136 #eb6f92 #eb6f92
+client.focused_inactive #393552 #393552 #908caa #393552 #393552
+client.placeholder      #232136 #232136 #908caa #232136 #232136
+
+default_border pixel 2 
+default_floating_border pixel 3
+
+
+
+
+### Keybindings ###
+
+# Config reload
+bindsym $mod+r reload
+
+# Program launchers
+bindsym $mod+Return exec $terminal
+bindsym $mod+e exec $fileManager
+bindsym $mod+space exec $menu
+bindsym $mod+m exec $music
+bindsym $mod+b exec $browser
+
+# Clipboard
+bindsym $mod+v exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Exit sway
+bindsym $mod+Shift+End exit
+
+# Toggle floating
+bindsym $mod+Shift+v floating toggle
+
+# Cycle focus
+bindsym $mod+Tab focus next
+
+# Lock screen (replace with your locker)
+bindsym $mod+Mod1+l exec swaylock
+
+# Power menu (rofi-power-menu)
+bindsym $mod+Shift+p exec "rofi -show power-menu -modi power-menu:rofi-power-menu"
+
+# Screenshot
+bindsym $mod+Print exec "grim -g \"$(slurp)\" ~/Pictures/screenshot.png"
+bindsym $mod+Shift+Print exec "grim -g \"$(slurp)\" ~/Pictures/screenshot_region.png"
+
+# Color picker (no direct equivalent, but you can use 'hyprpicker' if available)
+bindsym $mod+p exec hyprpicker
+
+# Move focus with $mod+h/j/k/l
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move windows with $mod+Shift+h/j/k/l
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Resize windows with $mod+Ctrl+h/j/k/l
+bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+j resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+k resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
+
+# Fullscreen
+bindsym $mod+f fullscreen
+
+# Workspaces (1-10)
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Scratchpad (Sway's version)
+bindsym $mod+s move scratchpad
+bindsym $mod+Shift+s scratchpad show
+
+# Workspace scrolling (mouse wheel)
+bindsym $mod+button4 workspace next
+bindsym $mod+button5 workspace prev
+
+# Multimedia keys
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+
+# Media keys (playerctl)
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
+
+### Assign apps to workspaces ###
+# Sway uses for_window to assign apps by app_id/class/title
+
+# Terminal (ghostty) to workspace 2
+for_window [app_id="com.mitchellh.ghostty"] move to workspace 2
+
+# Browser (zen) to workspace 3
+for_window [app_id="zen"] move to workspace 3
+
+# Bitwarden and Thunar to workspace 5
+for_window [app_id="Bitwarden"] move to workspace 5
+for_window [app_id="thunar"] move to workspace 5
+
+# Heroic, Steam, Discord to workspace 4
+for_window [app_id="heroic"] move to workspace 4
+for_window [app_id="steam"] move to workspace 4
+for_window [title="Steam"] move to workspace 4
+for_window [app_id="discord"] move to workspace 4
+
+# Spotify to workspace 1
+for_window [class="Spotify"] move to workspace 1
+
+# Picture-in-Picture floating
+for_window [title="^Picture-in-Picture(.*)$"] floating enable
+
+# End of config
+

@@ -12,7 +12,6 @@ if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; t
 fi
 
 bindkey -v
-
 # zsh-completions
 fpath=(/usr/share/zsh/site-functions $fpath)
 autoload -Uz compinit
@@ -25,7 +24,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
 export EDITOR='nvim'
-export TERM='ghostty'
+export TERM='wezterm'
 export PATH=$HOME/.local/bin:$PATH
 
 # for fedora alias dnf='sudo dnf'
