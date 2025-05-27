@@ -1,5 +1,3 @@
-# ~/.config/sway/config
-
 ### Output (Monitor) ###
 output * bg #26233a solid_color
 
