@@ -28,6 +28,7 @@ return {
 				"denols",
 				"tailwindcss",
 				"lua_ls",
+				"gopls",
 			},
 		})
 	end,
