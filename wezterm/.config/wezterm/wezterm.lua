@@ -1,9 +1,12 @@
 local wezterm = require("wezterm")
 local theme = wezterm.plugin.require("https://github.com/neapsix/wezterm").main
 
+local colors = theme.colors()
+colors.background = "#111111"
+
 return {
 	-- Appearance
-	colors = theme.colors(),
+	colors = colors,
 	window_frame = theme.window_frame(),
 	font = wezterm.font("JetBrains Mono Nerd Font"),
 	font_size = 13.0,

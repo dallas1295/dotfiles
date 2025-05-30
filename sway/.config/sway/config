@@ -1,5 +1,5 @@
 ### Output (Monitor) ###
-output * bg #26233a solid_color
+output * bg #2a273f solid_color
 
 ### Mod Key to Super
 
@@ -88,12 +88,12 @@ exec autotiling -l 2
      font pango:JetBrains Mono Nerd Font Regular 10 
      status_command ~/.config/sway/swaybar.sh
      colors {
-       background #26233a
+       background #2a273f
          statusline #eeeeee
          separator  #666666
          focused_workspace  #c4a7e7 #907aa9 #ffffff
          active_workspace   #6e6a86 #222222 #888888
-         inactive_workspace #4c7899 #285577 #ffffff
+         inactive_workspace #56526e #2a283e #ffffff
          urgent_workspace   #2f343a #900000 #ffffff
      }
  }
