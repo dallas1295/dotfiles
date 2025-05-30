@@ -24,7 +24,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
 export EDITOR='nvim'
-export TERM='ghostty'
+export TERM='wezterm'
 export PATH=$HOME/.local/bin:$PATH
 
 # for fedora alias dnf='sudo dnf'

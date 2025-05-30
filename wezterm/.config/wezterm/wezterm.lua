@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local theme = wezterm.plugin.require("https://github.com/neapsix/wezterm").main
 
 local colors = theme.colors()
-colors.background = "#111111"
+colors.background = "#000000"
 
 return {
 	-- Appearance

@@ -74,7 +74,7 @@ exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr &
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
 # Launch apps
-exec $terminal
+exec $terminal -e yazi
 
 
 # setting up auto tiling
@@ -115,7 +115,7 @@ gaps inner 1
 gaps outer 2
 
 ### Borders ###
-client.focused          #9ccfd8 #9ccfd8 #232136 #9ccfd8 #9ccfd8
+client.focused          #ebbcba #ebbcba #232136 #ebbcba #ebbcba
 client.unfocused        #393552 #393552 #908caa #393552 #393552
 client.urgent           #eb6f92 #eb6f92 #232136 #eb6f92 #eb6f92
 client.focused_inactive #393552 #393552 #908caa #393552 #393552
@@ -140,7 +140,7 @@ bindsym $mod+m exec $music
 bindsym $mod+b exec $browser
 
 # Clipboard
-bindsym $mod+v exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+bindsym $mod+Shift+v exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
 # Kill focused window
 bindsym $mod+q kill
@@ -149,7 +149,7 @@ bindsym $mod+q kill
 bindsym $mod+Shift+End exit
 
 # Toggle floating
-bindsym $mod+Shift+v floating toggle
+bindsym $mod+v floating toggle
 
 # Cycle focus
 bindsym $mod+Tab focus next
@@ -213,8 +213,8 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # Scratchpad (Sway's version)
-bindsym $mod+s move scratchpad
-bindsym $mod+Shift+s scratchpad show
+bindsym $mod+Shift+s move scratchpad
+bindsym $mod+s scratchpad show
 
 # Workspace scrolling (mouse wheel)
 bindsym $mod+button4 workspace next
