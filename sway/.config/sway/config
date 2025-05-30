@@ -36,7 +36,7 @@ set $lock 'swaylock \
 
 ### Autostart ###
 # exec waybar
-exec swaync -s ~/.config/sway/theme/rose-pine.css
+exec swaync -s /home/.config/sway/theme/rose-pine.css
 exec flameshot
 exec blueman-applet
 exec wl-paste --type text --watch cliphist store
@@ -70,7 +70,6 @@ exec swayidle -w \
 
 ## Screen stuff
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DEKSTOP=sway
-
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr &
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
@@ -79,24 +78,25 @@ exec $terminal
 
 
 # setting up auto tiling
-exec autotiling -l 2
+exec autotiling -l 2 
 
 
 ### Swaybar ###
-bar {
-    position bottom
-    status_command i3status
-    font pango:Nebula Sans Book 10
-    colors {
-        background #26233a
-        statusline #eeeeee
-        separator  #666666
-        focused_workspace  #4c7899 #285577 #ffffff
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
-    }
-}
+
+ bar {
+     position top
+     font pango:JetBrains Mono Nerd Font Regular 10 
+     status_command ~/.config/sway/swaybar.sh
+     colors {
+       background #26233a
+         statusline #eeeeee
+         separator  #666666
+         focused_workspace  #c4a7e7 #907aa9 #ffffff
+         active_workspace   #6e6a86 #222222 #888888
+         inactive_workspace #4c7899 #285577 #ffffff
+         urgent_workspace   #2f343a #900000 #ffffff
+     }
+ }
 
 
 ### Input ###
@@ -238,23 +238,23 @@ bindsym XF86AudioPrev exec playerctl previous
 # Sway uses for_window to assign apps by app_id/class/title
 
 # Terminal (ghostty) to workspace 2
-for_window [app_id="wezterm"] move to workspace 2
+for_window [app_id="wezterm"] move to workspace 1
 
 # Browser (zen) to workspace 3
-for_window [app_id="zen"] move to workspace 3
+for_window [app_id="zen"] move to workspace 2
 
 # Bitwarden and Thunar to workspace 5
-for_window [app_id="Bitwarden"] move to workspace 5
-for_window [app_id="thunar"] move to workspace 5
+for_window [app_id="Bitwarden"] move to workspace 4
+for_window [app_id="thunar"] move to workspace 4 
 
 # Heroic, Steam, Discord to workspace 4
-for_window [app_id="heroic"] move to workspace 4
-for_window [app_id="steam"] move to workspace 4
-for_window [title="Steam"] move to workspace 4
-for_window [app_id="discord"] move to workspace 4
+for_window [app_id="heroic"] move to workspace 3
+for_window [app_id="steam"] move to workspace 3
+for_window [title="Steam"] move to workspace 3
+for_window [app_id="discord"] move to workspace 3
 
 # Spotify to workspace 1
-for_window [class="Spotify"] move to workspace 1
+for_window [class="Spotify"] move to workspace 4
 
 # Picture-in-Picture floating
 for_window [title="^Picture-in-Picture(.*)$"] floating enable
