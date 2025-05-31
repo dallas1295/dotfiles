@@ -9,9 +9,10 @@ set $mod Mod4
 set $terminal wezterm 
 set $fileManager thunar
 set $menu rofi -show drun
-set $music flatpak run com.spotify.Client
-set $browser flatpak run app.zen_browser.zen
-set $vpn flatpak run com.surfshark.Surfshark
+set $music spotify
+set $browser zen-browser 
+set $vpn surfshark 
+set $password flatpak run com.bitwarden.desktop
 
 
 set $lock 'swaylock \
@@ -40,11 +41,14 @@ set $lock 'swaylock \
 
 ## Screen stuff
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr &
+exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
+
 
 # Launch apps
 exec $terminal
+exec $vpn
+exec $password
 exec swaync -s /home/.config/sway/theme/rose-pine.css
 exec flameshot
 exec blueman-applet
@@ -252,6 +256,7 @@ for_window [app_id="discord"] move to workspace 3
 
 # Non-essentials to workspace 4 
 for_window [app_id="Bitwarden"] move to workspace 4
+for_window [app_id="Surfshark"] move to workspace 4
 for_window [app_id="thunar"] move to workspace 4 
 for_window [class="Spotify"] move to workspace 4
 

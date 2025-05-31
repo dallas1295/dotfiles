@@ -17,8 +17,8 @@ fpath=(/usr/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
 # zsh-syntax-highlighting
-source /usr/share/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
@@ -27,13 +27,13 @@ export TERM='wezterm'
 export PATH=$HOME/.local/bin:$PATH
 
 # for fedora 
-alias dnf='sudo dnf'
+# alias dnf='sudo dnf'
 # # NVM setup
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # for arch
-# alias yay='paru'
+alias yay='paru'
 
 alias vi='nvim'
 
