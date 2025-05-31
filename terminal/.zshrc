@@ -27,7 +27,12 @@ export EDITOR='nvim'
 export TERM='wezterm'
 export PATH=$HOME/.local/bin:$PATH
 
-# for fedora alias dnf='sudo dnf'
+# for fedora 
+# alias dnf='sudo dnf'
+# # NVM setup
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 # for arch
 alias yay='paru'
 
