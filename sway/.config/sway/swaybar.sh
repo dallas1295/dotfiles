@@ -145,7 +145,7 @@ while :; do
     fi
 
     # Output
-    echo "$song_status $media_artist - $media_song | $audio_display_padded $audio_icon |  $cpu_display |  $ram_display | $battery_icon $battery_charge | $brightness_icon $brightness_display | $wifi_icon $wifi_ssid ($wifi_strength%) | $date_and_week  $current_time"
+    echo "$song_status $media_artist - $media_song | $audio_display_padded $audio_icon |  $cpu_display |  $ram_display | $brightness_icon $brightness_display | $wifi_icon $wifi_ssid ($wifi_strength%) | $battery_icon $battery_charge | $date_and_week  $current_time"
 
 done
 

@@ -11,7 +11,7 @@ set $fileManager thunar
 set $menu rofi -show drun
 set $music spotify
 set $browser zen-browser 
-set $vpn surfshark 
+set $vpn surfshark --hidden 
 set $password flatpak run com.bitwarden.desktop
 
 
@@ -50,7 +50,6 @@ exec $terminal
 exec $vpn
 exec $password
 exec swaync -s /home/.config/sway/theme/rose-pine.css
-exec flameshot
 exec blueman-applet
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
@@ -86,7 +85,7 @@ exec swayidle -w \
 
 ### Swaybar ###
  bar {
-     position top
+     position top   
      font pango:JetBrains Mono Nerd Font Regular 10 
      status_command ~/.config/sway/swaybar.sh
      colors {
@@ -166,11 +165,9 @@ bindsym $mod+Mod1+l exec $lock
 bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:rofi-power-menu
 
 # Screenshot
-bindsym $mod+Print exec "grim -g \"$(slurp)\" ~/Pictures/screenshot.png"
-bindsym $mod+Shift+Print exec "grim -g \"$(slurp)\" ~/Pictures/screenshot_region.png"
+bindsym $mod+Print exec sh -c 'grim -g "$(slurp)" $HOME/Pictures/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png'
 
-# Color picker (no direct equivalent, but you can use 'hyprpicker' if available)
-bindsym $mod+p exec hyprpicker
+bindsym $mod+Shift+Print exec sh -c 'grim $HOME/Pictures/fullscreen-$(date +%Y%m%d-%H%M%S).png'
 
 # Move focus with $mod+h/j/k/l
 bindsym $mod+h focus left

@@ -21,14 +21,18 @@ keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decremen
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })     -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })   -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })      -- make split windows equal width & height
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
 -- Buffers
-keymap.set("n", "<leader>d", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>bdd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>bdq", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>bl", "<cmd>ls<CR>", { desc = "List open buffers" })
+keymap.set("n", "<S-j>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
+keymap.set("n", "<S-k", "<cmd>bp<CR>", { desc = "Go to previous buffer" })
 
 -- quits
 keymap.set("n", "<leader>qq", "<cmd>qall<CR>", { desc = "Close Neovim", noremap = true, silent = true })
-keymap.set("n", "<leader>qw", "<cmd>wq<CR>", { desc = "Write Quit Buffer", noremap = true, silent = true })
+keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Write Quit Buffer", noremap = true, silent = true })
 
 -- Lazy & Plugins
 
@@ -38,6 +42,7 @@ keymap.set("n", "<leader>pm", "<cmd>Mason<CR>", { desc = "Open Mason menu" })
 
 -- Mini
 keymap.set("n", "<leader>e", "<cmd>lua MiniFiles.open()<CR>", { desc = "Open explorer" })
+
 -- Fzf-lua
 keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find files" })
 keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "Fuzzy find recent files" })

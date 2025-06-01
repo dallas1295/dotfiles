@@ -77,7 +77,7 @@ paru -S --noconfirm --needed \
   zoxide \
   iputils \
   gvfs \
-  brightnessctl \
+  gnu-netcat
 
   # Deno
   curl -fsSL https://deno.land/install.sh | sh
@@ -226,8 +226,10 @@ paru -S --noconfirm --needed \
   swaync \
   autotiling \
   pamixer \
-  flameshot \
+  brightnessctl \
   pwvucontrol \
+  grim \
+  slurp \
   nwg-look \
   thunar \
   thunar-volman \
@@ -257,11 +259,21 @@ paru -S --noconfirm --needed \
   zen-browser-bin \
   steam \
   surfshark-client \
+  gimp 
 
   #set zen to default browser
  xdg-settings set default-web-browser zen-browser.desktop
  xdg-mime default zen-browser.desktop x-scheme-handler/http
  xdg-mime default zen-browser.desktop x-scheme-handler/https
+
+ #set GIMP for default w/ images
+ xdg-mime default gimp.desktop image/jpeg
+ xdg-mime default gimp.desktop image/jpg
+ xdg-mime default gimp.desktop image/gif
+ xdg-mime default gimp.desktop image/bmp
+ xdg-mime default gimp.desktop image/webp
+ xdg-mime default gimp.desktop image/png
+
 
 ## Flatpak
 paru -S --noconfirm flatpak 
