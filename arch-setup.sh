@@ -39,6 +39,11 @@ paru -S --noconfirm --needed\
   upower \
   reflector \
   reflector-simple \
+  wget \
+  iputils \
+  gvfs \
+  gnu-netcat
+
 
 ## zram setup
 sudo tee /etc/systemd/zram-generator.conf > /dev/null <<EOF
@@ -69,15 +74,13 @@ paru -S --noconfirm --needed \
   zig \
   rust \
   cargo \
+  luarocks \
   neovim \
   tmux \
   fd \
   fzf \
   entr \
   zoxide \
-  iputils \
-  gvfs \
-  gnu-netcat
 
   # Deno
   curl -fsSL https://deno.land/install.sh | sh
@@ -224,6 +227,8 @@ paru -S --noconfirm --needed \
   wl-clipboard \
   sway \
   swaync \
+  swaylock \
+  swayidle \
   autotiling \
   pamixer \
   brightnessctl \
@@ -245,6 +250,7 @@ paru -S --noconfirm --needed \
   wireplumber \
   alsa-utils \
   pwvucontrol \
+  playerctl \
   blueman \
   auto-cpufreq \
   bt-dualboot
@@ -274,6 +280,15 @@ paru -S --noconfirm --needed \
  xdg-mime default gimp.desktop image/webp
  xdg-mime default gimp.desktop image/png
 
+ # Docker setup
+paru -S --noconfirm --needed\
+  docker \
+  docker-compose \
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
 
 ## Flatpak
 paru -S --noconfirm flatpak 
