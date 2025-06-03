@@ -2,7 +2,7 @@
 
 while :; do
     # Date and time
-    date_and_week=$(date "+%Y/%m/%d (w%-V)")
+    date=$(date "+%Y/%m/%d")
     current_time=$(date "+%H:%M")
 
     # Battery
@@ -145,7 +145,7 @@ while :; do
     fi
 
     # Output
-    echo "$song_status $media_artist - $media_song | $audio_display_padded $audio_icon |  $cpu_display |  $ram_display | $brightness_icon $brightness_display | $wifi_icon $wifi_ssid ($wifi_strength%) | $battery_icon $battery_charge | $date_and_week  $current_time"
+    echo "$song_status $media_artist - $media_song | $audio_icon $audio_display_padded |  $cpu_display |  $ram_display | $brightness_icon $brightness_display | $wifi_icon $wifi_ssid ($wifi_strength%) | $battery_icon $battery_charge | $date  $current_time"
 
 done
 

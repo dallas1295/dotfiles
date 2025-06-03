@@ -25,6 +25,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 export EDITOR='nvim'
 export TERM='ghostty'
 export PATH=$HOME/.local/bin:$PATH
+GOPATH=$HOME/go  PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # for fedora 
 # alias dnf='sudo dnf'

@@ -85,6 +85,9 @@ paru -S --noconfirm --needed \
   # Deno
   curl -fsSL https://deno.land/install.sh | sh
 
+  # Go air
+  go install github.com/air-verse/air@latest
+
 ### Graphics Drivers
 paru -S --noconfirm --needed \
   mesa \
@@ -158,6 +161,8 @@ fi
 cd ~
 
 # --- Rose Pine Cursor ---
+
+paru -S --noconfirm --needed rose-pine-hyprcursor
 CURSOR_THEME_NAME="BreezeX-RosePine-Linux"
 CURSOR_DOWNLOAD_URL="https://github.com/rose-pine/cursor/releases/download/v1.1.0/BreezeX-RosePine-Linux.tar.xz"
 CURSOR_FILENAME="BreezeX-RosePine-Linux.tar.xz"
@@ -222,24 +227,37 @@ grep -q "export XCURSOR_THEME=$CURSOR_THEME_NAME" ~/.profile || echo "export XCU
 gtk-update-icon-cache -f ~/.icons/rose-pine-icons || true
 gtk-update-icon-cache -f "$CURSOR_INSTALL_DIR/$CURSOR_THEME_NAME" || true
 
+
+## General DE Stuff
+paru -S --noconfrim --needed \
+  wl-clipboard \
+  brightnessctl \
+  nwg-look \
+  thunar \
+  thunar-volman \
+  cliphist \
+  wezterm \ ## pick one!
+  ghostty \
+
+## Hyprland
+paru -S --noconfirm --needed \
+  hyprland \
+  hyprlock \
+  hypridle \
+  hyprpaper \
+  hyprpolkitagent \
+  hyprpicker \
+  hyprshot \
+
 ## Sway & Wayland Environment
 paru -S --noconfirm --needed \
-  wl-clipboard \
   sway \
   swaync \
   swaylock \
   swayidle \
   autotiling \
-  pamixer \
-  brightnessctl \
-  pwvucontrol \
   grim \
   slurp \
-  nwg-look \
-  thunar \
-  thunar-volman \
-  cliphist \
-  wezterm
 
 ## Audio, Bluetooth, and Power
 paru -S --noconfirm --needed \
@@ -250,6 +268,7 @@ paru -S --noconfirm --needed \
   wireplumber \
   alsa-utils \
   pwvucontrol \
+  pamixer \
   playerctl \
   blueman \
   auto-cpufreq \

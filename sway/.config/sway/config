@@ -46,11 +46,13 @@ exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
 
 # Launch apps
+exec waybar
 exec $terminal
 exec $vpn
 exec $password
-exec swaync -s /home/.config/sway/theme/rose-pine.css
+exec swaync -s /home/.config/sway/swaync/rose-pine.css
 exec blueman-applet
+
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 
@@ -84,20 +86,20 @@ exec swayidle -w \
     before-sleep 'swaylock -f -c 232136'
 
 ### Swaybar ###
- bar {
-     position top   
-     font pango:JetBrains Mono Nerd Font Regular 10 
-     status_command ~/.config/sway/swaybar.sh
-     colors {
-       background #2a273f
-         statusline #eeeeee
-         separator  #666666
-         focused_workspace  #c4a7e7 #907aa9 #ffffff
-         active_workspace   #6e6a86 #222222 #888888
-         inactive_workspace #56526e #2a283e #ffffff
-         urgent_workspace   #2f343a #900000 #ffffff
-     }
- }
+ # bar {
+ #     position top   
+ #     font pango:JetBrains Mono Nerd Font Regular 10 
+ #     status_command ~/.config/sway/swaybar.sh
+ #     colors {
+ #       background #2a273f
+ #         statusline #eeeeee
+ #         separator  #666666
+ #         focused_workspace  #c4a7e7 #907aa9 #ffffff
+ #         active_workspace   #6e6a86 #222222 #888888
+ #         inactive_workspace #56526e #2a283e #ffffff
+ #         urgent_workspace   #2f343a #900000 #ffffff
+ #     }
+ # }
 
 
 ### Input ###

@@ -7,8 +7,8 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps -------------------
 
 -- change listing binds
-keymap.set("i", "<C-j>", "<C-n>", { remap = true, silent = true })
-keymap.set("i", "<C-k>", "<C-p>", { remap = true, silent = true })
+keymap.set("i", "<C-h>", "<C-n>", { remap = true, silent = true })
+keymap.set("i", "<C-l>", "<C-p>", { remap = true, silent = true })
 
 -- clear search highlights
 keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })

@@ -1,8 +1,7 @@
 * {
   /* `otf-font-awesome` and SpaceMono Nerd Font are required to be installed for icons */
-  font-family:
-    "Nebula Sans Book", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-family: Jetbrains Mono Nerd Font;
+  font-size: 14.5px;
   transition: background-color 0.3s ease-out;
 }
 
@@ -20,8 +19,8 @@ window#waybar {
 .modules-right {
   background: #21202e;
   margin: 5px 5px;
-  padding: 1 5px;
-  border-radius: 10px;
+  padding: 1px 5px;
+  border-radius: 4px;
 }
 .modules-left {
   padding: 0;
@@ -37,12 +36,10 @@ window#waybar {
 #network,
 #pulseaudio,
 #wireplumber,
-#custom-media,
+#custom-music,
 #tray,
 #mode,
 #idle_inhibitor,
-#scratchpad,
-#power-profiles-daemon,
 #language,
 #mpd {
   padding: 0 10px;
@@ -77,9 +74,14 @@ window#waybar {
     feather;
   font-weight: 900;
   font-size: 13pt;
-  color: #9ccfd8;
+  color: #908caa;
   border: none;
-  border-radius: 15px;
+  border-radius: 4px;
+}
+
+#workspaces button.focused {
+  background: linear-gradient(90deg, #c4a7e7, #907aa9); /* or a solid color */
+  color: #ffffff;
 }
 
 #workspaces button.active {
@@ -91,17 +93,6 @@ window#waybar {
   background: #11111b;
   color: #ffc0b9;
   box-shadow: none;
-}
-
-#custom-arch {
-  margin-left: 5px;
-  padding: 0 10px;
-  font-size: 23px;
-  color: #31748f;
-  transition: color 0.5s;
-}
-#custom-arch:hover {
-  color: #8cf8f7;
 }
 
 #pulseaudio,
