@@ -6,7 +6,7 @@ output * bg #2a273f solid_color
 set $mod Mod4
 
 ### Set variables for programs ###
-set $terminal wezterm 
+set $terminal ghostty 
 set $fileManager thunar
 set $menu rofi -show drun
 set $music spotify
@@ -240,7 +240,7 @@ bindsym XF86AudioPrev exec playerctl previous
 # Sway uses for_window to assign apps by app_id/class/title
 
 # Terminal to workspace 1 
-for_window [app_id="wezterm"] move to workspace 1
+for_window [app_id="com.mitchellh.ghostty"] move to workspace 1
 
 # Browser to workspace 2 
 for_window [app_id="zen"] move to workspace 2

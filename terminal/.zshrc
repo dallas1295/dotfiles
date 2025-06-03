@@ -23,7 +23,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
 export EDITOR='nvim'
-export TERM='wezterm'
+export TERM='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 
 # for fedora 
