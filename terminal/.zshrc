@@ -23,7 +23,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
 export EDITOR='nvim'
-export TERM='ghostty'
+export TERM='wezterm'
 export PATH=$HOME/.local/bin:$PATH
 GOPATH=$HOME/go  PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 

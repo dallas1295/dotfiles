@@ -4,10 +4,10 @@
   "height": 20,
   "spacing": 1,
   "modules-left": [
-    "hyprland/workspaces",
+    "hyprland/workspaces"
   ],
   "modules-center": [
-    "custom/music"
+    "clock",
   ],
   "modules-right": [
     "pulseaudio",
@@ -16,7 +16,6 @@
     "backlight",
     "network",
     "battery",
-    "clock",
     "tray"
   ],
   "include": [

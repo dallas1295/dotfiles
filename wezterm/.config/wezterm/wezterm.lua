@@ -5,6 +5,7 @@ local colors = theme.colors()
 colors.background = "#000000"
 
 return {
+  enable_wayland = false,
   term = "xterm-256color",
   -- Appearance
   colors = colors,
@@ -16,7 +17,7 @@ return {
   hide_mouse_cursor_when_typing = true,
   enable_tab_bar = false,
   hide_tab_bar_if_only_one_tab = false,
-  default_prog = { "zsh" },
+  -- default_prog = { "zsh" },
 
   -- Copy from mouse selection
   mouse_bindings = {

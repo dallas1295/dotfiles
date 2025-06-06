@@ -5,7 +5,6 @@ set -e
 cd ~
 
 # 1. Install git if not already present 
-
 sudo pacman -S --needed git base-devel
 
 # 2. Install yay (AUR helper) if not already installed
@@ -85,6 +84,9 @@ paru -S --noconfirm --needed \
 
   # Go air
   go install github.com/air-verse/air@latest
+
+  chsh -s /usr/bin/zsh 
+  sudo chsh -s /usr/bin/zsh
 
 ### Graphics Drivers
 paru -S --noconfirm --needed \
