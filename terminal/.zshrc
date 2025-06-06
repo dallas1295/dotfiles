@@ -27,15 +27,6 @@ export TERM='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 GOPATH=$HOME/go  PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
-# for fedora 
-# alias dnf='sudo dnf'
-# # NVM setup
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# for arch
-alias yay='paru'
-
 alias vi='nvim'
 
 # git setup

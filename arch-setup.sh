@@ -6,17 +6,15 @@ cd ~
 
 # 1. Install git if not already present 
 
-sudo pacman -Syu --needed git
-rm -rf ~/.config/gtk-4.0/{assets,gtk.css,gtk-dark.css}
-rm -rf ~/.tmp/gtk4_extract
+sudo pacman -S --needed git base-devel
 
-# 2. Install paru (AUR helper) if not already installed
+# 2. Install yay (AUR helper) if not already installed
 if ! command -v paru &>/dev/null; then
-  git clone https://aur.archlinux.org/paru.git /tmp/paru
-  cd /tmp/paru
-  makepkg -si --noconfirm
+  git clone https://aur.archlinux.org/yay.git /tmp/yay
+  cd /tmp/yay
+  makepkg -si --no-confirm
   cd -
-  rm -rf /tmp/paru
+  rm -rf /tmp/yay
 fi
 
 # Dotfiles setup
