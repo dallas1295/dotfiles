@@ -237,7 +237,7 @@ paru -S --noconfrim --needed \
   thunar-volman \
   cliphist \
   wezterm \ ## pick one!
-  ghostty \
+  # ghostty \
 
 ## Hyprland
 paru -S --noconfirm --needed \
