@@ -5,19 +5,19 @@ set -e
 cd ~
 
 # 1. Install git if not already present 
-sudo pacman -S --needed git base-devel
+sudo pacman -Syu --needed git base-devel
 
 # 2. Install yay (AUR helper) if not already installed
-if ! command -v paru &>/dev/null; then
+if ! command -v yay &>/dev/null; then
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   cd /tmp/yay
-  makepkg -si --no-confirm
+  makepkg -si --noconfirm
   cd -
   rm -rf /tmp/yay
 fi
 
 # Dotfiles setup
-paru -S --noconfirm --needed unzip stow
+yay -S --noconfirm --needed unzip stow
 
 if [ -d ~/dotfiles ]; then
  cd ~/dotfiles
@@ -29,7 +29,7 @@ fi
 # 3. Install packages by category
 
 ## System & Core Utilities
-paru -S --noconfirm --needed\
+yay -S --noconfirm --needed\
   pacman-contrib \
   zram-generator \
   tree \
@@ -54,7 +54,7 @@ echo "ZRAM status:"
 swapon --show
 
 ## Shells & CLI Tools
-paru -S --noconfirm --needed \
+yay -S --noconfirm --needed \
   zsh \
   zsh-autosuggestions \
   zsh-completions \
@@ -79,6 +79,8 @@ paru -S --noconfirm --needed \
   entr \
   zoxide \
 
+  # TPM Install
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   # Deno
   curl -fsSL https://deno.land/install.sh | sh
 
@@ -89,14 +91,14 @@ paru -S --noconfirm --needed \
   sudo chsh -s /usr/bin/zsh
 
 ### Graphics Drivers
-paru -S --noconfirm --needed \
+yay -S --noconfirm --needed \
   mesa \
   lib32-mesa \
   vulkan-intel \
   lib32-vulkan-intel 
 
 ## Fonts & Themes
-paru -S --noconfirm --needed \
+yay -S --noconfirm --needed \
   xorg-xwayland \
   xdg-desktop-portal \
   xdg-desktop-portal-wlr \
@@ -106,7 +108,10 @@ paru -S --noconfirm --needed \
   noto-fonts \
   noto-fonts-extra \
   noto-fonts-cjk \
-  noto-fonts-emoji
+  noto-fonts-emoji \
+  ttf-fira-code \
+  ttf-fira-code-nerd
+
 
 # --- Rose Pine GTK3 Theming ---
 mkdir -p ~/.themes ~/.tmp/gtk3_extract
@@ -118,7 +123,7 @@ curl -fLO --progress-bar --retry 5 https://github.com/rose-pine/gtk/releases/lat
 tar -xzf "$GTK3_TARBALL" -C .
 rm "$GTK3_TARBALL"
 
-find . -maxdepth 2 -type d \( -name "rose-pine" -o -name "rose-pine-*-gtk" \) -exec mv {} ~/.themes/ \; 2>/dev/null || true
+find . -maxdepth 2 -type d \( -name "rose-pine-gtk" -o -name "rose-pine-*-gtk" \) -exec mv {} ~/.themes/ \; 2>/dev/null || true
 
 cd ~
 rm -rf ~/.tmp/gtk3_extract
@@ -162,7 +167,6 @@ cd ~
 
 # --- Rose Pine Cursor ---
 
-paru -S --noconfirm --needed rose-pine-hyprcursor
 CURSOR_THEME_NAME="BreezeX-RosePine-Linux"
 CURSOR_DOWNLOAD_URL="https://github.com/rose-pine/cursor/releases/download/v1.1.0/BreezeX-RosePine-Linux.tar.xz"
 CURSOR_FILENAME="BreezeX-RosePine-Linux.tar.xz"
@@ -229,38 +233,28 @@ gtk-update-icon-cache -f "$CURSOR_INSTALL_DIR/$CURSOR_THEME_NAME" || true
 
 
 ## General DE Stuff
-paru -S --noconfrim --needed \
+yay -S --noconfirm --needed \
   wl-clipboard \
   brightnessctl \
   nwg-look \
   thunar \
   thunar-volman \
   cliphist \
-  wezterm \ ## pick one!
-  # ghostty \
+  wezterm \
 
-## Hyprland
-paru -S --noconfirm --needed \
-  hyprland \
-  hyprlock \
-  hypridle \
-  hyprpaper \
-  hyprpolkitagent \
-  hyprpicker \
-  hyprshot \
-
-## Sway & Wayland Environment
-paru -S --noconfirm --needed \
+# Sway & Wayland Environment
+yay -S --noconfirm --needed \
   sway \
   swaync \
   swaylock \
   swayidle \
+  swaync \
   autotiling \
   grim \
   slurp \
 
 ## Audio, Bluetooth, and Power
-paru -S --noconfirm --needed \
+yay -S --noconfirm --needed \
   pipewire \
   pipewire-alsa \
   pipewire-pulse \
@@ -272,13 +266,12 @@ paru -S --noconfirm --needed \
   playerctl \
   blueman \
   auto-cpufreq \
-  bt-dualboot
 
 sudo systemctl enable --now bluetooth.service
 sudo systemctl enable --now auto-cpufreq.service
 
 ## Browsers & Apps
-paru -S --noconfirm --needed \
+yay -S --noconfirm --needed \
   firefox \
   spotify \
   zen-browser-bin \
@@ -300,7 +293,7 @@ paru -S --noconfirm --needed \
  xdg-mime default gimp.desktop image/png
 
  # Docker setup
-paru -S --noconfirm --needed\
+yay -S --noconfirm --needed\
   docker \
   docker-compose \
 
@@ -310,23 +303,23 @@ sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 
 ## Flatpak
-paru -S --noconfirm flatpak 
+yay -S --noconfirm flatpak 
 
 flatpak install flathub com.bitwarden.desktop
 
 ## Rofi & Menu
-paru -S --noconfirm --needed \
+yay -S --noconfirm --needed \
   rofi-wayland \
   rofi-power-menu
 
 ## Ly (just in case)
-paru -S --noconfirm --needed \
+yay -S --noconfirm --needed \
   ly
 
 sudo systemctl enable ly.service
 
 # 4. Optional: Clean up
-paru -Sc --noconfirm
+yay -Sc --noconfirm
 
 echo "All done! You may want to log out and back in, or reboot, to ensure all services are running."
 
