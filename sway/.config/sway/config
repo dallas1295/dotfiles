@@ -6,7 +6,7 @@ output * bg #2a273f solid_color
 set $mod Mod4
 
 ### Set variables for programs ###
-set $terminal ghostty 
+set $terminal wezterm 
 set $fileManager thunar
 set $menu rofi -show drun
 set $music spotify
@@ -241,23 +241,20 @@ bindsym XF86AudioPrev exec playerctl previous
 ### Assign apps to workspaces ###
 # Sway uses for_window to assign apps by app_id/class/title
 
-# Terminal to workspace 1 
-for_window [app_id="com.mitchellh.ghostty"] move to workspace 1
-
 # Browser to workspace 2 
 for_window [app_id="zen"] move to workspace 2
 
 # Game stuff to workspace 4
-for_window [app_id="heroic"] move to workspace 3
-for_window [app_id="steam"] move to workspace 3
-for_window [title="Steam"] move to workspace 3
-for_window [app_id="discord"] move to workspace 3
+for_window [app_id="Bitwarden"] move to workspace 3 
+for_window [app_id="Surfshark"] move to workspace 3 
+for_window [app_id="thunar"] move to workspace 3 
+for_window [class="Spotify"] move to workspace 3 
 
 # Non-essentials to workspace 4 
-for_window [app_id="Bitwarden"] move to workspace 4
-for_window [app_id="Surfshark"] move to workspace 4
-for_window [app_id="thunar"] move to workspace 4 
-for_window [class="Spotify"] move to workspace 4
+for_window [app_id="heroic"] move to workspace 4
+for_window [app_id="steam"] move to workspace 4 
+for_window [title="Steam"] move to workspace 4 
+for_window [app_id="discord"] move to workspace 4 
 
 # Picture-in-Picture floating
 for_window [title="^Picture-in-Picture(.*)$"] \

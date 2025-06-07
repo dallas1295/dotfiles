@@ -1,4 +1,12 @@
 {
+  "sway/workspaces": {
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": []
+    }
+  },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "{icon} {volume}%",
@@ -17,7 +25,7 @@
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "⚠ Disconnected ",
-    "on-click": "ghostty -e nmtui",
+    "on-click": "wezterm -e nmtui",
     "interval": 5,
     "tooltip": false
   },

@@ -5,12 +5,15 @@ local colors = theme.colors()
 colors.background = "#000000"
 
 return {
-  enable_wayland = false,
   term = "xterm-256color",
   -- Appearance
   colors = colors,
   window_frame = theme.window_frame(),
-  font = wezterm.font("JetBrains Mono Nerd Font"),
+  font = wezterm.font_with_fallback({
+    "JetBrainsMono Nerd Font",
+    "Symbols Nerd Font",
+    "Noto Color Emoji",
+  }),
   font_size = 13.0,
   window_decorations = "RESIZE",
   default_cursor_style = "BlinkingBlock",
