@@ -27,8 +27,8 @@ keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" }
 keymap.set("n", "<leader>bdd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>bdq", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>bl", "<cmd>ls<CR>", { desc = "List open buffers" })
-keymap.set("n", "<S-j>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
-keymap.set("n", "<S-k", "<cmd>bp<CR>", { desc = "Go to previous buffer" })
+keymap.set("n", "<S-h>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
+keymap.set("n", "<S-l", "<cmd>bp<CR>", { desc = "Go to previous buffer" })
 
 -- quits
 keymap.set("n", "<leader>qq", "<cmd>qall<CR>", { desc = "Close Neovim", noremap = true, silent = true })
@@ -43,12 +43,15 @@ keymap.set("n", "<leader>pm", "<cmd>Mason<CR>", { desc = "Open Mason menu" })
 -- Mini
 keymap.set("n", "<leader>e", "<cmd>lua MiniFiles.open()<CR>", { desc = "Open explorer" })
 
--- Fzf-lua
-keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find files" })
-keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "Fuzzy find recent files" })
-keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })
-keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Fuzzy find visual selection" })
-keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Fuzzy in project" })
-keymap.set("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume grep" })
-keymap.set("n", "<leader>fh", "<cmd>FzfLua search_history<CR>", { desc = "Search History" })
-keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
+-- Telescope
+keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { desc = "recent files" })
+keymap.set("n", "<leader>fg", "<cmd>Telescope grep_string<cr>", { desc = "Grep search" })
+keymap.set("n", "<leader>fv", function()
+  require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })
+end, { desc = "Search word under cursor" })
+keymap.set("n", "<leader>fl", "<cmd>Telescope live_grep<cr>", { desc = "Live grep in root" })
+keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>", { desc = "Resume grep" })
+keymap.set("n", "<leader>fp", "<cmd>Telescope search_history<cr>", { desc = "Search History" })
+keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Show buffers" })
+keymap.set("n", "<leader>fh", "<cmd>Telescope harpoon marks<cr>", { desc = "Search Harpoon marks" })

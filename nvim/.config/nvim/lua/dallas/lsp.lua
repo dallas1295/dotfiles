@@ -11,20 +11,32 @@ end
 
 -- Diagnostic formatting: prefix with LSP name
 vim.diagnostic.config({
-  virtual_text = {
-    format = function(diagnostic)
-      local client = vim.lsp.get_client_by_id(diagnostic.source)
-      local prefix = ""
-      if client and client.name then
-        prefix = client.name .. ": "
-      elseif diagnostic.source then
-        prefix = diagnostic.source .. ": "
-      end
-      return prefix .. diagnostic.message
-    end,
-  },
+  -- virtual_text = {
+  --   format = function(diagnostic)
+  --     local client = vim.lsp.get_client_by_id(diagnostic.source)
+  --     local prefix = ""
+  --     if client and client.name then
+  --       prefix = client.name .. ": "
+  --     elseif diagnostic.source then
+  --       prefix = diagnostic.source .. ": "
+  --     end
+  --     return prefix .. diagnostic.message
+  --   end,
+  -- },
+  virtual_lines = { current_line = true },
   underline = true,
-  signs = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "󰅚 ",
+      [vim.diagnostic.severity.WARN] = "󰀪 ",
+      [vim.diagnostic.severity.INFO] = "󰋽 ",
+      [vim.diagnostic.severity.HINT] = "󰌶 ",
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+      [vim.diagnostic.severity.WARN] = "WarningMsg",
+    },
+  },
   update_in_insert = false,
   severity_sort = true,
 })

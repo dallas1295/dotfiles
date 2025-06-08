@@ -137,10 +137,12 @@ bindsym $mod+r reload
 
 # Program launchers
 bindsym $mod+Return exec $terminal
-bindsym $mod+e exec $fileManager
+bindsym $mod+Shift+e exec $fileManager
+bindsym $mod+e exec wezterm -e yazi
 bindsym $mod+space exec $menu
 bindsym $mod+m exec $music
 bindsym $mod+b exec $browser
+bindsym $mod+u exec wezterm -e btop
 
 # Opens the notification center
 bindsym $mod+n exec swaync-client -t
@@ -159,6 +161,7 @@ bindsym $mod+v floating toggle
 
 # Cycle focus
 bindsym $mod+Tab focus next
+bindsym $mod+Shift+Tab focus prev
 
 # Lock screen (replace with your locker)
 bindsym $mod+Mod1+l exec $lock 
@@ -216,10 +219,6 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# Scratchpad (Sway's version)
-bindsym $mod+Shift+s move scratchpad
-bindsym $mod+s scratchpad show
-
 # Workspace scrolling (mouse wheel)
 bindsym $mod+button4 workspace next
 bindsym $mod+button5 workspace prev
@@ -240,6 +239,9 @@ bindsym XF86AudioPrev exec playerctl previous
 
 ### Assign apps to workspaces ###
 # Sway uses for_window to assign apps by app_id/class/title
+
+# terminal to workspace 1
+for_window [app_id="wezterm"] move to workspace 1
 
 # Browser to workspace 2 
 for_window [app_id="zen"] move to workspace 2

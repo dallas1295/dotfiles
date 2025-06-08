@@ -25,7 +25,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 export EDITOR='nvim'
 export TERM='wezterm'
 export PATH=$HOME/.local/bin:$PATH
-GOPATH=$HOME/go  PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 alias vi='nvim'
 

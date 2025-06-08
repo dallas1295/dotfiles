@@ -58,6 +58,7 @@ return {
         trim_right = ">",
       },
     })
+    require("mini.icons").setup()
 
     -- simplifiers
     require("mini.snippets").setup()

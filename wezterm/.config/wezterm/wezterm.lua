@@ -5,7 +5,7 @@ local colors = theme.colors()
 colors.background = "#000000"
 
 return {
-  term = "xterm-256color",
+  term = "wezterm",
   -- Appearance
   colors = colors,
   window_frame = theme.window_frame(),
