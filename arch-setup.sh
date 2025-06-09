@@ -101,7 +101,7 @@ yay -S --noconfirm --needed \
 yay -S --noconfirm --needed \
   xorg-xwayland \
   xdg-desktop-portal \
-  xdg-desktop-portal-wlr \
+  xdg-desktop-portal-hyprland \
   otf-nebula-sans \
   ttf-font-awesome \
   ttf-jetbrains-mono-nerd \
@@ -249,16 +249,26 @@ tempfile=$(mktemp) \
   && rm $tempfile
 
 
-# Sway & Wayland Environment
-yay -S --noconfirm --needed \
-  sway \
+yay -S --needed --noconfirm \
+  hyprland \
+  hyprlock \
+  hypridle \
+  rose-pine-hyprcursor \
   swaync \
-  swaylock \
-  swayidle \
-  swaync \
-  autotiling \
-  grim \
-  slurp \
+
+
+
+
+# # Sway & Wayland Environment
+# yay -S --noconfirm --needed \
+#   sway \
+#   swaync \
+#   swaylock \
+#   swayidle \
+#   swaync \
+#   autotiling \
+#   grim \
+#   slurp \
 
 ## Audio, Bluetooth, and Power
 yay -S --noconfirm --needed \
