@@ -240,9 +240,6 @@ bindsym XF86AudioPrev exec playerctl previous
 ### Assign apps to workspaces ###
 # Sway uses for_window to assign apps by app_id/class/title
 
-# terminal to workspace 1
-for_window [app_id="wezterm"] move to workspace 1
-
 # Browser to workspace 2 
 for_window [app_id="zen"] move to workspace 2
 
