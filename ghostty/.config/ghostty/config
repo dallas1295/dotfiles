@@ -42,7 +42,7 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = rose-pine 
+theme = Kanagawa Wave 
 background = #000000
 font-family = Jetbrains Mono Nerd Font
 font-size = 13
