@@ -28,6 +28,19 @@ yay -S --noconfirm --needed \
   entr \
   zoxide \
 
+### LSPs & Formatters
+npm install -g typescript typescript-language-server
+npm install -g @tailwindcss/language-server
+npm install -g prettier
+
+curl -fsSL https://deno.land/install.sh | sh
+
+go install golang.org/x/tools/gopls@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install mvdan.cc/gofumpt@latest
+
+yay -S --noconfirm --needed lua-language-server
+
 ### Terminal stuff (Shell / CLI)
 echo 'Installing terminal stuff...'
 sleep 2 
@@ -56,9 +69,6 @@ sudo systemctl enable containerd.service
 
 # TPM Install
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# Deno
-curl -fsSL https://deno.land/install.sh | sh
-
 # Go air
 go install github.com/air-verse/air@latest
 
