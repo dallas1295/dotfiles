@@ -40,7 +40,8 @@ alias gb='git branch'
 alias gi='git init'
 alias gcl='git clone'
 
-eval "$(starship init zsh)"
+
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/kanagawa-clean.omp.json)"
 eval "$(zoxide init zsh)"
 . "/home/dallas/.deno/env"
 # Initialize zsh completions (added by deno install script)
