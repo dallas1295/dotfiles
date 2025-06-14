@@ -237,6 +237,11 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 
+
+### Focus new apps on launch
+
+focus_on_window_activation smart 
+
 ### Assign apps to workspaces ###
 # Sway uses for_window to assign apps by app_id/class/title
 
@@ -250,7 +255,7 @@ for_window [app_id="thunar"] move to workspace 3
 for_window [class="Spotify"] move to workspace 3 
 
 # Non-essentials to workspace 4 
-for_window [app_id="heroic"] move to workspace 4
+for_window [class="heroic"] move to workspace 4
 for_window [app_id="steam"] move to workspace 4 
 for_window [title="Steam"] move to workspace 4 
 for_window [app_id="discord"] move to workspace 4 
@@ -260,5 +265,5 @@ for_window [title="^Picture-in-Picture(.*)$"] \
     floating enable, \
     sticky enable, \
     resize set 573 322, \
-    move position 1313 px 713 px
-
+    move position 1313 px 713 px \
+    focus no

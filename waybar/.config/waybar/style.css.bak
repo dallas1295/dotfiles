@@ -1,12 +1,13 @@
 * {
-  font-family: "Jetbrains Mono Nerd Font", "JetbrainsMonoNL Nerd Font";
-  font-size: 14px;
+  /* `otf-font-awesome` and SpaceMono Nerd Font are required to be installed for icons */
+  font-family: Jetbrains Mono Nerd Font;
+  font-size: 14.5px;
   transition: background-color 0.3s ease-out;
 }
 
 window#waybar {
-  background: #2a2a37; /* */
-  color: #dcd7ba;
+  background: rgba(7, 8, 13, 0);
+  color: #e0def4;
   font-family:
     JetbrainsMonoNL Nerd Font,
     feather;
@@ -16,8 +17,9 @@ window#waybar {
 .modules-center,
 .modules-left,
 .modules-right {
-  background: #2a2a37; /* */
-  padding: 0px 5px;
+  background: #21202e;
+  margin: 5px 5px;
+  padding: 1px 5px;
   border-radius: 4px;
 }
 .modules-left {
@@ -42,7 +44,6 @@ window#waybar {
 #mpd {
   padding: 0 10px;
   border-radius: 15px;
-  /* No background override needed unless you want to */
 }
 
 #clock:hover,
@@ -63,7 +64,7 @@ window#waybar {
 #power-profiles-daemon:hover,
 #language:hover,
 #mpd:hover {
-  background: #2a2a37; /* */
+  background: rgba(20, 22, 27, 0.9);
 }
 
 #workspaces button {
@@ -73,29 +74,24 @@ window#waybar {
     feather;
   font-weight: 900;
   font-size: 13pt;
-  color: #727169;
+  color: #908caa;
   border: none;
   border-radius: 4px;
 }
 
 #workspaces button.focused {
-  background: #403d52;
-  color: #98bb6c;
+  background: linear-gradient(90deg, #c4a7e7, #907aa9); /* or a solid color */
+  color: #ffffff;
 }
 
 #workspaces button.active {
   background: #403d52;
-  color: #98bb6c;
-}
-
-#workspaces button.urgent {
-  background: #403d52;
-  color: #e46876;
+  color: #f6c177;
 }
 
 #workspaces button:hover {
-  background: #2a2a37; /* */
-  color: #e6c384;
+  background: #11111b;
+  color: #ffc0b9;
   box-shadow: none;
 }
 

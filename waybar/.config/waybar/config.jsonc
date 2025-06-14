@@ -4,18 +4,18 @@
   "height": 20,
   "spacing": 1,
   "modules-left": [
-    "hyprland/workspaces"
+    "sway/workspaces"
   ],
   "modules-center": [
-    "clock",
-  ],
-  "modules-right": [
-    "pulseaudio",
     "cpu",
     "memory",
+  ],
+  "modules-right": [
     "backlight",
+    "pulseaudio",
     "network",
     "battery",
+    "clock",
     "tray"
   ],
   "include": [

@@ -39,7 +39,7 @@ yay -S --needed --noconfirm \
   rofi-power-menu
 
 ## Fonts 
-yay -S --noconfirm --need \
+yay -S --noconfirm --needed \
   otf-nebula-sans \
   ttf-font-awesome \
   ttf-font-awesome \

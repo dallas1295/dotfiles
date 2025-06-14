@@ -1,14 +1,16 @@
 local wezterm = require("wezterm")
-local theme = wezterm.plugin.require("https://github.com/neapsix/wezterm").main
-
-local colors = theme.colors()
-colors.background = "#000000"
 
 return {
+  -- Terminal backend
+  enable_wayland = false,
   term = "wezterm",
+
   -- Appearance
-  colors = colors,
-  window_frame = theme.window_frame(),
+  color_scheme = "kanagawabones",
+  colors = {
+    background = "#000000",
+  },
+
   font = wezterm.font_with_fallback({
     "JetBrainsMono Nerd Font",
     "Symbols Nerd Font",
@@ -18,11 +20,15 @@ return {
   window_decorations = "RESIZE",
   default_cursor_style = "BlinkingBlock",
   hide_mouse_cursor_when_typing = true,
+
+  -- Tab bar
   enable_tab_bar = false,
   hide_tab_bar_if_only_one_tab = false,
+
+  -- Default shell
   default_prog = { "zsh" },
 
-  -- Copy from mouse selection
+  -- Mouse bindings
   mouse_bindings = {
     {
       event = { Up = { streak = 1, button = "Left" } },
@@ -31,9 +37,9 @@ return {
     },
   },
 
-  -- Only keep non-multiplexing keybindings
+  -- Key bindings
   keys = {
-    -- Reload config (Ctrl+Shift+r)
+    -- Reload config (Ctrl+Shift+R)
     {
       key = "r",
       mods = "CTRL|SHIFT",
