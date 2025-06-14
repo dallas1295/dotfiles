@@ -30,7 +30,7 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 alias vi='nvim'
 
 # git setup
-alias gs='git status --short'
+alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
