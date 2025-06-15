@@ -1,5 +1,5 @@
 @import "style-2.rasi"
 
 * {
-    font: "Nebula Sans Medium 13";
+    font: "Jetbrains Mono Nerd Font 13";
 }
