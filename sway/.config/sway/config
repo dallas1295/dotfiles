@@ -1,6 +1,3 @@
-### Output (Monitor) ###
-output * bg #2a273f solid_color
-
 ### Mod Key to Super
 
 set $mod Mod4
@@ -118,7 +115,7 @@ gaps inner 1
 gaps outer 2
 
 ### Borders ###
-client.focused          #ebbcba #ebbcba #232136 #ebbcba #ebbcba
+client.focused          #dcd7ba #dcd7ba #232136 #dcd7ba #dcd7ba
 client.unfocused        #393552 #393552 #908caa #393552 #393552
 client.urgent           #eb6f92 #eb6f92 #232136 #eb6f92 #eb6f92
 client.focused_inactive #393552 #393552 #908caa #393552 #393552

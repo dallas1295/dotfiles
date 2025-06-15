@@ -1,14 +1,14 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 20,
+  "height": 26,
   "spacing": 1,
   "modules-left": [
     "sway/workspaces"
   ],
   "modules-center": [
     "cpu",
-    "memory",
+    "memory"
   ],
   "modules-right": [
     "backlight",
