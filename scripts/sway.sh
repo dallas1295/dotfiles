@@ -34,9 +34,9 @@ yay -S --needed --noconfirm \
   thunar \
   thunar-volman \
   cliphist \
-  wezterm \
   rofi-wayland \
-  rofi-power-menu
+  rofi-power-menu \
+  wezterm-git 
 
 ## Fonts 
 yay -S --noconfirm --needed \

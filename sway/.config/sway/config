@@ -1,9 +1,8 @@
 ### Mod Key to Super
-
 set $mod Mod4
 
 ### Set variables for programs ###
-set $terminal wezterm 
+set $terminal ghostty 
 set $fileManager thunar
 set $menu rofi -show drun
 set $music spotify
@@ -13,26 +12,25 @@ set $password flatpak run com.bitwarden.desktop
 
 
 set $lock 'swaylock \
-    --color 232136 \
-    --inside-color 2a273f \
-    --inside-clear-color 393552 \
-    --inside-ver-color 6e6a86 \
-    --inside-wrong-color eb6f92 \
-    --ring-color c4a7e7 \
-    --ring-clear-color 9ccfd8 \
-    --ring-ver-color f6c177 \
-    --ring-wrong-color eb6f92 \
-    --key-hl-color f6c177 \
-    --bs-hl-color eb6f92 \
-    --separator-color 44415a \
-    --text-color e0def4 \
-    --text-clear-color e0def4 \
-    --text-ver-color e0def4 \
-    --text-wrong-color e0def4 \
+    --color 181616 \
+    --inside-color 2b3328 \
+    --inside-clear-color a292a3 \
+    --inside-ver-color c4b28a \
+    --inside-wrong-color c4746e \
+    --ring-color 8ba4b0 \
+    --ring-clear-color a292a3 \
+    --ring-ver-color c4b28a \
+    --ring-wrong-color c4746e \
+    --key-hl-color ffa066 \
+    --bs-hl-color c4746e \
+    --separator-color 8ea4a2 \
+    --text-color c5c9c5 \
+    --text-clear-color c5c9c5 \
+    --text-ver-color c5c9c5 \
+    --text-wrong-color c5c9c5 \
     --indicator-radius 100 \
     --indicator-thickness 10 \
     --font "Nebula Sans Book"'
-
 
 ### Autostart ###
 
@@ -59,25 +57,25 @@ exec autotiling -l 2
 ## Idle
 exec swayidle -w \
     timeout 300 'swaylock \
-        --color 232136 \
-        --inside-color 2a273f \
-        --inside-clear-color 393552 \
-        --inside-ver-color 6e6a86 \
-        --inside-wrong-color eb6f92 \
-        --ring-color c4a7e7 \
-        --ring-clear-color 9ccfd8 \
-        --ring-ver-color f6c177 \
-        --ring-wrong-color eb6f92 \
-        --key-hl-color f6c177 \
-        --bs-hl-color eb6f92 \
-        --separator-color 44415a \
-        --text-color e0def4 \
-        --text-clear-color e0def4 \
-        --text-ver-color e0def4 \
-        --text-wrong-color e0def4 \
-        --indicator-radius 100 \
-        --indicator-thickness 10 \
-        --font "Nebula Sans Book"' \
+     --color 181616 \
+    --inside-color 2b3328 \
+    --inside-clear-color a292a3 \
+    --inside-ver-color c4b28a \
+    --inside-wrong-color c4746e \
+    --ring-color 8ba4b0 \
+    --ring-clear-color a292a3 \
+    --ring-ver-color c4b28a \
+    --ring-wrong-color c4746e \
+    --key-hl-color ffa066 \
+    --bs-hl-color c4746e \
+    --separator-color 8ea4a2 \
+    --text-color c5c9c5 \
+    --text-clear-color c5c9c5 \
+    --text-ver-color c5c9c5 \
+    --text-wrong-color c5c9c5 \
+    --indicator-radius 100 \
+    --indicator-thickness 10 \
+    --font "Nebula Sans Book"' \
     timeout 600 'swaymsg output "*" power off' \
     resume 'swaymsg output "*" power on' \
     before-sleep 'swaylock -f -c 232136'
@@ -87,16 +85,18 @@ exec swayidle -w \
  #     position top   
  #     font pango:JetBrains Mono Nerd Font Regular 10 
  #     status_command ~/.config/sway/swaybar.sh
- #     colors {
- #       background #2a273f
- #         statusline #eeeeee
- #         separator  #666666
- #         focused_workspace  #c4a7e7 #907aa9 #ffffff
- #         active_workspace   #6e6a86 #222222 #888888
- #         inactive_workspace #56526e #2a283e #ffffff
- #         urgent_workspace   #2f343a #900000 #ffffff
- #     }
- # }
+ # colors {
+#         background #181616
+#         statusline #c5c9c5
+#         separator  #8ea4a2
+#
+#         focused_workspace  #8ba4b0 #8ba4b0 #181616
+#         active_workspace   #2b3328 #2b3328 #c5c9c5
+#         inactive_workspace #1a1a22 #1a1a22 #727169
+#         urgent_workspace   #c4746e #c4746e #181616
+#         binding_mode       #ffa066 #ffa066 #181616
+#     }
+# }
 
 
 ### Input ###
@@ -110,16 +110,12 @@ input * {
     xkb_options caps:swapescape
 }
 
-### Gaps (requires sway-gaps) ###
-gaps inner 1 
-gaps outer 2
-
 ### Borders ###
-client.focused          #dcd7ba #dcd7ba #232136 #dcd7ba #dcd7ba
-client.unfocused        #393552 #393552 #908caa #393552 #393552
-client.urgent           #eb6f92 #eb6f92 #232136 #eb6f92 #eb6f92
-client.focused_inactive #393552 #393552 #908caa #393552 #393552
-client.placeholder      #232136 #232136 #908caa #232136 #232136
+client.focused          #8ea4a2 #8ea4a2 #181616 #c5c9c5 #8ea4a2
+client.unfocused        #1a1a22 #1a1a22 #181616 #727169 #1a1a22
+client.urgent           #c4746e #c4746e #181616 #c5c9c5 #c4746e
+client.placeholder      #181616 #181616 #181616 #c5c9c5 #181616
+client.background       #181616
 
 default_border pixel 2 
 default_floating_border pixel 3
@@ -134,12 +130,10 @@ bindsym $mod+r reload
 
 # Program launchers
 bindsym $mod+Return exec $terminal
-bindsym $mod+Shift+e exec $fileManager
-bindsym $mod+e exec wezterm -e yazi
+bindsym $mod+e exec $fileManager
 bindsym $mod+space exec $menu
 bindsym $mod+m exec $music
 bindsym $mod+b exec $browser
-bindsym $mod+u exec wezterm -e btop
 
 # Opens the notification center
 bindsym $mod+n exec swaync-client -t

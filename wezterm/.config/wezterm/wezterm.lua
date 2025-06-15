@@ -2,13 +2,13 @@ local wezterm = require("wezterm")
 
 return {
   -- Terminal backend
-  enable_wayland = false,
+  -- enable_wayland = false,
   term = "wezterm",
 
   -- Appearance
-  color_scheme = "kanagawabones",
+  color_scheme = "Kanagawa Dragon (Gogh)",
   colors = {
-    background = "#000000",
+    -- background = "#000000",
   },
 
   font = wezterm.font_with_fallback({

@@ -1,20 +1,3 @@
--- return {
--- 	"rose-pine/neovim",
--- 	name = "rose-pine",
--- 	config = function()
--- 		require("rose-pine").setup({
--- 			highlight_groups = {
--- 				Normal = { bg = "#000000" },
--- 				NormalNC = { bg = "#000000" },
--- 				SignColumn = { bg = "#000000" },
--- 				EndOfBuffer = { bg = "#000000" },
--- 				MsgArea = { bg = "#000000" },
--- 			},
--- 		})
--- 		vim.cmd("colorscheme rose-pine")
--- 	end,
--- }
---
 return {
   "rebelot/kanagawa.nvim",
   config = function()
@@ -36,17 +19,16 @@ return {
       },
       overrides = function(colors) -- add/modify highlights
         return {
-          Normal       = { bg = "#000000" },
-          NormalNC     = { bg = "#000000" },
-          SignColumn   = { bg = "#000000" },
-          EndOfBuffer  = { bg = "#000000" },
-          LineNr       = { bg = "#000000" },
-          CursorLineNr = { bg = "#000000" },
-          MsgArea      = { bg = "#000000" },
+          Normal       = { bg = "#16161d" },
+          NormalNC     = { bg = "#16161d" },
+          SignColumn   = { bg = "#16161d" },
+          EndOfBuffer  = { bg = "#16161d" },
+          LineNr       = { bg = "#16161d" },
+          CursorLineNr = { bg = "#16161d" },
+          MsgArea      = { bg = "#16161d" },
         }
       end,
-      theme = "wave", -- Load "wave" theme
     })
-    vim.cmd("colorscheme kanagawa")
+    vim.cmd("colorscheme kanagawa-dragon")
   end,
 }
