@@ -4,7 +4,7 @@
   "height": 26,
   "spacing": 1,
   "modules-left": [
-    "sway/workspaces"
+    "hyprland/workspaces"
   ],
   "modules-center": [
     "cpu",
