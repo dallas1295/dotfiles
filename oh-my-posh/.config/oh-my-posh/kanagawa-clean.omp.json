@@ -39,7 +39,7 @@
           "properties": {
             "cache_duration": "none",
             "folder_icon": "󰉖",
-            "home_icon": "",
+            "home_icon": "",
             "style": "agnoster_short"
           },
           "template": "{{ .Path }}",
