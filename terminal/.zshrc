@@ -1,4 +1,6 @@
 # Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then export FPATH="/Users/dallas/.zsh/completions:$FPATH"; fi
+# Add deno completions to search path
 if [[ ":$FPATH:" != *":/home/dallas/.zsh/completions:"* ]]; then export FPATH="/home/dallas/.zsh/completions:$FPATH"; fi
 # tmux rules
 if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; then
@@ -17,15 +19,16 @@ fpath=(/usr/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
 # zsh-syntax-highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/highlighters
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
 export EDITOR='nvim'
-export TERM='wezterm'
+export TERMINAL='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
+
 
 alias vi='nvim'
 
@@ -43,7 +46,7 @@ alias gcl='git clone'
 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/kanagawa-clean.omp.json)"
 eval "$(zoxide init zsh)"
-. "/home/dallas/.deno/env"
-# Initialize zsh completions (added by deno install script)
+
 autoload -Uz compinit
 compinit
+. "/Users/dallas/.deno/env"

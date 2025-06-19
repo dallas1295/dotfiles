@@ -11,3 +11,5 @@ PS1='[\u@\h \W]\$ '
 export PATH=$HOME/.local/bin:$PATH
 . "/home/dallas/.deno/env"
 source /home/dallas/.local/share/bash-completion/completions/deno.bash
+. "/Users/dallas/.deno/env"
+source /Users/dallas/.local/share/bash-completion/completions/deno.bash
