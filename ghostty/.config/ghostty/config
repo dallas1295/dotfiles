@@ -1,0 +1,20 @@
+
+theme = GruvboxDarkHard
+font-family = GeistMono Nerd Font
+font-size = 16
+background-opacity = .8
+
+#### cursor ####
+cursor-style = block
+cursor-style-blink = true
+mouse-hide-while-typing = true
+copy-on-select = true
+
+#### mac stuff ####
+macos-non-native-fullscreen = true
+macos-titlebar-style = hidden
+window-decoration = false
+macos-option-as-alt = left
+
+shell-integration = zsh
+window-save-state = always

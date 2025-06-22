@@ -4,14 +4,14 @@ return {
   config = function()
     --appearance
     require("mini.animate").setup({
-      -- Window resize
-      resize = {
-        enable = false,
-      },
-      -- Window close
-      close = {
-        enable = false,
-      },
+      -- -- Window resize
+      -- resize = {
+      --   enable = false,
+      -- },
+      -- -- Window close
+      -- close = {
+      --   enable = false,
+      -- },
     })
     require("mini.notify").setup()
     local hi = require("mini.hipatterns")

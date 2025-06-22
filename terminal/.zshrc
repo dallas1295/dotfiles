@@ -1,8 +1,9 @@
 # Add deno completions to search path
-if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then export FPATH="/Users/dallas/.zsh/completions:$FPATH"; fi
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/dallas/.zsh/completions:"* ]]; then export FPATH="/home/dallas/.zsh/completions:$FPATH"; fi
-# tmux rules
+if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then
+  export FPATH="/Users/dallas/.zsh/completions:$FPATH"
+fi
+
+# Only run tmux auto-attach if not already in tmux
 if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; then
   if tmux attach -t Main 2>/dev/null; then
     :
@@ -14,12 +15,14 @@ if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; t
 fi
 
 bindkey -v
+
 # zsh-completions
 fpath=(/usr/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
+
 # zsh-syntax-highlighting
-source /opt/homebrew/share/zsh-syntax-highlighting/highlighters
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
@@ -29,8 +32,10 @@ export TERMINAL='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 
-
 alias vi='nvim'
+
+# ls shows hidden files
+alias ls='ls -a'
 
 # git setup
 alias gs='git status'
@@ -43,10 +48,7 @@ alias gb='git branch'
 alias gi='git init'
 alias gcl='git clone'
 
-
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/kanagawa-clean.omp.json)"
 eval "$(zoxide init zsh)"
 
-autoload -Uz compinit
-compinit
 . "/Users/dallas/.deno/env"
