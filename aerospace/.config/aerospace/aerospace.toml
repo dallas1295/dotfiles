@@ -184,6 +184,10 @@ if.app-id = 'com.valvesoftware.steam.helper'
 run = [ 'layout floating', 'move-node-to-workspace 4' ]
 
 [[on-window-detected]]
+if.app-id = 'com.gog.galaxy'
+run = [ 'layout floating', 'move-node-to-workspace 4' ]
+
+[[on-window-detected]]
 if.app-id = 'com.brave.Browser'
 if.window-title-regex-substring = 'work'
 run = "move-node-to-workspace 5"
@@ -201,3 +205,10 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
 run = 'layout floating' 
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+if.window-title-regex-substring = 'bitwarden'
+run = 'layout floating' 
+
+
