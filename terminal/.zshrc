@@ -34,19 +34,24 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 alias vi='nvim'
 
-# ls shows hidden files
-alias ls='ls -a'
+# ls shows hidden files & colorize
+alias ls='ls -aG'
 
 # git setup
 alias gs='git status'
+alias gd='git diff'
+
 alias ga='git add'
-alias gc='git commit'
+alias gc='git commit -m'
 alias gp='git push'
-alias gu='git pull'
+alias gP='git pull'
 alias gl='git log'
 alias gb='git branch'
+
 alias gi='git init'
 alias gcl='git clone'
+
+
 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/kanagawa-clean.omp.json)"
 eval "$(zoxide init zsh)"

@@ -1,0 +1,43 @@
+[user]
+	name = Dallas S.
+	email = andrewdallassherman@gmail.com
+[init]
+  defaultBranch = master
+
+[status]
+  branch = true
+  showStash = true
+
+[push]
+  autoSetupRemote = true
+  default = current
+
+[pull]
+  default = current
+
+[rebase] 
+  autoStash = true
+  missingCommitsCheck = warn 
+
+[diff]
+  context = 3
+  renames = copies
+  interHunkContext = 5
+
+[log]
+    abbrevCommit = true  # short commits
+
+[core]
+  whitespace = error
+  preloadindex = true
+
+[interactive]
+  singleKey = true
+
+[url "https://github.com/dallas1295/"]
+  insteadOf = "me:"
+
+[url "https://github.com/"]
+  insteadOf = "gh:"
+
+
