@@ -3,16 +3,7 @@ return {
   version = false,
   config = function()
     --appearance
-    require("mini.animate").setup({
-      -- -- Window resize
-      -- resize = {
-      --   enable = false,
-      -- },
-      -- -- Window close
-      -- close = {
-      --   enable = false,
-      -- },
-    })
+    require("mini.animate").setup()
     require("mini.notify").setup()
     local hi = require("mini.hipatterns")
     hi.setup({

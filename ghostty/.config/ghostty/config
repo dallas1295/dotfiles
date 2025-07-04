@@ -1,8 +1,9 @@
 
-theme = GruvboxDarkHard
+theme = tokyonight
 font-family = GeistMono Nerd Font
 font-size = 16
 background-opacity = .8
+background-blur = true
 
 #### cursor ####
 cursor-style = block

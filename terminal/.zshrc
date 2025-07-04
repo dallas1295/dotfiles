@@ -53,7 +53,7 @@ alias gcl='git clone'
 
 
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/kanagawa-clean.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/gruvvy.omp.json)"
 eval "$(zoxide init zsh)"
 
 . "/Users/dallas/.deno/env"
