@@ -1,6 +1,5 @@
 after-login-command = []
-# You can use it to add commands that run after AeroSpace startup.
-# 'after-startup-command' is run after 'after-login-command' Available commands : https://nikitabobko.github.io/AeroSpace/commands
+# You can use it to add commands that run after AeroSpace startup. 'after-startup-command' is run after 'after-login-command' Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
 ]
 
@@ -136,6 +135,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 
 ## Specific Workspace tendencies
+
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = "move-node-to-workspace 1"
@@ -144,9 +144,6 @@ run = "move-node-to-workspace 1"
 if.app-id = 'app.zen-browser.zen'
 run = "move-node-to-workspace 2"
 
-[[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
@@ -154,9 +151,22 @@ if.window-title-regex-substring = 'who'
 run = [ 'layout floating', "move-node-to-workspace 2" ]
 
 [[on-window-detected]]
-if.app-id = 'com.brave.Browser'
+if.app-id = 'com.brave.browser'
 if.window-title-regex-substring = 'personal'
 run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+if.window-title-regex-substring = 'personal'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'

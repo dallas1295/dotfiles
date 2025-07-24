@@ -7,6 +7,8 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps -------------------
 
 keymap.set("i", "<Tab>", "<Nop>")
+keymap.set("i", "<C-M-j>", "<Nop>")
+
 -- change listing binds
 keymap.set("i", "<C-h>", "<C-n>", { remap = true, silent = true })
 keymap.set("i", "<C-l>", "<C-p>", { remap = true, silent = true })

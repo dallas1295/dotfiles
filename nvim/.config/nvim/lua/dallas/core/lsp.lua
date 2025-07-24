@@ -3,54 +3,15 @@ vim.lsp.enable {
   'gopls',
   'lua_ls',
   'ts_ls',
-  'denols'
+  'denols',
+  'rust-analyzer',
+  'pyright'
 }
-
-
--- Diagnostic formatting: prefix with LSP name
-local function diagnostic_virtual_text_format(diagnostic)
-  local client = vim.lsp.get_client_by_id(diagnostic.source)
-  local prefix = ""
-  if client and client.name then
-    prefix = client.name .. ": "
-  elseif diagnostic.source then
-    prefix = diagnostic.source .. ": "
-  end
-  return prefix .. diagnostic.message
-end
-
--- Automatic toggle between virtual_text and virtual_lines
-local function update_virtual_diagnostics()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local line = vim.api.nvim_win_get_cursor(0)[1] - 1
-  local diags = vim.diagnostic.get(bufnr, { lnum = line })
-  if #diags > 0 then
-    vim.diagnostic.config({
-      virtual_text = false,
-      virtual_lines = { current_line = true },
-    })
-  else
-    vim.diagnostic.config({
-      virtual_text = {
-        format = diagnostic_virtual_text_format,
-      },
-      virtual_lines = false,
-    })
-  end
-end
-
-vim.api.nvim_create_autocmd("CursorMoved", {
-  callback = update_virtual_diagnostics,
-})
-
-
 
 -- Initial diagnostic config (virtual_text on, virtual_lines off)
 vim.diagnostic.config({
-  virtual_text = {
-    format = diagnostic_virtual_text_format,
-  },
-  virtual_lines = false,
+  virtual_text = true,
+  -- virtual_lines = false,
   underline = true,
   signs = {
     text = {
