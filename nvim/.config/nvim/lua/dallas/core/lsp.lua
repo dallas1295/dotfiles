@@ -5,7 +5,8 @@ vim.lsp.enable {
   'ts_ls',
   'denols',
   'rust-analyzer',
-  'pyright'
+  'pyright',
+  'clangd',
 }
 
 -- Initial diagnostic config (virtual_text on, virtual_lines off)

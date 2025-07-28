@@ -1,8 +1,8 @@
 
 theme = Kanagawa Dragon 
-font-family = JetbrainsMono Nerd Font
+font-family = GeistMono Nerd Font
 font-size = 16
-background-opacity = .9 
+background-opacity = .8
 background-blur = true
 
 #### cursor ####
