@@ -144,20 +144,8 @@ run = "move-node-to-workspace 1"
 if.app-id = 'app.zen-browser.zen'
 run = "move-node-to-workspace 2"
 
-
-[[on-window-detected]]
-if.app-id = 'com.brave.Browser'
-if.window-title-regex-substring = 'who'
-run = [ 'layout floating', "move-node-to-workspace 2" ]
-
-[[on-window-detected]]
-if.app-id = 'com.brave.browser'
-if.window-title-regex-substring = 'personal'
-run = "move-node-to-workspace 2"
-
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-if.window-title-regex-substring = 'personal'
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
@@ -190,19 +178,10 @@ run = [ 'layout floating', 'move-node-to-workspace 4' ]
 
 [[on-window-detected]]
 if.app-id = 'com.codeweavers.Crossover'
-if.window-title-regex-substring = 'bitwarden'
 run = [ 'layout floating', 'move-node-to-workspace 4' ]
 
 ## Special window configurations
-[[on-window-detected]]
-if.app-id = 'com.bitwarden.desktop'
-run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
-run = 'layout floating' 
-
-[[on-window-detected]]
-if.app-id = 'app.zen-browser.zen'
-if.window-title-regex-substring = 'bitwarden'
 run = 'layout floating' 

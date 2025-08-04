@@ -18,7 +18,7 @@ return {
         },
         checkThirdParty = false,
       },
-      telemetry = { enable = false },
+      telemetry = { enable = falsse },
     },
   },
 
