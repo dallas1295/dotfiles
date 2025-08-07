@@ -12,7 +12,7 @@ opt.expandtab = true -- expand tab to spaces
 opt.smartindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
-opt.wrap = false -- disable line wrapping
+opt.wrap = true
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -38,6 +38,7 @@ vim.opt.laststatus = 2
 -- })
 
 opt.termguicolors = true
+opt.conceallevel = 2
 -- opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 

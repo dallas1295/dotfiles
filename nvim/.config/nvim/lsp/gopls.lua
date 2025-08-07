@@ -5,7 +5,7 @@ return {
 	root_markers = { "go.mod", "go.work" },
 	settings = {
 		gopls = {
-			-- gofumpt = true,
+			gofumpt = true,
 			analyses = {
 				unusedparams = true,
 				shadow = true,

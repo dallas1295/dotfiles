@@ -5,6 +5,7 @@ return {
 	dependencies = {
 		"windwp/nvim-ts-autotag",
 	},
+
 	config = function()
 		-- import nvim-treesitter plugin
 		local treesitter = require("nvim-treesitter.configs")
@@ -22,6 +23,8 @@ return {
 			-- ensure these language parsers are installed
 			ensure_installed = {
 				"elixir",
+				"heex",
+				"eex",
 				"go",
 				"json",
 				"javascript",

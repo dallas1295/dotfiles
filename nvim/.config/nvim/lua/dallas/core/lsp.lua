@@ -1,13 +1,15 @@
 -- First enable the LSPs
 vim.lsp.enable({
-	-- "clangd",
+	"clangd",
 	"denols",
 	"elixir-ls",
 	"gopls",
 	"lua_ls",
-	-- "pyright",
-	-- "rust-analyzer",
+	"pyright",
+	"rust-analyzer",
 	"ts_ls",
+	"tailwindcss",
+	"html",
 })
 
 -- Initial diagnostic config (virtual_text on, virtual_lines off)

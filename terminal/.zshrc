@@ -35,24 +35,10 @@ export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 
 alias vi='nvim'
 
+alias notes='nvim ~/Library/Mobile\ Documents/com~apple~CloudDocs/vaults/notes'
+
 # ls shows hidden files & colorize
 alias ls='ls -aG'
-
-# git setup
-alias gs='git status'
-alias gd='git diff'
-
-alias ga='git add'
-alias gc='git commit -m'
-alias gp='git push'
-alias gP='git pull'
-alias gl='git log'
-alias gb='git branch'
-
-alias gi='git init'
-alias gcl='git clone'
-
-
 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/gruvvy.omp.json)"
 eval "$(zoxide init zsh)"
