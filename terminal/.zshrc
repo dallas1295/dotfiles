@@ -3,7 +3,7 @@ if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then
   export FPATH="/Users/dallas/.zsh/completions:$FPATH"
 fi
 
-# # Only run tmux auto-attach if not already in tmux
+# Only run tmux auto-attach if not already in tmux
 # if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]] && [[ -z "$SSH_CONNECTION" ]]; then
 #   if tmux attach -t Main 2>/dev/null; then
 #     :

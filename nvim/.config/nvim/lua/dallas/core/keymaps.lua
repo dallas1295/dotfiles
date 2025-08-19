@@ -22,6 +22,13 @@ keymap.set("n", "<leader>tt", function()
 	vim.cmd("copen")
 end, { desc = "Show Quick Fix list in location list" })
 
+-- Up and Down
+
+keymap.set("n", "<C-M-j>", ":m .+1<CR>==", { noremap = true, silent = true })
+keymap.set("v", "<C-M-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+keymap.set("n", "<C-M-k>", ":m .-2<CR>==", { noremap = true, silent = true })
+keymap.set("v", "<C-M-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
 -- Window management
 keymap.set("n", "<leader>sv", ":vnew<CR>", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<leader>sh", ":new<CR>", { desc = "Split window horizontally" }) -- split window horizontally
@@ -35,8 +42,8 @@ keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" }
 
 keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>bq", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
-keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffer" })
-keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer" })
+
+keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 
 keymap.set("n", "<leader>cp", "<cmd>Floaterminal<CR>", { desc = "Toggle a terminal buffer" })
 
@@ -49,8 +56,12 @@ keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Write Quit Buffer", norem
 -- Menus
 keymap.set("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })
 
--- Oil
-keymap.set("n", "<leader>e", ":Oil<CR>")
+-- Bufferline
+for i = 1, 9 do
+	vim.keymap.set("n", "<leader>" .. i, function()
+		vim.cmd("BufferLineGoToBuffer " .. i)
+	end, { desc = "Go to buffer " .. i })
+end
 
 -- Telescope
 keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
@@ -65,4 +76,3 @@ keymap.set("n", "<leader>fb", "<cmd>Telescope multigrep<cr>", { desc = "Multigre
 keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>", { desc = "Resume grep" })
 keymap.set("n", "<leader>fp", "<cmd>Telescope search_history<cr>", { desc = "Search History" })
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Show buffers" })
-keymap.set("n", "<leader>fh", "<cmd>Telescope harpoon marks<cr>", { desc = "Search Harpoon marks" })

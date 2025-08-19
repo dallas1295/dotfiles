@@ -138,7 +138,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = "move-node-to-workspace 1"
+run = [ "move-node-to-workspace 1" ]
 
 [[on-window-detected]]
 if.app-id = "com.postmanlabs.mac"
@@ -185,3 +185,8 @@ run = "move-node-to-workspace 4"
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
 run = 'layout floating' 
+
+[[on-window-detected]]
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = 'layout floating'
+
