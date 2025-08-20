@@ -23,6 +23,9 @@ opt.cursorline = true -- highlight the current cursor line
 
 opt.termguicolors = true
 opt.conceallevel = 2
+opt.winborder = "rounded"
+opt.scroll = 10
+
 -- opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 

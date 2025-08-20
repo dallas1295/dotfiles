@@ -30,16 +30,17 @@ keymap.set("n", "<C-M-k>", ":m .-2<CR>==", { noremap = true, silent = true })
 keymap.set("v", "<C-M-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
 -- Window management
-keymap.set("n", "<leader>sv", ":vnew<CR>", { desc = "Split window vertically" }) -- split window vertically
-keymap.set("n", "<leader>sh", ":new<CR>", { desc = "Split window horizontally" }) -- split window horizontally
-keymap.set("n", "<leader>be", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
+keymap.set("n", "<leader>sv", ":vnew<CR>", { desc = "Split window vertically" })
+keymap.set("n", "<leader>sh", ":new<CR>", { desc = "Split window horizontally" })
+keymap.set("n", "<leader>be", "<C-w>=", { desc = "Make splits equal size" })
 keymap.set("n", "<leader>bk", "<C-w>5+", { desc = "Increase the height of the buffer split" })
 keymap.set("n", "<leader>bj", "<C-w>5-", { desc = "Decrease the height of the buffer split" })
 keymap.set("n", "<leader>bl", "<C-w>5<", { desc = "Increase the width of the buffer split" })
 keymap.set("n", "<leader>bh", "<C-w>5>", { desc = "Decrease the width of the buffer split" })
-keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close all buffer except current" })
-keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" })
 
+keymap.set("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create an empty buffer" })
+keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close all buffer except current" })
 keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>bq", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
 
