@@ -9,25 +9,9 @@ keymap.set("i", "<Tab>", "<Nop>")
 -- clear search highlights
 keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })
 
--- diagnostic output
-keymap.set("n", "<leader>tb", function()
-	vim.diagnostic.setloclist()
-	vim.cmd("lopen")
-end, { desc = "Show LSP diagnostics in location list" })
-
-keymap.set("n", "<C-M-j>", "<cmd>cnext<CR>")
-keymap.set("n", "<C-M-k>", "<cmd>cprev<CR>")
-keymap.set("n", "<leader>tt", function()
-	vim.diagnostic.setqflist()
-	vim.cmd("copen")
-end, { desc = "Show Quick Fix list in location list" })
-
--- Up and Down
-
-keymap.set("n", "<C-M-j>", ":m .+1<CR>==", { noremap = true, silent = true })
-keymap.set("v", "<C-M-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-keymap.set("n", "<C-M-k>", ":m .-2<CR>==", { noremap = true, silent = true })
-keymap.set("v", "<C-M-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+-- Rust
+keymap.set("n", "<leader>cr", ":Cargo run<CR>", { desc = "Cargo run" })
+keymap.set("n", "<leader>cb", ":Cargo build<CR>", { desc = "Cargo build" })
 
 -- Window management
 keymap.set("n", "<leader>sv", ":vnew<CR>", { desc = "Split window vertically" })

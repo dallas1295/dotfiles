@@ -3,11 +3,16 @@ if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then
   export FPATH="/Users/dallas/.zsh/completions:$FPATH"
 fi
 
-# Auto-launch tmux
-if [[ -z "$TMUX" ]] && [[ -n "$PS1" ]] && [[ "$(uname)" != "Darwin" || "$TERM_PROGRAM" != "Apple_Terminal" ]]; then
-    tmux attach -t default 2>/dev/null || tmux new-session -s default
+# Auto-launch tmux with named session
+if [[ -z "$TMUX" ]] && [[ -n "$PS1" ]]; then
+    # If "terminal" session exists, attach to it
+    if tmux has-session -t terminal 2>/dev/null; then
+        tmux attach -t terminal
+    else
+        # Otherwise create it and attach
+        tmux new-session -s terminal
+    fi
 fi
-
 bindkey -v
 
 # zsh-completions
