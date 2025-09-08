@@ -4,14 +4,12 @@ local keymap = vim.keymap -- for conciseness
 
 ------------------ General Keymaps -------------------
 
-keymap.set("i", "<Tab>", "<Nop>")
-
 -- clear search highlights
 keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- Rust
 keymap.set("n", "<leader>cr", ":Cargo run<CR>", { desc = "Cargo run" })
-keymap.set("n", "<leader>cb", ":Cargo build<CR>", { desc = "Cargo build" })
+keymap.set("n", "<leader>cb", ":Cargo Build<CR>", { desc = "Cargo build" })
 
 -- Window management
 keymap.set("n", "<leader>sv", ":vnew<CR>", { desc = "Split window vertically" })
@@ -24,7 +22,6 @@ keymap.set("n", "<leader>bh", "<C-w>5>", { desc = "Decrease the width of the buf
 keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" })
 
 keymap.set("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create an empty buffer" })
-keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close all buffer except current" })
 keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>bq", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
 
@@ -41,23 +38,15 @@ keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Write Quit Buffer", norem
 -- Menus
 keymap.set("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })
 
--- Bufferline
-for i = 1, 9 do
-	vim.keymap.set("n", "<leader>" .. i, function()
-		vim.cmd("BufferLineGoToBuffer " .. i)
-	end, { desc = "Go to buffer " .. i })
-end
-
--- Telescope
-keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
-keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { desc = "recent files" })
-keymap.set("n", "<leader>fg", "<cmd>Telescope grep_string<cr>", { desc = "Grep search" })
-keymap.set("n", "<leader>fv", function()
-	require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })
-end, { desc = "Search word under cursor" })
-keymap.set("n", "<leader>fl", "<cmd>Telescope live_grep<cr>", { desc = "Live grep in root" })
-keymap.set("n", "<leader>fb", "<cmd>Telescope multigrep<cr>", { desc = "Multigrep in root" })
-keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>", { desc = "Resume grep" })
-keymap.set("n", "<leader>fp", "<cmd>Telescope search_history<cr>", { desc = "Search History" })
-keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Show buffers" })
+-- Fzf
+keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
+keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "recent files" })
+keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })
+keymap.set("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search word under cursor" })
+keymap.set("n", "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Search WORD under cursor" })
+keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search highlighted" })
+keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep in root" })
+keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep_resume<cr>", { desc = "Resume live grep in root" })
+keymap.set("n", "<leader>fp", "<cmd>FzfLua search_history<cr>", { desc = "Search History" })
+keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
+keymap.set("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>", { desc = "Open quickfix" })

@@ -41,6 +41,7 @@ alias ls='ls -aG'
 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/gruvvy.omp.json)"
 eval "$(zoxide init zsh)"
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
 
 . "/Users/dallas/.deno/env"
 export PYENV_ROOT="$HOME/.pyenv"
@@ -49,3 +50,6 @@ eval "$(pyenv init --path)"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
+eval "$(mise activate zsh)"
+eval "$(mise activate zsh)"
+eval "$(mise activate zsh)"

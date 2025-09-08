@@ -1,12 +1,11 @@
 return {
 	"folke/trouble.nvim",
 	dependencies = {
-		"nvim-telescope/telescope.nvim",
 		"nvim-lua/plenary.nvim",
 	},
 	opts = {}, -- for default options, refer to the configuration section for custom setup
 	config = function()
-		require("trouble").setup({}) -- Make sure Trouble is set up first
+		require("trouble").setup({})
 	end,
 	cmd = "Trouble",
 	keys = {
@@ -39,6 +38,21 @@ return {
 			"<leader>tq",
 			"<cmd>Trouble qflist toggle<cr>",
 			desc = "Quickfix List (Trouble)",
+		},
+		-- 🔽 Navigation through Trouble items without entering the list
+		{
+			"]t",
+			function()
+				require("trouble").next({ skip_groups = true, jump = true })
+			end,
+			desc = "Next Trouble item",
+		},
+		{
+			"[t",
+			function()
+				require("trouble").prev({ skip_groups = true, jump = true })
+			end,
+			desc = "Previous Trouble item",
 		},
 	},
 }

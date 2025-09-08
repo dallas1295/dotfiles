@@ -185,8 +185,3 @@ run = "move-node-to-workspace 4"
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
 run = 'layout floating' 
-
-[[on-window-detected]]
-if.window-title-regex-substring = 'Picture-in-Picture'
-run = 'layout floating'
-
