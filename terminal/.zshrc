@@ -1,4 +1,6 @@
 # Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then export FPATH="/Users/dallas/.zsh/completions:$FPATH"; fi
+# Add deno completions to search path
 if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then
   export FPATH="/Users/dallas/.zsh/completions:$FPATH"
 fi
@@ -31,6 +33,7 @@ export TERMINAL='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 alias vi='nvim'
 
@@ -41,15 +44,8 @@ alias ls='ls -aG'
 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/gruvvy.omp.json)"
 eval "$(zoxide init zsh)"
-echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
 
 . "/Users/dallas/.deno/env"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(mise activate zsh)"
-eval "$(mise activate zsh)"
-eval "$(mise activate zsh)"
