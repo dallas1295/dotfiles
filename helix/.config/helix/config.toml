@@ -1,8 +1,12 @@
-theme = "kanagawa"
+theme = "gbdark"
 
 [editor]
 line-number = "relative"
 mouse = false
+bufferline = "multiple"
+auto-info = false
+cursorline = true
+undercurl = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -11,11 +15,23 @@ insert = "bar"
 other-lines = "error"
 cursor-line = "warning"
 
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending"]
+separator = "│"
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
+diagnostics = ["warning", "error"]
+workspace-diagnostics = ["warning", "error"]
+
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
 H = ":buffer-previous"
 L = ":buffer-next"
 G = "goto_last_line"
+
 
 [keys.normal.space]
 space = "file_picker"
@@ -28,3 +44,7 @@ o = ":buffer-close-others"
 [keys.normal.space.s]
 v = ":vsplit-new"
 h = ":hsplit-new"
+
+[keys.normal.c]
+r = ":config-reload"
+o = ":config-open"

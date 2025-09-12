@@ -28,14 +28,15 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
-export EDITOR='nvim'
+export EDITOR=hx
+export VISUAL=$EDITOR
 export TERMINAL='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-alias vi='nvim'
+alias vi='hx'
 
 alias notes='nvim ~/Library/Mobile\ Documents/com~apple~CloudDocs/vaults/notes'
 

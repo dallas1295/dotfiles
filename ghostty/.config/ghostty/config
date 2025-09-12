@@ -1,7 +1,7 @@
-theme = Kanagawa Dragon
+theme = GruvboxDarkHard
 font-family = JetBrainsMono Nerd Font
 font-size = 17
-background = #000000
+#background = #000000
 background-opacity = .8
 #### cursor ####
 cursor-style = block
