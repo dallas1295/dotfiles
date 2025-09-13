@@ -5,16 +5,6 @@ if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then
   export FPATH="/Users/dallas/.zsh/completions:$FPATH"
 fi
 
-# Auto-launch tmux with named session
-# if [[ -z "$TMUX" ]] && [[ -n "$PS1" ]]; then
-#     # If "terminal" session exists, attach to it
-#     if tmux has-session -t terminal 2>/dev/null; then
-#         tmux attach -t terminal
-#     else
-#         # Otherwise create it and attach
-#         tmux new-session -s terminal
-#     fi
-# fi
 bindkey -v
 
 # zsh-completions
@@ -37,6 +27,7 @@ export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 alias vi='hx'
+alias zel='zellij attach "disorganized-chaos"'
 
 alias notes='nvim ~/Library/Mobile\ Documents/com~apple~CloudDocs/vaults/notes'
 
