@@ -6,16 +6,16 @@ if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then
 fi
 
 # Auto-launch tmux with named session
-if [[ -z "$TMUX" ]] && [[ -n "$PS1" ]]; then
-    # If "terminal" session exists, attach to it
-    if tmux has-session -t terminal 2>/dev/null; then
-        tmux attach -t terminal
-    else
-        # Otherwise create it and attach
-        tmux new-session -s terminal
-    fi
-fi
-bindkey -v
+# if [[ -z "$TMUX" ]] && [[ -n "$PS1" ]]; then
+#     # If "terminal" session exists, attach to it
+#     if tmux has-session -t terminal 2>/dev/null; then
+#         tmux attach -t terminal
+#     else
+#         # Otherwise create it and attach
+#         tmux new-session -s terminal
+#     fi
+# fi
+# bindkey -v
 
 # zsh-completions
 fpath=(/usr/share/zsh/site-functions $fpath)

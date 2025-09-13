@@ -18,7 +18,7 @@ cursor-line = "warning"
 [editor.statusline]
 left = ["mode", "spinner"]
 center = ["file-name"]
-right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending"]
+right = ["diagnostics", "position", "file-encoding", "total-line-numbers"]
 separator = "│"
 mode.normal = "N"
 mode.insert = "I"
