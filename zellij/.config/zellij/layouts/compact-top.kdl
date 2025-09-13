@@ -1,0 +1,13 @@
+layout {
+  default_tab_template {
+    // Top bar
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+    // Your panes below
+    children
+  }
+
+  // Start with a single working pane (no separate "template" node)
+  pane
+}

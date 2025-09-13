@@ -10,7 +10,7 @@ mouse-hide-while-typing = true
 copy-on-select = true
 
 #### mac stuff ####
-macos-non-native-fullscreen = true
+macos-non-native-fullscreen = false
 window-decoration = false
 macos-option-as-alt = left
 
@@ -18,24 +18,4 @@ shell-integration = zsh
 window-save-state = always
 
 #keybind = cmd+t=new_window
-
-###multiplex ###
-#keybind = cmd+i=inspector:toggle
-
-#keybind = ctrl+space>h=new_split:left
-#keybind = ctrl+space>l=new_split:right
-#keybind = ctrl+space>j=new_split:down
-#keybind = ctrl+space>k=new_split:up
-
-#keybind = ctrl+space>x=close_window
-
-#keybind = ctrl+shift+l=next_tab
-#keybind = ctrl+shift+h=previous_tab
-
-#keybind = ctrl+h=goto_split:left
-#keybind = ctrl+l=goto_split:right
-#keybind = ctrl+j=goto_split:down
-#keybind = ctrl+k=goto_split:up
-
-#keybind = ctrl+space>n=toggle_quick_terminal
 

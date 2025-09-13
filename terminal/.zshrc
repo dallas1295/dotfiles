@@ -15,7 +15,7 @@ fi
 #         tmux new-session -s terminal
 #     fi
 # fi
-# bindkey -v
+bindkey -v
 
 # zsh-completions
 fpath=(/usr/share/zsh/site-functions $fpath)
