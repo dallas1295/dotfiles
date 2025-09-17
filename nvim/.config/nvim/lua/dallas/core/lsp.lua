@@ -14,8 +14,7 @@ vim.lsp.enable({
 
 -- Initial diagnostic config (virtual_text on, virtual_lines off)
 vim.diagnostic.config({
-	virtual_text = true,
-	-- virtual_lines = false,
+	virtual_lines = true,
 	underline = true,
 	signs = {
 		text = {
