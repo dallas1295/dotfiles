@@ -1,4 +1,3 @@
--- First enable the LSPs
 vim.lsp.enable({
 	"clangd",
 	"denols",
@@ -12,9 +11,9 @@ vim.lsp.enable({
 	"html",
 })
 
--- Initial diagnostic config (virtual_text on, virtual_lines off)
 vim.diagnostic.config({
-	virtual_lines = true,
+	virtual_text = true,
+	-- virtual_lines = true,
 	underline = true,
 	signs = {
 		text = {
@@ -23,14 +22,11 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.INFO] = "󰋽 ",
 			[vim.diagnostic.severity.HINT] = "󰌶 ",
 		},
-		numhl = {
-			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-			[vim.diagnostic.severity.WARN] = "WarningMsg",
-		},
 	},
 	update_in_insert = false,
 	severity_sort = true,
 })
+
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
 		"typescript",

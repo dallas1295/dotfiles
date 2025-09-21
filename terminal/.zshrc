@@ -5,6 +5,14 @@ if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then
   export FPATH="/Users/dallas/.zsh/completions:$FPATH"
 fi
 
+# Auto-start tmux via session-dispensary
+if command -v tmux >/dev/null 2>&1; then
+  # Only run if not already in tmux
+  if [[ -z "$TMUX" ]]; then
+    exec tmux
+      fi
+fi
+
 bindkey -v
 
 # zsh-completions
@@ -18,15 +26,14 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
-export EDITOR=hx
-export VISUAL=$EDITOR
+export EDITOR='nvim'
 export TERMINAL='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-alias vi='hx'
+alias vi='nvim'
 alias zel='zellij attach "disorganized-chaos"'
 
 alias notes='nvim ~/Library/Mobile\ Documents/com~apple~CloudDocs/vaults/notes'

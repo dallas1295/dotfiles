@@ -1,26 +1,17 @@
 #!/bin/bash
+# tmux-workspaces.sh
+# Create "term" and "code" tmux sessions if they don't exist,
+# then attach to "term".
 
-DIRS=(
-    "$HOME/documents"
-    "$HOME"
-    "$HOME/projects"
-)
-
-if [[ $# -eq 1 ]]; then
-    selected=$1
-else
-    selected=$(fd "${DIRS[@]}" --type=dir --max-depth=1 --full-path \
-        | sed "s|^$HOME/||" \
-        | sk --margin 10% --color="bw")
-    [[ $selected ]] && selected="$HOME/$selected"
+# "term" session in $HOME
+if ! tmux has-session -t term 2>/dev/null; then
+    tmux new-session -ds term -c "$HOME"
 fi
 
-[[ ! $selected ]] && exit 0
-
-selected_name=$(basename "$selected" | tr . _)
-if ! tmux has-session -t "$selected_name"; then
-    tmux new-session -ds "$selected_name" -c "$selected"
-    tmux select-window -t "$selected_name:1"
+# "code" session in $HOME/projects
+if ! tmux has-session -t code 2>/dev/null; then
+    tmux new-session -ds code -c "$HOME/projects"
 fi
 
-tmux switch-client -t "$selected_name"
+# Always start in term
+tmux attach-session -t term

@@ -17,5 +17,3 @@ macos-option-as-alt = left
 shell-integration = zsh
 window-save-state = always
 
-#keybind = cmd+t=new_window
-

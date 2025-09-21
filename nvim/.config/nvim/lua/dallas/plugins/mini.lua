@@ -23,7 +23,7 @@ return {
 		require("mini.surround").setup()
 		require("mini.diff").setup({
 			view = {
-				style = "sign",
+				style = "number",
 			},
 		})
 	end,

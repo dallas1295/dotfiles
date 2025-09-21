@@ -4,8 +4,20 @@ local keymap = vim.keymap -- for conciseness
 
 ------------------ General Keymaps -------------------
 
+-- pane navigation
+keymap.set("n", "<c-j", ":wincmd j<CR>")
+keymap.set("n", "<c-k>", ":wincmd k<CR>")
+keymap.set("n", "<c-h>", ":wincmd h<CR>")
+keymap.set("n", "<c-l>", ":wincmd l<CR>")
+
 -- clear search highlights
 keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })
+
+-- Yank/paste to/from system clipboard
+keymap.set("v", "<leader>y", '"+y', { desc = "Yank selection to system clipboard" })
+keymap.set("n", "<leader>yy", '"+yy', { desc = "Yank line to system clipboard" })
+keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+
 
 -- Rust
 keymap.set("n", "<leader>cr", ":Cargo run<CR>", { desc = "Cargo run" })
