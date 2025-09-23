@@ -1,0 +1,20 @@
+[tools]
+bun = "latest"
+deno = "latest"
+elixir = "latest"
+go = "latest"
+lua = "latest"
+node = "latest"
+npm = "latest"
+python = "latest"
+ruby = "3"
+rust = "latest"
+zig = "latest"
+uv = "latest"
+
+[env]
+python.env = { path = ".venv" }
+_.path = ['{{config_root}}/node_modules/.bin']
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]
