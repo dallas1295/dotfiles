@@ -13,7 +13,7 @@ vim.lsp.enable({
 
 vim.diagnostic.config({
 	virtual_text = true,
-	-- virtual_lines = true,
+	irtual_lines = true,
 	underline = true,
 	signs = {
 		text = {

@@ -18,7 +18,6 @@ keymap.set("v", "<leader>y", '"+y', { desc = "Yank selection to system clipboard
 keymap.set("n", "<leader>yy", '"+yy', { desc = "Yank line to system clipboard" })
 keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 
-
 -- Rust
 keymap.set("n", "<leader>cr", ":Cargo run<CR>", { desc = "Cargo run" })
 keymap.set("n", "<leader>cb", ":Cargo Build<CR>", { desc = "Cargo build" })
@@ -36,6 +35,10 @@ keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" }
 keymap.set("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create an empty buffer" })
 keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>bq", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
+
+keymap.set("n", "<leader>bs", "<cmd>w<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>qq", "<cmd>q<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Close current buffer" })
 
 keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 
