@@ -1,8 +1,8 @@
-theme = Gruvbox Dark Hard
+theme = Rose Pine
 font-family = JetBrainsMono Nerd Font
 font-size = 17
-#background = #000000
-background-opacity = .8
+background = #000000
+##background-opacity = .8
 #### cursor ####
 cursor-style = block
 cursor-style-blink = true

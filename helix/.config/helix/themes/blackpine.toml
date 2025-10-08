@@ -1,0 +1,7 @@
+inherits = "rose_pine"
+
+"ui.background" = { bg = "#000000" }
+
+# Now, override the backgrounds for the floating UI elements.
+# We use the named color 'rose_pine_surface' from the base theme.
+
