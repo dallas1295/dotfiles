@@ -1,5 +1,4 @@
 vim.lsp.enable({
-	"clangd",
 	"denols",
 	"elixir-ls",
 	"gopls",
@@ -13,7 +12,7 @@ vim.lsp.enable({
 
 vim.diagnostic.config({
 	virtual_text = true,
-	irtual_lines = true,
+	virtual_lines = true,
 	underline = true,
 	signs = {
 		text = {

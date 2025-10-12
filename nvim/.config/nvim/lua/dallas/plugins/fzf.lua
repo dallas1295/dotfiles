@@ -2,6 +2,6 @@ return {
 
 	"ibhagwan/fzf-lua",
 	-- optional for icon support
-	dependencies = { "https://github.com/echasnovski/mini.icons.git" },
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {},
 }

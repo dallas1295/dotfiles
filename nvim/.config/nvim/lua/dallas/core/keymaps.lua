@@ -42,13 +42,13 @@ keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Close current buffer" })
 
 keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 
-keymap.set("n", "<leader>cp", "<cmd>Floaterminal<CR>", { desc = "Toggle a terminal buffer" })
-
 -- quits
 keymap.set("n", "<leader>qq", "<cmd>qall<CR>", { desc = "Close Neovim", noremap = true, silent = true })
 keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Write Quit Buffer", noremap = true, silent = true })
 
 -- Lazy & Plugins
+keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
+keymap.set("n", "<leader>lp", "<cmd>Lazy<cr>", { desc = "Open Lazy plugin manager" })
 
 -- Menus
 keymap.set("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })

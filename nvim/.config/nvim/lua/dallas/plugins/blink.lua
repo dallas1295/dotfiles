@@ -1,10 +1,10 @@
 return {
 	"saghen/blink.cmp",
-	dependencies = { "echasnovski/mini.snippets" },
+	dependencies = { "L3MON4D3/LuaSnip" },
 
 	version = "1.*",
 	opts = {
-		snippets = { preset = "mini_snippets" },
+		snippets = { preset = "luasnip" },
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 		-- 'super-tab' for mappings similar to vscode (tab to accept)
 		-- 'enter' for enter to accept

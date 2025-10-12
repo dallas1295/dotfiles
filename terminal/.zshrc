@@ -25,15 +25,13 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
-export EDITOR="hx"
-export VISUAL="$EDITOR"   # Many programs look at VISUAL first
+export EDITOR="nvim"
 export TERMINAL='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$(brew --prefix ruby)/bin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.gem/ruby/$(ruby -e 'print RUBY_VERSION')/bin:$PATH"
 
 alias vi='nvim'
 
@@ -46,7 +44,7 @@ alias lla='ls -la'
 alias lt='ls --tree --depth 2'
 alias lg='ls -la --git'
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/rosepine.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/gruvvy.omp.json)"
 eval "$(zoxide init zsh)"
 
 export PYENV_ROOT="$HOME/.pyenv"

@@ -1,95 +1,95 @@
-# Rose Pine theme with squarer, minimal Helix/Neovim-style UI
+# Gruvbox theme with squarer, minimal Helix/Neovim-style UI
 "$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
 [flavor]
-dark = "rose-pine"
+dark = "gruvbox-dark"
 
-# Override Rose Pine for squarer, minimal look
+# Override Gruvbox for squarer, minimal look
 [mgr]
 syntect_theme = "/Users/dallas/.config/yazi/tmtheme.xml"
-cwd = { fg = "#e0def4" }
-hovered = { bg = "#31748f", fg = "#e0def4" }
+cwd = { fg = "#ebdbb2" }
+hovered = { bg = "#458588", fg = "#ebdbb2" }
 preview_hovered = { underline = false }
 border_symbol = "│"
-border_style = { fg = "#908caa" }
+border_style = { fg = "#928374" }
 
 [tabs]
-active = { fg = "#e0def4", bg = "#31748f" }
-inactive = { fg = "#908caa" }
+active = { fg = "#ebdbb2", bg = "#458588" }
+inactive = { fg = "#928374" }
 sep_inner = { open = " ", close = " " }
 sep_outer = { open = " ", close = " " }
 
 [status]
-overall = { fg = "#e0def4", bg = "#26233a" }
+overall = { fg = "#ebdbb2", bg = "#282828" }
 sep_left = { open = "", close = "" }
 sep_right = { open = "", close = "" }
-perm_type = { fg = "#9ccfd8" }
-perm_read = { fg = "#f6c177" }
-perm_write = { fg = "#eb6f92" }
-perm_exec = { fg = "#31748f" }
-perm_sep = { fg = "#6e6a86" }
+perm_type = { fg = "#8ec07c" }
+perm_read = { fg = "#fabd2f" }
+perm_write = { fg = "#fb4934" }
+perm_exec = { fg = "#458588" }
+perm_sep = { fg = "#665c54" }
 
 [mode]
-normal_main = { fg = "#e0def4", bg = "#31748f", bold = true }
-normal_alt = { fg = "#908caa", bg = "#26233a" }
-select_main = { fg = "#e0def4", bg = "#eb6f92", bold = true }
-select_alt = { fg = "#908caa", bg = "#26233a" }
-unset_main = { fg = "#e0def4", bg = "#f6c177", bold = true }
-unset_alt = { fg = "#908caa", bg = "#26233a" }
+normal_main = { fg = "#ebdbb2", bg = "#458588", bold = true }
+normal_alt = { fg = "#928374", bg = "#282828" }
+select_main = { fg = "#ebdbb2", bg = "#fb4934", bold = true }
+select_alt = { fg = "#928374", bg = "#282828" }
+unset_main = { fg = "#ebdbb2", bg = "#fabd2f", bold = true }
+unset_alt = { fg = "#928374", bg = "#282828" }
 
 [which]
 cols = 2
-mask = { bg = "#26233a" }
-cand = { fg = "#9ccfd8" }
-rest = { fg = "#6e6a86" }
-desc = { fg = "#c4a7e7" }
+mask = { bg = "#282828" }
+cand = { fg = "#8ec07c" }
+rest = { fg = "#665c54" }
+desc = { fg = "#d3869b" }
 separator = " "
-separator_style = { fg = "#6e6a86" }
+separator_style = { fg = "#665c54" }
 
 [confirm]
-border = { fg = "#31748f" }
-title = { fg = "#e0def4" }
-content = { fg = "#908caa" }
-list = { fg = "#908caa" }
-btn_yes = { fg = "#e0def4", bg = "#31748f" }
-btn_no = { fg = "#e0def4", bg = "#eb6f92" }
+border = { fg = "#458588" }
+title = { fg = "#ebdbb2" }
+content = { fg = "#928374" }
+list = { fg = "#928374" }
+btn_yes = { fg = "#ebdbb2", bg = "#458588" }
+btn_no = { fg = "#ebdbb2", bg = "#fb4934" }
 btn_labels = [ " Yes ", " No " ]
 
 [spot]
-border = { fg = "#31748f" }
-title = { fg = "#e0def4" }
-tbl_col = { fg = "#9ccfd8" }
-tbl_cell = { fg = "#e0def4", bg = "#31748f" }
+border = { fg = "#458588" }
+title = { fg = "#ebdbb2" }
+tbl_col = { fg = "#8ec07c" }
+tbl_cell = { fg = "#ebdbb2", bg = "#458588" }
 
 [notify]
-title_info = { fg = "#9ccfd8" }
-title_warn = { fg = "#f6c177" }
-title_error = { fg = "#eb6f92" }
+title_info = { fg = "#8ec07c" }
+title_warn = { fg = "#fabd2f" }
+title_error = { fg = "#fb4934" }
 
 [pick]
-border = { fg = "#31748f" }
-active = { fg = "#9ccfd8", bold = true }
-inactive = { fg = "#908caa" }
+border = { fg = "#458588" }
+active = { fg = "#8ec07c", bold = true }
+inactive = { fg = "#928374" }
 
 [input]
-border = { fg = "#31748f" }
-title = { fg = "#e0def4" }
-value = { fg = "#908caa" }
-selected = { fg = "#e0def4", bg = "#31748f" }
+border = { fg = "#458588" }
+title = { fg = "#ebdbb2" }
+value = { fg = "#928374" }
+selected = { fg = "#ebdbb2", bg = "#458588" }
 
 [cmp]
-border = { fg = "#31748f" }
-active = { fg = "#e0def4", bg = "#31748f" }
-inactive = { fg = "#908caa" }
+border = { fg = "#458588" }
+active = { fg = "#ebdbb2", bg = "#458588" }
+inactive = { fg = "#928374" }
 
 [tasks]
-border = { fg = "#31748f" }
-title = { fg = "#e0def4" }
-hovered = { fg = "#9ccfd8", underline = false }
+border = { fg = "#458588" }
+title = { fg = "#ebdbb2" }
+hovered = { fg = "#8ec07c", underline = false }
 
 [help]
-on = { fg = "#9ccfd8" }
-run = { fg = "#c4a7e7" }
-desc = { fg = "#908caa" }
-hovered = { fg = "#e0def4", bg = "#31748f", bold = true }
-footer = { fg = "#6e6a86", bg = "#26233a" }
+on = { fg = "#8ec07c" }
+run = { fg = "#d3869b" }
+desc = { fg = "#928374" }
+hovered = { fg = "#ebdbb2", bg = "#458588", bold = true }
+footer = { fg = "#665c54", bg = "#282828" }

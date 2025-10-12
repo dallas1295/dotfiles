@@ -1,0 +1,57 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "secondary_prompt": {
+    "template": "❯ ",
+    "foreground": "blue"
+  },
+  "transient_prompt": {
+    "template": "❯ ",
+    "foreground": "white",
+    "foreground_templates": ["{{ if .Root }}red{{ end }}"]
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none",
+            "folder_icon": "󰉖",
+            "home_icon": "",
+            "style": "agnoster_short"
+          },
+          "template": "{{ .Path }}",
+          "foreground": "white",
+          "type": "path",
+          "style": "plain"
+        },
+
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "template": " {{ if .RepoName }}{{ .UpstreamIcon }} {{ .HEAD }} {{ if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ end }}",
+          "foreground": "cyan",
+          "type": "git",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": " ❯",
+          "foreground": "blue",
+          "type": "text",
+          "style": "plain",
+          "foreground_templates": ["{{ if .Root }}red{{ end }}"]
+        }
+      ]
+    }
+  ],
+  "version": 3,
+  "final_space": true
+}
