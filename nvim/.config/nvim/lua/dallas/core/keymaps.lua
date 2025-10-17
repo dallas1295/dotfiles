@@ -42,6 +42,12 @@ keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Close current buffer" })
 
 keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 
+-- Buffer navigation
+keymap.set("n", "<S-h>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
+keymap.set("n", "<S-l>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+
+
+
 -- quits
 keymap.set("n", "<leader>qq", "<cmd>qall<CR>", { desc = "Close Neovim", noremap = true, silent = true })
 keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Write Quit Buffer", noremap = true, silent = true })

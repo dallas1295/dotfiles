@@ -8,11 +8,12 @@ vim.lsp.enable({
 	"ts_ls",
 	"tailwindcss",
 	"html",
+	"jsonls",
 })
 
 vim.diagnostic.config({
 	virtual_text = true,
-	virtual_lines = true,
+	virtual_lines = false,
 	underline = true,
 	signs = {
 		text = {

@@ -48,6 +48,7 @@ return {
 				"cpp",
 				"rust",
 				"zig",
+				"sql",
 			},
 			incremental_selection = {
 				enable = true,
