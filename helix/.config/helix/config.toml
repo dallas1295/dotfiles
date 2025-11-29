@@ -1,9 +1,13 @@
-theme = "vesper"
+theme = "gruvbox_dark_hard"
 
 [editor]
 line-number = "relative"
 bufferline = "multiple"
-mouse = false
+mouse = true
+completion-replace = true
+trim-trailing-whitespace = true
+end-of-line-diagnostics = "hint"
+rainbow-brackets = true
 color-modes = true
 true-color = true
 auto-info = false
@@ -17,21 +21,39 @@ select = "underline"
 
 [editor.indent-guides]
 render = true
+character = "╎"
+skip-levels = 0
 
 [editor.inline-diagnostics]
-other-lines = "error"
-cursor-line = "hint"
+# other-lines = "error"
+# cursor-line = "warning"
+other-lines = "warning"
+cursor-line = "disable"
+
+[editor.auto-save]
+focus-lost = true
+after-delay.enable = true
+after-delay.timeout = 30000
 
 [editor.statusline]
-left = ["mode", "spinner"]
-center = ["file-name"]
-right = ["diagnostics", "position", "file-encoding", "total-line-numbers"]
+left = ["mode", "spacer","spinner", "spacer", "diagnostics", "file-modification-indicator"]
+center = ["file-name", "spacer", "file-encoding"]
+right = ["version-control", "spacer", "spacer", "position", "total-line-numbers", "position-percentage", "spacer"]
 separator = "│"
-mode.normal = "NOR"
-mode.insert = "INS"
-mode.select = "SEL"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 diagnostics = ["warning", "error"]
 workspace-diagnostics = ["warning", "error"]
+
+[keys.select]
+0 = "goto_line_start"
+"$" = "goto_line_end"
+"^"= "goto_first_nonwhitespace"
+G = "goto_file_end"
+j = ["extend_line_down", "extend_to_line_bounds"]
+k = ["extend_line_up", "extend_to_line_bounds"]
+
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
@@ -46,6 +68,9 @@ S-h = ":bprev"
 S-l = ":bnext"
 0 = "goto_line_start"
 G = "goto_file_end"
+V = ["select_mode", "extend_to_line_bounds"]
+x = ["select_mode", "extend_to_line_bounds"]
+D = ["ensure_selections_forward", "extend_to_line_end", "delete_selection"]
 
 [keys.normal.space.C]
 r = ":config-reload"

@@ -136,7 +136,7 @@ alt-shift-l = ['join-with right', 'mode main']
 ## Specific Workspace tendencies
 
 [[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
+if.app-id = 'net.kovidgoyal.kitty'
 run = [ "move-node-to-workspace 1" ]
 
 [[on-window-detected]]
@@ -148,24 +148,20 @@ if.app-id = 'app.zen-browser.zen'
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
-if.app-id = 'com.brave.Brave'
+if.app-id = 'org.mozilla.firefox'
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Safari'
+if.app-id = 'com.brave.Browser'
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Music'
-run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.TV'
+if.app-id = 'com.apple.finder'
 run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
-run = 'move-node-to-workspace 4'
+run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'com.tencent.xinWeChat'
@@ -175,12 +171,16 @@ run = 'move-node-to-workspace 4'
 if.app-id = 'com.facebook.archon'
 run = 'move-node-to-workspace 4'
 
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = "move-node-to-workspace 4"
 
 ## Special window configurations
-
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
 run = 'layout floating' 
+
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = 'layout floating'

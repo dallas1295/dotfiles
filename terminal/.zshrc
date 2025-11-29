@@ -12,6 +12,11 @@ if command -v tmux >/dev/null 2>&1; then
       fi
 fi
 
+# Auto-launch Zellij
+#if [[ -z "$ZELLIJ" ]]; then
+#    zellij attach -c outstanding-quasar
+#fi
+
 bindkey -v
 
 # zsh-completions
@@ -26,6 +31,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
 export EDITOR="nvim"
+# export EDITOR=hx
+# export VISUAL="$EDITOR"
 export TERMINAL='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
@@ -57,5 +64,14 @@ export PYENV_ROOT="$HOME/.pyenv"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Java
+export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+
 # opencode
 export PATH=/Users/dallas/.opencode/bin:$PATH
+
+# Clear terminal on startup
+clear
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

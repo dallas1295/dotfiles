@@ -10,6 +10,9 @@ keymap.set("n", "<c-k>", ":wincmd k<CR>")
 keymap.set("n", "<c-h>", ":wincmd h<CR>")
 keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
+-- exit insert mode
+keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+
 -- clear search highlights
 keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })
 
@@ -45,8 +48,6 @@ keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
 keymap.set("n", "<S-l>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
-
-
 
 -- quits
 keymap.set("n", "<leader>qq", "<cmd>qall<CR>", { desc = "Close Neovim", noremap = true, silent = true })

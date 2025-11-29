@@ -13,3 +13,6 @@ export PATH=$HOME/.local/bin:$PATH
 source /home/dallas/.local/share/bash-completion/completions/deno.bash
 . "/Users/dallas/.deno/env"
 source /Users/dallas/.local/share/bash-completion/completions/deno.bash
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

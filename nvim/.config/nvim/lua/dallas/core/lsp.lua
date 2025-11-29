@@ -1,5 +1,6 @@
 vim.lsp.enable({
 	"denols",
+	"clangd",
 	"elixir-ls",
 	"gopls",
 	"lua_ls",
@@ -9,6 +10,7 @@ vim.lsp.enable({
 	"tailwindcss",
 	"html",
 	"jsonls",
+	"zls",
 })
 
 vim.diagnostic.config({
