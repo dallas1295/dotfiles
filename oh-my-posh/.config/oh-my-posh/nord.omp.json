@@ -1,0 +1,77 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "bg": "#2E3440",
+    "black": "#3B4252",
+    "blue": "#5E81AC",
+    "border": "#4C566A",
+    "comment": "#616E88",
+    "cyan": "#8FBCBB",
+    "fg": "#D8DEE9",
+    "gray": "#4C566A",
+    "green": "#A3BE8C",
+    "indigo": "#5E81AC",
+    "magenta": "#B48EAD",
+    "orange": "#D08770",
+    "peach": "#D08770",
+    "pink": "#B48EAD",
+    "red": "#BF616A",
+    "surface": "#3B4252",
+    "violet": "#B48EAD",
+    "white": "#D8DEE9",
+    "yellow": "#EBCB8B"
+  },
+  "secondary_prompt": {
+    "template": "❯ ",
+    "foreground": "cyan"
+  },
+  "transient_prompt": {
+    "template": "❯ ",
+    "foreground": "yellow",
+    "foreground_templates": ["{{ if .Root }}red{{ end }}"]
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none",
+            "folder_icon": "󰉖",
+            "home_icon": "",
+            "style": "agnoster_short"
+          },
+          "template": "{{ .Path }}",
+          "foreground": "blue",
+          "type": "path",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "template": " {{ if .RepoName }}{{ .UpstreamIcon }} {{ .HEAD }} {{ if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ end }}",
+          "foreground": "green",
+          "type": "git",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": " ❯",
+          "foreground": "yellow",
+          "type": "text",
+          "style": "plain",
+          "foreground_templates": ["{{ if .Root }}red{{ end }}"]
+        }
+      ]
+    }
+  ],
+  "version": 3,
+  "final_space": true
+}

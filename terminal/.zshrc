@@ -51,7 +51,7 @@ alias lla='ls -la'
 alias lt='ls --tree --depth 2'
 alias lg='ls -la --git'
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/gruvvy.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/nord.omp.json)"
 eval "$(zoxide init zsh)"
 
 export PYENV_ROOT="$HOME/.pyenv"

@@ -10,9 +10,8 @@ command = "pyright-langserver"
 args = ["--stdio"]
 
 [language-server.gopls.config]
-"ui.formatting.gofmt" = true
-"ui.formatting.goimports" = true 
-"ui.diagnostic.staticcheck" = true 
+"ui.formatting.gofumpt" = true
+"ui.diagnostic.staticcheck" = true
 "ui.completion.usePlaceholders" = true
 
 [language-server.ruby-lsp]
@@ -71,7 +70,7 @@ auto-pairs = { "<" = ">", "{" = "}", "[" = "]", "(" = ")" }
 name = "go"
 roots = ["go.mod", "go.sum", "go.work"]
 language-servers = ["gopls"]
-formatter = { command = "gofumpt", args = ["-w", "-"] }
+formatter = { command = "goimports", args = ["-w", "-"] }
 auto-format = true
 
 [[language]]
