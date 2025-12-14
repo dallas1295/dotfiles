@@ -2,20 +2,39 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		local colors = {
-			bg = "#1d2021",
-			fg = "#ebdbb2",
-			yellow = "#d79921",
-			cyan = "#689d6a",
-			darkblue = "#458588",
-			green = "#98971a",
-			orange = "#d65d0e",
-			violet = "#b16286",
-			magenta = "#d3869b",
-			blue = "#458588",
-			red = "#cc241d",
-			tan = "#d4be98",
-		}
+    -- Gruvbox
+		-- local colors = {
+		-- 	bg = "#1d2021",
+		-- 	fg = "#ebdbb2",
+		-- 	yellow = "#d79921",
+		-- 	cyan = "#689d6a",
+		-- 	darkblue = "#458588",
+		-- 	green = "#98971a",
+		-- 	orange = "#d65d0e",
+		-- 	violet = "#b16286",
+		-- 	magenta = "#d3869b",
+		-- 	blue = "#458588",
+		-- 	red = "#cc241d",
+		-- 	tan = "#d4be98",
+		-- }
+    
+    -- Rose pine
+    local colors = {
+            bg = "#191724",        
+            fg = "#e0def4",        
+            yellow = "#f6c177",    
+            cyan = "#9ccfd8",      
+            darkblue = "#31748f",  
+            green = "#9ccfd8",    
+            orange = "#f6c177",    
+            violet = "#c4a7e7",    
+            magenta = "#eb6f92",   
+            blue = "#31748f",      
+            red = "#eb6f92",       
+            tan = "#ebbcba",       
+        }
+
+
 
 		local conditions = {
 			buffer_not_empty = function()
