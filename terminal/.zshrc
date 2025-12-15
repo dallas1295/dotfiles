@@ -12,10 +12,10 @@ if command -v tmux >/dev/null 2>&1; then
       fi
 fi
 
-# Auto-launch Zellij
-#if [[ -z "$ZELLIJ" ]]; then
+## Auto-launch Zellij
+# if [[ -z "$ZELLIJ" ]]; then
 #    zellij attach -c outstanding-quasar
-#fi
+# fi
 
 bindkey -v
 
