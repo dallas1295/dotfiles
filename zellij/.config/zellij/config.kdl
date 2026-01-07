@@ -1,11 +1,10 @@
 default_layout "compact"
-theme "gruvbox-dark"
-pane_frames true 
-
+theme "tokyo-night"
+pane_frames false
 keybinds {
     normal {
        // Mode Management
-        unbind "Ctrl t"
+        // unbind "Ctrl t"
         unbind "Ctrl n"
         unbind "Ctrl g"
         bind "Ctrl r" {SwitchToMode "Pane";}

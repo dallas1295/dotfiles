@@ -5,17 +5,17 @@ if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then
   export FPATH="/Users/dallas/.zsh/completions:$FPATH"
 fi
 
-if command -v tmux >/dev/null 2>&1; then
-  # Only run if not already in tmux
-  if [[ -z "$TMUX" ]]; then
-    exec tmux
-      fi
-fi
-
-## Auto-launch Zellij
-# if [[ -z "$ZELLIJ" ]]; then
-#    zellij attach -c outstanding-quasar
+# if command -v tmux >/dev/null 2>&1; then
+#   # Only run if not already in tmux
+#   if [[ -z "$TMUX" ]]; then
+#     exec tmux
+#       fi
 # fi
+
+# Auto-launch Zellij
+ if [[ -z "$ZELLIJ" ]]; then
+    zellij attach -c outstanding-quasar
+ fi
 
 bindkey -v
 
@@ -45,33 +45,20 @@ alias vi='nvim'
 # ls shows hidden files & colorize
 
 alias ls='lsd'
-alias l='ls -l'
+alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree --depth 2'
 alias lg='ls -la --git'
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/nord.omp.json)"
 eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-
-# bun completions
-[ -s "/Users/dallas/.bun/_bun" ] && source "/Users/dallas/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Java
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
 
 # opencode
 export PATH=/Users/dallas/.opencode/bin:$PATH
 
 # Clear terminal on startup
 clear
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
