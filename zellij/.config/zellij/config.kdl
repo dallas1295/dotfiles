@@ -1,12 +1,12 @@
 default_layout "compact"
-theme "catppuccin-macchiato"
+theme "gruvbox-dark"
 pane_frames false
 keybinds {
     normal {
        // Mode Management
         // unbind "Ctrl t"
         unbind "Ctrl n"
-        unbind "Ctrl g"
+        // unbind "Ctrl g"
         bind "Ctrl r" {SwitchToMode "Pane";}
         bind "Ctrl w" {SwitchToMode "Tab";}
         bind "Ctrl /" {SwitchToMode "Locked";}
