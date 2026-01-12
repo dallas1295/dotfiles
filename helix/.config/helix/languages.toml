@@ -114,7 +114,7 @@ language-servers = ["typescript-language-server"]
 name = "json"
 auto-format = true
 formatter = { command = "prettier", args = ["--stdin-filepath", "file.json"] }
-language-servers = ["vscode-json-language-server"]
+language-servers = ["vscode-json-languageserver"]
 
 [[language]]
 name = "html"
