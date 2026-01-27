@@ -5,17 +5,17 @@ if [[ ":$FPATH:" != *":/Users/dallas/.zsh/completions:"* ]]; then
   export FPATH="/Users/dallas/.zsh/completions:$FPATH"
 fi
 
-# if command -v tmux >/dev/null 2>&1; then
-#   # Only run if not already in tmux
-#   if [[ -z "$TMUX" ]]; then
-#     exec tmux
-#       fi
-# fi
+if command -v tmux >/dev/null 2>&1; then
+  # Only run if not already in tmux
+  if [[ -z "$TMUX" ]]; then
+    exec tmux
+      fi
+fi
 
 # Auto-launch Zellij
- if [[ -z "$ZELLIJ" ]]; then
-    zellij attach -c outstanding-quasar
- fi
+ # if [[ -z "$ZELLIJ" ]]; then
+ #    zellij attach -c outstanding-quasar
+ # fi
 
 bindkey -v
 

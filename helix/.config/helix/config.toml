@@ -15,7 +15,7 @@ true-color = true
 auto-info = true
 cursorline = true
 undercurl = true
-clipboard-provider = "tmux"
+# clipboard-provider = "tmux"
 
 [editor.cursor-shape]
 insert = "bar"
