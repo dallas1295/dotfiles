@@ -1,0 +1,1 @@
+/Users/dallas/.config/emacs/elpaca/repos/haskell-mode/haskell-font-lock.el

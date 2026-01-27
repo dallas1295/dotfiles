@@ -200,7 +200,7 @@
 ;; This sets the default font on all graphical frames created after restarting Emacs.
 ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
 ;; are not right unless I also add this method of setting the default font.
-(add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font-15"))
+(add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font-17"))
 
 ;; Uncomment the following line if line spacing needs adjusting.
 ;;(setq-default line-spacing 0.12)
@@ -219,6 +219,34 @@
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (setq initial-major-mode 'org-mode)
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab )
+
+(delete-selection-mode 1)
+(electric-indent-mode -1)
+(electric-pair-mode 1)
+
+;; The following prevents <> from auto-pairing when electric-pair-mode is on.
+;; Otherwise, org-tempo is broken when you try to <s TAB...
+;; Corrected hook to stop < from auto-closing in Org mode
+(add-hook 'org-mode-hook 
+          (lambda ()
+            (setq-local electric-pair-inhibit-predicate
+                        (lambda (c)
+                          (if (char-equal c ?<)
+                              t ;; Return t means "Do NOT pair this character"
+                            (when electric-pair-inhibit-predicate
+                              (funcall electric-pair-inhibit-predicate c)))))))
+
+(global-auto-revert-mode t)  ;; Automatically show changes if the file has changed
+(global-display-line-numbers-mode 1) ;; Display line numbers
+(global-visual-line-mode t)  ;; Enable truncated lines
+(menu-bar-mode -1)           ;; Disable the menu bar 
+(scroll-bar-mode -1)         ;; Disable the scroll bar
+(tool-bar-mode -1)           ;; Disable the tool bar
+(setq org-edit-src-content-indentation 0) ;; Set src block automatic indent to 0 instead of 2.
 
 (use-package counsel
   :ensure t
@@ -295,7 +323,11 @@
 (use-package apheleia
   :ensure t
   :config
-  (apheleia-global-mode +1))
+  (apheleia-global-mode +1)
+  (setf (alist-get 'go-mode apheleia-mode-alist)
+        '(goimports gofmt))
+
+)
 
 (global-set-key [escape] 'keyboard-escape-quit)
 
@@ -337,30 +369,6 @@
   (interactive)
   (load-file user-init-file)
   (load-file user-init-file))
-
-(delete-selection-mode 1)
-(electric-indent-mode -1)
-(electric-pair-mode 1)
-
-;; The following prevents <> from auto-pairing when electric-pair-mode is on.
-;; Otherwise, org-tempo is broken when you try to <s TAB...
-;; Corrected hook to stop < from auto-closing in Org mode
-(add-hook 'org-mode-hook 
-          (lambda ()
-            (setq-local electric-pair-inhibit-predicate
-                        (lambda (c)
-                          (if (char-equal c ?<)
-                              t ;; Return t means "Do NOT pair this character"
-                            (when electric-pair-inhibit-predicate
-                              (funcall electric-pair-inhibit-predicate c)))))))
-
-(global-auto-revert-mode t)  ;; Automatically show changes if the file has changed
-(global-display-line-numbers-mode 1) ;; Display line numbers
-(global-visual-line-mode t)  ;; Enable truncated lines
-(menu-bar-mode -1)           ;; Disable the menu bar 
-(scroll-bar-mode -1)         ;; Disable the scroll bar
-(tool-bar-mode -1)           ;; Disable the tool bar
-(setq org-edit-src-content-indentation 0) ;; Set src block automatic indent to 0 instead of 2.
 
 (use-package eshell-syntax-highlighting
   :ensure t
