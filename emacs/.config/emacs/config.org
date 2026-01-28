@@ -15,6 +15,7 @@
 - [[#dired][Dired]]
 - [[#flycheck-and-flymake][Flycheck and Flymake]]
 - [[#fonts][Fonts]]
+- [[#git][Git]]
 - [[#important-settings][Important Settings]]
   - [[#disable-menubar-toolbars-and-scrollbars][Disable Menubar, toolbars and scrollbars]]
   - [[#line-numbers-and-truncated-lines][Line Numbers and Truncated Lines]]
@@ -297,7 +298,12 @@ You can use the bindings CTRL plus =/- for zooming in/out.  You can also use CTR
 (global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
 #+end_src
 
+* Git
+#+begin_src emacs-lisp
+(use-package transient :ensure t)
+(use-package magit :ensure t)
 
+#+end_src
 * Important Settings 
 ** Disable Menubar, toolbars and scrollbars
 #+begin_src emacs-lisp
