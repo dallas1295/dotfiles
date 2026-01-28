@@ -1,0 +1,1 @@
+/Users/dallas/.config/emacs/elpaca/repos/kanagawa-emacs/kanagawa-themes.el

@@ -4,31 +4,32 @@
 (require 'buffer-move)   ;; Buffer-move for better window management
 
 (use-package evil
-       :ensure t
-       :demand t
-       :diminish
-       :init
-       (setq evil-want-integration t)
-       (setq evil-want-keybinding nil)
-       (setq evil-vsplit-window-right t)
-       (setq evil-split-window-below t)
-       (evil-mode))
-     (use-package evil-collection
-       :after evil
-       :diminish
-       :ensure t
-       :config
-       (setq evil-collection-mode-list '(dashboard dired ibuffer))
-       (evil-collection-init))
-     (use-package evil-tutor :ensure t :diminish)
-     (use-package evil-escape
-     :ensure t
-     :diminish
-     :after evil
-     :config
-     (evil-escape-mode)
-     (setq evil-escape-key-sequence "jk")
-     (setq evil-escape-delay 0.2))
+  :ensure t
+  :demand t
+  :after elpaca
+  :diminish
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-below t)
+  (evil-mode))
+(use-package evil-collection
+  :after evil
+  :diminish
+  :ensure t
+  :config
+  (setq evil-collection-mode-list '(dashboard dired ibuffer))
+  (evil-collection-init))
+(use-package evil-tutor :ensure t :diminish)
+(use-package evil-escape
+  :ensure t
+  :diminish
+  :after evil
+  :config
+  (evil-escape-mode)
+  (setq evil-escape-key-sequence "jk")
+  (setq evil-escape-delay 0.2))
 (use-package evil-surround
   :ensure t
   :config
@@ -41,42 +42,42 @@
   (define-key evil-motion-state-map (kbd "RET") nil)
   (define-key evil-motion-state-map (kbd "TAB") nil))
 ;; Setting RETURN key in org-mode to follow links
-  (setq org-return-follows-link  t)
+(setq org-return-follows-link  t)
 
 (use-package general
-      :ensure t
-      :config
-      (general-evil-setup)
+  :ensure t
+  :config
+  (general-evil-setup)
 
-      ;; set up 'SPC' as the global leader key
-      (general-create-definer emacaroni/leader-key
-        :states '(normal insert visual emacs)
-        :keymaps 'override
-        :prefix "SPC" ;; set leader
-        :global-prefix "M-SPC") ;; access leader in insert mode
-    
-    ;; general
-     (emacaroni/leader-key
-      "SPC" '(find-file :wk "Find File")
-      "/" '(counsel-M-x :wk "Counsel M-x")
-      "co" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
-      "cr" '(reload-init-file :wk "Reload config")
-      "fr" '(counsel-recentf :wk "Find recent files")
-      "-" '(dired :wk "File Explorer (Dired)")
-      "." '(counsel-fzf :wk "Fuzzy finder"))
+  ;; set up 'SPC' as the global leader key
+  (general-create-definer emacaroni/leader-key
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "SPC" ;; set leader
+    :global-prefix "M-SPC") ;; access leader in insert mode
+  
+  ;; general
+  (emacaroni/leader-key
+    "SPC" '(find-file :wk "Find File")
+    "/" '(counsel-M-x :wk "Counsel M-x")
+    "co" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
+    "cr" '(reload-init-file :wk "Reload config")
+    "fr" '(counsel-recentf :wk "Find recent files")
+    "-" '(dired :wk "File Explorer (Dired)")
+    "." '(counsel-fzf :wk "Fuzzy finder"))
 
-     ;; org
-     (emacaroni/leader-key
-       "o" '(:ignore t :wk "Org")
-       "o a" '(org-agenda :wk "Org agenda")
-       "o e" '(org-export-dispatch :wk "Org export dispatch")
-       "o i" '(org-toggle-item :wk "Org toggle item")
-       "o t" '(org-todo :wk "Org todo")
-       "o B" '(org-babel-tangel :wk "Org babel tangle")
-       "o T" '(org-todo-list :wk "Org todo list")
-       "o b" '(org-table-insert-hline :wk "Insert hline in table")
-       "o d" '(org-time-stamp :wk "Org time stamp"))
-  ;; buffer
+   ;; org
+   (emacaroni/leader-key
+    "o" '(:ignore t :wk "Org")
+    "o a" '(org-agenda :wk "Org agenda")
+    "o e" '(org-export-dispatch :wk "Org export dispatch")
+    "o i" '(org-toggle-item :wk "Org toggle item")
+    "o t" '(org-todo :wk "Org todo")
+    "o B" '(org-babel-tangel :wk "Org babel tangle")
+    "o T" '(org-todo-list :wk "Org todo list")
+    "o b" '(org-table-insert-hline :wk "Insert hline in table")
+    "o d" '(org-time-stamp :wk "Org time stamp"))
+    ;; buffer
     (emacaroni/leader-key
      "b" '(:ignore t :wk "Buffer")
      "bb" '(switch-to-buffer :wk "Switch buffer")
@@ -85,49 +86,50 @@
      "bp" '(previous-buffer :wk "Previous buffer")
      "bi" '(ibuffer :wk "IBuffer")
      "bd" '(evil-window-delete :wk "Close window")
-     "bw" '(evil-window-new :wk "New window")
-     "bs" '(evil-window-split :wk "New horizontal split")
-     "bv" '(evil-window-vsplit :wk "New vertical split"))
-   ;; dired
+     "bw" '(evil-window-new :wk "New window"))
+    ;; splits
     (emacaroni/leader-key
-      "d" '(:ignore t :wk "Dired")
-      "dl" '(dired :wk "Open dired")
-      "dj" '(dired-jump :wk "Dired jump to current")
-      "dn" '(neotree-dir :wk "Open directory in neotree")
-      "dp" '(peep-dired :wk "Peep-dired"))
-
-  ;; evaluation
+      "s" '(:ignore t :wk "Split")
+      "sh" '(evil-window-split :wk "New horizontal split")
+      "sv" '(evil-window-vsplit :wk "New vertical split"))
+    ;; dired
     (emacaroni/leader-key
-      "e" '(:ignore t :wk "Evaluate")
-      "eb" '(eval-buffer :wk "Evaluate elisp in buffer")
-      "ed" '(eval-defun :wk "Evaluate defun containing or after point")
-      "ee" '(eval-expression :wk "Evaluate an elisp expression")
-      "el" '(eval-last-sexp :wk "Evaluate elisp expression before point")
-      "er" '(eval-region :wk "Evaluate elisp in region"))
-
-   ;; window
+     "d" '(:ignore t :wk "Dired")
+     "dl" '(dired :wk "Open dired")
+     "dj" '(dired-jump :wk "Dired jump to current")
+     "dn" '(neotree-dir :wk "Open directory in neotree")
+     "dp" '(peep-dired :wk "Peep-dired"))
+    ;; evaluation
     (emacaroni/leader-key
-      "w" '(:ignore t :wk "Window")
-      "wn" '(evil-window-next :wk "Wind next")
-      "wh" '(evil-window-left :wk "Window left")
-      "wl" '(evil-window-right :wk "Window right")
-      "wk" '(evil-window-up :wk "Window up")
-      "wj" '(evil-window-down :wk "Window down")
-      "wH" '(buf-move-left :wk "Buffer move left")
-      "wJ" '(buf-move-down :wk "Buffer move down")
-      "wK" '(buf-move-up :wk "Buffer move up")
-      "wL" '(buf-move-right :wk "Buffer move right"))
+     "e" '(:ignore t :wk "Evaluate")
+     "eb" '(eval-buffer :wk "Evaluate elisp in buffer")
+     "ed" '(eval-defun :wk "Evaluate defun containing or after point")
+     "ee" '(eval-expression :wk "Evaluate an elisp expression")
+     "el" '(eval-last-sexp :wk "Evaluate elisp expression before point")
+     "er" '(eval-region :wk "Evaluate elisp in region"))
+    ;; window
+    (emacaroni/leader-key
+     "w" '(:ignore t :wk "Window")
+     "wn" '(evil-window-next :wk "Wind next")
+     "wh" '(evil-window-left :wk "Window left")
+     "wl" '(evil-window-right :wk "Window right")
+     "wk" '(evil-window-up :wk "Window up")
+     "wj" '(evil-window-down :wk "Window down")
+     "wH" '(buf-move-left :wk "Buffer move left")
+     "wJ" '(buf-move-down :wk "Buffer move down")
+     "wK" '(buf-move-up :wk "Buffer move up")
+     "wL" '(buf-move-right :wk "Buffer move right"))
     ;; toggles
     (emacaroni/leader-key
-      "t" '(:ignore t :wk "Terminal")
-      "tf" '(neotree-toggle :wk "Toggle neotree")
-      "tl" '(visual-line-mode :wk "Toggle truncated lines")
-      "tt" '(vterm-toggle :wk "Toggle vterm")
-      "te" '(eshell :wk "Open eshell"))
-   
+     "t" '(:ignore t :wk "Terminal")
+     "tf" '(neotree-toggle :wk "Toggle neotree")
+     "tl" '(visual-line-mode :wk "Toggle truncated lines")
+     "tt" '(vterm-toggle :wk "Toggle vterm")
+     "te" '(eshell :wk "Open eshell"))
+    
     ;; projectile
     (emacaroni/leader-key
-      "p" '(projectile-command-map :wk "Projectile"))
+     "p" '(projectile-command-map :wk "Projectile"))
 )
 
 (use-package nerd-icons
@@ -242,7 +244,7 @@
 
 (global-auto-revert-mode t)  ;; Automatically show changes if the file has changed
 (global-display-line-numbers-mode 1) ;; Display line numbers
-(global-visual-line-mode t)  ;; Enable truncated lines
+(global-visual-line-mode nil)  ;; Enable truncated lines
 (menu-bar-mode -1)           ;; Disable the menu bar 
 (scroll-bar-mode -1)         ;; Disable the scroll bar
 (tool-bar-mode -1)           ;; Disable the tool bar
@@ -301,7 +303,6 @@
   :diminish
   :hook (company-mode . company-box-mode))
 
-(use-package lsp-mode :ensure t)
 (use-package lua-mode :ensure t)
 (use-package haskell-mode :ensure t)
 (use-package go-mode :ensure t)
@@ -309,6 +310,7 @@
 (use-package rust-mode :ensure t)
 (use-package json-mode :ensure t)
 (use-package typescript-mode :ensure t)
+(use-package lsp-mode :ensure t)
 
 (use-package jsonrpc)
 (use-package project)
@@ -325,9 +327,7 @@
   :config
   (apheleia-global-mode +1)
   (setf (alist-get 'go-mode apheleia-mode-alist)
-        '(goimports gofmt))
-
-)
+        '(goimports gofmt)))
 
 (global-set-key [escape] 'keyboard-escape-quit)
 
@@ -390,8 +390,8 @@
       eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
 
 (use-package vterm
-:ensure t
-:config
+  :ensure t
+  :config
 (setq shell-file-name "/bin/zsh"
       vterm-max-scrollback 5000))
 
@@ -416,12 +416,12 @@
                   (window-height . 0.60))))
 
 (use-package sudo-edit
-    :ensure t
-    :after general
-    :config
-      (emacaroni/leader-key
-        "fu" '(sudo-edit-find-file :wk "Sudo find file")
-        "fU" '(sudo-edit :wk "Sudo edit file"))
+   :ensure t
+   :after general
+   :config
+     (emacaroni/leader-key
+       "fu" '(sudo-edit-find-file :wk "Sudo find file")
+       "fU" '(sudo-edit :wk "Sudo edit file"))
 )
 
 (use-package doom-themes
@@ -429,14 +429,15 @@
   :config
   (setq doom-themes-enable-bold t
 	doom-themes-enable-italic t)
-  (load-theme 'doom-gruvbox t)
- )
+    
+(load-theme 'doom-gruvbox t)
+)
 
 ;; Set transparency for the current frame (the one launching)
 (set-frame-parameter (selected-frame) 'alpha-background 85)
 
- ;; Set transparency for all future frames
- (add-to-list 'default-frame-alist '(alpha-background . 85))
+;; Set transparency for all future frames
+(add-to-list 'default-frame-alist '(alpha-background . 85))
 
 (use-package which-key
   :init
@@ -444,13 +445,13 @@
   :diminish
   :config
   (setq which-key-side-window-location 'bottom
-	  which-key-sort-order #'which-key-key-order-alpha which-key-sort-uppercase-first nil
-	  which-key-add-column-padding 1
-	  which-key-max-display-columns nil
-	  which-key-min-display-lines 6
-	  which-key-side-window-slot -10
-	  which-key-side-window-max-height 0.25
-	  which-key-idle-delay 0.2
-	  which-key-max-description-length 25
-	  which-key-allow-imprecise-window-fit nil
-	  which-key-separator " → " ))
+  which-key-sort-order #'which-key-key-order-alpha which-key-sort-uppercase-first nil
+  which-key-add-column-padding 1
+  which-key-max-display-columns nil
+  which-key-min-display-lines 6
+  which-key-side-window-slot -10
+  which-key-side-window-max-height 0.25
+  which-key-idle-delay 0.2
+  which-key-max-description-length 25
+  which-key-allow-imprecise-window-fit nil
+  which-key-separator " → " ))
