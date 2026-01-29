@@ -1,0 +1,9 @@
+# Search hidden files
+--hidden
+# But ignore common junk directories (improves performance)
+--glob '!node_modules'
+--glob '!.git'
+--glob '!target'
+--glob '!.cache'
+--glob '!*.log'
+

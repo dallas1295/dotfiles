@@ -2,6 +2,39 @@ return {
 	"nvim-mini/mini.nvim",
 	version = false,
 	config = function()
+		require("mini.ai").setup()
+		require("mini.files").setup({
+			mappings = {
+				close = "q",
+				go_in = "l",
+				go_in_plus = "L",
+				go_out = "h",
+				go_out_plus = "H",
+				mark_goto = "'",
+				mark_set = "m",
+				reset = "<BS>",
+				reveal_cwd = "@",
+				show_help = "g?",
+				synchronize = "<CR>",
+				trim_left = "<",
+				trim_right = ">",
+			},
+		})
+		require("mini.snippets").setup()
+		require("mini.surround").setup()
+		require("mini.pairs").setup()
+		-- require("mini.tabline").setup()
+		require("mini.icons").setup()
+		require("mini.notify").setup()
+		require("mini.trailspace").setup()
+		require("mini.indentscope").setup()
+		require("mini.diff").setup({
+			style = "number",
+		})
+		require("mini.comment").setup()
+		require("mini.statusline").setup()
+		require("mini.pick").setup()
+		require("mini.extra").setup()
 		require("mini.move").setup( -- No need to copy this inside `setup()`. Will be used automatically.
 			{
 				mappings = {
@@ -23,15 +56,6 @@ return {
 				},
 			}
 		)
-		require("mini.ai").setup()
-		require("mini.surround").setup()
-		require("mini.pairs").setup()
-		require("mini.tabline").setup()
-		require("mini.icons").setup()
-		require("mini.notify").setup()
-		require("mini.trailspace").setup()
-		require("mini.indentscope").setup()
-		require("mini.cursorword").setup()
 		local hipatterns = require("mini.hipatterns")
 		hipatterns.setup({
 			highlighters = {
@@ -45,12 +69,5 @@ return {
 				hex_color = hipatterns.gen_highlighter.hex_color(),
 			},
 		})
-		require("mini.diff").setup({
-			style = "number",
-		})
-		require("mini.bracketed").setup()
-		require("mini.comment").setup()
-		require("mini.align").setup()
-		require("mini.statusline").setup()
 	end,
 }

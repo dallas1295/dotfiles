@@ -51,6 +51,8 @@ alias lla='ls -la'
 alias lt='ls --tree --depth 2'
 alias lg='ls -la --git'
 
+alias em='emacs -nw'
+
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 

@@ -1,10 +1,10 @@
 return {
 	"saghen/blink.cmp",
-	dependencies = { "L3MON4D3/LuaSnip" },
+	dependencies = { "mini-nvim/mini.nvim" },
 
 	version = "1.*",
 	opts = {
-		snippets = { preset = "luasnip" },
+		snippets = { preset = "mini_snippets" },
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 		-- 'super-tab' for mappings similar to vscode (tab to accept)
 		-- 'enter' for enter to accept
