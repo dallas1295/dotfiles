@@ -4,9 +4,8 @@
   "kanagawa.nvim": { "branch": "master", "commit": "aef7f5cec0a40dbe7f3304214850c472e2264b10" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "mini.nvim": { "branch": "main", "commit": "9b935c218ddba02e5dc75c94f90143bce1f7c646" },
-  "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
+  "nvim-treesitter": { "branch": "main", "commit": "4967fa48b0fe7a7f92cee546c76bb4bb61bb14d5" },
   "nvim-ts-autotag": { "branch": "main", "commit": "db15f2e0df2f5db916e511e3fffb682ef2f6354f" },
-  "obsidian.nvim": { "branch": "main", "commit": "15c4fe79e4116c09d112a7846fa8dddec5c1faba" },
-  "render-markdown.nvim": { "branch": "main", "commit": "99bfa5d61381a29eedc75810898cb9c0fc755064" },
+  "render-markdown.nvim": { "branch": "main", "commit": "b3efd6408e4e4d66d6caaee0579e72b579bc0884" },
   "vim-tmux-navigator": { "branch": "master", "commit": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432" }
 }

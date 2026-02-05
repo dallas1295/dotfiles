@@ -5,8 +5,8 @@
 }
 
 window#waybar {
-  background: #32302f;
-  color: #a89984;
+  background: #181616;
+  color: #DCD7BA;
   font-family: "JetbrainsMonoNL Nerd Font";
   padding: 0;
   margin: 0;
@@ -45,7 +45,7 @@ window#waybar {
   padding: 0 5px;
   border-radius: 6px;
   margin: 0;
-  color: #a89984;
+  color: #DCD7BA;
 }
 
 #clock:hover,
@@ -66,14 +66,14 @@ window#waybar {
 #power-profiles-daemon:hover,
 #language:hover,
 #mpd:hover {
-  background: #3c3836;
+  background: #282727;
 }
 
 #workspaces button {
   font-family: "Jetbrains Mono Nerd Font", feather;
   font-weight: 900;
   font-size: 14px;
-  color: #d4be98;
+  color: #DCD7BA;
   border: none;
   border-radius: 2px;
   padding: 2px 5px;
@@ -85,18 +85,18 @@ window#waybar {
 
 #workspaces button.focused,
 #workspaces button.active {
-  background: #504945;
-  color: #fe8019;
+  background: #393836;
+  color: #8992a7;
 }
 
 #workspaces button.urgent {
-  background: #ea6962;
-  color: #32302f;
+  background: #c4746e;
+  color: #12120f;
 }
 
 #workspaces button:hover {
-  background: #3c3836;
-  color: #d4be98;
+  background: #282727;
+  color: #c4b28a;
   box-shadow: none;
 }
 
@@ -107,6 +107,6 @@ window#waybar {
 }
 
 #battery.critical {
-  background: #ea6962;
-  color: #32302f;
+  background: #c4746e;
+  color: #12120f;
 }
