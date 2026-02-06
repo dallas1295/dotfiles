@@ -5,6 +5,12 @@
 Install YAY or PARU for AUR
 Install Dotfiles
 
+### Add multilib
+```
+sudo nvim /etc/pacman.conf
+```
+
+and uncomment multilib lines
 ### For Arch Mirros & PC Tuning:
 
 > reflector
@@ -85,8 +91,8 @@ I still bounce around currently using hyprland and add additional WM components 
 > xdg-desktop-portal
 > xdg-desktop-portal-hyprland
 > dunst
-> rofi-power-menu
-> rofi-wayland
+> rofi-power-menu-git
+> rofi
 > cliphist
 > brightnessctl
 > thunar
@@ -112,12 +118,14 @@ Main Essentials/CLI tools:
 > github-cli
 > neovim
 > zsh
-> zsh-autocompletions
-> zsh-syntax-highlightingA
+> zsh-completions
+> zsh-syntax-highlighting
 > fd
 > fzf
 > entr
 > zoxide
+> lsd
+> uv
 
 Language Stuff
 

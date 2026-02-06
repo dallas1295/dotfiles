@@ -31,8 +31,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
 export EDITOR="nvim"
-# export EDITOR=hx
-# export VISUAL="$EDITOR"
+export EDITOR=hx
+export VISUAL="$EDITOR"
 export TERMINAL='ghostty'
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
