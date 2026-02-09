@@ -4,11 +4,12 @@
   "height": 26,
   "spacing": 1,
   "modules-left": [
+    "cpu",
+    "memory",
     "hyprland/workspaces"
   ],
   "modules-center": [
-    "cpu",
-    "memory"
+    "mpris"
   ],
   "modules-right": [
     "backlight",

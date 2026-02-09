@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/elpaca/elpaca-info.el
+/home/dallas/.config/emacs/elpaca/repos/elpaca/elpaca-info.el

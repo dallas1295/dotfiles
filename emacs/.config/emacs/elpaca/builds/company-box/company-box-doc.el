@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/company-box/company-box-doc.el
+/home/dallas/.config/emacs/elpaca/repos/company-box/company-box-doc.el

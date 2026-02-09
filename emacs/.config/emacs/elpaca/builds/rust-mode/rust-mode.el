@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/rust-mode/rust-mode.el
+/home/dallas/.config/emacs/elpaca/repos/rust-mode/rust-mode.el

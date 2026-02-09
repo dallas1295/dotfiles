@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/nerd-icons/nerd-icons-data.el
+/home/dallas/.config/emacs/elpaca/repos/nerd-icons/nerd-icons-data.el

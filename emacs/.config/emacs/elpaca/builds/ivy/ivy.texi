@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/swiper/doc/ivy.texi
+/home/dallas/.config/emacs/elpaca/repos/swiper/doc/ivy.texi

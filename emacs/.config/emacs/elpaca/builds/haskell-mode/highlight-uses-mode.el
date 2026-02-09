@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/haskell-mode/highlight-uses-mode.el
+/home/dallas/.config/emacs/elpaca/repos/haskell-mode/highlight-uses-mode.el

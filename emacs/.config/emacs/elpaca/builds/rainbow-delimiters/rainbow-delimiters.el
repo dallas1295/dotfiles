@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/rainbow-delimiters/rainbow-delimiters.el
+/home/dallas/.config/emacs/elpaca/repos/rainbow-delimiters/rainbow-delimiters.el

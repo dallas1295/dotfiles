@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/sudo-edit/sudo-edit.el
+/home/dallas/.config/emacs/elpaca/repos/sudo-edit/sudo-edit.el

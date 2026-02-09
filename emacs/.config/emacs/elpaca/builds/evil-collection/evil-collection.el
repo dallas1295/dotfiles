@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/evil-collection/evil-collection.el
+/home/dallas/.config/emacs/elpaca/repos/evil-collection/evil-collection.el

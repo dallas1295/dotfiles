@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/company-mode/company-oddmuse.el
+/home/dallas/.config/emacs/elpaca/repos/company-mode/company-oddmuse.el

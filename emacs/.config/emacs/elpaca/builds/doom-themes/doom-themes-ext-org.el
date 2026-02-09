@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/themes/extensions/doom-themes-ext-org.el
+/home/dallas/.config/emacs/elpaca/repos/themes/extensions/doom-themes-ext-org.el

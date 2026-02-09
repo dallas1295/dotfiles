@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/eshell-syntax-highlighting/eshell-syntax-highlighting.el
+/home/dallas/.config/emacs/elpaca/repos/eshell-syntax-highlighting/eshell-syntax-highlighting.el

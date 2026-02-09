@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/haskell-mode/ghc-core.el
+/home/dallas/.config/emacs/elpaca/repos/haskell-mode/ghc-core.el

@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/themes/themes/doom-horizon-theme.el
+/home/dallas/.config/emacs/elpaca/repos/themes/themes/doom-horizon-theme.el

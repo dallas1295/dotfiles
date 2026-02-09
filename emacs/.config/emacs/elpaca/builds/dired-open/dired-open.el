@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/dired-hacks/dired-open.el
+/home/dallas/.config/emacs/elpaca/repos/dired-hacks/dired-open.el

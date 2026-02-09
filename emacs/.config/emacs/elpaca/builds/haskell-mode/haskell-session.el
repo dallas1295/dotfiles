@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/haskell-mode/haskell-session.el
+/home/dallas/.config/emacs/elpaca/repos/haskell-mode/haskell-session.el

@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/themes/themes/doom-1337-theme.el
+/home/dallas/.config/emacs/elpaca/repos/themes/themes/doom-1337-theme.el

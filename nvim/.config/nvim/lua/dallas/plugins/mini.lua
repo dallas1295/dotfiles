@@ -38,10 +38,10 @@ return {
 		require("mini.move").setup( -- No need to copy this inside `setup()`. Will be used automatically.
 			{
 				mappings = {
-					left = "<M-C-h>",
-					right = "<M-C-l>",
-					down = "<M-C-j>",
-					up = "<M-C-k>",
+					left = "<M-S-h>",
+					right = "<M-S-l>",
+					down = "<M-S-j>",
+					up = "<M-S-k>",
 					-- Move current line in Normal mode
 					line_left = "<M-C-h>",
 					line_right = "<M-C-l>",

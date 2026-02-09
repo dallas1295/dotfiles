@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/flycheck/flycheck.el
+/home/dallas/.config/emacs/elpaca/repos/flycheck/flycheck.el

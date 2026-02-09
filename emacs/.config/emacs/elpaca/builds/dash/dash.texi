@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/dash/dash.texi
+/home/dallas/.config/emacs/elpaca/repos/dash/dash.texi

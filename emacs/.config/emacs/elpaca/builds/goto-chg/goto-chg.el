@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/goto-chg/goto-chg.el
+/home/dallas/.config/emacs/elpaca/repos/goto-chg/goto-chg.el

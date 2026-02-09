@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/lua-mode/lua-mode.el
+/home/dallas/.config/emacs/elpaca/repos/lua-mode/lua-mode.el

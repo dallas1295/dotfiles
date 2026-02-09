@@ -2,9 +2,9 @@
 
 set -e
 
-# Ensure yay is installed
-if ! command -v yay &>/dev/null; then
-  echo "yay is required. Please install yay first."
+# Ensure paru is installed
+if ! command -v paru &>/dev/null; then
+  echo "paru is required. Please install yay first."
   exit 1
 fi
 
@@ -17,7 +17,7 @@ fi
 
 
 # Sway and ecosystem
-yay -S --needed --noconfirm \
+paru -S --needed --noconfirm \
   sway \
   swaync \
   swaylock \
@@ -29,17 +29,10 @@ yay -S --needed --noconfirm \
   grim \
   slurp \
   wl-clipboard \
-  brightnessctl \
-  nwg-look \
-  thunar \
-  thunar-volman \
   cliphist \
-  rofi-wayland \
-  rofi-power-menu \
-  wezterm-git 
 
 ## Fonts 
-yay -S --noconfirm --needed \
+paru -S --noconfirm --needed \
   otf-nebula-sans \
   ttf-font-awesome \
   ttf-font-awesome \
@@ -50,7 +43,7 @@ echo 'Installing other apps now....'
 sleep 2
 
 # Browsers & Apps
-yay -S --noconfirm --needed \
+paru -S --noconfirm --needed \
   firefox \
   spotify \
   zen-browser-bin \

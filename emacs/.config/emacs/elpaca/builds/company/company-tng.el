@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/company-mode/company-tng.el
+/home/dallas/.config/emacs/elpaca/repos/company-mode/company-tng.el

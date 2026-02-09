@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/company-box/company-box-icons.el
+/home/dallas/.config/emacs/elpaca/repos/company-box/company-box-icons.el

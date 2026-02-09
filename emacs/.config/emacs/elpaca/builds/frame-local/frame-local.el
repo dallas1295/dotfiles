@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/frame-local/frame-local.el
+/home/dallas/.config/emacs/elpaca/repos/frame-local/frame-local.el

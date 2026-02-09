@@ -12,12 +12,12 @@ keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
 -- open link
 vim.keymap.set("n", "gx", function()
-  local url = vim.fn.expand("<cfile>")
-  if url:match("https?://%S+") then
-    vim.ui.open(url) -- Uses Neovim's built-in system opener
-  else
-    print("No URL found under cursor")
-  end
+	local url = vim.fn.expand("<cfile>")
+	if url:match("https?://%S+") then
+		vim.ui.open(url) -- Uses Neovim's built-in system opener
+	else
+		print("No URL found under cursor")
+	end
 end, { desc = "Open URL under cursor" })
 
 -- exit insert mode
@@ -54,7 +54,7 @@ keymap.set("n", "<leader>qq", "<cmd>q<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Close current buffer" })
 
 keymap.set("n", "-", function()
-  MiniFiles.open()
+	MiniFiles.open()
 end, { desc = "Open Mini Files" })
 
 -- Buffer navigation
@@ -69,14 +69,14 @@ keymap.set("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })
 
 -- Diagnostics
 keymap.set("n", "<leader>dd", function()
-  vim.diagnostic.setqflist()
-  vim.cmd("copen")
+	vim.diagnostic.setqflist()
+	vim.cmd("copen")
 end, { desc = "Diagnostics to quickfix" })
 keymap.set("n", "<leader>tt", function()
-  MiniExtra.pickers.diagnostic()
+	MiniExtra.pickers.diagnostic()
 end, { desc = "project diagnostics" })
 keymap.set("n", "<leader>td", function()
-  MiniExtra.pickers.hipatterns()
+	MiniExtra.pickers.hipatterns()
 end, { desc = "comment picker" })
 keymap.set("n", "<leader>ts", "<cmd>Pick list scope='quickfix'<cr>", { desc = "comment picker" })
 

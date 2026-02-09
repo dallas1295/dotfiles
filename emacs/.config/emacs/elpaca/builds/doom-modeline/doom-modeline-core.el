@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/doom-modeline/doom-modeline-core.el
+/home/dallas/.config/emacs/elpaca/repos/doom-modeline/doom-modeline-core.el

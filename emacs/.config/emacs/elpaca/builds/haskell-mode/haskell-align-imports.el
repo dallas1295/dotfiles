@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/haskell-mode/haskell-align-imports.el
+/home/dallas/.config/emacs/elpaca/repos/haskell-mode/haskell-align-imports.el

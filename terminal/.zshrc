@@ -31,9 +31,10 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
 export EDITOR="nvim"
-export EDITOR=hx
-export VISUAL="$EDITOR"
+# export EDITOR=hx
+# export VISUAL="$EDITOR"
 export TERMINAL='ghostty'
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$(brew --prefix ruby)/bin:$PATH"

@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/typescript/typescript-mode.el
+/home/dallas/.config/emacs/elpaca/repos/typescript/typescript-mode.el

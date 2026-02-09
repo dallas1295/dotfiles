@@ -73,11 +73,28 @@
     }
   },
   "clock": {
-    "format": "{:%H:%M | %Y-%m-%d}",
+    "format": "{:%H:%M:%S | %Y-%m-%d}",
+    "interval": 1,
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "tray": {
     "icon-size": 13,
     "spacing": 9
+  },
+  "mpris": {
+    "format": "{player_icon} {title}",
+    "format-paused": "{status_icon} {title}",
+    "player-icons": {
+      "default": "▶",
+      "spotify": "",
+      "mpv": "🎵",
+      "vlc": "🎬"
+    },
+    "status-icons": {
+      "paused": "⏸"
+    },
+    "max-length": 200,
+    "interval": 1,
+    "tooltip-format": "{title} - {artist} ({album})"
   }
 }

@@ -6,9 +6,9 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
-				elixir = { "mix_format" },
-				eex = { "mix_format" },
-				heex = { "mix_format" },
+				elixir = { "mix" },
+				eex = { "mix" },
+				heex = { "mix" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				javascriptreact = { "prettier" },

@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/typescript/typescript-mode-test-utilities.el
+/home/dallas/.config/emacs/elpaca/repos/typescript/typescript-mode-test-utilities.el

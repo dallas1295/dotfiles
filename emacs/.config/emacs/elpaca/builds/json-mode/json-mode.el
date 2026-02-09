@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/json-mode/json-mode.el
+/home/dallas/.config/emacs/elpaca/repos/json-mode/json-mode.el

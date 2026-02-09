@@ -1,13 +1,16 @@
+output eDP-1 scale 1.5
+
+
 ### Mod Key to Super
 set $mod Mod4
 
 ### Set variables for programs ###
-set $terminal ghostty 
+set $terminal ghostty
 set $fileManager thunar
 set $menu rofi -show drun
 set $music spotify
-set $browser zen-browser 
-set $vpn surfshark --hidden 
+set $browser zen-browser
+set $vpn mullvad-vpn
 set $password flatpak run com.bitwarden.desktop
 
 
@@ -41,7 +44,7 @@ exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
 
 # Launch apps
-exec waybar
+# exec waybar
 exec $terminal
 exec $vpn
 exec $password
@@ -52,7 +55,7 @@ exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 
 # setting up auto tiling
-exec autotiling -l 2 
+exec autotiling -l 2
 
 ## Idle
 exec swayidle -w \
@@ -82,21 +85,21 @@ exec swayidle -w \
 
 ### Swaybar ###
  # bar {
- #     position top   
- #     font pango:JetBrains Mono Nerd Font Regular 10 
+ #     position top
+ #     font pango:JetBrains Mono Nerd Font Regular 10
  #     status_command ~/.config/sway/swaybar.sh
  # colors {
-#         background #181616
-#         statusline #c5c9c5
-#         separator  #8ea4a2
-#
-#         focused_workspace  #8ba4b0 #8ba4b0 #181616
-#         active_workspace   #2b3328 #2b3328 #c5c9c5
-#         inactive_workspace #1a1a22 #1a1a22 #727169
-#         urgent_workspace   #c4746e #c4746e #181616
-#         binding_mode       #ffa066 #ffa066 #181616
-#     }
-# }
+ #        background #0d0c14
+ #        statusline #c5c9c5
+ #        separator  #54546d
+ #
+ #        focused_workspace  #7e9cd8 #7e9cd8 #0d0c14
+ #        active_workspace   #2d4f67 #2d4f67 #c5c9c5
+ #        inactive_workspace #1a1a22 #1a1a22 #8a8980
+ #        urgent_workspace   #c84053 #c84053 #0d0c14
+ #        binding_mode       #ffa066 #ffa066 #0d0c14
+ #    }
+ # }
 
 
 ### Input ###
@@ -107,20 +110,19 @@ input "type:touchpad" {
 
 input * {
     xkb_layout us
-    xkb_options caps:swapescape
+    # xkb_options caps:swapescape
 }
 
 ### Borders ###
-client.focused          #8ea4a2 #8ea4a2 #181616 #c5c9c5 #8ea4a2
-client.unfocused        #1a1a22 #1a1a22 #181616 #727169 #1a1a22
-client.urgent           #c4746e #c4746e #181616 #c5c9c5 #c4746e
-client.placeholder      #181616 #181616 #181616 #c5c9c5 #181616
-client.background       #181616
+client.focused          #7e9cd8 #7e9cd8 #0d0c14 #c5c9c5 #7e9cd8
+client.unfocused        #1a1a22 #1a1a22 #0d0c14 #8a8980 #1a1a22
+client.urgent           #c84053 #c84053 #0d0c14 #c5c9c5 #c84053
+client.placeholder      #0d0c14 #0d0c14 #0d0c14 #c5c9c5 #0d0c14
+client.background       #0d0c14
 
-default_border pixel 2 
+default_border pixel 5
 default_floating_border pixel 3
-
-
+gaps outer 5
 
 
 ### Keybindings ###
@@ -231,25 +233,23 @@ bindsym XF86AudioPrev exec playerctl previous
 
 ### Focus new apps on launch
 
-focus_on_window_activation smart 
+focus_on_window_activation smart
 
 ### Assign apps to workspaces ###
 # Sway uses for_window to assign apps by app_id/class/title
 
-# Browser to workspace 2 
+# Browser to workspace 2
 for_window [app_id="zen"] move to workspace 2
 
 # Game stuff to workspace 4
-for_window [app_id="Bitwarden"] move to workspace 3 
-for_window [app_id="Surfshark"] move to workspace 3 
-for_window [app_id="thunar"] move to workspace 3 
-for_window [class="Spotify"] move to workspace 3 
+for_window [app_id="thunar"] move to workspace 3
+for_window [class="Spotify"] move to workspace 3
 
-# Non-essentials to workspace 4 
+# Non-essentials to workspace 4
 for_window [class="heroic"] move to workspace 4
-for_window [app_id="steam"] move to workspace 4 
-for_window [title="Steam"] move to workspace 4 
-for_window [app_id="discord"] move to workspace 4 
+for_window [app_id="steam"] move to workspace 4
+for_window [title="Steam"] move to workspace 4
+for_window [app_id="discord"] move to workspace 4
 
 # Picture-in-Picture floating
 for_window [title="^Picture-in-Picture(.*)$"] \

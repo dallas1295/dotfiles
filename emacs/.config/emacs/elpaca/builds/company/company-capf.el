@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/company-mode/company-capf.el
+/home/dallas/.config/emacs/elpaca/repos/company-mode/company-capf.el

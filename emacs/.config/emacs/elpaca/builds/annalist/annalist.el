@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/annalist/annalist.el
+/home/dallas/.config/emacs/elpaca/repos/annalist/annalist.el

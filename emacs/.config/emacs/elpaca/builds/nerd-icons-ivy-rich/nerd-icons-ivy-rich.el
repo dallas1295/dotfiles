@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/nerd-icons-ivy-rich/nerd-icons-ivy-rich.el
+/home/dallas/.config/emacs/elpaca/repos/nerd-icons-ivy-rich/nerd-icons-ivy-rich.el

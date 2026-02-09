@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/haskell-mode/haskell-load.el
+/home/dallas/.config/emacs/elpaca/repos/haskell-mode/haskell-load.el

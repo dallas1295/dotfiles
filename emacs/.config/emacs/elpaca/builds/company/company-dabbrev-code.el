@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/company-mode/company-dabbrev-code.el
+/home/dallas/.config/emacs/elpaca/repos/company-mode/company-dabbrev-code.el

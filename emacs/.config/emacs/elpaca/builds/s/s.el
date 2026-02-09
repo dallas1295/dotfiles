@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/s/s.el
+/home/dallas/.config/emacs/elpaca/repos/s/s.el

@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/diminish/diminish.el
+/home/dallas/.config/emacs/elpaca/repos/diminish/diminish.el

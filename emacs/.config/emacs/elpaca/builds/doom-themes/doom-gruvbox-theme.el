@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/themes/themes/doom-gruvbox-theme.el
+/home/dallas/.config/emacs/elpaca/repos/themes/themes/doom-gruvbox-theme.el

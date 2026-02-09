@@ -1,1 +1,1 @@
-/Users/dallas/.config/emacs/elpaca/repos/go-mode/go-mode.el
+/home/dallas/.config/emacs/elpaca/repos/go-mode/go-mode.el
