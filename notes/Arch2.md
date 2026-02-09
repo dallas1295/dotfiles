@@ -6,6 +6,7 @@ Install YAY or PARU for AUR
 Install Dotfiles
 
 > paru
+> paru-debug
 
 ### Add multilib
 
@@ -69,6 +70,7 @@ sudo systemctl enable --now NetworkManager.service
 > pwvucontrol
 > pamixer
 > playerctl
+> sof-firmware
 > bluez
 > bluez-utils
 > blueman
@@ -83,7 +85,8 @@ sudo systemctl enable --now bluetooth.service
 
 Currently I use Ly because it's simple and none flashy (This could be changed)
 
-> ly
+> grub
+> efibootmgr
 
 enable ly (this command has changed from previous iterations):
 
@@ -121,6 +124,13 @@ I still bounce around currently using hyprland and add additional WM components 
 > waybar
 > swaync
 > yazi
+> autotiling
+
+### Gaming
+
+> steam
+> gamemode
+> mangohud
 
 ## Terminal Things
 
@@ -138,6 +148,7 @@ Main Essentials/CLI tools:
 > docker-compose
 > github-cli
 > neovim
+> helix
 > zsh
 > zsh-completions
 > zsh-syntax-highlighting
@@ -161,6 +172,8 @@ Language Stuff
 > luarocks
 > elixir
 > deno
+> jdk-openjdk
+> jdk17-openjdk
 
 _Language Servers_
 
@@ -174,6 +187,7 @@ _Language Servers_
 > rust-analyzer
 > yaml-language-server
 > zls
+> elixir-ls
 
 Clone the TPM repo reload tmux config then Leader-I to install plugins
 
@@ -192,6 +206,9 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 > stylua
 > tree-sitter
 > pyright
+> python-black
+> exercism-bin
+> gparted
 
 ## Fonts
 
@@ -206,12 +223,24 @@ This is for google fonts, my prefered nerdfont, and a cool system font I like:
 > ttf-nerd-fonts-symbols-common
 > otf-nebula-sans
 
+## Office
+
+> libreoffice-fresh
+
 ## Internet & Others
 
 Currently using Zen as main browser and Firefox for Widevine and DRM
 
 > zen-browser-bin
 > firefox
+
+### Music
+
+> spotify
+
+### Note Taking
+
+> obsidian
 
 setting zen to default browser:
 

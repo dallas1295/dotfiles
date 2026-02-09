@@ -1,95 +1,71 @@
-# Gruvbox theme with squarer, minimal Helix/Neovim-style UI
 "$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
-[flavor]
-dark = "gruvbox-dark"
-
-# Override Gruvbox for squarer, minimal look
-[mgr]
-syntect_theme = "/Users/dallas/.config/yazi/tmtheme.xml"
-cwd = { fg = "#ebdbb2" }
-hovered = { bg = "#458588", fg = "#ebdbb2" }
-preview_hovered = { underline = false }
-border_symbol = "│"
-border_style = { fg = "#928374" }
-
-[tabs]
-active = { fg = "#ebdbb2", bg = "#458588" }
-inactive = { fg = "#928374" }
-sep_inner = { open = " ", close = " " }
-sep_outer = { open = " ", close = " " }
-
+# Default base colors with squared bottomline
 [status]
-overall = { fg = "#ebdbb2", bg = "#282828" }
+overall = { fg = "#ffffff" }
 sep_left = { open = "", close = "" }
 sep_right = { open = "", close = "" }
-perm_type = { fg = "#8ec07c" }
-perm_read = { fg = "#fabd2f" }
-perm_write = { fg = "#fb4934" }
-perm_exec = { fg = "#458588" }
-perm_sep = { fg = "#665c54" }
+perm_type = { fg = "magenta" }
+perm_read = { fg = "yellow" }
+perm_write = { fg = "red" }
+perm_exec = { fg = "green" }
+perm_sep = { fg = "darkgray" }
 
 [mode]
-normal_main = { fg = "#ebdbb2", bg = "#458588", bold = true }
-normal_alt = { fg = "#928374", bg = "#282828" }
-select_main = { fg = "#ebdbb2", bg = "#fb4934", bold = true }
-select_alt = { fg = "#928374", bg = "#282828" }
-unset_main = { fg = "#ebdbb2", bg = "#fabd2f", bold = true }
-unset_alt = { fg = "#928374", bg = "#282828" }
+normal_main = { fg = "white", bg = "blue", bold = true }
+normal_alt = { fg = "gray" }
+select_main = { fg = "white", bg = "red", bold = true }
+select_alt = { fg = "gray" }
+unset_main = { fg = "white", bg = "yellow", bold = true }
+unset_alt = { fg = "gray" }
 
 [which]
 cols = 2
-mask = { bg = "#282828" }
-cand = { fg = "#8ec07c" }
-rest = { fg = "#665c54" }
-desc = { fg = "#d3869b" }
+mask = { bg = "black" }
+cand = { fg = "green" }
+rest = { fg = "darkgray" }
+desc = { fg = "magenta" }
 separator = " "
-separator_style = { fg = "#665c54" }
+separator_style = { fg = "darkgray" }
 
 [confirm]
-border = { fg = "#458588" }
-title = { fg = "#ebdbb2" }
-content = { fg = "#928374" }
-list = { fg = "#928374" }
-btn_yes = { fg = "#ebdbb2", bg = "#458588" }
-btn_no = { fg = "#ebdbb2", bg = "#fb4934" }
+title = { fg = "white" }
+content = { fg = "gray" }
+list = { fg = "gray" }
+btn_yes = { fg = "white", bg = "green" }
+btn_no = { fg = "white", bg = "red" }
 btn_labels = [ " Yes ", " No " ]
 
 [spot]
-border = { fg = "#458588" }
-title = { fg = "#ebdbb2" }
-tbl_col = { fg = "#8ec07c" }
-tbl_cell = { fg = "#ebdbb2", bg = "#458588" }
+title = { fg = "white" }
+tbl_col = { fg = "green" }
+tbl_cell = { fg = "white", bg = "blue" }
 
 [notify]
-title_info = { fg = "#8ec07c" }
-title_warn = { fg = "#fabd2f" }
-title_error = { fg = "#fb4934" }
+title_info = { fg = "green" }
+title_warn = { fg = "yellow" }
+title_error = { fg = "red" }
 
 [pick]
-border = { fg = "#458588" }
-active = { fg = "#8ec07c", bold = true }
-inactive = { fg = "#928374" }
+active = { fg = "green", bold = true }
+inactive = { fg = "gray" }
 
 [input]
-border = { fg = "#458588" }
-title = { fg = "#ebdbb2" }
-value = { fg = "#928374" }
-selected = { fg = "#ebdbb2", bg = "#458588" }
+title = { fg = "white" }
+value = { fg = "gray" }
+selected = { fg = "white", bg = "blue" }
 
 [cmp]
-border = { fg = "#458588" }
-active = { fg = "#ebdbb2", bg = "#458588" }
-inactive = { fg = "#928374" }
+active = { fg = "white", bg = "blue" }
+inactive = { fg = "gray" }
 
 [tasks]
-border = { fg = "#458588" }
-title = { fg = "#ebdbb2" }
-hovered = { fg = "#8ec07c", underline = false }
+title = { fg = "white" }
+hovered = { fg = "green", underline = false }
 
 [help]
-on = { fg = "#8ec07c" }
-run = { fg = "#d3869b" }
-desc = { fg = "#928374" }
-hovered = { fg = "#ebdbb2", bg = "#458588", bold = true }
-footer = { fg = "#665c54", bg = "#282828" }
+on = { fg = "green" }
+run = { fg = "magenta" }
+desc = { fg = "gray" }
+hovered = { fg = "white", bg = "blue", bold = true }
+footer = { fg = "darkgray", bg = "black" }
