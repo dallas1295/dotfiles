@@ -1,1 +1,135 @@
-../../dotfiles/helix/.config/helix/languages.toml
+##############################################
+############## LSP Setup ######################
+###############################################
+
+[language-server.elixir-ls]
+command = "elixir-ls"
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.gopls.config]
+"ui.formatting.gofumpt" = true
+"ui.diagnostic.staticcheck" = true
+"ui.completion.usePlaceholders" = true
+
+[language-server.ruby-lsp]
+command = "ruby-lsp"
+
+[language-server.lua-language-server]
+command = "lua-language-server"
+
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-html-language-server]
+command = "vscode-html-language-server"
+args = ["--stdio"]
+
+[language-server.tailwindcss-language-server]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-css-language-server]
+command = "vscode-css-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-json-language-server]
+command = "vscode-json-language-server"
+args = ["--stdio"]
+
+###############################################
+############# Language Setup ##################
+###############################################
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml", "setup.py", "Poetry.lock" ]
+language-servers = ["pyright"]
+formatter = { command = 'black', args = ["--quiet", "-"] }
+auto-format = true
+
+[[language]]
+name = "elixir"
+roots = ["mix.exs"]
+language-servers = ["elixir-ls"]
+formatter = { command = "mix", args = ["format", "-"] }
+auto-format = true
+
+[[language]]
+name = "heex"
+roots = ["mix.exs"]
+language-servers = ["elixir-ls"]
+auto-format = true
+formatter = { command = "mix", args = ["format", "-"] }
+auto-pairs = { "<" = ">", "{" = "}", "[" = "]", "(" = ")" }
+
+[[language]]
+name = "go"
+roots = ["go.mod", "go.sum", "go.work"]
+language-servers = ["gopls"]
+formatter = { command = "goimports" }
+auto-format = true
+
+[[language]]
+name = "ruby"
+roots = ["Gemfile", "*.gemspec", ".ruby-version"]
+language-servers = ["ruby-lsp"]
+formatter = { command = "rubocop", args = ["-A", "--stdin", "--force-exclusion", "--format", "quiet"]}
+auto-format = true
+
+[[language]]
+name = "lua"
+language-servers = ["lua-language-server"]
+auto-format = true
+formatter = { command = "stylua", args = ["-"] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.js"] }
+language-servers = ["typescript-language-server"]
+
+[[language]]
+name = "typescript"
+auto-format = true
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.ts"] }
+language-servers = ["typescript-language-server"]
+
+[[language]]
+name = "tsx"
+auto-format = true
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.tsx"] }
+language-servers = ["typescript-language-server"]
+
+[[language]]
+name = "jsx"
+auto-format = true
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.jsx"] }
+language-servers = ["typescript-language-server"]
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.json"] }
+language-servers = ["vscode-json-languageserver"]
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.html"] }
+auto-format = true
+
+[[language]]
+name = "css"
+language-servers = ["vscode-css-language-server", "tailwindcss-language-server"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.css"] }
+auto-format = true
+
+[[language]]
+name = "ini"
+scope = "source.ini"
+file-types = ["ini", "conf"]
+comment-token = "#"

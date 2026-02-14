@@ -32,7 +32,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 # environment calls
 export EDITOR="nvim"
 # export EDITOR=hx
-# export VISUAL="$EDITOR"
+export VISUAL="$EDITOR"
 export TERMINAL='ghostty'
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 export PATH=$HOME/.local/bin:$PATH
@@ -42,7 +42,9 @@ export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 alias vi='nvim'
+# alias hx='helix'
 
+alias hytale='gamemoderun flatpak run com.hypixel.HytaleLauncher'
 # ls shows hidden files & colorize
 
 alias ls='lsd'

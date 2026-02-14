@@ -3,27 +3,10 @@ return {
 	version = false,
 	config = function()
 		require("mini.ai").setup()
-		require("mini.files").setup({
-			mappings = {
-				close = "q",
-				go_in = "l",
-				go_in_plus = "L",
-				go_out = "h",
-				go_out_plus = "H",
-				mark_goto = "'",
-				mark_set = "m",
-				reset = "<BS>",
-				reveal_cwd = "@",
-				show_help = "g?",
-				synchronize = "<CR>",
-				trim_left = "<",
-				trim_right = ">",
-			},
-		})
 		require("mini.snippets").setup()
 		require("mini.surround").setup()
 		require("mini.pairs").setup()
-		-- require("mini.tabline").setup()
+		require("mini.tabline").setup()
 		require("mini.icons").setup()
 		require("mini.notify").setup()
 		require("mini.trailspace").setup()
@@ -38,10 +21,10 @@ return {
 		require("mini.move").setup( -- No need to copy this inside `setup()`. Will be used automatically.
 			{
 				mappings = {
-					left = "<M-S-h>",
-					right = "<M-S-l>",
-					down = "<M-S-j>",
-					up = "<M-S-k>",
+					left = "<M-C-h>",
+					right = "<M-C-l>",
+					down = "<M-C-j>",
+					up = "<M-C-k>",
 					-- Move current line in Normal mode
 					line_left = "<M-C-h>",
 					line_right = "<M-C-l>",

@@ -67,7 +67,7 @@ window {
     padding:                     0px;
     border:                      1px solid;
     border-radius:               12px;
-    border-color:                #7aa2f7;
+    border-color:                #83a598;
     cursor:                      "default";
     background-color:            @background-colour;
 }

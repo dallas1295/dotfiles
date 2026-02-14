@@ -21,7 +21,7 @@ vim.keymap.set("n", "gx", function()
 end, { desc = "Open URL under cursor" })
 
 -- exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+-- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 -- clear search highlights
 keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })
@@ -53,9 +53,8 @@ keymap.set("n", "<leader>bs", "<cmd>w<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>qq", "<cmd>q<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Close current buffer" })
 
-keymap.set("n", "-", function()
-	MiniFiles.open()
-end, { desc = "Open Mini Files" })
+-- Oil
+keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
@@ -87,3 +86,16 @@ keymap.set("n", "<leader>fw", "<cmd>Pick grep pattern=<cword><cr>", { desc = "Se
 keymap.set("n", "<leader>fp", "<cmd>Pick history<cr>", { desc = "Search History" })
 keymap.set("n", "<leader>fj", "<cmd>Pick buffers<cr>", { desc = "Show buffers" })
 keymap.set("n", "<leader>fb", "<cmd>Pick buffers<cr>", { desc = "Show buffers" })
+
+-- -- Fzf
+-- keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
+-- keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "recent files" })
+-- keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })
+-- keymap.set("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search word under cursor" })
+-- keymap.set("n", "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Search WORD under cursor" })
+-- keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search highlighted" })
+-- keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep in root" })
+-- keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep_resume<cr>", { desc = "Resume live grep in root" })
+-- keymap.set("n", "<leader>fp", "<cmd>FzfLua search_history<cr>", { desc = "Search History" })
+-- keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
+-- keymap.set("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>", { desc = "Open quickfix" })
