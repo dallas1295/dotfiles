@@ -6,7 +6,7 @@
 
 window#waybar {
   background: transparent;
-  color: #ebdbb2;
+  color: #D5D8DA;
   font-family: "JetbrainsMonoNL Nerd Font";
   padding: 0 10px;
   margin: 0;
@@ -18,11 +18,11 @@ window#waybar {
 .modules-center,
 .modules-left,
 .modules-right {
-  background: #1d2021;
+  background: #232530;
   border-radius: 12px;
   margin: 4px;
   padding: 0 4px;
-  border: 1px solid #83a598;
+  border: 1px solid #24A1AD;
 }
 
 #clock,
@@ -44,7 +44,7 @@ window#waybar {
   padding: 0 6px;
   border-radius: 0;
   margin: 0;
-  color: #ebdbb2;
+  color: #D5D8DA;
 }
 
 #clock:hover,
@@ -65,14 +65,14 @@ window#waybar {
 #power-profiles-daemon:hover,
 #language:hover,
 #mpd:hover {
-  background: #3c3836;
+  background: #2E303E;
 }
 
 #workspaces button {
   font-family: "Jetbrains Mono Nerd Font", feather;
   font-weight: 900;
   font-size: 14px;
-  color: #ebdbb2;
+  color: #D5D8DA;
   border: none;
   border-radius: 8px;
   padding: 3px 6px;
@@ -84,18 +84,18 @@ window#waybar {
 
 #workspaces button.focused,
 #workspaces button.active {
-  background: #504945;
-  color: #83a598;
+  background: #343647;
+  color: #E95378;
 }
 
 #workspaces button.urgent {
-  background: #fb4934;
-  color: #1d2021;
+  background: #F43E5C;
+  color: #1C1E26;
 }
 
 #workspaces button:hover {
-  background: #3c3836;
-  color: #83a598;
+  background: #2E303E;
+  color: #26BBD9;
   box-shadow: none;
 }
 
@@ -106,6 +106,6 @@ window#waybar {
 }
 
 #battery.critical {
-  background: #fb4934;
-  color: #1d2021;
+  background: #F43E5C;
+  color: #1C1E26;
 }
