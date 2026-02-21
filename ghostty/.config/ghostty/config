@@ -1,7 +1,13 @@
-theme = Horizon
+theme = Gruvbox Dark Hard
 font-family = JetBrainsMono Nerd Font
 font-size = 12
-background-opacity = 1
+background = #000000
+background-opacity = .85
+background-blur = true
+unfocused-split-opacity = .7
+working-directory = home
+window-inherit-working-directory = false
+confirm-close-surface = false
 
 #### cursor ####
 cursor-style = block
@@ -9,11 +15,29 @@ cursor-style-blink = true
 mouse-hide-while-typing = true
 copy-on-select = true
 
-#### mac stuff ####
-# macos-non-native-fullscreen = false
-# window-decoration = false
-# macos-option-as-alt = left
-
 shell-integration = zsh
 window-save-state = always
+
+
+#### Keybinds ####
+
+#keybind = ctrl+space>n=new_tab
+#keybind = ctrl+space>t=new_tab
+#keybind = ctrl+space>shift+t=close_tab
+#keybind = ctrl+space>j=new_split:down
+#keybind = ctrl+space>l=new_split:right
+#keybind = ctrl+space>h=new_split:left
+#keybind = ctrl+space>x=close_surface
+
+
+#keybind = ctrl+j=goto_split:down
+#keybind = ctrl+k=goto_split:up
+#keybind = ctrl+l=goto_split:right
+#keybind = ctrl+h=goto_split:left
+#keybind = alt+h=previous_tab
+#keybind = alt+l=next_tab
+
+
+## Quick terminal
+#keybind = ctrl+space>m=toggle_quick_terminal
 

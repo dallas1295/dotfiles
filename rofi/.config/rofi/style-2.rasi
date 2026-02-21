@@ -1,4 +1,5 @@
 
+
 /**
  *
  * Author : Aditya Shakya (adi1090x)
@@ -37,7 +38,7 @@ configuration {
     active-background:           var(active);
     active-foreground:           var(background);
     selected-normal-background:  var(selected);
-    selected-normal-foreground:  #ffffff;
+    selected-normal-foreground:  #ebdbb2;
     selected-urgent-background:  var(active);
     selected-urgent-foreground:  var(background);
     selected-active-background:  var(urgent);
@@ -54,7 +55,7 @@ configuration {
 window {
     /* properties for window widget */
     transparency:                "real";
-    location:                    north;
+    location:                    center;
     anchor:                      center;
     fullscreen:                  false;
     width:                       600px;
@@ -66,8 +67,8 @@ window {
     margin:                      0px;
     padding:                     0px;
     border:                      1px solid;
-    border-radius:               12px;
-    border-color:                #24A1AD;
+    border-radius:               10px;
+    border-color:                #d3869b;
     cursor:                      "default";
     background-color:            @background-colour;
 }
@@ -208,7 +209,7 @@ element-icon {
 element-text {
     background-color:            transparent;
     text-color:                  inherit;
-    highlight:                   #ffffff;
+    highlight:                   #fabd2f;
     cursor:                      inherit;
     vertical-align:              0.5;
     horizontal-align:            0.0;

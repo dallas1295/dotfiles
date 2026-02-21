@@ -2,10 +2,7 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "source": "~/.config/fastfetch/xero.png",
-    "type": "kitty",
-    "height": 13,
-    "width": 26,
+    "source": "arch2",
     "padding": {
       "top": 5,
       "left": 3,
@@ -22,7 +19,7 @@
     "break",
     {
       "type": "kernel",
-      "key": "Dallas' Thinkpad",
+      "key": "Dallas' 14X Pro",
       "keyColor": "magenta",
     },
     {
@@ -47,11 +44,26 @@
       "keyColor": "cyan",
     },
     {
+      "type": "cpu_temp",
+      "key": "󰏈  CPU Temp ",
+      "keyColor": "cyan",
+    },
+    {
       "type": "gpu",
       "key": "󰍛  GPU      ",
       "keyColor": "cyan",
       "text": "lspci | grep -i vga | awk -F': | \\\\[|\\\\]' '{print $2 \" [\" $3 \"]\"}'"
-  },
+    },
+    {
+      "type": "gpu_temp",
+      "key": "󰏈  GPU Temp ",
+      "keyColor": "cyan",
+    },
+    {
+      "type": "os",
+      "key": "󱄠  OS       ",
+      "keyColor": "cyan",
+    },
     {
       "type": "disk",
       "key": "󰉉  Disk     ",
@@ -61,6 +73,11 @@
       "type": "custom",
       "format": ">-----------<+>------------------------------------------<",
       "outputColor": "separator",
+    },
+    {
+      "type": "os",
+      "key": "󱄠  OS       ",
+      "keyColor": "green",
     },
     {
       "type": "wmtheme",
@@ -91,12 +108,18 @@
       "type": "packages",
       "key": "󰏖  Packages ",
       "keyColor": "green",
-    }, 
+    },
+    {
+      "type": "date",
+      "key": "󰃭  Date     ",
+      "keyColor": "green",
+      "format": "%a %d %b %Y - %H:%M",
+    },
     {
       "type": "custom",
       "format": ">-----------<+>------------------------------------------<",
       "outputColor": "separator",
-    }, 
+    },
     "break",
     "break",
   ],

@@ -19,7 +19,8 @@ while :; do
 
     # Waybar-style dynamic battery icon
     if [ "$battery_status" = "charging" ] || [ "$battery_status" = "fully-charged" ]; then
-        if   [ "$battery_percent" -ge 95 ]; then battery_icon="󰂅"
+        if [ "$battery_percent" -ge 100 ]; then battery_icon="󰚥"
+        elif   [ "$battery_percent" -ge 95 ]; then battery_icon="󰂅"
         elif [ "$battery_percent" -ge 85 ]; then battery_icon="󰂋"
         elif [ "$battery_percent" -ge 75 ]; then battery_icon="󰂊"
         elif [ "$battery_percent" -ge 65 ]; then battery_icon="󰢞"

@@ -44,7 +44,7 @@ exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
 
 # Launch apps
-# exec waybar
+exec waybar
 exec $terminal
 exec $vpn
 exec $password
@@ -84,15 +84,13 @@ exec swayidle -w \
     before-sleep 'swaylock -f -c 232136'
 
 ### Swaybar ###
- # bar {
- #     position top
+ # bar { position top
  #     font pango:JetBrains Mono Nerd Font Regular 10
  #     status_command ~/.config/sway/swaybar.sh
  # colors {
  #        background #0d0c14
  #        statusline #c5c9c5
  #        separator  #54546d
- #
  #        focused_workspace  #7e9cd8 #7e9cd8 #0d0c14
  #        active_workspace   #2d4f67 #2d4f67 #c5c9c5
  #        inactive_workspace #1a1a22 #1a1a22 #8a8980
@@ -104,13 +102,14 @@ exec swayidle -w \
 
 ### Input ###
 input "type:touchpad" {
+    tap enabled
     natural_scroll enabled
     scroll_factor 0.35
 }
 
 input * {
     xkb_layout us
-    # xkb_options caps:swapescape
+    xkb_options caps:swapescape
 }
 
 ### Borders ###
