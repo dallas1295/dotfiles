@@ -1,18 +1,12 @@
 output eDP-1 scale 1.5
 
-
-### Mod Key to Super
 set $mod Mod4
 
-### Set variables for programs ###
 set $terminal ghostty
-set $fileManager thunar
+set $fileManager ghostty -e yazi
 set $menu rofi -show drun
 set $music spotify
 set $browser zen-browser
-set $vpn mullvad-vpn
-set $password flatpak run com.bitwarden.desktop
-
 
 set $lock 'swaylock \
     --color 181616 \
@@ -35,159 +29,111 @@ set $lock 'swaylock \
     --indicator-thickness 10 \
     --font "Nebula Sans Book"'
 
-### Autostart ###
-
-## Screen stuff
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
-
-# Launch apps
 exec waybar
-exec $terminal
-exec $vpn
-exec $password
-exec swaync -s /home/.config/sway/swaync/rose-pine.css
 exec blueman-applet
-
+exec mullvad-vpn
+exec flatpak run com.bitwarden.desktop
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
+exec $terminal
+exec gtk-launch "Steam (No VPN)"
 
-# setting up auto tiling
 exec autotiling -l 2
 
-## Idle
 exec swayidle -w \
-    timeout 300 'swaylock \
-     --color 181616 \
-    --inside-color 2b3328 \
-    --inside-clear-color a292a3 \
-    --inside-ver-color c4b28a \
-    --inside-wrong-color c4746e \
-    --ring-color 8ba4b0 \
-    --ring-clear-color a292a3 \
-    --ring-ver-color c4b28a \
-    --ring-wrong-color c4746e \
-    --key-hl-color ffa066 \
-    --bs-hl-color c4746e \
-    --separator-color 8ea4a2 \
-    --text-color c5c9c5 \
-    --text-clear-color c5c9c5 \
-    --text-ver-color c5c9c5 \
-    --text-wrong-color c5c9c5 \
-    --indicator-radius 100 \
-    --indicator-thickness 10 \
-    --font "Nebula Sans Book"' \
+    timeout 300 'swaylock -f -c 181616' \
     timeout 600 'swaymsg output "*" power off' \
     resume 'swaymsg output "*" power on' \
     before-sleep 'swaylock -f -c 232136'
 
-### Swaybar ###
- # bar { position top
- #     font pango:JetBrains Mono Nerd Font Regular 10
- #     status_command ~/.config/sway/swaybar.sh
- # colors {
- #        background #0d0c14
- #        statusline #c5c9c5
- #        separator  #54546d
- #        focused_workspace  #7e9cd8 #7e9cd8 #0d0c14
- #        active_workspace   #2d4f67 #2d4f67 #c5c9c5
- #        inactive_workspace #1a1a22 #1a1a22 #8a8980
- #        urgent_workspace   #c84053 #c84053 #0d0c14
- #        binding_mode       #ffa066 #ffa066 #0d0c14
- #    }
- # }
+set $bg_color #1d2021
+set $fg_color #ebdbb2
+set $accent #689d6a
 
+client.focused          $accent $accent $bg_color $fg_color $accent
+client.focused_inactive  $bg_color $bg_color $fg_color $fg_color $bg_color
+client.unfocused        $bg_color $bg_color $fg_color $fg_color $bg_color
+client.urgent           $cc241d $cc241d $fg_color $fg_color #cc241d
 
-### Input ###
+default_border pixel 1
+default_floating_border pixel 1
+gaps inner 2
+gaps outer 2
+
+smart_gaps on
+smart_borders on
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="dialog"] floating enable
+
 input "type:touchpad" {
     tap enabled
     natural_scroll enabled
     scroll_factor 0.35
+    disable_while_typing disabled
+}
+
+input "tpps/2-elan-trackpoint" {
 }
 
 input * {
     xkb_layout us
-    xkb_options caps:swapescape
+    xkb_options caps:escape
+    repeat_delay 300
+    repeat_rate 50
 }
 
-### Borders ###
-client.focused          #7e9cd8 #7e9cd8 #0d0c14 #c5c9c5 #7e9cd8
-client.unfocused        #1a1a22 #1a1a22 #0d0c14 #8a8980 #1a1a22
-client.urgent           #c84053 #c84053 #0d0c14 #c5c9c5 #c84053
-client.placeholder      #0d0c14 #0d0c14 #0d0c14 #c5c9c5 #0d0c14
-client.background       #0d0c14
+seat * hide_cursor 5000
 
-default_border pixel 5
-default_floating_border pixel 3
-gaps outer 5
+focus_on_window_activation smart
 
-
-### Keybindings ###
-
-# Config reload
-bindsym $mod+r reload
-
-# Program launchers
 bindsym $mod+Return exec $terminal
-bindsym $mod+e exec $fileManager
-bindsym $mod+space exec $menu
-bindsym $mod+m exec $music
-bindsym $mod+b exec $browser
-
-# Opens the notification center
-bindsym $mod+n exec swaync-client -t
-
-# Clipboard
-bindsym $mod+Shift+v exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-
-# Kill focused window
 bindsym $mod+q kill
-
-# Exit sway
 bindsym $mod+Shift+End exit
-
-# Toggle floating
-bindsym $mod+v floating toggle
-
-# Cycle focus
+bindsym $mod+e exec $fileManager
+bindsym $mod+Shift+v floating toggle
 bindsym $mod+Tab focus next
-bindsym $mod+Shift+Tab focus prev
+bindsym $mod+space exec $menu
+bindsym $mod+r exec rofi -show run
+bindsym $mod+m exec $music
+bindsym $mod+w exec $browser
+bindsym $mod+g exec gtk-launch "Steam (No VPN)"
 
-# Lock screen (replace with your locker)
-bindsym $mod+Mod1+l exec $lock 
+bindsym $mod+v exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-# Power menu (rofi-power-menu)
+bindsym $mod+Mod1+Delete exec $lock
 bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:rofi-power-menu
+bindsym $mod+Shift+b exec rofi-bluetooth
 
-# Screenshot
-bindsym $mod+Print exec sh -c 'grim -g "$(slurp)" $HOME/Pictures/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png'
+bindsym $mod+backslash exec grim "$HOME/Pictures/fullscreen-$(date +%Y%m%d-%H%M%S).png"
+bindsym $mod+Shift+backslash exec grim -g "$(slurp)" "$HOME/Pictures/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png"
 
-bindsym $mod+Shift+Print exec sh -c 'grim $HOME/Pictures/fullscreen-$(date +%Y%m%d-%H%M%S).png'
+bindsym $mod+p exec autotiling
+bindsym $mod+i exec ghostty -e btop
 
-# Move focus with $mod+h/j/k/l
 bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
 bindsym $mod+l focus right
+bindsym $mod+k focus up
+bindsym $mod+j focus down
 
-# Move windows with $mod+Shift+h/j/k/l
 bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+j move down
 
-# Resize windows with $mod+Ctrl+h/j/k/l
-bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
-bindsym $mod+Ctrl+j resize grow height 10 px or 10 ppt
-bindsym $mod+Ctrl+k resize shrink height 10 px or 10 ppt
-bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
+bindsym $mod+Mod1+h resize grow left 20px
+bindsym $mod+Mod1+j resize grow down 20px
+bindsym $mod+Mod1+k resize grow up 20px
+bindsym $mod+Mod1+l resize grow right 20px
 
-# Fullscreen
+bindsym $mod+Mod1+p exec autotiling
+bindsym $mod+Shift+r move scratchpad
 bindsym $mod+f fullscreen
 
-# Workspaces (1-10)
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -199,7 +145,6 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
-# Move focused window to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
@@ -211,11 +156,17 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# Workspace scrolling (mouse wheel)
-bindsym $mod+button4 workspace next
-bindsym $mod+button5 workspace prev
+bindsym $mod+Shift+s move scratchpad
+bindsym $mod+s scratchpad show
 
-# Multimedia keys
+bindsym $mod+button4 workspace prev
+bindsym $mod+button5 workspace next
+
+bindsym $mod+mouse:272 floating enable
+floating_modifier $mod normal
+
+bindsym --released $mod+mouse:272 exec kill
+
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -223,37 +174,65 @@ bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
 bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 
-# Media keys (playerctl)
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 
+for_window [app_id="^firefox$"] move to workspace 2
+for_window [app_id="^zen$"] move to workspace 2
+for_window [class="^brave-bin$"] move to workspace 2
 
-### Focus new apps on launch
-
-focus_on_window_activation smart
-
-### Assign apps to workspaces ###
-# Sway uses for_window to assign apps by app_id/class/title
-
-# Browser to workspace 2
-for_window [app_id="zen"] move to workspace 2
-
-# Game stuff to workspace 4
-for_window [app_id="thunar"] move to workspace 3
-for_window [class="Spotify"] move to workspace 3
-
-# Non-essentials to workspace 4
-for_window [class="heroic"] move to workspace 4
-for_window [app_id="steam"] move to workspace 4
-for_window [title="Steam"] move to workspace 4
-for_window [app_id="discord"] move to workspace 4
-
-# Picture-in-Picture floating
-for_window [title="^Picture-in-Picture(.*)$"] \
+for_window [title="^Picture-in-Picture$"] \
     floating enable, \
     sticky enable, \
-    resize set 573 322, \
-    move position 1313 px 713 px \
+    resize set 472 270, \
+    move position 1415 px 834 px, \
     focus no
+
+for_window [class="^Mullvad VPN$"] move to workspace 1
+
+for_window [app_id="^com.mitchellh.ghostty$"] move to workspace 1
+
+for_window [app_id="^steam$"] move to workspace 3, move to scratchpad
+for_window [class="^steam$"] move to workspace 3, move to scratchpad
+
+for_window [class="^heroic$"] \
+    move to workspace 3, \
+    move to scratchpad, \
+    floating enable
+
+for_window [class="^discord$"] \
+    move to workspace 3, \
+    move to scratchpad, \
+    floating enable
+
+for_window [app_id="^org.prismlauncher.PrismLauncher$"] move to workspace 3
+
+for_window [app_id="^thunar$"] move to workspace 4
+
+for_window [class="^Mullvad VPN$"] \
+    move to scratchpad, \
+    floating enable, \
+    move position 1567 px 74 px
+
+for_window [class="^Bitwarden$"] \
+    move to scratchpad, \
+    floating enable, \
+    resize set 651 601, \
+    move position 897 px 74 px
+
+for_window [app_id="^spotify$"] \
+    move to scratchpad, \
+    floating enable, \
+    resize set 859 960, \
+    move position 15 px 130 px
+
+for_window [class="^blueman-manager$"] \
+    move to scratchpad, \
+    floating enable, \
+    move position 1220 px 708 px, \
+    resize set 651 452
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="dialog"] floating enable

@@ -1,0 +1,199 @@
+/* Gruvbox Dark Hard */
+@define-color bg0_h #1d2021;
+@define-color bg0 #282828;
+@define-color bg1 #3c3836;
+@define-color bg2 #504945;
+@define-color fg #ebdbb2;
+@define-color fg0 #fbf1c7;
+@define-color red #cc241d;
+@define-color green #98971a;
+@define-color yellow #d79921;
+@define-color blue #458588;
+@define-color purple #b16286;
+@define-color aqua #689d6a;
+@define-color orange #d65d0e;
+@define-color gray #928374;
+
+* {
+    font-family: "JetBrains Mono Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
+}
+
+/* Control Center */
+.control-center {
+    background: @bg0_h;
+    border: 1px solid @bg2;
+    border-radius: 12px;
+}
+
+/* Notification Card */
+.notification-row {
+    outline: none;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+    background: @bg1;
+}
+
+.notification {
+    background: @bg0;
+    border: 1px solid @bg2;
+    border-radius: 8px;
+    margin: 6px;
+    padding: 12px;
+}
+
+.notification-content {
+    background: transparent;
+}
+
+.notification-default-action {
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.notification-default-action:hover {
+    background: @bg1;
+}
+
+.close-button {
+    background: @bg1;
+    color: @fg;
+    border-radius: 6px;
+}
+
+.close-button:hover {
+    background: @red;
+    color: @fg0;
+}
+
+/* Notification Image */
+.notification-image {
+    border-radius: 6px;
+}
+
+/* Notification Body */
+.summary {
+    color: @fg0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.time {
+    color: @gray;
+}
+
+.body {
+    color: @fg;
+    font-size: 13px;
+}
+
+/* Actions */
+.notification-action {
+    background: @bg1;
+    color: @fg;
+    border: 1px solid @bg2;
+    border-radius: 6px;
+    margin: 4px;
+}
+
+.notification-action:hover {
+    background: @bg2;
+    color: @fg0;
+}
+
+/* Placeholder */
+.placeholder {
+    color: @gray;
+}
+
+/* Title Widget */
+.title-widget {
+    color: @fg0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Button */
+.button {
+    background: @bg1;
+    color: @fg;
+    border: 1px solid @bg2;
+    border-radius: 6px;
+}
+
+.button:hover {
+    background: @bg2;
+    color: @fg0;
+}
+
+/* DND Widget */
+.dnd-widget {
+    background: @bg1;
+    border: 1px solid @bg2;
+    border-radius: 8px;
+}
+
+.dnd-toggle {
+    background: @bg2;
+    color: @gray;
+}
+
+.dnd-toggle:checked {
+    background: @red;
+    color: @fg0;
+}
+
+/* Label Widget */
+.label-widget {
+    color: @fg;
+}
+
+/* MPRIS Widget */
+.mpris-widget {
+    background: @bg1;
+    border: 1px solid @bg2;
+    border-radius: 8px;
+}
+
+.mpris-title {
+    color: @fg0;
+}
+
+.mpris-artist {
+    color: @fg;
+}
+
+.mpris-album {
+    color: @gray;
+}
+
+/* Progress Bar */
+.progress-bar {
+    background: @bg2;
+    border-radius: 4px;
+}
+
+.progress-bar > trough {
+    background: @bg1;
+    border-radius: 4px;
+}
+
+.progress-bar > trough > progress {
+    background: @blue;
+    border-radius: 4px;
+}
+
+/* Scrollbar */
+ scrollbar {
+    background: @bg0_h;
+}
+
+ scrollbar slider {
+    background: @bg2;
+    border-radius: 4px;
+}
+
+ scrollbar slider:hover {
+    background: @gray;
+}
