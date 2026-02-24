@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Steam (No VPN)
+Comment=Launch Steam without Mullvad
+Exec=mullvad-exclude /bin/steam %U
+Icon=steam
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;Game;
+MimeType=x-scheme-handler/steam;x-scheme-handler/stealklink;
+StartupNotify=true

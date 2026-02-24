@@ -1,17 +1,19 @@
 * {
   font-family:
     "Jetbrains Mono Nerd Font", "JetbrainsMonoNL Nerd Font", "Noto Color Emoji";
-  font-size: 12px;
+  font-size: 13px;
   transition: background-color 0.3s ease-out;
 }
 
 window#waybar {
-  background: transparent;
+  background: #1d2021; /* set transparent for gaps between mods */
   color: #ebdbb2;
   font-family:
     "Jetbrains Mono Nerd Font", "JetbrainsMonoNL Nerd Font", "Noto Color Emoji";
-  padding: 0 10px;
-  margin: 0;
+  padding: 0 4px;
+  border: 1px solid #1d2021;
+  border-radius: 10px;
+  margin: 4px 2px; /* make 0 for transparent */
   border: none;
   box-shadow: none;
   transition: background-color 0.5s;
@@ -21,10 +23,10 @@ window#waybar {
 .modules-left,
 .modules-right {
   background: #1d2021;
-  border-radius: 12px;
-  margin: 4px;
-  padding: 0 4px;
-  border: 1px solid #1d2021;
+  border-radius: 10px;
+  margin: 0px 0; /* margin: 4px 0 for transparent */
+  /* padding: 0 4px; */
+  /* border: 1px solid #1d2021; */
 }
 
 #clock,

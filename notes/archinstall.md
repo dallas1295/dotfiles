@@ -5,7 +5,6 @@
 Install AUR helper:
 
 > paru
-> paru-debug
 
 ### Add multilib
 
@@ -21,6 +20,7 @@ Uncomment multilib lines
 > base-devel
 > linux
 > linux-firmware
+> sof-firmware
 > git
 > networkmanager
 > ntfs-3g
@@ -35,19 +35,15 @@ sudo systemctl enable --now NetworkManager.service
 
 ### Power Management & Tuning:
 
-> tlp
-> tlp-pd
-> tlp-rdw
-> tlpui
 > reflector
 > reflector-simple
 > auto-cpufreq
 > fwupd
 
-_Enable TLP_
+_Enable auto-cpufreq_
 
 ```
-sudo systemctl enable --now tlp
+sudo systemctl enable --now auto-cpufreq.service
 ```
 
 ### Graphics:
@@ -55,8 +51,6 @@ sudo systemctl enable --now tlp
 > lib32-mesa
 > vulkan-radeon
 > lib32-vulkan-radeon
-> qt5-wayland
-> qt6-wayland
 > openal
 > lib32-openal
 
@@ -67,7 +61,6 @@ sudo systemctl enable --now tlp
 > alsa-utils
 > pwvucontrol
 > pamixer
-> sof-firmware
 > bluez
 > blueman
 
@@ -88,6 +81,16 @@ _Enable ly on tty2_
 
 ```
 sudo systemctl enable ly@tty2.service
+```
+
+_Then quickly edit the grub config (and mount windows if dual-boot)_
+
+```
+sudo nvim /etc/default/grub
+
+// Then compile grub config
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ## Window Manager (Hyprland)
@@ -116,15 +119,21 @@ sudo systemctl enable ly@tty2.service
 
 ### Theming:
 
-> dracula-gtk-theme-full
+> gruvbox-gtk-theme-git
 
 ## Gaming
 
 > steam
 > heroic-games-launcher-bin
 > hytale-launcher-bin
+> prismlauncher
 > gamemode
-> mangohud
+
+add vpn passthrough .desktop for steam
+
+```
+cp /dotfiles/notes/Steam\ (No\ VPN).desktop   ~/.local/share/applications/
+```
 
 ## Terminal & CLI Tools
 
@@ -139,7 +148,6 @@ sudo systemctl enable ly@tty2.service
 
 ### File Management & Navigation:
 
-> ranger
 > yazi
 > zoxide
 > lsd
@@ -150,7 +158,6 @@ sudo systemctl enable ly@tty2.service
 ### Editors & Version Control:
 
 > neovim
-> helix
 > lazygit
 > github-cli
 > stow
@@ -174,11 +181,12 @@ sudo systemctl enable ly@tty2.service
 
 > entr
 > 7zip
+> openbsd-netcat
 
 ### AI/ML:
 
 > ollama
-> claude-code
+> opencode
 
 ### Development Tools:
 
@@ -250,7 +258,6 @@ Then reload tmux config and press `prefix + I` to install plugins
 ## Flatpak
 
 > flatpak
-> prismlauncher
 
 Install BitWarden:
 
@@ -260,11 +267,4 @@ flatpak install -y flathub com.bitwarden.desktop
 
 ## File System Utilities
 
-> udisks2
-> udisks2-btrfs
 > nftables
-
-## Additional Tools
-
-> opencode
-> systemd-sysvcompat
