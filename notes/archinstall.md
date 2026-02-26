@@ -115,7 +115,6 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 > swaync
 > yazi
 > autotiling
-> quickshell
 
 ### Theming:
 

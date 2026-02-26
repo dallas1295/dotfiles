@@ -12,11 +12,6 @@ if command -v tmux >/dev/null 2>&1; then
       fi
 fi
 
-# Auto-launch Zellij
- # if [[ -z "$ZELLIJ" ]]; then
- #    zellij attach -c outstanding-quasar
- # fi
-
 bindkey -v
 
 # zsh-completions
@@ -34,15 +29,13 @@ export EDITOR="nvim"
 export SUDOEDITOR="nvim"
 # export EDITOR=hx
 export VISUAL="$EDITOR"
-export TERMINAL='ghostty -e'
+export TERMINAL='ghostty'
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
-export OLLAMA_MODELS="$HOME/.ollama/models"
-export OLLAMA_KEEP_ALIVE=0
 
-alias vi='nvim'
+# alias vi='nvim'
 # alias hx='helix'
 
 # ls shows hidden files & colorize
@@ -60,8 +53,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 # opencode
-export PATH=/home/dallas/.opencode/bin:$PATH
+export PATH="/home/dallas/.opencode/bin:$PATH"
 
-# Clear terminal on startup
 clear
 fastfetch
