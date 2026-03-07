@@ -14,10 +14,7 @@ return {
 		require("mini.diff").setup({
 			style = "number",
 		})
-		require("mini.comment").setup()
-		require("mini.statusline").setup()
-		require("mini.pick").setup()
-		require("mini.extra").setup()
+		-- require("mini.statusline").setup()
 		require("mini.move").setup( -- No need to copy this inside `setup()`. Will be used automatically.
 			{
 				mappings = {

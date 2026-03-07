@@ -38,7 +38,7 @@ configuration {
     active-background:           var(active);
     active-foreground:           var(background);
     selected-normal-background:  var(selected);
-    selected-normal-foreground:  #ebdbb2;
+    selected-normal-foreground:  #e0def4;
     selected-urgent-background:  var(active);
     selected-urgent-foreground:  var(background);
     selected-active-background:  var(urgent);
@@ -68,7 +68,7 @@ window {
     padding:                     0px;
     border:                      1px solid;
     border-radius:               10px;
-    border-color:                #d3869b;
+    border-color:                #c4a7e7;
     cursor:                      "default";
     background-color:            @background-colour;
 }

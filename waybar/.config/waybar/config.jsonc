@@ -7,19 +7,17 @@
   "modules-left": [
     "battery",
     "cpu",
-    "memory",
-    "mpris"
+    "memory"
   ],
   "modules-center": [
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "hyprland/window",
+    "tray",
     "pulseaudio",
     "backlight",
     "network",
-    "clock",
-    "tray"
+    "clock"
   ],
   "include": [
     "~/.config/waybar/modules.json"

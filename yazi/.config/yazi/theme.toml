@@ -1,6 +1,8 @@
 "$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
 # Default base colors with squared bottomline
+[flavor] 
+theme = "rose-pine"
 [status]
 overall = { fg = "#ffffff" }
 sep_left = { open = "", close = "" }

@@ -10,6 +10,15 @@ keymap.set("n", "<c-k>", ":wincmd k<CR>")
 keymap.set("n", "<c-h>", ":wincmd h<CR>")
 keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
+-- maybe qf diagnostics?
+keymap.set("n", "<leader>dl", function()
+	vim.diagnostic.setqflist()
+end, { desc = "Add project diagnostics to quickfix" })
+
+keymap.set("n", "<leader>db", function()
+	vim.diagnostic.setqflist({ bufnr = 0 })
+end, { desc = "Add buffer diagnostics to quickfix" })
+
 -- open link
 vim.keymap.set("n", "gx", function()
 	local url = vim.fn.expand("<cfile>")
@@ -53,8 +62,8 @@ keymap.set("n", "<leader>bs", "<cmd>w<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>qq", "<cmd>q<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Close current buffer" })
 
--- Oil
-keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
+-- Netrw
+keymap.set("n", "-", "<cmd>Explore<CR>", { desc = "Open working directory" })
 
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
@@ -66,36 +75,15 @@ keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Write Quit Buffer", norem
 -- Menus
 keymap.set("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })
 
--- Diagnostics
-keymap.set("n", "<leader>dd", function()
-	vim.diagnostic.setqflist()
-	vim.cmd("copen")
-end, { desc = "Diagnostics to quickfix" })
-keymap.set("n", "<leader>tt", function()
-	MiniExtra.pickers.diagnostic()
-end, { desc = "project diagnostics" })
-keymap.set("n", "<leader>td", function()
-	MiniExtra.pickers.hipatterns()
-end, { desc = "comment picker" })
-keymap.set("n", "<leader>ts", "<cmd>Pick list scope='quickfix'<cr>", { desc = "comment picker" })
-
--- Pick
-keymap.set("n", "<leader><leader>", "<cmd>Pick files<cr>", { desc = "Find files" })
-keymap.set("n", "<leader>fl", "<cmd>Pick grep_live<cr>", { desc = "Grep search" })
-keymap.set("n", "<leader>fw", "<cmd>Pick grep pattern=<cword><cr>", { desc = "Search word under cursor" })
-keymap.set("n", "<leader>fp", "<cmd>Pick history<cr>", { desc = "Search History" })
-keymap.set("n", "<leader>fj", "<cmd>Pick buffers<cr>", { desc = "Show buffers" })
-keymap.set("n", "<leader>fb", "<cmd>Pick buffers<cr>", { desc = "Show buffers" })
-
--- -- Fzf
--- keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
--- keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "recent files" })
--- keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })
--- keymap.set("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search word under cursor" })
--- keymap.set("n", "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Search WORD under cursor" })
--- keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search highlighted" })
--- keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep in root" })
--- keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep_resume<cr>", { desc = "Resume live grep in root" })
--- keymap.set("n", "<leader>fp", "<cmd>FzfLua search_history<cr>", { desc = "Search History" })
--- keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
--- keymap.set("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>", { desc = "Open quickfix" })
+-- Fzf
+keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
+keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "recent files" })
+keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })
+keymap.set("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search word under cursor" })
+keymap.set("n", "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Search WORD under cursor" })
+keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search highlighted" })
+keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep in root" })
+keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep_resume<cr>", { desc = "Resume live grep in root" })
+keymap.set("n", "<leader>fp", "<cmd>FzfLua search_history<cr>", { desc = "Search History" })
+keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
+keymap.set("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>", { desc = "Open quickfix" })
