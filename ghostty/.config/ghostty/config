@@ -2,7 +2,7 @@ theme = Vague
 font-family = JetBrainsMono Nerd Font
 font-size = 12
 # background = #000000
-background-opacity = .85
+background-opacity = .85 
 background-blur = true
 unfocused-split-opacity = .7
 working-directory = home
@@ -18,26 +18,29 @@ copy-on-select = true
 shell-integration = zsh
 window-save-state = always
 
+#### GTK Custom CSS for Tabs ####
+gtk-custom-css = ~/.config/ghostty/custom.css
+gtk-wide-tabs = false
+gtk-tabs-location = bottom
 
 #### Keybinds ####
 
-#keybind = ctrl+space>n=new_tab
-#keybind = ctrl+space>t=new_tab
-#keybind = ctrl+space>shift+t=close_tab
-#keybind = ctrl+space>j=new_split:down
-#keybind = ctrl+space>l=new_split:right
-#keybind = ctrl+space>h=new_split:left
-#keybind = ctrl+space>x=close_surface
+keybind = ctrl+space>n=new_tab
+keybind = ctrl+space>shift+t=close_tab
+keybind = ctrl+space>j=new_split:down
+keybind = ctrl+space>l=new_split:right
+keybind = ctrl+space>h=new_split:left
+keybind = ctrl+space>x=close_surface
 
 
-#keybind = ctrl+j=goto_split:down
-#keybind = ctrl+k=goto_split:up
-#keybind = ctrl+l=goto_split:right
-#keybind = ctrl+h=goto_split:left
-#keybind = alt+h=previous_tab
-#keybind = alt+l=next_tab
+keybind = ctrl+j=goto_split:down
+keybind = ctrl+k=goto_split:up
+keybind = ctrl+l=goto_split:right
+keybind = ctrl+h=goto_split:left
+keybind = alt+h=previous_tab
+keybind = alt+l=next_tab
 
 
-## Quick terminal
-#keybind = ctrl+space>m=toggle_quick_terminal
+# Quick terminal
+keybind = ctrl+space>m=toggle_quick_terminal
 

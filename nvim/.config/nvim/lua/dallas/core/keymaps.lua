@@ -32,6 +32,8 @@ end, { desc = "Open URL under cursor" })
 -- exit insert mode
 -- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
+keymap.set("n", "S-u", ":redo")
+
 -- clear search highlights
 keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })
 

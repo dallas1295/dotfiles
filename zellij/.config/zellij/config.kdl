@@ -1,5 +1,5 @@
 default_layout "compact"
-theme "gruvbox-dark"
+
 pane_frames false
 keybinds {
     normal {
@@ -260,4 +260,28 @@ load_plugins {
   // "https://example.com/my-plugin.wasm"
 }
 
+themes {
+    vague { 
+      fg "#cdcdcd"
+      bg "#141415"
+      red "#d8647e"
+      green "#bb9dbd"
+      yellow "#f3be7c"
+      blue "#7e98e8"
+      magenta "#7fa563"
+      cyan "#b4d4cf"
+      white "#cdcdcd"
+      orange "#e8b589"
+      black "#141415"
+      // bright_black "#606079"
+      // bright_red "#d8647e"
+      // bright_green "#7fa563"
+      // bright_yellow "#f3be7c"
+      // bright_blue "#7e98e8"
+      // bright_magenta "#bb9dbd"
+      // bright_cyan "#b4d4cf"
+      // bright_white "#c3c3d5"
+    }
+}
 
+theme "vague"

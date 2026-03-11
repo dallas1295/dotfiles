@@ -146,7 +146,7 @@ while :; do
     fi
 
     # Output
-    echo "<span foreground='#957fb8'>$song_status $media_artist - $media_song</span> | <span foreground='#ffa066'> $cpu_display</span> | <span foreground='#ffa066'> $ram_display</span> | <span foreground='#c5c9c5'>$audio_icon $audio_display_padded</span> | <span foreground='#c5c9c5'>$brightness_icon $brightness_display</span> | <span foreground='#c5c9c5'>$wifi_icon $wifi_ssid ($wifi_strength%)</span> | <span foreground='#6a9589'>$battery_icon $battery_charge</span> | <span foreground='#e6c384'>$date  $current_time</span>"
+    echo "<span foreground='#a986bc'>$song_status $media_artist - $media_song</span> | <span foreground='#7aa2f7'> $cpu_display</span> | <span foreground='#7aa2f7'> $ram_display</span> | <span foreground='#ffffff'>$audio_icon $audio_display_padded</span> | <span foreground='#ffffff'>$brightness_icon $brightness_display</span> | <span foreground='#ffffff'>$wifi_icon $wifi_ssid ($wifi_strength%)</span> | <span foreground='#9bb4bc'>$battery_icon $battery_charge</span> | <span foreground='#bb9af7'>$date  $current_time</span>"
 
 done
 

@@ -14,23 +14,23 @@
     }
   },
   "pulseaudio": {
-    "format": " {icon} {volume}%",
-    "format-bluetooth": " {icon}  {volume}%",
-    "format-bluetooth-muted": " 󰝟  {icon}",
-    "format-muted": " 󰝟  ",
-    "format-source": " {volume}%",
+    "format": " {icon} {volume}% |",
+    "format-bluetooth": " {icon}  {volume}% |",
+    "format-bluetooth-muted": " 󰝟  {icon} |",
+    "format-muted": " 󰝟  |",
+    "format-source": " {volume}% |",
     "format-source-muted": "  ",
     "format-icons": {
       "default": ["", "", ""]
     },
-    "on-click": "pwvucontrol"
+    "on-click": "pavucontrol"
   },
   "network": {
-    "format-wifi": "{icon} {signalStrength}%",
-    "format-ethernet": "{ipaddr}/{cidr} 󰈀",
-    "tooltip-format": "{ifname} via {gwaddr} 󰈀",
-    "format-linked": "{ifname} (No IP) 󰈀",
-    "format-disconnected": "⚠ Disconnected",
+    "format-wifi": "{icon} {signalStrength}% |",
+    "format-ethernet": "{ipaddr}/{cidr} 󰈀 |",
+    "tooltip-format": "{ifname} via {gwaddr} 󰈀 |",
+    "format-linked": "{ifname} (No IP) 󰈀 |",
+    "format-disconnected": "⚠ Disconnected |",
     "on-click": "ghostty -e nmtui",
     "interval": 2,
     "tooltip": false,
@@ -38,7 +38,7 @@
   },
   "cpu": {
     "interval": 1,
-    "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+    "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}% |",
     "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "on-click": "ghostty -e btop"
   },
@@ -49,7 +49,7 @@
     "on-click": "ghostty -e btop"
   },
   "backlight": {
-    "format": "{icon}{percent}%",
+    "format": "{icon}{percent}% |",
     "format-icons": [
       "󱩎 ",
       "󱩏 ",
@@ -83,13 +83,13 @@
     }
   },
   "clock": {
-    "format": "{:%H:%M:%S}",
+    "format": "| {:%H:%M:%S | %D }",
     "interval": 1,
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "tray": {
     "icon-size": 13,
-    "spacing": 9
+    "spacing": 4
   },
   "mpris": {
     "format": "{player_icon} {title}",

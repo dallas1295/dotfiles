@@ -2,6 +2,7 @@ return {
 	"nvim-mini/mini.nvim",
 	version = false,
 	config = function()
+		require("mini.completion").setup()
 		require("mini.ai").setup()
 		require("mini.snippets").setup()
 		require("mini.surround").setup()
@@ -9,12 +10,12 @@ return {
 		require("mini.tabline").setup()
 		require("mini.icons").setup()
 		require("mini.notify").setup()
-		require("mini.trailspace").setup()
+		-- require("mini.trailspace").setup()
 		require("mini.indentscope").setup()
 		require("mini.diff").setup({
 			style = "number",
 		})
-		-- require("mini.statusline").setup()
+		require("mini.statusline").setup()
 		require("mini.move").setup( -- No need to copy this inside `setup()`. Will be used automatically.
 			{
 				mappings = {

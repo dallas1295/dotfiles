@@ -5,12 +5,13 @@ if [[ ":$FPATH:" != *":/home/dallas/.zsh/completions:"* ]]; then
   export FPATH="/home/dallas/.zsh/completions:$FPATH"
 fi
 
-if command -v tmux >/dev/null 2>&1; then
-  # Only run if not already in tmux
-  if [[ -z "$TMUX" ]]; then
-    exec tmux
-      fi
-fi
+# if command -v tmux >/dev/null 2>&1; then
+#   # Only run if not already in tmux
+#   if [[ -z "$TMUX" ]]; then
+#     exec tmux
+#       fi
+# fi
+
 
 bindkey -v
 
@@ -27,6 +28,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 # environment calls
 export EDITOR="nvim"
 export SUDOEDITOR="nvim"
+# export SUDOEDITOR="helix"
 # export EDITOR=hx
 export VISUAL="$EDITOR"
 export TERMINAL='ghostty'

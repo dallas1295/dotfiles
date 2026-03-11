@@ -6,13 +6,13 @@
 }
 
 window#waybar {
-  background: transparent;
+  background: #252530;
   color: #ffffff;
   font-family:
     "Jetbrains Mono Nerd Font", "JetbrainsMonoNL Nerd Font", "Noto Color Emoji";
-  padding: 0 4px;
-  border-radius: 10px;
-  margin: 4px 1px;
+  /* padding: 0 0px; */
+  /* border-radius: 10px; */
+  /* margin: 4px 1px; */
   border: none;
   box-shadow: none;
   transition: background-color 0.5s;
@@ -21,10 +21,10 @@ window#waybar {
 .modules-center,
 .modules-left,
 .modules-right {
-  background: #1f2335;
-  border-radius: 10px;
+  /* background: #1f2335; */
+  /* border-radius: 10px; */
   margin: 0px 0;
-  border: 1px solid #a986bc;
+  /* border: 1px solid #a986bc; */
 }
 
 #clock,

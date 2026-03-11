@@ -2,10 +2,9 @@
   "layer": "top",
   "position": "top",
   "height": 28,
-  "margin": 3,
+  "margin": 0,
   "spacing": 1,
   "modules-left": [
-    "battery",
     "cpu",
     "memory"
   ],
@@ -13,11 +12,12 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "tray",
     "pulseaudio",
     "backlight",
     "network",
-    "clock"
+    "battery",
+    "clock",
+    "tray"
   ],
   "include": [
     "~/.config/waybar/modules.json"
