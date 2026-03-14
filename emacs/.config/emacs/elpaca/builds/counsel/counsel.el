@@ -1,1 +1,0 @@
-/home/dallas/.config/emacs/elpaca/repos/swiper/counsel.el

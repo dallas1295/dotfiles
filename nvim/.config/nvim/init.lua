@@ -1,2 +1,2 @@
-require("dallas.core")
-require("dallas.lazy")
+require("core")
+require("lazy-setup")

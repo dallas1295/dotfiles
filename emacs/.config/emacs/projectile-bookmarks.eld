@@ -1,1 +1,0 @@
-("~/dotfiles/" "~/projects/ora/ora_core/" "~/" "~/projects/biji/")

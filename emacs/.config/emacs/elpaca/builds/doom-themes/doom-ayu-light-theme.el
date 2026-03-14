@@ -1,1 +1,0 @@
-/home/dallas/.config/emacs/elpaca/repos/themes/themes/doom-ayu-light-theme.el

@@ -1,1 +1,0 @@
-/home/dallas/.config/emacs/elpaca/repos/nerd-icons-ibuffer/nerd-icons-ibuffer.el
