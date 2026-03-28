@@ -2,6 +2,7 @@ return {
 	"nvim-mini/mini.nvim",
 	version = false,
 	config = function()
+		require("mini.pick").setup()
 		require("mini.ai").setup()
 		require("mini.snippets").setup()
 		require("mini.surround").setup()
@@ -12,27 +13,25 @@ return {
 		require("mini.diff").setup({
 			style = "number",
 		})
-		require("mini.move").setup( -- No need to copy this inside `setup()`. Will be used automatically.
-			{
-				mappings = {
-					left = "<M-C-h>",
-					right = "<M-C-l>",
-					down = "<M-C-j>",
-					up = "<M-C-k>",
-					-- Move current line in Normal mode
-					line_left = "<M-C-h>",
-					line_right = "<M-C-l>",
-					line_down = "<M-C-j>",
-					line_up = "<M-C-k>",
-				},
+		require("mini.move").setup({
+			mappings = {
+				left = "<M-C-h>",
+				right = "<M-C-l>",
+				down = "<M-C-j>",
+				up = "<M-C-k>",
+				-- Move current line in Normal mode
+				line_left = "<M-C-h>",
+				line_right = "<M-C-l>",
+				line_down = "<M-C-j>",
+				line_up = "<M-C-k>",
+			},
 
-				-- Options which control moving behavior
-				options = {
-					-- Automatically reindent selection during linewise vertical move
-					reindent_linewise = true,
-				},
-			}
-		)
+			-- Options which control moving behavior
+			options = {
+				-- Automatically reindent selection during linewise vertical move
+				reindent_linewise = true,
+			},
+		})
 		local hipatterns = require("mini.hipatterns")
 		hipatterns.setup({
 			highlighters = {

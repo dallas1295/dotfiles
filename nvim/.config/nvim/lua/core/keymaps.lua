@@ -28,7 +28,7 @@ keymap.set("n", "<leader>dp", function()
 end, { desc = "Go to next diagnostic error" })
 
 -- open link
-vim.keymap.set("n", "gx", function()
+keymap.set("n", "gx", function()
 	local url = vim.fn.expand("<cfile>")
 	if url:match("https?://%S+") then
 		vim.ui.open(url) -- Uses Neovim's built-in system opener
@@ -65,6 +65,7 @@ keymap.set("n", "<leader>bl", "<C-w>5<", { desc = "Increase the width of the buf
 keymap.set("n", "<leader>bh", "<C-w>5>", { desc = "Decrease the width of the buffer split" })
 keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" })
 
+keymap.set("n", "<Leader>bl", ":BufferList<CR>", { desc = "Open bufferlist" })
 keymap.set("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create an empty buffer" })
 keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>bq", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
@@ -86,7 +87,7 @@ keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Write Quit Buffer", norem
 -- Menus
 keymap.set("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })
 
--- Fzf
+-- -- Fzf
 keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
 keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "recent files" })
 keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })

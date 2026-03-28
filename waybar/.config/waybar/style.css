@@ -6,7 +6,8 @@
 }
 
 window#waybar {
-  background: #252530;
+  /* background: #252530;  */
+  background: #000000;
   color: #ffffff;
   font-family:
     "Jetbrains Mono Nerd Font", "JetbrainsMonoNL Nerd Font", "Noto Color Emoji";

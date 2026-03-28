@@ -1,19 +1,19 @@
-/* Rose Pine */
-@define-color bg0_h #191724;
-@define-color bg0 #1f1d2e;
-@define-color bg1 #26233a;
-@define-color bg2 #2f294d;
-@define-color fg #e0def4;
-@define-color fg0 #9ccfd8;
-@define-color red #eb6f92;
-@define-color green #31748f;
-@define-color yellow #f6c177;
-@define-color blue #9ccfd8;
-@define-color purple #c4a7e7;
-@define-color aqua #9ccfd8;
-@define-color orange #f6c177;
-@define-color gray #908caa;
-@define-color border #c4a7e7;
+/* Vague */
+@define-color bg0_h #141415;
+@define-color bg0 #141415;
+@define-color bg1 #1c1c24;
+@define-color bg2 #252530;
+@define-color fg #cdcdcd;
+@define-color fg0 #b4d4cf;
+@define-color red #d8647e;
+@define-color green #7fa563;
+@define-color yellow #f3be7c;
+@define-color blue #7e98e8;
+@define-color purple #aeaed1;
+@define-color aqua #b4d4cf;
+@define-color orange #e8b589;
+@define-color gray #606079;
+@define-color border #878787;
 
 * {
     font-family: "JetBrains Mono Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
