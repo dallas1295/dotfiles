@@ -1,12 +1,13 @@
 theme = Vague
 font-family = JetBrainsMono Nerd Font
-font-size = 12
-background-opacity = .85
+font-size = 13
+# background-opacity = .85
 background-blur = true
 unfocused-split-opacity = .7
 working-directory = home
 window-inherit-working-directory = true
 confirm-close-surface = false
+window-decoration = false
 
 #### cursor ####
 cursor-style = block
@@ -44,4 +45,3 @@ keybind = alt+l=next_tab
 
 # Quick terminal
 keybind = ctrl+space>m=toggle_quick_terminal
-

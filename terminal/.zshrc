@@ -37,8 +37,12 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# alias vi='nvim'
-# alias hx='helix'
+alias vi='nvim'
+alias notes='cd ~/vaults/stuff/ && nvim .'
+alias hx='helix'
+alias em='emacs'
+alias et='emacs -nw'
+
 
 # ls shows hidden files & colorize
 alias ls='lsd'
@@ -47,6 +51,8 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree --depth 2'
 alias lg='ls -la --git'
+
+alias sm='ncpamixer -t o'
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

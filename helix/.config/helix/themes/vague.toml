@@ -1,0 +1,199 @@
+# Vague colorscheme for Helix
+# Ported from vague.nvim
+
+"ui.background" = { bg = "bg" }
+"ui.window" = { fg = "float_border" }
+"ui.gutter" = { fg = "comment" }
+"ui.text" = { fg = "fg" }
+"ui.text.focus" = { fg = "fg", bg = "line" }
+"ui.text.inactive" = { fg = "comment" }
+
+"ui.cursor" = { bg = "fg", fg = "bg" }
+"ui.cursor.primary" = { bg = "fg", fg = "bg" }
+"ui.cursor.match" = { bg = "search", fg = "fg" }
+
+"ui.selection" = { bg = "visual" }
+"ui.selection.primary" = { bg = "visual" }
+
+"ui.cursorline" = { bg = "line" }
+"ui.cursorline.primary" = { bg = "line" }
+"ui.cursorcolumn" = { bg = "line" }
+"ui.cursorcolumn.primary" = { bg = "line" }
+
+"ui.linenr" = { fg = "comment" }
+"ui.linenr.selected" = { fg = "fg" }
+
+"ui.statusline" = { fg = "fg", bg = "inactive_bg" }
+"ui.statusline.inactive" = { fg = "comment", bg = "inactive_bg" }
+"ui.statusline.normal" = { fg = "bg", bg = "keyword" }
+"ui.statusline.insert" = { fg = "bg", bg = "string" }
+"ui.statusline.select" = { fg = "bg", bg = "constant" }
+
+"ui.help" = { fg = "fg", bg = "inactive_bg" }
+"ui.popup" = { fg = "fg", bg = "bg" }
+"ui.menu" = { fg = "fg", bg = "bg" }
+"ui.menu.selected" = { fg = "constant", bg = "line" }
+"ui.menu.scroll" = { fg = "comment", bg = "line" }
+
+"ui.virtual.whitespace" = { fg = "line" }
+"ui.virtual.indent-guide" = { fg = "line" }
+"ui.virtual.ruler" = { bg = "line" }
+"ui.virtual.inlay-hint" = { fg = "comment", modifiers = ["italic"] }
+
+"ui.highlight.frameline" = { bg = "line" }
+
+"ui.debug" = { fg = "constant" }
+"ui.debug.active" = { fg = "keyword" }
+"ui.debug.breakpoint" = { fg = "bg", bg = "operator" }
+"ui.debug.breakpoint.disabled" = { fg = "comment" }
+"ui.debug.breakpoint.unverified" = { fg = "warning" }
+
+"error" = { fg = "error" }
+"warning" = { fg = "warning" }
+"info" = { fg = "hint" }
+"hint" = { fg = "hint" }
+
+"diagnostic.error" = { underline = { color = "error", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "warning", style = "curl" } }
+"diagnostic.info" = { underline = { color = "hint", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "hint", style = "curl" } }
+
+"diff.plus" = { fg = "plus" }
+"diff.minus" = { fg = "error" }
+"diff.delta" = { fg = "delta" }
+
+"markup.heading" = { fg = "property" }
+"markup.heading.marker" = { fg = "keyword" }
+"markup.list" = { fg = "keyword" }
+"markup.bold" = { fg = "string", modifiers = ["bold"] }
+"markup.italic" = { fg = "string", modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "hint" }
+"markup.link.label" = { fg = "keyword" }
+"markup.link.text" = { fg = "fg" }
+"markup.quote" = { fg = "comment", modifiers = ["italic"] }
+"markup.raw" = { fg = "builtin" }
+"markup.raw.inline" = { fg = "builtin" }
+"markup.raw.block" = { fg = "builtin" }
+
+"comment" = { fg = "comment", modifiers = ["italic"] }
+"comment.line" = { fg = "comment", modifiers = ["italic"] }
+"comment.block" = { fg = "comment", modifiers = ["italic"] }
+"comment.documentation" = { fg = "comment", modifiers = ["italic"] }
+
+"constant" = { fg = "constant" }
+"constant.numeric" = { fg = "number" }
+"constant.builtin" = { fg = "builtin" }
+"constant.character" = { fg = "string" }
+"constant.character.escape" = { fg = "keyword" }
+"constant.string" = { fg = "string" }
+"constant.string.escape" = { fg = "keyword" }
+"constant.string.regexp" = { fg = "keyword" }
+"constant.string.special" = { fg = "keyword" }
+"constant.uuid" = { fg = "constant" }
+"constant.language" = { fg = "constant" }
+"constant.macro" = { fg = "constant" }
+
+"string" = { fg = "string", modifiers = ["italic"] }
+"string.special" = { fg = "keyword" }
+"string.special.path" = { fg = "fg" }
+"string.special.url" = { fg = "hint" }
+"string.special.symbol" = { fg = "keyword" }
+
+"character" = { fg = "string" }
+"character.special" = { fg = "keyword" }
+
+"number" = { fg = "number" }
+"number.float" = { fg = "number" }
+
+"boolean" = { fg = "number", modifiers = ["bold"] }
+
+"label" = { fg = "keyword" }
+
+"keyword" = { fg = "keyword" }
+"keyword.storage" = { fg = "constant" }
+"keyword.storage.type" = { fg = "type" }
+"keyword.storage.modifier" = { fg = "constant" }
+"keyword.namespace" = { fg = "constant" }
+"keyword.control" = { fg = "keyword" }
+"keyword.control.conditional" = { fg = "keyword" }
+"keyword.control.repeat" = { fg = "keyword" }
+"keyword.control.import" = { fg = "keyword" }
+"keyword.control.return" = { fg = "keyword" }
+"keyword.control.exception" = { fg = "keyword" }
+"keyword.function" = { fg = "keyword" }
+"keyword.operator" = { fg = "keyword" }
+"keyword.directive" = { fg = "comment" }
+"keyword.declaration" = { fg = "keyword" }
+"keyword.modifier" = { fg = "constant" }
+"keyword.type" = { fg = "type" }
+
+"function" = { fg = "func" }
+"function.builtin" = { fg = "builtin" }
+"function.call" = { fg = "func" }
+"function.macro" = { fg = "constant" }
+"function.method" = { fg = "func" }
+"function.method.call" = { fg = "func" }
+"function.definition" = { fg = "func" }
+"function.special" = { fg = "builtin" }
+
+"operator" = { fg = "operator" }
+
+"variable" = { fg = "constant" }
+"variable.builtin" = { fg = "builtin" }
+"variable.parameter" = { fg = "parameter" }
+"variable.member" = { fg = "property" }
+"variable.other" = { fg = "constant" }
+"variable.other.member" = { fg = "property" }
+
+"type" = { fg = "type" }
+"type.builtin" = { fg = "type" }
+"type.definition" = { fg = "type" }
+"type.alias" = { fg = "type" }
+"type.enum" = { fg = "type" }
+"type.enum.variant" = { fg = "constant" }
+"constructor" = { fg = "func" }
+
+"module" = { fg = "constant" }
+"module.namespace" = { fg = "constant" }
+
+"namespace" = { fg = "constant" }
+
+"special" = { fg = "builtin" }
+
+"tag" = { fg = "builtin" }
+"tag.attribute" = { fg = "keyword" }
+"tag.delimiter" = { fg = "fg" }
+
+"punctuation" = { fg = "fg" }
+"punctuation.delimiter" = { fg = "fg" }
+"punctuation.bracket" = { fg = "fg" }
+"punctuation.special" = { fg = "fg" }
+
+"attribute" = { fg = "keyword" }
+"property" = { fg = "property" }
+
+[palette]
+bg = "#141415"
+inactive_bg = "#1c1c24"
+fg = "#cdcdcd"
+float_border = "#878787"
+line = "#252530"
+comment = "#606079"
+builtin = "#b4d4cf"
+func = "#c48282"
+string = "#e8b589"
+number = "#e0a363"
+property = "#c3c3d5"
+constant = "#aeaed1"
+parameter = "#bb9dbd"
+visual = "#333738"
+error = "#d8647e"
+warning = "#f3be7c"
+hint = "#7e98e8"
+operator = "#90a0b5"
+keyword = "#6e94b2"
+type = "#9bb4bc"
+search = "#405065"
+plus = "#7fa563"
+delta = "#f3be7c"

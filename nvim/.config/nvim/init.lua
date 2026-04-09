@@ -1,2 +1,6 @@
-require("core")
-require("lazy-setup")
+require("options")
+require("keymaps")
+require("lsp")
+require("treesitter")
+require("plugins")
+require("notes")

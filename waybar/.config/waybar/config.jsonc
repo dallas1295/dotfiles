@@ -9,7 +9,7 @@
     "memory"
   ],
   "modules-center": [
-    "hyprland/workspaces"
+    "niri/workspaces"
   ],
   "modules-right": [
     "pulseaudio",

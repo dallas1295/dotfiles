@@ -27,7 +27,7 @@ skip-levels = 0
 
 [editor.inline-diagnostics]
 other-lines = "warning"
-cursor-line = "disable"
+cursor-line = "warning"
 
 [editor.auto-save]
 focus-lost = true
@@ -93,3 +93,10 @@ l = ":toggle lsp.display-inlay-hints"
 [keys.normal.space.s]
 v = ":vsplit-new"
 h = ":hsplit-new"
+
+[keys.normal.g]
+c =  {c = "toggle_comments"}
+
+[keys.select.g]
+c =  {c = "toggle_comments"}
+

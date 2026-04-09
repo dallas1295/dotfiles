@@ -1,5 +1,3 @@
-output eDP-1 scale 1.5
-
 set $mod Mod4
 
 set $terminal ghostty
@@ -23,18 +21,13 @@ set $lock 'swaylock \
     --indicator-thickness 10 \
     --font "Nebula Sans Book"'
 
+output eDP-1 pos 0 0 scale 1.5
+output HDMI-A-1 pos 1920 0
+
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
-
-# bar {
-#     id bar-0
-#     status_command ~/.config/sway/swaybar.sh
-#     pango_markup enabled
-#   }
-
-exec waybar
-exec blueman-applet
+exec --no-startup-id qs -c noctalia-shell
 exec mullvad-vpn
 exec flatpak run com.bitwarden.desktop
 exec wl-paste --type text --watch cliphist store
@@ -50,12 +43,13 @@ exec swayidle -w \
     resume 'swaymsg output "*" power on' \
     before-sleep 'swaylock -f --color 141415'
 
-output eDP-1 bg ~/dotfiles/backgrounds/.wallpapers/darkish.jpg fill
+# output HDMI-A-1 bg ~/dotfiles/backgrounds/.wallpapers/darkish.jpg fill
+# output eDP-1 bg ~/dotfiles/backgrounds/.wallpapers/darkish.jpg fill
 
 set $bg_color #141415
 set $fg_color #cdcdcd
-set $accent #6e94b2
-set $inactive_bg #1c1c24
+set $accent #b4d4cf
+set $inactive_bg #1a1b26
 set $urgent #d8647e
 set $visual #333738
 
@@ -92,7 +86,7 @@ client.urgent           $urgent $urgent $fg_color $fg_color $urgent
 default_border pixel 1
 default_floating_border pixel 1
 gaps inner 4
-gaps outer 3
+gaps outer 5
 smart_borders off
 
 for_window [window_role="pop-up"] floating enable
@@ -124,24 +118,25 @@ bindsym $mod+Shift+End exit
 bindsym $mod+e exec $fileManager
 bindsym $mod+Shift+v floating toggle
 bindsym $mod+Tab focus next
-bindsym $mod+space exec $menu
+bindsym $mod+space exec qs -c noctalia-shell ipc call launcher toggle
+bindsym $mod+Mod1+space exec qs -c noctalia-shell ipc call launcher toggle
 bindsym $mod+r exec rofi -show run
+bindsym $mod+Mod1+r exec rofi -show run
 bindsym $mod+m exec $music
 bindsym $mod+w exec $browser
 bindsym $mod+g exec gtk-launch "Steam (No VPN)"
 
 bindsym $mod+v exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-bindsym $mod+Mod1+Delete exec $lock
-bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:rofi-power-menu
-bindsym $mod+Shift+b exec rofi-bluetooth
+bindsym $mod+Mod1+BackSpace exec qs -c noctalia-shell ipc call lockScreen lock
+bindsym $mod+Shift+BackSpace exec qs -c noctalia-shell ipc call sessionMenu toggle
 
-bindsym $mod+backslash exec grim "$HOME/Pictures/fullscreen-$(date +%Y%m%d-%H%M%S).png"
-bindsym $mod+Shift+backslash exec grim -g "$(slurp)" "$HOME/Pictures/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png"
+bindsym $mod+Shift+p exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/screenshots/window-$(date +%Y%m%d-%H%M%S).png"
+bindsym $mod+p exec grim -g "$(slurp)" "$HOME/Pictures/screenshots/region-$(date +%Y%m%d-%H%M%S).png"
 
-bindsym $mod+n exec swaync-client -t
+bindsym $mod+backslash exec hyprpicker
 bindsym $mod+i exec ghostty -e btop
-bindsym $mod+p exec autotiling
+bindsym $mod+b exec ghostty -e bluetui
 
 bindsym $mod+h focus left
 bindsym $mod+l focus right
@@ -159,13 +154,24 @@ bindsym $mod+Mod1+k resize shrink up 20px
 bindsym $mod+Mod1+l resize grow right 20px
 
 bindsym $mod+Mod1+p exec autotiling
-bindsym $mod+Shift+r move scratchpad
+bindsym $mod+Shift+r move container to workspace current
 bindsym $mod+f fullscreen toggle
+
+workspace 1 output HDMI-A-1
+workspace 2 output HDMI-A-1
+workspace 3 output HDMI-A-1
+workspace 4 output HDMI-A-1
+workspace 5 output HDMI-A-1
+workspace 6 output eDP-1
+workspace 7 output eDP-1
+workspace 8 output eDP-1
+workspace 9 output eDP-1
+workspace 10 output eDP-1
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+bindsym $mod+Shift+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -184,13 +190,21 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+bindsym $mod+comma focus output left
+bindsym $mod+period focus output right
+
+bindsym $mod+equal workspace next_on_output
+bindsym $mod+minus workspace prev_on_output
+
 bindsym $mod+Shift+s exec swaymsg move to scratchpad
 bindsym $mod+s exec swaymsg scratchpad show
 
-bindsym $mod+button4 workspace prev
-bindsym $mod+button5 workspace next
+bindsym $mod+button4 workspace prev_on_output
+bindsym $mod+button5 workspace next_on_output
 
 bindsym $mod+button1 floating enable
+bindsym --whole-window $mod+button1 move
+bindsym --whole-window $mod+button3 resize
 floating_modifier $mod normal
 
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
@@ -208,18 +222,21 @@ bindsym XF86AudioPrev exec playerctl previous
 for_window [app_id="^firefox$"] move to workspace 2
 for_window [app_id="^zen$"] move to workspace 2
 for_window [class="^brave-bin$"] move to workspace 2
+for_window [class="^helium$"] move to workspace 2
 
 for_window [title="^Picture-in-Picture$"] \
     floating enable, \
     sticky enable, \
-    resize set 472 270, \
-    move position 1415 px 834 px, \
-    focus no
+    resize set 495 287, \
+    move position 1383 px 864 px, \
+    focus no, \
+    border none
 
 for_window [app_id="^com.mitchellh.ghostty$"] move to workspace 1, opacity 0.95
 
 for_window [app_id="^steam$"] move to workspace 3
 for_window [class="^steam$"] move to workspace 3
+for_window [title="^Friends List$"] move to workspace 3, resize set 435 1089
 
 for_window [class="^heroic$"] \
     move to workspace 3, \
@@ -231,31 +248,24 @@ for_window [class="^discord$"] \
 
 for_window [app_id="^org.prismlauncher.PrismLauncher$"] move to workspace 3
 
-for_window [app_id="^thunar$"] move to workspace 4
-
-for_window [class="^Mullvad VPN$"] move to workspace 1
-
 for_window [class="^Mullvad VPN$"] \
-    move to scratchpad, \
     floating enable, \
-    move position 1567 px 74 px
+    move position 1444 px 60 px
 
 for_window [class="^Bitwarden$"] \
-    move to scratchpad, \
+    move to workspace 4, \
     floating enable, \
     resize set 651 601, \
     move position 897 px 74 px
 
 for_window [app_id="^spotify$"] \
-    move to scratchpad, \
+    move to workspace 4, \
     floating enable, \
     resize set 859 960, \
     move position 15 px 130 px
 
 for_window [class="^blueman-manager$"] \
-    move to scratchpad, \
     floating enable, \
-    move position 1220 px 708 px, \
     resize set 651 452
 
 for_window [class="^Windscribe$"] floating enable
