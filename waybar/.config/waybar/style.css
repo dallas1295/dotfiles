@@ -1,19 +1,20 @@
 * {
   font-family:
     "Jetbrains Mono Nerd Font", "JetbrainsMonoNL Nerd Font", "Noto Color Emoji";
-  font-size: 12.5px;
+  font-size: 11.5px;
   transition: background-color 0.3s ease-out;
 }
 
 window#waybar {
+  background: transparent;
   /* background: #252530;  */
-  background: #000000;
+  /* background: #000000; */
   color: #ffffff;
   font-family:
     "Jetbrains Mono Nerd Font", "JetbrainsMonoNL Nerd Font", "Noto Color Emoji";
   /* padding: 0 0px; */
   /* border-radius: 10px; */
-  /* margin: 4px 1px; */
+  margin: 4px 1px;
   border: none;
   box-shadow: none;
   transition: background-color 0.5s;
@@ -22,10 +23,10 @@ window#waybar {
 .modules-center,
 .modules-left,
 .modules-right {
-  /* background: #1f2335; */
-  /* border-radius: 10px; */
+  background: #1c1c24;
+  border-radius: 10px;
   margin: 0px 0;
-  /* border: 1px solid #a986bc; */
+  border: 1px solid #1f2335;
 }
 
 #clock,
@@ -39,7 +40,6 @@ window#waybar {
 #pulseaudio,
 #wireplumber,
 #custom-music,
-#tray,
 #mode,
 #idle_inhibitor,
 #language,
@@ -50,6 +50,9 @@ window#waybar {
   color: #ffffff;
 }
 
+#tray {
+  padding: 0 5px;
+}
 #clock:hover,
 #battery:hover,
 #cpu:hover,

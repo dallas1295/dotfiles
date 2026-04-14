@@ -2,14 +2,14 @@
   "layer": "top",
   "position": "top",
   "height": 28,
-  "margin": 0,
+  "margin": [0, 10, 0, 10],
   "spacing": 1,
   "modules-left": [
-    "cpu",
-    "memory"
+    "hyprland/workspaces"
   ],
   "modules-center": [
-    "niri/workspaces"
+    "cpu",
+    "memory"
   ],
   "modules-right": [
     "pulseaudio",

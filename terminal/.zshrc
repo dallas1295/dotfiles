@@ -26,10 +26,10 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 # environment calls
-export EDITOR="nvim"
-export SUDOEDITOR="nvim"
-# export SUDOEDITOR="helix"
-# export EDITOR=hx
+# export EDITOR="nvim"
+# export SUDOEDITOR="nvim"
+export SUDOEDITOR="helix"
+export EDITOR=hx
 export VISUAL="$EDITOR"
 export TERMINAL='ghostty'
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
@@ -38,7 +38,7 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 alias vi='nvim'
-alias notes='cd ~/vaults/stuff/ && nvim .'
+alias notes='cd ~/vaults/stuff/ && nvim'
 alias hx='helix'
 alias em='emacs'
 alias et='emacs -nw'

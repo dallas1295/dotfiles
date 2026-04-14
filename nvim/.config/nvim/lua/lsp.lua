@@ -1,12 +1,13 @@
 -- First enable the LSPs
 vim.lsp.enable({
+	"clangd",
+	"denols",
 	"gopls",
 	"lua_ls",
-	"ts_ls",
-	"denols",
+	"marksman",
 	"svelte",
 	"tailwindcss",
-	"marksman",
+	"ts_ls",
 	"rust-analyzer",
 })
 

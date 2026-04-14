@@ -1,6 +1,6 @@
 theme = Vague
-font-family = JetBrainsMono Nerd Font
-font-size = 13
+font-family = JetbrainsMono Nerd Font
+font-size = 12.5
 # background-opacity = .85
 background-blur = true
 unfocused-split-opacity = .7

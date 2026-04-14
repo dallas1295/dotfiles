@@ -3,12 +3,38 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 
 ------------------ General Keymaps -------------------
+-- plugin
+local function pack_clean()
+	local active_plugins = {}
+	local unused_plugins = {}
 
--- pane navigation
-keymap.set("n", "<c-j>", ":wincmd j<CR>")
-keymap.set("n", "<c-k>", ":wincmd k<CR>")
-keymap.set("n", "<c-h>", ":wincmd h<CR>")
-keymap.set("n", "<c-l>", ":wincmd l<CR>")
+	for _, plugin in ipairs(vim.pack.get()) do
+		active_plugins[plugin.spec.name] = plugin.active
+	end
+
+	for _, plugin in ipairs(vim.pack.get()) do
+		if not active_plugins[plugin.spec.name] then
+			table.insert(unused_plugins, plugin.spec.name)
+		end
+	end
+
+	if #unused_plugins == 0 then
+		print("No unused plugins.")
+		return
+	end
+
+	local choice = vim.fn.confirm("Remove unused plugins?", "&Yes\n&No", 2)
+	if choice == 1 then
+		vim.pack.del(unused_plugins)
+	end
+end
+
+vim.keymap.set("n", "<leader>pc", pack_clean)
+-- -- pane navigation
+-- keymap.set("n", "<c-j>", ":wincmd j<CR>")
+-- keymap.set("n", "<c-k>", ":wincmd k<CR>")
+-- keymap.set("n", "<c-h>", ":wincmd h<CR>")
+-- keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
 -- terminal mode navigation
 keymap.set("t", "<c-j>", "<c-\\><c-n><c-w>j")
@@ -76,17 +102,6 @@ keymap.set("n", "<leader>lr", function()
 	end
 	vim.cmd("edit")
 end, { desc = "Restart LSP for current buffer" })
-
--- open link
-keymap.set("n", "gx", function()
-	local url = vim.fn.expand("<cfile>")
-	if url:match("https?://%S+") then
-		vim.ui.open(url) -- Uses Neovim's built-in system opener
-	else
-		print("No URL found under cursor")
-	end
-end, { desc = "Open URL under cursor" })
-
 -- exit insert mode
 -- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
@@ -115,7 +130,6 @@ keymap.set("n", "<leader>bl", "<C-w>5<", { desc = "Increase the width of the buf
 keymap.set("n", "<leader>bh", "<C-w>5>", { desc = "Decrease the width of the buffer split" })
 keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" })
 
-keymap.set("n", "<Leader>bl", ":BufferList<CR>", { desc = "Open bufferlist" })
 keymap.set("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create an empty buffer" })
 keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>bq", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
@@ -124,18 +138,9 @@ keymap.set("n", "<leader>bs", "<cmd>w<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>qq", "<cmd>q<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Close current buffer" })
 
--- Neo-tree toggle
-keymap.set("n", "-", function()
-	if vim.bo.filetype == "neo-tree" then
-		vim.cmd("Neotree close")
-	else
-		vim.cmd("Neotree focus")
-	end
-end, { desc = "Toggle Neo-tree" })
+-- Oil
+keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
 
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
 keymap.set("n", "<S-l>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
-
--- Menus
--- keymap.set("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Open Lazy menu" })
