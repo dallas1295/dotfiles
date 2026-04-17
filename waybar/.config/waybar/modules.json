@@ -5,13 +5,8 @@
     "icon": true,
     "icon-size": "19"
   },
-  "hyprland/workspaces": {
-    "persistent-workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": []
-    }
+  "niri/workspaces": {
+    "format": "{index}"
   },
   "pulseaudio": {
     "format": " {icon} {volume}% |",

@@ -50,7 +50,7 @@ end, { desc = "Format file" })
 
 -- Completions
 add({
-	{ src = "https://github.com/saghen/blink.cmp", name = "blink", version = vim.version.range("1") },
+	{ src = "https://github.com/saghen/blink.cmp", name = "blink", version = vim.version.range("1.*") },
 })
 
 require("blink.cmp").setup({

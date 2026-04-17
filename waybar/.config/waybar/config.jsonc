@@ -5,7 +5,7 @@
   "margin": [0, 10, 0, 10],
   "spacing": 1,
   "modules-left": [
-    "hyprland/workspaces"
+    "niri/workspaces"
   ],
   "modules-center": [
     "cpu",

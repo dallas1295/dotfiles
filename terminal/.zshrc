@@ -28,8 +28,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 # environment calls
 # export EDITOR="nvim"
 # export SUDOEDITOR="nvim"
-export SUDOEDITOR="helix"
-export EDITOR=hx
+export SUDOEDITOR="nvim"
+export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export TERMINAL='ghostty'
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"

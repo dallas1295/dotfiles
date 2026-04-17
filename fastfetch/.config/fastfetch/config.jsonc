@@ -5,7 +5,7 @@
     "source": "CachyOS",
     "padding": {
       "top": 5,
-      "left": 3,
+      "left": 1,
     },
   },
   "display": {
@@ -18,65 +18,64 @@
     "break",
     "break",
     {
-      "type": "kernel",
-      "key": "Dallas' 14X Pro",
-      "keyColor": "magenta",
+      "type": "title",
+      "color": "magenta",
     },
     {
       "type": "custom",
-      "format": ">-----------<+>------------------------------------------<",
+      "format": ">-----------<+>--------------------------------------<",
       "outputColor": "separator",
     },
     {
       "type": "host",
       "key": "  MRB      ",
-      "keyColor": "cyan"
+      "keyColor": "bright_red"
     },
     {
       "type": "memory",
       "key": "  RAM      ",
-      "keyColor": "cyan",
+      "keyColor": "bright_red",
     },
     {
       "type": "cpu",
       "key": "󰍛  CPU      ",
       "showPeCoreCount": true,
-      "keyColor": "cyan",
+      "keyColor": "bright_red",
     },
     {
       "type": "cpu_temp",
       "key": "󰏈  CPU Temp ",
-      "keyColor": "cyan",
+      "keyColor": "bright_red",
     },
     {
       "type": "gpu",
       "key": "󰍛  GPU      ",
-      "keyColor": "cyan",
+      "keyColor": "bright_red",
       "text": "lspci | grep -i vga | awk -F': | \\\\[|\\\\]' '{print $2 \" [\" $3 \"]\"}'"
     },
     {
       "type": "gpu_temp",
       "key": "󰏈  GPU Temp ",
-      "keyColor": "cyan",
-    },
-    {
-      "type": "os",
-      "key": "󱄠  OS       ",
-      "keyColor": "cyan",
+      "keyColor": "bright_red",
     },
     {
       "type": "disk",
       "key": "󰉉  Disk     ",
-      "keyColor": "cyan",
+      "keyColor": "bright_red",
     },
     {
       "type": "custom",
-      "format": ">-----------<+>------------------------------------------<",
+      "format": ">-----------<+>--------------------------------------<",
       "outputColor": "separator",
     },
     {
       "type": "os",
-      "key": "󱄠  OS       ",
+      "key": "  OS       ",
+      "keyColor": "green",
+    },
+    {
+      "type": "kernel",
+      "key": "󰋔  Kernel   ",
       "keyColor": "green",
     },
     {
@@ -117,7 +116,7 @@
     },
     {
       "type": "custom",
-      "format": ">-----------<+>------------------------------------------<",
+      "format": ">-----------<+>--------------------------------------<",
       "outputColor": "separator",
     },
     "break",
