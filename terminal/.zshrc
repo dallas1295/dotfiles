@@ -65,3 +65,4 @@ export PATH="/home/dallas/.opencode/bin:$PATH"
 
 clear
 fastfetch
+export BROWSER=zen-browser
