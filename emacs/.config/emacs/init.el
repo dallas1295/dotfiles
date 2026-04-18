@@ -175,6 +175,15 @@
                             (quote eval-print-last-sexp))))
 (add-to-list 'auto-mode-alist '("Cask" . emacs-lisp-mode))
 
+(use-package tempel
+  :ensure t
+  :config
+  (global-set-key (kbd "M-+") 'tempel-expand)
+  (global-set-key (kbd "M-*") 'tempel-done))
+
+(use-package tempel-collection
+  :ensure t)
+
 (use-package corfu
   :ensure t
   :init
@@ -184,7 +193,8 @@
    corfu-auto t
    corfu-auto-delay 0.2
    corfu-auto-trigger "."
-   corfu-quit-no-match 'separator))
+   corfu-quit-no-match 'separator)
+  (add-to-list 'completion-at-point-functions #'tempel-expand))
 
 (defun my-detect-ts-lsp-server (&optional interactive)
   "Detect TypeScript/JavaScript project type and return appropriate LSP server.

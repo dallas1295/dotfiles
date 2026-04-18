@@ -38,7 +38,7 @@
 
    ;; Magit
    '("l g" . magit-status)
-   '("l d" . magit-diff)
+   '("l d" . magit-diff-buffer-file)
 
    ;; Projects
    '("SPC" . projectile-find-file)
@@ -49,8 +49,8 @@
    '("p b" . projectile-switch-to-buffer)
    '("p t" . projectile-run-vterm)
    '("p k" . projectile-kill-buffers)
-   '("p SPC" . consult-projectile)
-   '("r p" . projectile-replace)
+   '("p v" . consult-projectile)
+   '("p r" . projectile-replace)
 
    ;; Window bindings
    '("w v" . split-window-right)
@@ -63,6 +63,11 @@
    '("b l" . (lambda () (interactive) (switch-to-buffer nil)))
    '("i" . ibuffer)
    '("b S" . my/save-all-buffers)
+
+   ;; Eglot
+   '("l f" . eglot-format)
+   '("l e n" . flymake-goto-next-error)    ;; next diagnostic
+   '("l e p" . flymake-goto-prev-error)    ;; prev diagnostic
 
    ;; Use SPC (0-9) for digit arguments.
    '("1" . meow-digit-argument)
@@ -102,7 +107,7 @@
    '("b" . meow-back-word)
    '("B" . meow-back-symbol)
    '("c" . meow-change)
-   '("d" . meow-delete)
+   '("d" . my/meow-delete-or-kill)
    '("M-d" . my/kill-char)
    '("D" . meow-backward-delete)
    '("f" . meow-next-word)
@@ -218,6 +223,13 @@
   (if (and (boundp 'mc/num-cursors) (> mc/num-cursors 1))
       (mc/keyboard-quit)
     (meow-cancel-selection)))
+
+(defun my/meow-delete-or-kill ()
+  "Kill selection if active, otherwise delete char after point."
+  (interactive)
+  (if (use-region-p)
+      (kill-region (region-beginning) (region-end))
+    (meow-delete)))
 
 (defun my/kill-char ()
   "Kills a character adding it to killring, like x in vim"
