@@ -14,6 +14,8 @@
                                        `(lambda (c)
                                           (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -123,6 +125,12 @@
 
 (require 'org-tempo)
 
+;; Magit
+(use-package magit
+  :ensure t)
+(use-package transient
+  :ensure t)
+
 ;; Projectile
 (use-package projectile
   :ensure t
@@ -202,6 +210,7 @@ INTERACTIVE is non-nil if called interactively."
          (html-mode . eglot-ensure)
          (css-mode . eglot-ensure)
          (zig-mode . eglot-ensure)
+         (web-mode . eglot-ensure)
          (cmake-mode . eglot-ensure))
   :config
   (add-to-list 'eglot-server-programs

@@ -19,7 +19,7 @@
   '(";" . meow-reverse)
   '("[" . meow-beginning-of-thing)
   '("]" . meow-end-of-thing)
-  
+
   ;; Yank
   '("y" . meow-clipboard-save)
   '("g" . meow-cancel-selection)
@@ -35,7 +35,11 @@
 
    ;; Vterm
    '("t t" . vterm)
-   
+
+   ;; Magit
+   '("l g" . magit-status)
+   '("l d" . magit-diff)
+
    ;; Projects
    '("SPC" . projectile-find-file)
    '("." . projectile-find-file)
@@ -47,7 +51,7 @@
    '("p k" . projectile-kill-buffers)
    '("p SPC" . consult-projectile)
    '("r p" . projectile-replace)
-   
+
    ;; Window bindings
    '("w v" . split-window-right)
    '("w s" . split-window-below)
@@ -59,7 +63,7 @@
    '("b l" . (lambda () (interactive) (switch-to-buffer nil)))
    '("i" . ibuffer)
    '("b S" . my/save-all-buffers)
-   
+
    ;; Use SPC (0-9) for digit arguments.
    '("1" . meow-digit-argument)
    '("2" . meow-digit-argument)
@@ -73,7 +77,7 @@
    '("0" . meow-digit-argument)
    '("/" . meow-keypad-describe-key)
    '("?" . meow-cheatsheet))
-  
+
   (meow-normal-define-key
    '("0" . meow-expand-0)
    '("9" . meow-expand-9)
