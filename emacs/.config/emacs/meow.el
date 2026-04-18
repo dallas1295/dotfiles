@@ -19,21 +19,17 @@
   '(";" . meow-reverse)
   '("[" . meow-beginning-of-thing)
   '("]" . meow-end-of-thing)
+  
   ;; Yank
   '("y" . meow-clipboard-save)
   '("g" . meow-cancel-selection)
 
-
-  ;; '("C-S-c". mc/mark-previous-like-this)
-
   (meow-leader-define-key
    ;; Files and Consult
-   '("SPC" . find-file)
    '("/" . consult-ripgrep)
    '("f r" . consult-recent-file)
    '("f d" . dired)
    '("f f" .  dired-jump)
-   '("r p" . project-query-replace-regexp)
    '("r g" . consult-ripgrep)
    '("r q" . query-replace)
 
@@ -41,9 +37,15 @@
    '("t t" . vterm)
    
    ;; Projects
-   '("." . project-find-file)
-   '("p s" . project-search)
-   '("p p" . project-switch-project)
+   '("SPC" . projectile-find-file)
+   '("p p" . projectile-switch-project)
+   '("p l" . projectile-grep)
+   '("p d" . projectile-dired)
+   '("p b" . projectile-switch-to-buffer)
+   '("p t" . projectile-run-vterm)
+   '("p k" . projectile-kill-buffers)
+   '("p SPC" . consult-projectile)
+   '("r p" . projectile-replace)
    
    ;; Window bindings
    '("w v" . split-window-right)

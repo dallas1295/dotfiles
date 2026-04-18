@@ -123,6 +123,17 @@
 
 (require 'org-tempo)
 
+;; Projectile
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :config
+  (setq projectile-project-search-path '("~/projects"))
+  (setq projectile-enable-caching t))
+(use-package consult-projectile
+  :ensure t)
+
 ;; Multiple Cursors
 (use-package multiple-cursors
   :ensure t
