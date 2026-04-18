@@ -28,7 +28,7 @@
 
   (meow-leader-define-key
    ;; Files and Consult
-   '("." . find-file)
+   '("SPC" . find-file)
    '("/" . consult-ripgrep)
    '("f r" . consult-recent-file)
    '("f d" . dired)
@@ -37,9 +37,13 @@
    '("r g" . consult-ripgrep)
    '("r q" . query-replace)
 
+   ;; Vterm
+   '("t t" . vterm)
    
    ;; Projects
-   '("SPC" . project-find-file)
+   '("." . project-find-file)
+   '("p s" . project-search)
+   '("p p" . project-switch-project)
    
    ;; Window bindings
    '("w v" . split-window-right)
@@ -125,7 +129,15 @@
    '("C" . my/mc-add-cursor-below)
    '("M-C" . my/mc-delete-cursor)
    '("~" . my/change-caps)
-   '("<escape>" . ignore)))
+   '("<escape>" . ignore)
+   (global-unset-key (kbd "C-h"))
+   (global-unset-key (kbd "C-j"))
+   (global-unset-key (kbd "C-k"))
+   (global-unset-key (kbd "C-l"))
+   '("C-h" . windmove-left)
+   '("C-j" . windmove-down)
+   '("C-k" . windmove-up)
+   '("C-l" . windmove-right)))
 
 
 (setq meow-mode-state-list

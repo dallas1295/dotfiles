@@ -1,2 +1,3 @@
 ;;; -*- lisp-data -*-
-(("/home/dallas/projects/c_course/") ("/home/dallas/dotfiles/"))
+(("/home/dallas/dotfiles/") ("/home/dallas/projects/irust/")
+ ("/home/dallas/projects/c_course/"))

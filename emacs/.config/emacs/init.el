@@ -24,6 +24,7 @@
 (delete-selection-mode 1)
 (electric-indent-mode 1)
 (electric-pair-mode 1)
+(windmove-mode 1)
 (which-key-mode 1)
 
 (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 135)
@@ -44,27 +45,29 @@
 (setq dired-listing-switches "-alh")
 (setq dired-mouse-drag-files t)
 
+;; Keybinds
 (load "~/.config/emacs/meow.el")
 
-(use-package modus-themes
+;; Themes
+(use-package kanagawa-themes
   :ensure t
-  :demand t
   :config
-  (setq modus-themes-mixed-fonts t
-        modus-themes-variable-pitch-ui t
-        modus-themes-italic-constructs t
-        modus-themes-bold-constructs t
-        modus-themes-completions '((t . (bold)))
-        modus-themes-prompts '(bold)
-        modus-themes-headings
-        '((agenda-structure . (variable-pitch light 2.2))
-          (agenda-date . (variable-pitch regular 1.3))
-          (t . (regular 1.15))))
-  (setq modus-themes-common-palette-overrides
-        modus-themes-preset-overrides-faint)
-  (modus-themes-load-theme 'modus-vivendi))
+  (load-theme 'kanagawa-dragon t))
 
-(setq org-return-follows-link t)
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-icon nil)
+  (setq doom-modeline-buffer-file-name-style 'truncate-nil))
+
+;; vterm
+(use-package vterm
+  :ensure t)
+
+;; Helpful Extensions
+(use-package diminish
+  :ensure t)
 
 (use-package vertico
   :ensure t
@@ -88,6 +91,39 @@
   :ensure t
   :commands sudo-edit)
 
+(use-package rainbow-delimiters
+  :ensure t
+  :hook ((emacs-lisp-mode . rainbow-delimiters-mode)
+         (clojure-mode . rainbow-delimiters-mode)))
+
+(use-package rainbow-mode
+  :diminish
+  :ensure t
+  :hook (org-mode prog-mode))
+
+(use-package toc-org
+  :ensure t
+  :hook (org-mode . toc-org-enable))
+
+(use-package org-bullets
+  :ensure t
+  :hook (org-mode . org-bullets-mode))
+
+(setq org-return-follows-link t)
+(add-hook 'org-mode-hook 'org-indent-mode)
+
+(custom-set-faces
+ '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.6))))
+ '(org-level-3 ((t (:inherit outline-3 :height 1.5))))
+ '(org-level-4 ((t (:inherit outline-4 :height 1.4))))
+ '(org-level-5 ((t (:inherit outline-5 :height 1.3))))
+ '(org-level-6 ((t (:inherit outline-5 :height 1.2))))
+ '(org-level-7 ((t (:inherit outline-5 :height 1.1)))))
+
+(require 'org-tempo)
+
+;; Multiple Cursors
 (use-package multiple-cursors
   :ensure t
   :config
@@ -97,6 +133,7 @@
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
+;; Highlights
 (use-package hl-todo
   :ensure t
   :hook ((org-mode . hl-todo-mode)
@@ -111,36 +148,8 @@
           ("NOTE"       success bold)
           ("DEPRECATED" font-lock-doc-face bold))))
 
-(use-package rainbow-delimiters
-  :ensure t
-  :hook ((emacs-lisp-mode . rainbow-delimiters-mode)
-         (clojure-mode . rainbow-delimiters-mode)))
 
-(use-package rainbow-mode
-  :ensure t
-  :hook (org-mode prog-mode))
-
-(use-package toc-org
-  :ensure t
-  :hook (org-mode . toc-org-enable))
-
-(use-package org-bullets
-  :ensure t
-  :hook (org-mode . org-bullets-mode))
-
-(add-hook 'org-mode-hook 'org-indent-mode)
-
-(custom-set-faces
- '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
- '(org-level-2 ((t (:inherit outline-2 :height 1.6))))
- '(org-level-3 ((t (:inherit outline-3 :height 1.5))))
- '(org-level-4 ((t (:inherit outline-4 :height 1.4))))
- '(org-level-5 ((t (:inherit outline-5 :height 1.3))))
- '(org-level-6 ((t (:inherit outline-5 :height 1.2))))
- '(org-level-7 ((t (:inherit outline-5 :height 1.1)))))
-
-(require 'org-tempo)
-
+;; Coding stuff
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
              (local-set-key (kbd "C-c C-j")
@@ -173,6 +182,7 @@ INTERACTIVE is non-nil if called interactively."
 
 (use-package eglot
   :ensure nil
+  :diminish
   :hook ((rust-mode . eglot-ensure)
          (go-mode . eglot-ensure)
          (typescript-mode . eglot-ensure)
@@ -210,6 +220,7 @@ INTERACTIVE is non-nil if called interactively."
 
 (use-package apheleia
   :ensure t
+  :diminish
   :hook (prog-mode . apheleia-mode)
   :config
   (setf (alist-get 'go-mode apheleia-mode-alist) 'goimports))

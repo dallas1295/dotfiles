@@ -122,6 +122,7 @@ spawn-at-startup "kanshi"
 
 spawn-at-startup "ghostty"
 spawn-at-startup "hiddify"
+spawn-at-startup "emacs"
 
 window-rule {
     match app-id="ghostty" at-startup=true
@@ -142,8 +143,8 @@ hotkey-overlay {
     skip-at-startup
 }
 
-// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-screenshot-path null
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+// screenshot-path null
 
 animations {
     off
