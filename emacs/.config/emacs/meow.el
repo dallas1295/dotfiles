@@ -38,6 +38,7 @@
    
    ;; Projects
    '("SPC" . projectile-find-file)
+   '("." . projectile-find-file)
    '("p p" . projectile-switch-project)
    '("p l" . projectile-grep)
    '("p d" . projectile-dired)
@@ -56,7 +57,6 @@
    '("," . consult-buffer)
    '("b d" . (lambda () (interactive) (kill-buffer (current-buffer))))
    '("b l" . (lambda () (interactive) (switch-to-buffer nil)))
-   '("b b" . switch-to-buffer)
    '("i" . ibuffer)
    '("b S" . my/save-all-buffers)
    
