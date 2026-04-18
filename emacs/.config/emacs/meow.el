@@ -65,9 +65,15 @@
    '("b S" . my/save-all-buffers)
 
    ;; Eglot
-   '("l f" . eglot-format)
-   '("l e n" . flymake-goto-next-error)    ;; next diagnostic
-   '("l e p" . flymake-goto-prev-error)    ;; prev diagnostic
+   '("d f" . eglot-format)
+   '("d e n" . flymake-goto-next-error)    ;; next diagnostic
+   '("d e p" . flymake-goto-prev-error)    ;; prev diagnostic
+   '("d s" . consult-imenu)
+   '("d S" . consult-imenu-multi)
+   '("d a" . eglot-code-actions)
+   '("d i" . eglot-find-implentation)
+   '("d r" . xref-find-references)
+   '("d d" . xref-find-definitions)
 
    ;; Use SPC (0-9) for digit arguments.
    '("1" . meow-digit-argument)
