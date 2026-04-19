@@ -3,30 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        eval-buffer
-        meow-back-word
-        meow-change
-        meow-insert
-        meow-insert-exit
-        meow-keypad
-        meow-left
         meow-next
         meow-prev
-        meow-right
-        meow-undo
-        meow-undo-in-selection
-        my/cancel
         my/mc-add-cursor-below
-        my/mc-add-cursor-next-line
-        my/mc-add-cursor-prev-line
         my/mc-delete-cursor
-        my/mc-delete-or-add-cursor-above
-        my/mc-line-down
-        undefined
+        my/meow-delete-or-kill
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        ignore
-        meow-save
         ))

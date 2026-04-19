@@ -1,5 +1,8 @@
-(setq package-enable-at-startup nil)
+(setq default-frame-alist
+      '((background-color . "#181816")
+        (foreground-color . "#c5c9c5")))
 
+(setq package-enable-at-startup nil)
 (defvar elpaca-installer-version 0.12)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
