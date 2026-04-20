@@ -1,0 +1,231 @@
+#+TITLE: FrankenCachyOS Setup Guide
+#+AUTHOR: dallas
+#+DATE: 2026-04-20
+#+toc
+* ToC :toc:
+- [[#overview][Overview]]
+- [[#step-1-install-arch][Step 1: Install Arch]]
+- [[#step-2-add-cachyos-repos][Step 2: Add CachyOS Repos]]
+- [[#step-3-mirror-management][Step 3: Mirror Management]]
+  - [[#option-a-reflector--hardcoded-cachyos-simpler][Option A: reflector + hardcoded CachyOS (simpler)]]
+  - [[#option-b-rate-mirrors-for-both-flexible][Option B: rate-mirrors for both (flexible)]]
+- [[#step-4-install-cachyos-kernel][Step 4: Install CachyOS Kernel]]
+- [[#step-5-configure-grub][Step 5: Configure GRUB]]
+  - [[#setting-a-default-kernel][Setting a Default Kernel]]
+  - [[#swapping-kernels][Swapping Kernels]]
+- [[#step-6-chaotic-aur][Step 6: Chaotic AUR]]
+  - [[#installation][Installation]]
+  - [[#notes][Notes]]
+- [[#summary-of-config-files][Summary of Config Files]]
+
+* Overview
+
+Clean Arch Linux install with CachyOS repos and kernel bolted on top.
+Full control over the system, with CachyOS performance optimizations where wanted.
+
+* Step 1: Install Arch
+
+Standard Arch install. Nothing special here.
+Use =archinstall= or go manual, doesn't matter.
+
+* Step 2: Add CachyOS Repos
+
+Edit =/etc/pacman.conf= and add at the bottom:
+
+#+BEGIN_SRC conf
+[cachyos]
+Include = /etc/pacman.d/cachyos-mirrorlist
+#+END_SRC
+
+Then create =/etc/pacman.d/cachyos-mirrorlist=:
+
+#+BEGIN_SRC conf
+## CachyOS Repository Mirrorlist
+Server = https://mirror.cachyos.org/repo/$arch/$repo
+#+END_SRC
+
+Then sync:
+
+#+BEGIN_SRC bash
+sudo pacman -Sy
+#+END_SRC
+
+* Step 3: Mirror Management
+
+Two options:
+
+** Option A: reflector + hardcoded CachyOS (simpler)
+
+Use reflector for Arch, static URL for CachyOS:
+
+#+BEGIN_SRC bash
+sudo pacman -S reflector
+#+END_SRC
+
+*** Configuring the reflector service
+
+The systemd service runs on a timer and auto-updates your mirrorlist.
+Edit =/etc/xdg/reflector/reflector.conf=:
+
+#+BEGIN_SRC conf
+--save /etc/pacman.d/mirrorlist
+--country "Hong Kong,China"
+--score 15
+--sort score
+--protocol https
+#+END_SRC
+
+Score is a combination of mirror completion rate and download speed, not just raw speed.
+It's generally the best metric for finding reliable fast mirrors.
+
+Enable and start the timer:
+
+#+BEGIN_SRC bash
+sudo systemctl enable reflector.timer
+sudo systemctl start reflector.timer
+#+END_SRC
+
+The timer runs weekly by default. You can also run it manually:
+
+#+BEGIN_SRC bash
+sudo systemctl start reflector.service
+#+END_SRC
+
+CachyOS has one official mirror, no ranking needed.
+
+** Option B: rate-mirrors for both (flexible)
+
+#+BEGIN_SRC bash
+sudo pacman -S rate-mirrors
+rate-mirrors arch | sudo tee /etc/pacman.d/mirrorlist
+rate-mirrors cachyos | sudo tee /etc/pacman.d/cachyos-mirrorlist
+#+END_SRC
+
+Can be set up as a systemd timer or pacman hook to auto-run.
+
+*** reflector vs rate-mirrors
+
+| Feature        | reflector              | rate-mirrors                     |
+|----------------+------------------------+----------------------------------|
+| Arch mirrors   | Yes                    | Yes                              |
+| Other repos    | No                     | Yes (CachyOS, Manjaro, etc.)     |
+| Speed          | Slower                 | Faster (written in Rust)         |
+| Maintained by  | Arch team              | Community                        |
+
+Pick one or the other, not both.
+
+* Step 4: Install CachyOS Kernel
+
+#+BEGIN_SRC bash
+sudo pacman -S linux-cachyos linux-cachyos-headers
+#+END_SRC
+
+No need to build anything. Pre-built from their repos.
+
+Available variants:
+- =linux-cachyos= (default, BORE scheduler)
+- =linux-cachyos-hardened= (hardened security)
+- =linux-cachyos-lto= (link-time optimization)
+- =linux-cachyos-rt= (real-time)
+
+Stock Arch kernel stays installed alongside it. Both coexist with no conflicts.
+
+* Step 5: Configure GRUB
+
+After installing the CachyOS kernel, regenerate GRUB config:
+
+#+BEGIN_SRC bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+#+END_SRC
+
+GRUB will auto-detect both kernels and create entries for each.
+
+** Setting a Default Kernel
+
+Find the exact menu entry names:
+
+#+BEGIN_SRC bash
+sudo grep menuentry /boot/grub/grub.cfg | cut -d "'" -f2
+#+END_SRC
+
+Set the default in =/etc/default/grub=:
+
+#+BEGIN_SRC conf
+GRUB_DEFAULT="Advanced options for Arch Linux>Arch Linux, with Linux linux-cachyos"
+#+END_SRC
+
+Use the exact substring that matches your desired kernel entry.
+
+Then regenerate:
+
+#+BEGIN_SRC bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+#+END_SRC
+
+Alternative: use =GRUB_DEFAULT=saved= and =grub-set-default=:
+
+#+BEGIN_SRC conf
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+#+END_SRC
+
+Then:
+
+#+BEGIN_SRC bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo grub-set-default 0
+#+END_SRC
+
+With =GRUB_SAVEDEFAULT=true=, GRUB remembers whichever kernel you last booted into.
+
+** Swapping Kernels
+
+Both kernels stay installed side by side. At boot, pick whichever you want from the GRUB menu.
+No bugs, no conflicts. If one breaks, boot into the other.
+
+* Step 6: Chaotic AUR
+
+Chaotic AUR is a pre-built binary repository for AUR packages.
+Saves compiling from source for popular packages.
+
+Website: [[https://aur.chaotic.cx][aur.chaotic.cx]]
+
+** Installation
+
+#+BEGIN_SRC bash
+sudo pacman-key --recv-key FBA220DFC880C036
+sudo pacman-key --lsign-key FBA220DFC880C036
+sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+#+END_SRC
+
+Add to =/etc/pacman.conf=:
+
+#+BEGIN_SRC conf
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist
+#+END_SRC
+
+Then sync:
+
+#+BEGIN_SRC bash
+sudo pacman -Sy
+#+END_SRC
+
+** Notes
+
+- Not affiliated with Arch or CachyOS, community maintained
+- Packages are pre-built so faster than AUR but less auditable
+- Good for things like google-chrome, discord, etc.
+- Can conflict with CachyOS repos if both provide the same package — prioritize by repo order in pacman.conf
+
+* Summary of Config Files
+
+| File                          | Purpose                         |
+|-------------------------------+---------------------------------|
+| /etc/pacman.conf              | Repo definitions                |
+| /etc/pacman.d/mirrorlist      | Arch mirrors                    |
+| /etc/pacman.d/cachyos-mirrorlist | CachyOS mirrors              |
+| /etc/pacman.d/chaotic-mirrorlist | Chaotic AUR mirrors          |
+| /etc/default/grub             | GRUB config (default kernel)    |
+| /boot/grub/grub.cfg           | Generated GRUB config           |

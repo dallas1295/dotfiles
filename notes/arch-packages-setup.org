@@ -1,0 +1,481 @@
+#+TITLE: Arch Linux Package Setup
+#+AUTHOR: dallas
+#+DATE: 2026-04-20
+#+toc
+
+* ToC :toc:
+- [[#base-system][Base System]]
+  - [[#add-multilib][Add multilib]]
+- [[#pc-tuning--mirror-management][PC Tuning & Mirror Management]]
+  - [[#reflector-service-hkchina-mirrors-score-sorted-15-entries][Reflector Service (HK/China mirrors, score-sorted, 15 entries)]]
+- [[#bootloader][Bootloader]]
+- [[#display-manager][Display Manager]]
+- [[#graphics-amd][Graphics (AMD)]]
+- [[#sound][Sound]]
+- [[#bluetooth][Bluetooth]]
+- [[#window-manager---niri][Window Manager - Niri]]
+  - [[#also-have-hyprland-installed-alongside][Also have Hyprland installed alongside:]]
+- [[#file-manager][File Manager]]
+- [[#terminal--shell][Terminal & Shell]]
+- [[#cli-tools][CLI Tools]]
+- [[#development][Development]]
+  - [[#languages][Languages]]
+  - [[#language-servers][Language Servers]]
+  - [[#dev-tools][Dev Tools]]
+- [[#gaming][Gaming]]
+- [[#fonts][Fonts]]
+- [[#internet--browsers][Internet & Browsers]]
+- [[#office--media][Office & Media]]
+- [[#security--passwords][Security & Passwords]]
+- [[#printing][Printing]]
+- [[#disk--filesystem-tools][Disk & Filesystem Tools]]
+- [[#system-utilities][System Utilities]]
+- [[#cachyos-frankensetup-optional][CachyOS FrankenSetup (Optional)]]
+- [[#service-checklist][Service Checklist]]
+
+* Base System
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  base \
+  base-devel \
+  linux \
+  linux-firmware \
+  amd-ucode \
+  git \
+  networkmanager \
+  unzip
+
+sudo systemctl enable --now NetworkManager.service
+#+END_SRC
+
+Install AUR helper:
+
+#+BEGIN_SRC bash
+sudo pacman -S paru
+#+END_SRC
+
+** Add multilib
+
+Edit =/etc/pacman.conf= and uncomment the multilib lines.
+
+* PC Tuning & Mirror Management
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  reflector \
+  reflector-simple \
+  upower \
+  auto-cpufreq \
+  fwupd
+#+END_SRC
+
+#+BEGIN_SRC bash
+sudo systemctl enable --now auto-cpufreq
+sudo systemctl enable --now upower.service
+#+END_SRC
+
+** Reflector Service (HK/China mirrors, score-sorted, 15 entries)
+
+Edit =/etc/xdg/reflector/reflector.conf=:
+
+#+BEGIN_SRC conf
+--save /etc/pacman.d/mirrorlist
+--country "Hong Kong,China"
+--score 15
+--sort score
+--protocol https
+#+END_SRC
+
+#+BEGIN_SRC bash
+sudo systemctl enable reflector.timer
+sudo systemctl start reflector.timer
+#+END_SRC
+
+Can also run =reflector-simple= anytime for interactive mirror management.
+
+* Bootloader
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  grub \
+  efibootmgr \
+  os-prober
+#+END_SRC
+
+If using secure boot:
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  sbctl \
+  efitools
+#+END_SRC
+
+* Display Manager
+
+#+BEGIN_SRC bash
+sudo pacman -S ly
+sudo systemctl enable ly@tty2.service
+#+END_SRC
+
+* Graphics (AMD)
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  mesa \
+  lib32-mesa \
+  vulkan-radeon \
+  lib32-vulkan-radeon \
+  mesa-utils \
+  opencl-mesa \
+  lib32-opencl-mesa \
+  xf86-video-amdgpu
+#+END_SRC
+
+* Sound
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  pipewire \
+  pipewire-alsa \
+  pipewire-pulse \
+  pipewire-jack \
+  wireplumber \
+  alsa-utils \
+  alsa-plugins \
+  alsa-firmware \
+  pavucontrol \
+  pamixer \
+  playerctl \
+  sof-firmware
+#+END_SRC
+
+* Bluetooth
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  bluez \
+  bluez-utils \
+  bluez-libs \
+  bluez-obex \
+  bluez-hid2hci \
+  blueman \
+  bluetui
+
+sudo systemctl enable --now bluetooth.service
+#+END_SRC
+
+* Window Manager - Niri
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  niri \
+  xwayland-satellite
+#+END_SRC
+
+Niri is a scrollable-tiling Wayland compositor.
+Config lives in =~/.config/niri/config.kdl=.
+
+Additional WM components:
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  waybar \
+  swaync \
+  swaybg \
+  swayidle \
+  swaylock \
+  rofi \
+  rofi-power-menu \
+  cliphist \
+  brightnessctl \
+  wl-clipboard \
+  kanshi \
+  nwg-look \
+  xdg-desktop-portal \
+  xdg-desktop-portal-gtk
+#+END_SRC
+
+** Also have Hyprland installed alongside:
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  hyprland \
+  hyprlock \
+  hypridle \
+  hyprpaper \
+  hyprpolkitagent \
+  xdg-desktop-portal-hyprland
+#+END_SRC
+
+* File Manager
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  thunar \
+  thunar-volman \
+  yazi
+#+END_SRC
+
+* Terminal & Shell
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  ghostty \
+  alacritty \
+  zsh \
+  zsh-completions \
+  zsh-syntax-highlighting \
+  starship
+#+END_SRC
+
+* CLI Tools
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  stow \
+  tmux \
+  lazygit \
+  fd \
+  fzf \
+  entr \
+  zoxide \
+  lsd \
+  ripgrep \
+  tree \
+  pv \
+  duf \
+  glances \
+  fastfetch \
+  btop \
+  rsync \
+  wget \
+  micro \
+  vim \
+  nano
+#+END_SRC
+
+* Development
+
+** Languages
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  python \
+  python-pip \
+  go \
+  zig \
+  rustup \
+  npm \
+  deno \
+  luarocks \
+  jdk-openjdk \
+  jdk17-openjdk \
+  elixir
+#+END_SRC
+
+** Language Servers
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  lua-language-server \
+  typescript \
+  typescript-language-server \
+  prettier \
+  gopls \
+  gofumpt \
+  rust-analyzer \
+  yaml-language-server \
+  zls \
+  marksman \
+  svelte-language-server \
+  tailwindcss-language-server \
+  vscode-css-languageserver \
+  vscode-html-languageserver \
+  vscode-json-languageserver \
+  pyright \
+  stylua \
+  tree-sitter-cli
+#+END_SRC
+
+** Dev Tools
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  emacs \
+  neovim \
+  helix \
+  github-cli \
+  docker \
+  docker-compose \
+  meld \
+  exercism-bin
+#+END_SRC
+
+Clone TPM for tmux:
+
+#+BEGIN_SRC bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+#+END_SRC
+
+* Gaming
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  steam \
+  gamemode \
+  mangohud \
+  gamescope \
+  heroic-games-launcher-bin \
+  prismlauncher
+#+END_SRC
+
+* Fonts
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  noto-fonts \
+  noto-fonts-cjk \
+  noto-fonts-extra \
+  noto-fonts-emoji \
+  ttf-jetbrains-mono-nerd \
+  ttf-meslo-nerd \
+  otf-nebula-sans \
+  ttf-dejavu \
+  ttf-liberation \
+  ttf-opensans \
+  ttf-bitstream-vera \
+  cantarell-fonts \
+  awesome-terminal-fonts \
+  ttf-nerd-fonts-symbols \
+  ttf-nerd-fonts-symbols-common
+#+END_SRC
+
+* Internet & Browsers
+
+#+BEGIN_SRC bash
+paru -S zen-browser-bin
+sudo pacman -S \
+  firefox \
+  mullvad-vpn \
+  hiddify \
+  networkmanager-openvpn
+#+END_SRC
+
+Set Zen as default browser:
+
+#+BEGIN_SRC bash
+xdg-settings set default-web-browser zen-browser.desktop
+xdg-mime default zen-browser.desktop x-scheme-handler/http
+xdg-mime default zen-browser.desktop x-scheme-handler/https
+#+END_SRC
+
+* Office & Media
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  libreoffice-fresh \
+  spotify \
+  obsidian \
+  gimp \
+  vlc-plugins-all \
+  syncthing
+#+END_SRC
+
+Set GIMP as default image editor:
+
+#+BEGIN_SRC bash
+xdg-mime default gimp.desktop image/jpeg
+xdg-mime default gimp.desktop image/jpg
+xdg-mime default gimp.desktop image/gif
+xdg-mime default gimp.desktop image/bmp
+xdg-mime default gimp.desktop image/webp
+xdg-mime default gimp.desktop image/png
+#+END_SRC
+
+* Security & Passwords
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  bitwarden \
+  flatpak \
+  openssh \
+  keyd
+
+flatpak install -y flathub com.bitwarden.desktop
+#+END_SRC
+
+* Printing
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  cups \
+  cups-filters \
+  cups-pdf \
+  system-config-printer \
+  gutenprint \
+  foomatic-db \
+  foomatic-db-engine \
+  foomatic-db-ppds \
+  foomatic-db-gutenprint-ppds \
+  foomatic-db-nonfree \
+  foomatic-db-nonfree-ppds \
+  hplip
+
+sudo systemctl enable --now cups.service
+#+END_SRC
+
+* Disk & Filesystem Tools
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  btrfs-progs \
+  btrfs-assistant \
+  snapper \
+  ntfs-3g \
+  exfatprogs \
+  dosfstools \
+  e2fsprogs \
+  f2fs-tools \
+  jfsutils \
+  xfsprogs \
+  cryptsetup \
+  device-mapper \
+  lvm2 \
+  dmraid \
+  gparted \
+  fsarchiver
+#+END_SRC
+
+* System Utilities
+
+#+BEGIN_SRC bash
+sudo pacman -S \
+  pacman-contrib \
+  pkgfile \
+  plocate \
+  rebuild-detector \
+  smartmontools \
+  hdparm \
+  usbutils \
+  dmidecode \
+  hwinfo
+#+END_SRC
+
+* CachyOS FrankenSetup (Optional)
+
+See =~/Documents/frankencachyos-setup.org= for full details on adding CachyOS kernel and repos to Arch.
+
+* Service Checklist
+
+| Service                    | Enable Command                                    |
+|----------------------------+---------------------------------------------------|
+| NetworkManager             | sudo systemctl enable --now NetworkManager.service |
+| Bluetooth                  | sudo systemctl enable --now bluetooth.service      |
+| auto-cpufreq               | sudo systemctl enable --now auto-cpufreq           |
+| upower                     | sudo systemctl enable --now upower.service         |
+| reflector.timer            | sudo systemctl enable reflector.timer              |
+| ly (display manager)       | sudo systemctl enable ly@tty2.service              |
+| cups (printing)            | sudo systemctl enable --now cups.service           |
+| syncthing (user)           | systemctl --user enable --now syncthing.service    |
+| keyd                       | sudo systemctl enable --now keyd.service           |
