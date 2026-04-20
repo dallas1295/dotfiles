@@ -4,6 +4,7 @@
 #+toc
 * ToC :toc:
 - [[#overview][Overview]]
+- [[#moving-ssh-keys][Moving SSH keys]]
 - [[#step-1-install-arch][Step 1: Install Arch]]
 - [[#step-2-add-cachyos-repos][Step 2: Add CachyOS Repos]]
 - [[#step-3-mirror-management][Step 3: Mirror Management]]
@@ -22,6 +23,17 @@
 
 Clean Arch Linux install with CachyOS repos and kernel bolted on top.
 Full control over the system, with CachyOS performance optimizations where wanted.
+
+
+* Moving SSH keys
+
+#+BEGIN_SRC bash
+cp -r ~/media/external/ssh-backup ~/.ssh
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
+#+END_SRC
+Same key works with Codeberg, no regeneration needed.
+
 
 * Step 1: Install Arch
 
