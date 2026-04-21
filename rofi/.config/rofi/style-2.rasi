@@ -38,7 +38,7 @@ configuration {
     active-background:           var(active);
     active-foreground:           var(background);
     selected-normal-background:  var(selected);
-    selected-normal-foreground:  #e0def4;
+    selected-normal-foreground:  #ffffff;
     selected-urgent-background:  var(active);
     selected-urgent-foreground:  var(background);
     selected-active-background:  var(urgent);
@@ -68,7 +68,7 @@ window {
     padding:                     0px;
     border:                      1px solid;
     border-radius:               0px;
-    border-color:                #b4d4cf;
+    border-color:                #646464;
     cursor:                      "default";
     background-color:            @background-colour;
 }
@@ -209,7 +209,7 @@ element-icon {
 element-text {
     background-color:            transparent;
     text-color:                  inherit;
-    highlight:                   #fabd2f;
+    highlight:                   #d0bc00;
     cursor:                      inherit;
     vertical-align:              0.5;
     horizontal-align:            0.0;

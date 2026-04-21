@@ -3,10 +3,15 @@ local add = function(s)
 end
 
 -- Theme
+-- add({
+-- 	{ src = "https://github.com/vague2k/vague.nvim", name = "vague" },
+-- })
+-- vim.cmd("colorscheme vague")
+
 add({
-	{ src = "https://github.com/vague2k/vague.nvim", name = "vague" },
+	{ src = "https://github.com/miikanissi/modus-themes.nvim", name = "modus" },
 })
-vim.cmd("colorscheme vague")
+vim.cmd("colorscheme modus")
 
 -- Mini (QoL)
 add({

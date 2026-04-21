@@ -135,7 +135,7 @@ sudo pacman -S \
 * Sound
 
 #+BEGIN_SRC bash
-sudo pacman -S \
+sudo pacman -S --needed \
   pipewire \
   pipewire-alsa \
   pipewire-pulse \
@@ -179,7 +179,7 @@ Config lives in =~/.config/niri/config.kdl=.
 Additional WM components:
 
 #+BEGIN_SRC bash
-sudo pacman -S \
+sudo pacman -S --needed \
   waybar \
   swaync \
   swaybg \
@@ -220,7 +220,7 @@ sudo pacman -S \
 * Terminal & Shell
 
 #+BEGIN_SRC bash
-sudo pacman -S \
+sudo pacman -S --needed \
   ghostty \
   alacritty \
   zsh \
@@ -243,16 +243,9 @@ sudo pacman -S \
   lsd \
   ripgrep \
   tree \
-  pv \
-  duf \
-  glances \
   fastfetch \
   btop \
   rsync \
-  wget \
-  micro \
-  vim \
-  nano
 #+END_SRC
 
 * Development
@@ -260,7 +253,7 @@ sudo pacman -S \
 ** Languages
 
 #+BEGIN_SRC bash
-sudo pacman -S \
+sudo pacman -S --needed \
   python \
   python-pip \
   go \
@@ -301,7 +294,7 @@ sudo pacman -S \
 ** Dev Tools
 
 #+BEGIN_SRC bash
-sudo pacman -S \
+sudo pacman -S --needed \
   emacs \
   neovim \
   helix \
@@ -309,7 +302,6 @@ sudo pacman -S \
   docker \
   docker-compose \
   meld \
-  exercism-bin
 #+END_SRC
 
 Clone TPM for tmux:
@@ -333,7 +325,7 @@ sudo pacman -S \
 * Fonts
 
 #+BEGIN_SRC bash
-sudo pacman -S \
+yay -S --needed\
   noto-fonts \
   noto-fonts-cjk \
   noto-fonts-extra \
@@ -341,12 +333,6 @@ sudo pacman -S \
   ttf-jetbrains-mono-nerd \
   ttf-meslo-nerd \
   otf-nebula-sans \
-  ttf-dejavu \
-  ttf-liberation \
-  ttf-opensans \
-  ttf-bitstream-vera \
-  cantarell-fonts \
-  awesome-terminal-fonts \
   ttf-nerd-fonts-symbols \
   ttf-nerd-fonts-symbols-common
 #+END_SRC
@@ -354,12 +340,12 @@ sudo pacman -S \
 * Internet & Browsers
 
 #+BEGIN_SRC bash
-paru -S zen-browser-bin
-sudo pacman -S \
+zen-browser-bin
+yay -S --needed \
+  zen-browser-bin \
   firefox \
   mullvad-vpn \
   hiddify \
-  networkmanager-openvpn
 #+END_SRC
 
 Set Zen as default browser:

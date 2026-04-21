@@ -23,10 +23,10 @@ window#waybar {
 .modules-center,
 .modules-left,
 .modules-right {
-  background: #1c1c24;
+  background: #1e1e1e;
   border-radius: 10px;
   margin: 0px 0;
-  border: 1px solid #1f2335;
+  border: 1px solid #646464;
 }
 
 #clock,
@@ -71,7 +71,7 @@ window#waybar {
 #power-profiles-daemon:hover,
 #language:hover,
 #mpd:hover {
-  background: #24283b;
+  background: #303030;
 }
 
 #workspaces button {
@@ -90,18 +90,18 @@ window#waybar {
 
 #workspaces button.focused,
 #workspaces button.active {
-  background: #24283b;
-  color: #7aa2f7;
+  background: #303030;
+  color: #caa6df;
 }
 
 #workspaces button.urgent {
-  background: #f7768e;
+  background: #ff5f59;
   color: #ffffff;
 }
 
 #workspaces button:hover {
-  background: #24283b;
-  color: #bb9af7;
+  background: #303030;
+  color: #feacd0;
   box-shadow: none;
 }
 
@@ -116,6 +116,6 @@ window#waybar {
 }
 
 #battery.critical {
-  background: #f7768e;
+  background: #ff5f59;
   color: #ffffff;
 }

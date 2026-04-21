@@ -66,7 +66,8 @@ output "HDMI-A-1" {
 layout {
     gaps 3
 
-    center-focused-column "never"
+    //center-focused-column "never"
+    center-focused-column "on-overflow"
 
     preset-column-widths {
         proportion 0.3
@@ -93,7 +94,7 @@ layout {
     border {
         on
         width 2
-        active-color "#b4d4cf"
+        active-color "#82b0ec"
         inactive-color "#1a1b26"
 
         urgent-color "#d8647e"
@@ -147,7 +148,8 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // screenshot-path null
 
 animations {
-    off
+    // off
+    on
 }
 
 
@@ -201,6 +203,13 @@ window-rule {
 window-rule {
   match app-id="firefox"
   open-maximized true
+  open-on-workspace "2"
+}
+
+// Open VPN on workspace 2
+window-rule {
+  match app-id="v2rayN"
+  default-column-width { proportion 0.5; }
   open-on-workspace "2"
 }
 
