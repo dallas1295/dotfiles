@@ -1,38 +1,38 @@
 font=JetBrains Mono Nerd Font
 
-image=~/dotfiles/backgrounds/.wallpapers/darkish.jpg
+image=/home/dallas/.wallpapers/arch-wavy.png
 scaling=fill
 
 indicator-radius=100
 indicator-thickness=10
 
-inside-color=1c1c24
-inside-clear-color=1c1c24
-inside-ver-color=9bb4bc
-inside-wrong-color=d8647e
-inside-caps-lock-color=1c1c24
+inside-color=1d2021
+inside-clear-color=1d2021
+inside-ver-color=458588
+inside-wrong-color=fb4934
+inside-caps-lock-color=fabd2f
 
-ring-color=bb9dbd
-ring-clear-color=bb9dbd
-ring-ver-color=9bb4bc
-ring-wrong-color=d8647e
-ring-caps-lock-color=f3be7c
+ring-color=928374
+ring-clear-color=928374
+ring-ver-color=8ec07c
+ring-wrong-color=fb4934
+ring-caps-lock-color=fabd2f
 
-key-hl-color=e8b589
-bs-hl-color=d8647e
+key-hl-color=fabd2f
+bs-hl-color=fb4934
 
 separator-color=00000000
 
-line-color=6e94b2
-line-clear-color=6e94b2
-line-ver-color=9bb4bc
-line-wrong-color=d8647e
-line-caps-lock-color=f3be7c
+line-color=928374
+line-clear-color=928374
+line-ver-color=8ec07c
+line-wrong-color=fb4934
+line-caps-lock-color=fabd2f
 
-text-color=cdcdcd
-text-clear-color=cdcdcd
-text-ver-color=cdcdcd
-text-wrong-color=cdcdcd
-text-caps-lock-color=cdcdcd
+text-color=ebdbb2
+text-clear-color=ebdbb2
+text-ver-color=ebdbb2
+text-wrong-color=ebdbb2
+text-caps-lock-color=ebdbb2
 
 show-failed-attempts=true

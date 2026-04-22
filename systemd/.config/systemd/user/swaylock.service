@@ -1,0 +1,10 @@
+[Unit]
+Description=Screen locker
+Before=sleep.target
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/swaylock -s fill -i /home/dallas/.wallpapers/arch-wavy.png
+
+[Install]
+WantedBy=default.target

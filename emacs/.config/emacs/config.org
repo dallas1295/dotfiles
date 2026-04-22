@@ -245,7 +245,7 @@ This is quite a custom set of binds very Helix-like in my usecase but also somet
      '("o l" . (lambda () (interactive) (find-file "~/org/life.org")))
      '("o g" . (lambda () (interactive) (find-file "~/org/coding.org")))
 
-     ;; Eglot
+     ;; eglot
      '("d f" . eglot-format)
      '("d e n" . flymake-goto-next-error)    ;; next diagnostic
      '("d e p" . flymake-goto-prev-error)    ;; prev diagnostic
@@ -514,8 +514,8 @@ this is a toggle so I don't have to faff around everytime.
 ** PDF Reader
 #+begin_src emacs-lisp
   (use-package pdf-tools
-  :elpaca t
-  :config
+    :elpaca t
+    :config
   (pdf-tools-install)
   (setq auto-mode-alist (cons '("\\.pdf\\'" . pdf-view-mode) auto-mode-alist)))
 #+end_src
@@ -756,57 +756,59 @@ NOTE: This also has global binds
 This configuration also checks for Deno projects vs normal node-based projects for lsp.
 
 #+begin_src emacs-lisp
-  (defun my-detect-ts-lsp-server (&optional interactive)
-  "Detect TypeScript/JavaScript project type and return appropriate LSP server.
-INTERACTIVE is non-nil if called interactively."
-  (let ((file (buffer-file-name)))
-    (unless file (user-error "Not visiting a file"))
-    (let ((deno-root (locate-dominating-file file "deno.json")))
-      (if deno-root
-          (list "deno" "lsp")
-        (let ((node-root (locate-dominating-file file "package.json")))
-          (if node-root
-              (list "typescript-language-server" "--stdio")
-            (list "typescript-language-server" "--stdio")))))))
+        (defun my-detect-ts-lsp-server (&optional interactive)
+        "Detect TypeScript/JavaScript project type and return appropriate LSP server.
+      INTERACTIVE is non-nil if called interactively."
+        (let ((file (buffer-file-name)))
+          (unless file (user-error "Not visiting a file"))
+          (let ((deno-root (locate-dominating-file file "deno.json")))
+            (if deno-root
+                (list "deno" "lsp")
+              (let ((node-root (locate-dominating-file file "package.json")))
+                (if node-root
+                    (list "typescript-language-server" "--stdio")
+                  (list "typescript-language-server" "--stdio")))))))
 
-(use-package eglot
-  :ensure nil
-  :diminish
-  :hook ((rust-mode . eglot-ensure)
-         (go-mode . eglot-ensure)
-         (typescript-mode . eglot-ensure)
-         (tsx-mode . eglot-ensure)
-         (lua-mode . eglot-ensure)
-         (html-mode . eglot-ensure)
-         (css-mode . eglot-ensure)
-         (zig-mode . eglot-ensure)
-         (web-mode . eglot-ensure)
-         (cmake-mode . eglot-ensure))
-  :config
-  (add-to-list 'eglot-server-programs
-               '((typescript-mode typescript-ts-mode
-                                  javascript-mode js-mode js-ts-mode)
-                 . my-detect-ts-lsp-server)))
+      (use-package eglot
+        :ensure nil
+        :diminish
+        :hook ((rust-mode . eglot-ensure)
+               (go-mode . eglot-ensure)
+               (typescript-mode . eglot-ensure)
+               (tsx-mode . eglot-ensure)
+               (lua-mode . eglot-ensure)
+               (html-mode . eglot-ensure)
+               (css-mode . eglot-ensure)
+               (zig-mode . eglot-ensure)
+               (web-mode . eglot-ensure)
+               (cmake-mode . eglot-ensure)
+               (elixir-mode . eglot-ensure))
+        :config
+        (add-to-list 'eglot-server-programs
+                     '((typescript-mode typescript-ts-mode
+                                        javascript-mode js-mode js-ts-mode)
+                       . my-detect-ts-lsp-server)))
 
-(setq flymake-show-diagnostics-at-end-of-line 'long)
-(setq-default eglot-workspace-configuration
-              '((:gopls . ((staticcheck . t)))))
+      (setq flymake-show-diagnostics-at-end-of-line 'long)
+      (setq-default eglot-workspace-configuration
+                    '((:gopls . ((staticcheck . t)))))
 
-(setq treesit-auto-install 'prompt)
+      (setq treesit-auto-install 'prompt)
 
-(use-package zig-mode :ensure t :mode "\\.zig\\'")
-(use-package racket-mode :ensure t :mode "\\.rkt\\'")
-(use-package svelte-mode :ensure t :mode "\\.svelte\\'")
-(use-package go-mode :ensure t :mode "\\.go\\'")
-(use-package rust-mode :ensure t :mode "\\.rs\\'")
-(use-package yaml-mode :ensure t :mode "\\.ya?ml\\'")
-(use-package toml-mode :ensure t :mode "\\.toml\\'")
-(use-package typescript-mode :ensure t :mode "\\.ts\\'")
-(use-package dockerfile-mode :ensure t :mode "Dockerfile\\'")
-(use-package lua-mode :ensure t :mode "\\.lua\\'")
-(use-package markdown-mode :ensure t :mode "\\.md\\'")
-(use-package php-mode :ensure t :mode "\\.php\\'")
-(use-package cmake-mode :ensure t :mode "CMakeLists\\.txt\\'\\|\\.cmake\\'")
+      (use-package elixir-mode :ensure t :mode "\\.[exs]?\\|\\.heex\\|\\.leex\\'" )
+      (use-package zig-mode :ensure t :mode "\\.zig\\'")
+      (use-package racket-mode :ensure t :mode "\\.rkt\\'")
+      (use-package svelte-mode :ensure t :mode "\\.svelte\\'")
+      (use-package go-mode :ensure t :mode "\\.go\\'")
+      (use-package rust-mode :ensure t :mode "\\.rs\\'")
+      (use-package yaml-mode :ensure t :mode "\\.ya?ml\\'")
+      (use-package toml-mode :ensure t :mode "\\.toml\\'")
+      (use-package typescript-mode :ensure t :mode "\\.ts\\'")
+      (use-package dockerfile-mode :ensure t :mode "Dockerfile\\'")
+      (use-package lua-mode :ensure t :mode "\\.lua\\'")
+      (use-package markdown-mode :ensure t :mode "\\.md\\'")
+      (use-package php-mode :ensure t :mode "\\.php\\'")
+      (use-package cmake-mode :ensure t :mode "CMakeLists\\.txt\\'\\|\\.cmake\\'")
 #+end_src
 
 ** Formatting
