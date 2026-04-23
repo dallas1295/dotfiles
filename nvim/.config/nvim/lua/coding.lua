@@ -48,27 +48,27 @@ vim.keymap.set({ "n", "v" }, "<leader>mp", function()
 	})
 end, { desc = "Format file" })
 
--- -- Completions
--- add({
--- 	{ src = "https://github.com/saghen/blink.cmp", name = "blink", version = vim.version.range("1.*") },
--- })
---
--- require("blink.cmp").setup({
--- 	snippets = { preset = "mini_snippets" },
--- 	keymap = {
--- 		preset = "super-tab",
--- 	},
--- 	appearance = {
--- 		nerd_font_variant = "mono",
--- 	},
--- 	completion = { documentation = { auto_show = true } },
--- 	sources = {
--- 		default = {
--- 			"lsp",
--- 			"path",
--- 			"snippets",
--- 			"buffer",
--- 		},
--- 	},
--- 	fuzzy = { implementation = "lua" },
--- })
+-- Completions
+add({
+	{ src = "https://github.com/saghen/blink.cmp", name = "blink", version = vim.version.range("1.*") },
+})
+
+require("blink.cmp").setup({
+	snippets = { preset = "mini_snippets" },
+	keymap = {
+		preset = "super-tab",
+	},
+	appearance = {
+		nerd_font_variant = "mono",
+	},
+	completion = { documentation = { auto_show = true } },
+	sources = {
+		default = {
+			"lsp",
+			"path",
+			"snippets",
+			"buffer",
+		},
+	},
+	fuzzy = { implementation = "lua" },
+})
