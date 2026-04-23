@@ -3,7 +3,6 @@ local add = function(s)
 end
 
 -- Theme
-
 add({
 	{ src = "https://github.com/ellisonleao/gruvbox.nvim", name = "gruvbox" },
 })
@@ -41,15 +40,23 @@ vim.cmd("colorscheme gruvbox")
 -- })
 -- vim.cmd("colorscheme modus")
 
+-- Buffer List
+add({
+	{ src = "https://github.com/EL-MASTOR/bufferlist.nvim", name = "bufferlist" },
+	"https://github.com/nvim-tree/nvim-web-devicons",
+})
+
+require("bufferlist").setup({})
+
 -- Mini (QoL)
 add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini.nvim" },
 })
 require("mini.snippets").setup()
+require("mini.completion").setup({})
 require("mini.surround").setup()
 require("mini.ai")
 require("mini.pairs").setup()
-require("mini.tabline").setup()
 require("mini.trailspace").setup()
 require("mini.diff").setup({
 	style = "number",
@@ -87,11 +94,6 @@ add({
 require("oil").setup({
 	default_file_explorer = true,
 })
--- Render Markdown (for notes)
-add({
-	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
-})
-require("render-markdown").setup({}) -- only mandatory if you want to set custom options
 
 -- Fzf
 add({

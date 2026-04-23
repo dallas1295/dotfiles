@@ -141,6 +141,9 @@ keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Close current buffer" })
 -- Oil
 keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
 
+-- Bufferlist
+keymap.set("n", "<leader>bb", ":BufferList<CR>")
+
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
 keymap.set("n", "<S-l>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
