@@ -7,9 +7,12 @@
         meow-insert
         meow-insert-exit
         meow-left
+        meow-next
+        meow-prev
         meow-reverse
         my/cancel
         my/mc-add-cursor-below
+        my/mc-delete-cursor
         my/meow-delete-or-kill
         org-delete-char
         org-self-insert-command

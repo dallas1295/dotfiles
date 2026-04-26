@@ -1,8 +1,8 @@
 local add = function(s)
-	vim.pack.add(s, { confirm = false })
+  vim.pack.add(s, {confirm = false,})
 end
 
--- Theme
+-- Themes
 add({
 	{ src = "https://github.com/ellisonleao/gruvbox.nvim", name = "gruvbox" },
 })
@@ -23,11 +23,12 @@ require("gruvbox").setup({
 	invert_signs = false,
 	invert_tabline = false,
 	inverse = true, -- invert background for search, diffs, statuslines and errors
-	contrast = "", -- can be "hard", "soft" or empty string
+	contrast = "hard", -- can be "hard", "soft" or empty string
 	palette_overrides = {},
 	overrides = {},
 	dim_inactive = false,
-	transparent_mode = true,
+	-- transparent_mode = true,
+	transparent_mode = false,
 })
 vim.cmd("colorscheme gruvbox")
 
@@ -36,7 +37,8 @@ vim.cmd("colorscheme gruvbox")
 -- })
 -- vim.cmd("colorscheme vague")
 
--- Mini (QoL)
+
+-- Mini
 add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini.nvim" },
 })
@@ -78,7 +80,7 @@ hipatterns.setup({
 	},
 })
 
--- File Manager
+-- Oil
 add({
 	{ src = "https://github.com/stevearc/oil.nvim", name = "oil" },
 })
@@ -113,3 +115,5 @@ require("fzf-lua").setup({
 		rg_opts = [[--color=never --hidden --glob '!.git' --glob '!.vscode' --glob '!.svelte-kit' --glob '!node_modules' --glob '!.next' --glob '!dist' --glob '!build' --glob '!target/**' -e]],
 	},
 })
+
+

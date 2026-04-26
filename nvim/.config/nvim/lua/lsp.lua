@@ -9,6 +9,7 @@ vim.lsp.enable({
 	"tailwindcss",
 	"ts_ls",
 	"rust-analyzer",
+	"elixirls",
 })
 
 -- Diagnostic formatting: prefix with LSP name

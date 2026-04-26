@@ -15,7 +15,7 @@ tabbar tabbox {
   padding: 0;
   min-height: 10px;
   background-color: #1c1c24;
-  font-family: JetBrains Mono Nerd Font;
+  font-family: MesloLGS Nerd Font Mono;
 }
 
 tabbar tabbox tab {

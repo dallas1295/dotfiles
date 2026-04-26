@@ -1,6 +1,5 @@
 * {
-  font-family:
-    "Jetbrains Mono Nerd Font", "JetbrainsMonoNL Nerd Font", "Noto Color Emoji";
+  font-family: "MesloLGS Nerd Font Mono", "Noto Color Emoji";
   font-size: 11.5px;
   transition: background-color 0.3s ease-out;
 }
@@ -10,8 +9,7 @@ window#waybar {
   /* background: #252530;  */
   /* background: #000000; */
   color: #ffffff;
-  font-family:
-    "Jetbrains Mono Nerd Font", "JetbrainsMonoNL Nerd Font", "Noto Color Emoji";
+  font-family: "MesloLGS Nerd Font Mono", "Noto Color Emoji";
   /* padding: 0 0px; */
   /* border-radius: 10px; */
   margin: 4px 1px;
@@ -75,7 +73,7 @@ window#waybar {
 }
 
 #workspaces button {
-  font-family: "Jetbrains Mono Nerd Font", feather;
+  font-family: "MesloLGS Nerd Font Mono", feather;
   font-weight: 900;
   font-size: 14px;
   color: #ffffff;
