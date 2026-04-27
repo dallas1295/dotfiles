@@ -251,16 +251,16 @@ This is quite a custom set of binds very Helix-like in my usecase but also somet
      '("?" . meow-cheatsheet))
 
     (meow-normal-define-key
-     '("0" . meow-expand-0)
-     '("9" . meow-expand-9)
-     '("8" . meow-expand-8)
-     '("7" . meow-expand-7)
-     '("6" . meow-expand-6)
-     '("5" . meow-expand-5)
-     '("4" . meow-expand-4)
-     '("3" . meow-expand-3)
-     '("2" . meow-expand-2)
-     '("1" . meow-expand-1)
+     '("0" . my/meow-digit-or-expand)
+     '("9" . my/meow-digit-or-expand)
+     '("8" . my/meow-digit-or-expand)
+     '("7" . my/meow-digit-or-expand)
+     '("6" . my/meow-digit-or-expand)
+     '("5" . my/meow-digit-or-expand)
+     '("4" . my/meow-digit-or-expand)
+     '("3" . my/meow-digit-or-expand)
+     '("2" . my/meow-digit-or-expand)
+     '("1" . my/meow-digit-or-expand)
      '("M-f" . forward-word)
      '("M-b" . backward-word)
      '("M-l" . next-buffer)
@@ -271,7 +271,7 @@ This is quite a custom set of binds very Helix-like in my usecase but also somet
      '("." . meow-bounds-of-thing)
      '("a" . meow-append)
      '("A" . (lambda () (interactive) (end-of-line) (meow-insert)))
-     '("b" . meow-back-word)
+     '("b" . my/meow-back-word)
      '("B" . meow-back-symbol)
      '("c" . meow-change)
      '("d" . my/meow-delete-or-kill)
@@ -372,6 +372,20 @@ This is quite a custom set of binds very Helix-like in my usecase but also somet
             (?l . line)
             (?d . defun))))
 
+  (defun my/meow-back-word (n)
+  "Like meow-back-word but includes the character under cursor."
+  (interactive "p")
+  (let ((orig (point)))
+    (meow-back-word n)
+    (when (and meow-use-cursor-position-hack
+               (region-active-p)
+               (not (= (point) orig)))
+      (let ((new-mark (min (1+ orig) (point-max))))
+        (set-mark new-mark)
+        (when meow--selection
+          (setf (cadr meow--selection) new-mark))))))
+
+
   (defun my/increment-number-at-point (&optional arg)
     (interactive "p")
     (let ((num (number-at-point)))
@@ -455,6 +469,17 @@ This is quite a custom set of binds very Helix-like in my usecase but also somet
           (insert (if (eq char (downcase char))
                       (upcase char)
                      (downcase char)))))))
+
+(defun my/meow-digit-or-expand ()
+  "With selection, expand to Nth match. Otherwise, accumulate digit prefix."
+  (interactive)
+  (if (region-active-p)
+      (let* ((key (event-basic-type (aref (this-command-keys-vector)
+                                          (1- (length (this-command-keys-vector))))))
+             (digit (- key ?0))
+             (cmd (intern (format "meow-expand-%d" digit))))
+        (call-interactively cmd))
+    (call-interactively 'digit-argument)))
 
 #+end_src
 
@@ -725,58 +750,71 @@ NOTE: This also has global binds
 This configuration also checks for Deno projects vs normal node-based projects for lsp.
 
 #+begin_src emacs-lisp
-        (defun my-detect-ts-lsp-server (&optional interactive)
-        "Detect TypeScript/JavaScript project type and return appropriate LSP server.
-      INTERACTIVE is non-nil if called interactively."
-        (let ((file (buffer-file-name)))
-          (unless file (user-error "Not visiting a file"))
-          (let ((deno-root (locate-dominating-file file "deno.json")))
-            (if deno-root
-                (list "deno" "lsp")
-              (let ((node-root (locate-dominating-file file "package.json")))
-                (if node-root
-                    (list "typescript-language-server" "--stdio")
-                  (list "typescript-language-server" "--stdio")))))))
+    (defun my-detect-ts-lsp-server (&optional interactive)
+    "Detect TypeScript/JavaScript project type and return appropriate LSP server.
+  INTERACTIVE is non-nil if called interactively."
+    (let ((file (buffer-file-name)))
+      (unless file (user-error "Not visiting a file"))
+      (let ((deno-root (locate-dominating-file file "deno.json")))
+        (if deno-root
+            (list "deno" "lsp")
+          (let ((node-root (locate-dominating-file file "package.json")))
+            (if node-root
+                (list "typescript-language-server" "--stdio")
+              (list "typescript-language-server" "--stdio")))))))
 
-      (use-package eglot
-        :ensure nil
-        :diminish
-        :hook ((rust-mode . eglot-ensure)
-               (go-mode . eglot-ensure)
-               (typescript-mode . eglot-ensure)
-               (tsx-mode . eglot-ensure)
-               (lua-mode . eglot-ensure)
-               (html-mode . eglot-ensure)
-               (css-mode . eglot-ensure)
-               (zig-mode . eglot-ensure)
-               (web-mode . eglot-ensure)
-               (cmake-mode . eglot-ensure)
-               (elixir-mode . eglot-ensure))
-        :config
-        (add-to-list 'eglot-server-programs
-                     '((typescript-mode typescript-ts-mode
-                                        javascript-mode js-mode js-ts-mode)
-                       . my-detect-ts-lsp-server)))
+  (use-package eglot
+    :ensure nil
+    :diminish
+    :hook ((rust-mode . eglot-ensure)
+           (go-mode . eglot-ensure)
+           (typescript-mode . eglot-ensure)
+           (tsx-mode . eglot-ensure)
+           (lua-mode . eglot-ensure)
+           (html-mode . eglot-ensure)
+           (css-mode . eglot-ensure)
+           (zig-mode . eglot-ensure)
+           (web-mode . eglot-ensure)
+           (cmake-mode . eglot-ensure)
+           (elixir-mode . eglot-ensure))
+    :config
+    (defun my/toggle-diagnostics-for-meow (_state)
+     "Toggle flymake end-of-line diagnostics based on meow state."
+     (setq flymake-show-diagnostics-at-end-of-line
+         (when (meow-normal-mode-p) 'long))
+     (when flymake-mode
+         (flymake-mode -1)
+         (flymake-mode 1)))
+    (add-hook 'meow-switch-state-hook #'my/toggle-diagnostics-for-meow)
+    (add-hook 'eglot--managed-mode-hook (lambda () (inlay-hints-mode -1)))
+    (add-to-list 'eglot-server-programs
+                 '((typescript-mode typescript-ts-mode
+                                    javascript-mode js-mode js-ts-mode)
+                   . my-detect-ts-lsp-server)))
 
-      (setq flymake-show-diagnostics-at-end-of-line 'long)
-      (setq-default eglot-workspace-configuration
-                    '((:gopls . ((staticcheck . t)))))
 
-      (setq treesit-auto-install 'prompt)
 
-      (use-package zig-mode :ensure t :mode "\\.zig\\'")
-      (use-package racket-mode :ensure t :mode "\\.rkt\\'")
-      (use-package svelte-mode :ensure t :mode "\\.svelte\\'")
-      (use-package go-mode :ensure t :mode "\\.go\\'")
-      (use-package rust-mode :ensure t :mode "\\.rs\\'")
-      (use-package yaml-mode :ensure t :mode "\\.ya?ml\\'")
-      (use-package toml-mode :ensure t :mode "\\.toml\\'")
-      (use-package typescript-mode :ensure t :mode "\\.ts\\'")
-      (use-package dockerfile-mode :ensure t :mode "Dockerfile\\'")
-      (use-package lua-mode :ensure t :mode "\\.lua\\'")
-      (use-package markdown-mode :ensure t :mode "\\.md\\'")
-      (use-package php-mode :ensure t :mode "\\.php\\'")
-      (use-package cmake-mode :ensure t :mode "CMakeLists\\.txt\\'\\|\\.cmake\\'")
+
+  (setq-default eglot-workspace-configuration
+                '((:gopls . ((staticcheck . t)))))
+
+
+
+  (setq treesit-auto-install 'prompt)
+
+  (use-package zig-mode :ensure t :mode "\\.zig\\'")
+  (use-package racket-mode :ensure t :mode "\\.rkt\\'")
+  (use-package svelte-mode :ensure t :mode "\\.svelte\\'")
+  (use-package go-mode :ensure t :mode "\\.go\\'")
+  (use-package rust-mode :ensure t :mode "\\.rs\\'")
+  (use-package yaml-mode :ensure t :mode "\\.ya?ml\\'")
+  (use-package toml-mode :ensure t :mode "\\.toml\\'")
+  (use-package typescript-mode :ensure t :mode "\\.ts\\'")
+  (use-package dockerfile-mode :ensure t :mode "Dockerfile\\'")
+  (use-package lua-mode :ensure t :mode "\\.lua\\'")
+  (use-package markdown-mode :ensure t :mode "\\.md\\'")
+  (use-package php-mode :ensure t :mode "\\.php\\'")
+  (use-package cmake-mode :ensure t :mode "CMakeLists\\.txt\\'\\|\\.cmake\\'")
 #+end_src
 
 ** Formatting

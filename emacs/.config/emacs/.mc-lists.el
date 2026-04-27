@@ -8,8 +8,11 @@
         meow-insert-exit
         meow-left
         meow-next
+        meow-next-symbol
         meow-prev
         meow-reverse
+        meow-right
+        meow-undo
         my/cancel
         my/mc-add-cursor-below
         my/mc-delete-cursor
@@ -21,4 +24,5 @@
 
 (setq mc/cmds-to-run-once
       '(
+        meow-append
         ))
