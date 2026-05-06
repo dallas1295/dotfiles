@@ -12,7 +12,6 @@ fi
 #       fi
 # fi
 
-
 bindkey -v
 
 # zsh-completions
@@ -37,7 +36,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-alias vi='nvim'
+# alias vi='nvim'
 alias notes='cd ~/vaults/stuff/ && nvim'
 alias hx='helix'
 alias em='emacs'
@@ -65,4 +64,37 @@ export PATH="/home/dallas/.opencode/bin:$PATH"
 
 clear
 fastfetch
-export BROWSER=zen-browser
+export BROWSER=brave-browser
+
+llm() {
+  local models_dir="$HOME/models"
+  local port="${LLM_PORT:-18881}"
+  local ctx="${LLM_CTX:-16384}"
+
+  if [ "$1" = "stop" ]; then
+    pkill -f "llama-server" 2>/dev/null && echo "Server stopped." || echo "No server running."
+    return 0
+  fi
+
+  if [ -z "$1" ]; then
+    echo "Usage: llm <model>"
+    echo "       llm stop"
+    echo ""
+    echo "Available models:"
+    ls "$models_dir"/*.gguf 2>/dev/null | while read f; do
+      echo "  $(basename "$f" .gguf)"
+    done
+    return 1
+  fi
+
+  local model="$models_dir/$1.gguf"
+  if [ ! -f "$model" ]; then
+    echo "Model not found: $model"
+    return 1
+  fi
+
+  pkill -f "llama-server" 2>/dev/null
+  sleep 1
+  echo "Starting $1 on port $port (ctx=$ctx)..."
+  llama-server -m "$model" -c "$ctx" -np 1 --port "$port"
+}

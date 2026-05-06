@@ -66,20 +66,21 @@ output "HDMI-A-1" {
 layout {
     gaps 3
 
+    always-center-single-column
     //center-focused-column "never"
-    center-focused-column "on-overflow"
+    center-focused-column "never"
 
     preset-column-widths {
-        proportion 0.3
+        proportion 0.3333
         proportion 0.5
-        proportion 0.7
+        proportion 0.6667
 
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
     }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.75; }
+    default-column-width { proportion 0.85; }
 
     focus-ring {
         // Uncomment this line to disable the focus ring.
@@ -93,11 +94,11 @@ layout {
 
     border {
         on
-        width 2
-        active-color "#83a598"
-        inactive-color "#282828 "
+        width 1
+        active-color "#8992a7"
+        inactive-color "#1a1b26"
 
-        urgent-color "#d3869b "
+        urgent-color "#d3869b"
 
     }
 
@@ -122,6 +123,9 @@ layout {
 spawn-at-startup "kanshi"
 spawn-at-startup "ghostty"
 spawn-at-startup "hiddify"
+spawn-at-startup "mullvad-vpn"
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
 
 window-rule {
     match app-id="ghostty" at-startup=true
@@ -133,7 +137,7 @@ window-rule {
   default-column-width { proportion 0.3; }
 }
 
-spawn-at-startup "steam"
+// spawn-at-startup "steam"
 spawn-at-startup "swaync"
 spawn-sh-at-startup "syncthing"
 
@@ -190,9 +194,17 @@ window-rule {
   open-on-workspace "2"
 }
 
+// Open Helium on workspace 2
 window-rule {
   match app-id="helium"
-  open-maximized true
+  default-column-width { proportion 0.75; }
+  open-on-workspace "2"
+}
+
+// Open Brave on workspace 2
+window-rule {
+  match app-id="brave-browser"
+  default-column-width { proportion 0.85; }
   open-on-workspace "2"
 }
 
@@ -244,20 +256,20 @@ window-rule {
 // Open Spotify on workspace 4
 window-rule {
   match app-id="spotify"
-  open-on-workspace "4"
+  open-on-workspace "5"
 }
 
 // Open Bitwarden on workspace 4
 window-rule {
   match app-id="Bitwarden"
-  open-on-workspace "4"
+  open-on-workspace "5"
   block-out-from "screen-capture"
 }
 
 // Open Mullvad VPN on workspace 4
 window-rule {
   match app-id="Mullvad VPN"
-  open-on-workspace "4"
+  open-on-workspace "5"
 }
 
 // Open Steam on workspace 3
@@ -295,11 +307,13 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "zen-browser"; }
+    Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "brave"; }
+    // Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "zen-browser"; }
     // Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "helium-browser"; }
     Mod+M hotkey-overlay-title="Open Spotify" { spawn "spotify"; }
     Mod+E hotkey-overlay-title="Open Yazi" { spawn "ghostty" "-e" "yazi"; }
     Mod+S hotkey-overlay-title="Open Bluetooth" { spawn "ghostty" "-e" "bluetui"; }
+    Mod+I hotkey-overlay-title="Open BTOP" { spawn "ghostty" "-e" "btop";}
     Mod+Space hotkey-overlay-title="Run an Application" { spawn-sh "rofi -show drun"; }
     Alt+Space hotkey-overlay-title="Run an Application" { spawn-sh "rofi -show drun"; }
     Mod+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "swaylock"; }
@@ -307,8 +321,8 @@ binds {
 
     // Mod+Backslash hotkey-overlay-title="Snip Region: Grim/Slurp" { spawn-sh "grim -g \"\$(slurp)\" \"$HOME/Pictures/snip-\$(date +%Y%m%d-%H%M%S).png\""}
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
@@ -317,8 +331,8 @@ binds {
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
 
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
     Mod+O repeat=false { toggle-overview; }
 
@@ -381,8 +395,6 @@ binds {
 
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
     Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
     Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
     Mod+Ctrl+U         { move-column-to-workspace-down; }
@@ -441,8 +453,8 @@ binds {
     Mod+2 { focus-workspace "2"; }
     Mod+3 { focus-workspace "3"; }
     Mod+4 { focus-workspace "4"; }
-    Mod+5 { focus-workspace "5"; }
-    Mod+6 { focus-workspace "6"; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
     Mod+N { focus-workspace-down; }
     Mod+P { focus-workspace-up; }
     Mod+Ctrl+1 { move-column-to-workspace 1; }

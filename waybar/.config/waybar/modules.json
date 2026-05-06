@@ -16,7 +16,9 @@
     "format": "[{layout}] {title}"
   },
   "niri/workspaces": {
-    "format": "{index}"
+    "format": "{index}",
+    "on-click": "activate",
+    "sort-by-id": true
   },
   "pulseaudio": {
     "format": " {icon} {volume}% |",
@@ -88,8 +90,8 @@
     }
   },
   "clock": {
-    "format": "| {:%H:%M:%S | %D }",
-    "interval": 1,
+    "format": "| {:%H:%M | %D }",
+    "interval": 60,
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "tray": {

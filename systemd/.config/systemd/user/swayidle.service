@@ -6,7 +6,7 @@ Type=simple
 ExecStart=/usr/sbin/swayidle -w \
     timeout 300 'brightnessctl -s set 10%' resume 'brightnessctl -r' \
     timeout 420 'swaylock -f' \
-    timeout 600 'swaymsg output "*" power off' resume 'swaymsg output "*" power on' \
+    timeout 600 'niri msg action power-off-monitors' \
     before-sleep 'swaylock -f'
 Restart=on-failure
 TimeoutSec=30

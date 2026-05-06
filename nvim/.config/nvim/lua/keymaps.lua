@@ -29,7 +29,10 @@ local function pack_clean()
 	end
 end
 
-vim.keymap.set("n", "<leader>pc", pack_clean)
+keymap.set("n", "<leader>pc", pack_clean)
+keymap.set("n", "<leader>pl", function()
+	vim.pack.update()
+end)
 -- -- pane navigation
 -- keymap.set("n", "<c-j>", ":wincmd j<CR>")
 -- keymap.set("n", "<c-k>", ":wincmd k<CR>")

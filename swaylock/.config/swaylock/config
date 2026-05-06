@@ -6,33 +6,33 @@ scaling=fill
 indicator-radius=100
 indicator-thickness=10
 
-inside-color=1d2021
-inside-clear-color=1d2021
-inside-ver-color=458588
-inside-wrong-color=fb4934
-inside-caps-lock-color=fabd2f
+inside-color=1F1F28
+inside-clear-color=1F1F28
+inside-ver-color=2A2A37
+inside-wrong-color=1F1F28
+inside-caps-lock-color=1F1F28
 
-ring-color=928374
-ring-clear-color=928374
-ring-ver-color=8ec07c
-ring-wrong-color=fb4934
-ring-caps-lock-color=fabd2f
+ring-color=727169
+ring-clear-color=727169
+ring-ver-color=76956A
+ring-wrong-color=E82424
+ring-caps-lock-color=E6C384
 
-key-hl-color=fabd2f
-bs-hl-color=fb4934
+key-hl-color=E6C384
+bs-hl-color=E82424
 
 separator-color=00000000
 
-line-color=928374
-line-clear-color=928374
-line-ver-color=8ec07c
-line-wrong-color=fb4934
-line-caps-lock-color=fabd2f
+line-color=727169
+line-clear-color=727169
+line-ver-color=76956A
+line-wrong-color=E82424
+line-caps-lock-color=E6C384
 
-text-color=ebdbb2
-text-clear-color=ebdbb2
-text-ver-color=ebdbb2
-text-wrong-color=ebdbb2
-text-caps-lock-color=ebdbb2
+text-color=DCDCDC
+text-clear-color=DCDCDC
+text-ver-color=DCDCDC
+text-wrong-color=DCDCDC
+text-caps-lock-color=DCDCDC
 
 show-failed-attempts=true

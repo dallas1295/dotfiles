@@ -6,6 +6,7 @@
         ignore
         meow-insert
         meow-insert-exit
+        meow-keypad
         meow-left
         meow-next
         meow-next-symbol

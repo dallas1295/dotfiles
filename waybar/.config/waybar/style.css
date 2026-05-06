@@ -8,7 +8,7 @@ window#waybar {
   background: transparent;
   /* background: #252530;  */
   /* background: #000000; */
-  color: #ffffff;
+  color: #cdcdcd;
   font-family: "MesloLGS Nerd Font Mono", "Noto Color Emoji";
   /* padding: 0 0px; */
   /* border-radius: 10px; */
@@ -21,10 +21,10 @@ window#waybar {
 .modules-center,
 .modules-left,
 .modules-right {
-  background: #1d2021;
+  background: #141415;
   border-radius: 10px;
   margin: 0px 0;
-  border: 1px solid #7c6f64;
+  border: 1px solid #555555;
 }
 
 #clock,
@@ -45,7 +45,7 @@ window#waybar {
   padding: 0 3px;
   border-radius: 0;
   margin: 0;
-  color: #ffffff;
+  color: #cdcdcd;
 }
 
 #tray {
@@ -69,14 +69,14 @@ window#waybar {
 #power-profiles-daemon:hover,
 #language:hover,
 #mpd:hover {
-  background: #3c3836;
+  background: #252530;
 }
 
 #workspaces button {
   font-family: "MesloLGS Nerd Font Mono", feather;
   font-weight: 900;
   font-size: 14px;
-  color: #ffffff;
+  color: #cdcdcd;
   border: none;
   border-radius: 8px;
   padding: 3px 6px;
@@ -88,18 +88,18 @@ window#waybar {
 
 #workspaces button.focused,
 #workspaces button.active {
-  background: #3c3836;
-  color: #689d6a;
+  background: #252530;
+  color: #7fa563;
 }
 
 #workspaces button.urgent {
-  background: #fb4934;
-  color: #ffffff;
+  background: #d8647e;
+  color: #cdcdcd;
 }
 
 #workspaces button:hover {
-  background: #3c3836;
-  color: #ffffff;
+  background: #252530;
+  color: #cdcdcd;
   box-shadow: none;
 }
 
@@ -114,6 +114,6 @@ window#waybar {
 }
 
 #battery.critical {
-  background: #fb4934;
-  color: #ffffff;
+  background: #d8647e;
+  color: #cdcdcd;
 }

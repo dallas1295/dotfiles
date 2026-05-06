@@ -45,3 +45,4 @@ btop/.config/btop/btop.log
 .cache/
 */cache/
 node_modules/
+.aider*
