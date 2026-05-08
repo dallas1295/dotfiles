@@ -1,20 +1,11 @@
 {
   "plugins": {
-    "bento": {
-      "rev": "aee8a542bc1839ff1764992ef2aa41c981d0bba4",
-      "src": "https://github.com/serhez/bento.nvim"
-    },
-    "blink": {
-      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
-      "src": "https://github.com/saghen/blink.cmp",
-      "version": "1.0.0 - 2.0.0"
-    },
     "conform": {
       "rev": "dca1a190aa85f9065979ef35802fb77131911106",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fzf-lua": {
-      "rev": "b62213f542dc7a123e1ee9b01e3833d2add59c17",
+      "rev": "17e3507b788699776ba6d2f8dd101ec177f37a96",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "kanagawa": {
@@ -22,7 +13,7 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "mini.nvim": {
-      "rev": "0f339bf5c93f392dc5d2417d47d7b9edc5f96fe8",
+      "rev": "48555f1615f08c6318150aacb52bf7d61a5af798",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-treesitter": {

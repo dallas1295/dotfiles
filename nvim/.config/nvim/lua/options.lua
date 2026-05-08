@@ -4,6 +4,9 @@ vim.cmd("let g:netrw_liststyle = 3")
 vim.cmd(":hi statusline guibg=NONE")
 local opt = vim.opt -- for conciseness
 
+-- completions
+opt.completeopt = "menu,menuone,noselect"
+
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
@@ -29,7 +32,7 @@ opt.conceallevel = 2
 opt.winborder = "rounded"
 opt.scroll = 10
 
--- opt.background = "dark" -- colorschemes that can be light or dark will be made dark
+opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 -- backspace

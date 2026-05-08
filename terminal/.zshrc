@@ -66,6 +66,12 @@ clear
 fastfetch
 export BROWSER=brave-browser
 
+alias ai='llama-server -m ~/models/Opus4.7-Distill-GODsGhost-Codex-4B-Q4_K_M.gguf \
+  -ngl 30 \
+  -t 10 \
+  --ctx-size 128000 \
+  --port 18881'
+
 llm() {
   local models_dir="$HOME/models"
   local port="${LLM_PORT:-18881}"

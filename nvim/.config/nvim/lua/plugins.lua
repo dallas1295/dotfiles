@@ -38,8 +38,12 @@ add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini.nvim" },
 })
 require("mini.snippets").setup()
+require("mini.completion").setup({})
+require("mini.icons").setup()
 require("mini.surround").setup()
+require("mini.ai").setup()
 require("mini.pairs").setup()
+require("mini.statusline").setup()
 require("mini.diff").setup({
 	style = "number",
 })
@@ -84,6 +88,14 @@ add({
 require("fzf-lua").setup({
 	winopts = {
 		split = "belowright new",
+		preview = {
+			hidden = true,
+		},
+	},
+	keymap = {
+		builtin = {
+			["<C-g>"] = "toggle-preview",
+		},
 	},
 	files = {
 		file_ignore_patterns = {
@@ -101,7 +113,15 @@ require("fzf-lua").setup({
 		rg_opts = [[--color=never --files --hidden --glob '!.git' --glob '!.vscode' --glob '!.svelte-kit' --glob '!node_modules' --glob '!.next' --glob '!dist' --glob '!build' --glob '!target/**']],
 	},
 	grep = {
-		rg_opts = [[--color=never --hidden --glob '!.git' --glob '!.vscode' --glob '!.svelte-kit' --glob '!node_modules' --glob '!.next' --glob '!dist' --glob '!build' --glob '!target/**' -e]],
+		rg_opts = [[--hidden --line-number --column --glob '!.git' --glob '!.vscode' --glob '!.svelte-kit' --glob '!node_modules' --glob '!.next' --glob '!dist' --glob '!build' --glob '!target/**']],
+	},
+	buffers = {
+		sort_lastused = true,
+		file_icons = true,
+		fzf_opts = {
+			["--no-header"] = true,
+			["--with-nth"] = "3..",
+		},
 	},
 })
 
@@ -142,6 +162,7 @@ conform.setup({
 		rust = { "rustfmt" },
 		c = { "clang-format" },
 		cpp = { "clang-format" },
+		zig = { "zigfmt" },
 	},
 	format_on_save = {
 		lsp_fallback = true,
@@ -149,61 +170,10 @@ conform.setup({
 		timeout_ms = 1000,
 	},
 })
-vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+vim.keymap.set({ "n", "v" }, "<leader>cf", function()
 	conform.format({
 		lsp_fallback = false,
 		async = false,
 		timeout_ms = 1000,
 	})
 end, { desc = "Format file" })
-
--- Completions
-add({
-	{ src = "https://github.com/saghen/blink.cmp", name = "blink", version = vim.version.range("1.*") },
-})
-
-require("blink.cmp").setup({
-	snippets = { preset = "mini_snippets" },
-	keymap = {
-		preset = "super-tab",
-	},
-	appearance = {
-		nerd_font_variant = "mono",
-	},
-	completion = { documentation = { auto_show = true } },
-	sources = {
-		default = {
-			"lsp",
-			"path",
-			"snippets",
-			"buffer",
-		},
-	},
-	fuzzy = { implementation = "lua" },
-})
-
--- Bento
-add({
-	{ src = "https://github.com/serhez/bento.nvim", name = "bento" },
-})
-
-require("bento").setup({
-	ui = {
-		mode = "floating", -- "floating" | "tabline"
-		floating = {
-			position = "middle-right", -- See position options below
-			offset_x = 0, -- Horizontal offset from position
-			offset_y = 0, -- Vertical offset from position
-			dash_char = "─", -- Character for collapsed dashes
-			border = nil, -- "rounded" | "single" | "double" | etc. (see :h winborder)
-			label_padding = 1, -- Padding around labels
-			minimal_menu = "dashed", -- nil | "dashed" | "filename" | "full"
-			max_rendered_buffers = nil, -- nil (no limit) or number for pagination
-		},
-		tabline = {
-			left_page_symbol = "❮", -- Symbol shown when previous buffers exist
-			right_page_symbol = "❯", -- Symbol shown when more buffers exist
-			separator_symbol = "│", -- Separator between buffer components
-		},
-	},
-})

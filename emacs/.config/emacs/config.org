@@ -787,7 +787,6 @@ This configuration also checks for Deno projects vs normal node-based projects f
          (flymake-mode -1)
          (flymake-mode 1)))
     (add-hook 'meow-switch-state-hook #'my/toggle-diagnostics-for-meow)
-    (add-hook 'eglot--managed-mode-hook (lambda () (inlay-hints-mode -1)))
     (add-to-list 'eglot-server-programs
                  '((typescript-mode typescript-ts-mode
                                     javascript-mode js-mode js-ts-mode)

@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 
 ------------------ General Keymaps -------------------
+
 -- plugin
 local function pack_clean()
 	local active_plugins = {}
@@ -33,17 +34,15 @@ keymap.set("n", "<leader>pc", pack_clean)
 keymap.set("n", "<leader>pl", function()
 	vim.pack.update()
 end)
--- -- pane navigation
--- keymap.set("n", "<c-j>", ":wincmd j<CR>")
--- keymap.set("n", "<c-k>", ":wincmd k<CR>")
--- keymap.set("n", "<c-h>", ":wincmd h<CR>")
--- keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
--- terminal mode navigation
-keymap.set("t", "<c-j>", "<c-\\><c-n><c-w>j")
-keymap.set("t", "<c-k>", "<c-\\><c-n><c-w>k")
-keymap.set("t", "<c-h>", "<c-\\><c-n><c-w>h")
-keymap.set("t", "<c-l>", "<c-\\><c-n><c-w>l")
+-- exit insert mode
+-- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+
+-- pane navigation
+keymap.set("n", "<c-j>", ":wincmd j<CR>")
+keymap.set("n", "<c-k>", ":wincmd k<CR>")
+keymap.set("n", "<c-h>", ":wincmd h<CR>")
+keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
 -- Diagnostics (via fzf-lua)
 keymap.set("n", "<leader>dl", function()
@@ -62,6 +61,14 @@ keymap.set("n", "<leader>dp", function()
 	vim.diagnostic.get_prev()
 end, { desc = "Go to next diagnostic error" })
 
+-- super-tab
+vim.keymap.set("i", "<Tab>", function()
+	if vim.fn.pumvisible() == 1 then
+		return vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
+	end
+	return vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
+end, { expr = true })
+
 -- Fzf-lua
 keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
 keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "recent files" })
@@ -70,9 +77,9 @@ keymap.set("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search wor
 keymap.set("n", "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Search WORD under cursor" })
 keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search highlighted" })
 keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep in root" })
-keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep_resume<cr>", { desc = "Resume live grep in root" })
+keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep resume=true<cr>", { desc = "Resume live grep in root" })
 keymap.set("n", "<leader>fp", "<cmd>FzfLua search_history<cr>", { desc = "Search History" })
-keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
+keymap.set("n", "<leader>i", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
 keymap.set("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>", { desc = "Open quickfix" })
 
 -- LSP symbols and navigation (via fzf-lua)
@@ -105,17 +112,11 @@ keymap.set("n", "<leader>lr", function()
 	end
 	vim.cmd("edit")
 end, { desc = "Restart LSP for current buffer" })
--- exit insert mode
--- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 keymap.set("n", "<leader>on", ":nohl<CR>", { desc = "Clear search highlights" })
 
 keymap.set("n", "<leader>lw", function()
-	if vim.opt.wrap:get() then
-		vim.opt.wrap = false
-	else
-		vim.opt.wrap = true
-	end
+	vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle line wrapping" })
 
 -- Yank/paste to/from system clipboard
@@ -137,15 +138,12 @@ keymap.set("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create an empty buffer"
 keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>bq", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
 
-keymap.set("n", "<leader>bs", "<cmd>w<CR>", { desc = "Close current buffer" })
-keymap.set("n", "<leader>qq", "<cmd>q<CR>", { desc = "Close current buffer" })
-keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>xs", "<cmd>w<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>xc", "<cmd>q<CR>", { desc = "Close Neovim" })
+keymap.set("n", "<leader>xC", "<cmd>q!<CR>", { desc = "Force close Neovim" })
 
 -- Oil
 keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
-
--- Bufferlist
-keymap.set("n", "<leader>bb", ":BufferList<CR>")
 
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
