@@ -3,27 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        ignore
-        meow-insert
-        meow-insert-exit
-        meow-keypad
-        meow-left
-        meow-next
-        meow-next-symbol
-        meow-prev
-        meow-reverse
-        meow-right
-        meow-undo
-        my/cancel
+        beginning-of-buffer
+        keyboard-escape-quit
         my/mc-add-cursor-below
         my/mc-delete-cursor
-        my/meow-delete-or-kill
-        org-delete-char
-        org-self-insert-command
-        undefined
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        meow-append
         ))

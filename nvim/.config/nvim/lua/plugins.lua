@@ -33,6 +33,12 @@ require("kanagawa").setup({
 -- setup must be called before loading
 vim.cmd("colorscheme kanagawa-dragon")
 
+-- add({
+-- 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim", name = "gruber-darker" },
+-- })
+--
+-- vim.cmd("colorscheme gruber-darker")
+
 -- Mini
 add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini.nvim" },

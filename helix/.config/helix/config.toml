@@ -75,9 +75,9 @@ o = ":config-open"
 [keys.normal.space]
 d = ":yank-diagnostic"
 t = "diagnostics_picker"
-f = "buffer_picker"
+i = "buffer_picker"
 F = "no_op"
-space = "file_explorer_in_current_directory"
+space = "file_picker"
 l = "global_search"
 
 [keys.normal.space.b]
