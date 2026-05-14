@@ -81,7 +81,7 @@ layout {
 
     // You can change the default width of the new windows.
     default-column-width { proportion 0.85; }
-    
+
     background-color "transparent"
 
     focus-ring {
@@ -101,6 +101,7 @@ layout {
         inactive-color "#1a1b26"
 
         urgent-color "#d3869b"
+
 
     }
 
@@ -125,7 +126,7 @@ layout {
 spawn-at-startup "kanshi"
 spawn-at-startup "ghostty"
 spawn-at-startup "hiddify"
-spawn-at-startup "/usr/share/applications/open-webui.desktop"
+// spawn-at-startup "/usr/share/applications/open-webui.desktop"
 // spawn-at-startup "qs" "-c" "noctalia-shell"
 // spawn-at-startup "mullvad-vpn"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
@@ -153,8 +154,8 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // screenshot-path null
 
 animations {
-    // off
-    on
+    off
+    // on
 }
 
 
@@ -166,10 +167,10 @@ workspace "3"
 workspace "4"
 
 // Set the overview wallpaper on the backdrop.
-layer-rule {
-  match namespace="^wallpaper$"
-  place-within-backdrop true
-}
+// layer-rule {
+//   match namespace="^wallpaper$"
+//   place-within-backdrop true
+// }
 
 overview {
   workspace-shadow {
@@ -178,6 +179,22 @@ overview {
   // backdrop-color "#000000"
 }
 
+// Set the regular wallpaper on the backdrop.
+layer-rule {
+  match namespace="^noctalia-wallpaper*"
+  place-within-backdrop true
+}
+
+// Optionally, disable the workspace shadows in the overview.
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+}
+
+window-rule {
+  // Clips window contents to the rounded corner boundaries.
+  clip-to-geometry true
+}
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
@@ -252,6 +269,12 @@ window-rule {
   open-on-workspace "3"
 }
 
+window-rule {
+  match app-id="wechat"
+  default-column-width { proportion 0.66; }
+  open-on-workspace "3"
+}
+
 // Open Heroic on workspace 3
 window-rule {
   match app-id="heroic"
@@ -270,37 +293,6 @@ window-rule {
   open-on-workspace "3"
 }
 
-// Open Spotify on workspace 4
-window-rule {
-  match app-id="spotify"
-  open-on-workspace "5"
-}
-
-// Open Bitwarden on workspace 4
-window-rule {
-  match app-id="Bitwarden"
-  open-on-workspace "5"
-  block-out-from "screen-capture"
-}
-
-// Open Mullvad VPN on workspace 4
-window-rule {
-  match app-id="Mullvad VPN"
-  open-on-workspace "5"
-}
-
-// Open Steam on workspace 3
-window-rule {
-  match app-id=r#"steam"# title="^Friends List$"
-  default-column-width { proportion 0.33; }
-  open-on-workspace "3"
-}
-
-window-rule {
-  match app-id="steam"
-  default-column-width { proportion 0.66; }
-  open-on-workspace "3"
-}
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
