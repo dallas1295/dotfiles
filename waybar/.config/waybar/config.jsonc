@@ -5,18 +5,18 @@
   "margin": [0, 10, 0, 10],
   "spacing": 1,
   "modules-left": [
-    "niri/workspaces",
-  ],
-  "modules-center": [
+    "clock",
     "cpu",
     "memory"
   ],
+  "modules-center": [
+    "niri/workspaces",
+  ],
   "modules-right": [
+    "network",
     "pulseaudio",
     "backlight",
-    "network",
     "battery",
-    "clock",
     "tray"
   ],
   "include": [

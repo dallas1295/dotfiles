@@ -1,0 +1,20 @@
+[2m2026-05-14T05:44:49.403016Z[0m [32m INFO[0m [2mniri[0m[2m:[0m starting version 26.04 (8ed0da4)
+[2m2026-05-14T05:44:49.436832Z[0m [34mDEBUG[0m [2mniri_config[0m[2m:[0m loaded config from "/home/dallas/.config/niri/config.kdl"
+libinput error: event7  - BLTP0258:00 093A:0258 Touchpad: kernel bug: clickpad advertising right button. See https://wayland.freedesktop.org/libinput/doc/1.31.1/clickpad-with-right-button.html for details
+[2m2026-05-14T05:44:49.480844Z[0m [33m WARN[0m [2mniri::backend::tty[0m[2m:[0m error getting the render node for the primary GPU; proceeding anyway
+[2m2026-05-14T05:44:49.481031Z[0m [32m INFO[0m [2mniri::backend::tty[0m[2m:[0m using as the render node: "/dev/dri/card0"
+[2m2026-05-14T05:44:49.577877Z[0m [34mDEBUG[0m [2mniri::backend::tty[0m[2m:[0m adding device: 57856 "/dev/dri/card0"
+[2m2026-05-14T05:44:49.577921Z[0m [34mDEBUG[0m [2mniri::backend::tty[0m[2m:[0m this is the primary node
+[2m2026-05-14T05:44:49.635821Z[0m [34mDEBUG[0m [2mniri::backend::tty[0m[2m:[0m failed to initialize renderer, falling back to primary gpu: software EGL renderers are skipped
+[2m2026-05-14T05:44:49.636620Z[0m [33m WARN[0m [2mniri::backend::tty[0m[2m:[0m error adding primary node device, display-only devices may not work: no allocator available for device
+[2m2026-05-14T05:44:49.636884Z[0m [32m INFO[0m [2mniri[0m[2m:[0m listening on Wayland socket: wayland-1
+[2m2026-05-14T05:44:49.636893Z[0m [32m INFO[0m [2mniri[0m[2m:[0m IPC listening on: /run/user/1000/niri.wayland-1.3030.sock
+[2m2026-05-14T05:44:49.646594Z[0m [32m INFO[0m [2mniri[0m[2m:[0m listening on X11 socket: :0
+[2m2026-05-14T05:44:50.302829Z[0m [33m WARN[0m [2mniri::backend::tty[0m[2m:[0m error doing early import: Error::DeviceMissing
+[2m2026-05-14T05:44:50.608047Z[0m [33m WARN[0m [2mniri::backend::tty[0m[2m:[0m error doing early import: Error::DeviceMissing
+[2m2026-05-14T05:44:50.683366Z[0m [33m WARN[0m [2mniri::backend::tty[0m[2m:[0m error doing early import: Error::DeviceMissing
+[2m2026-05-14T05:44:52.144815Z[0m [34mDEBUG[0m [2mniri::utils::xwayland::satellite[0m[2m:[0m connection to X11 abstract socket; spawning xwayland-satellite
+[2m2026-05-14T05:45:12.827724Z[0m [33m WARN[0m [2mniri::backend::tty[0m[2m:[0m error suspending: error suspending
+
+Caused by:
+    org.freedesktop.login1.OperationInProgress: Action suspend already in progress, refusing requested suspend operation.
