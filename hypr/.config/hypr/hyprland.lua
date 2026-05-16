@@ -1,11 +1,10 @@
 require("keybinds")
 require("rules")
-require("rules")
 
-hl.env({ ELECTRON_OZONE_PLATFORM_HINT = "auto" })
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
-hl.env({ XCURSOR_SIZE = 20 })
-hl.env({ HYPRCURSOR_SIZE = 20 })
+hl.env("XCURSOR_SIZE", "20")
+hl.env("HYPRCURSOR_SIZE", "20")
 
 -- Laptop Screen
 hl.monitor({
@@ -44,10 +43,6 @@ hl.config({
 		column_width = "0.8",
 		explicit_column_widths = "0.333, 0.5, 0.666",
 		fullscreen_on_one_column = false,
-	},
-
-	dwindle = {
-		pseudotile = true,
 	},
 
 	master = {
@@ -107,7 +102,7 @@ hl.config({
 	},
 
 	animations = {
-		enabled = true,
+		enabled = false,
 	},
 })
 

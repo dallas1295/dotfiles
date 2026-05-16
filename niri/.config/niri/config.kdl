@@ -74,6 +74,7 @@ layout {
         proportion 0.3333
         proportion 0.5
         proportion 0.6667
+        proportion 0.85
 
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
@@ -124,13 +125,14 @@ layout {
 }
 
 spawn-at-startup "kanshi"
+spawn-at-startup "emacs"
 spawn-at-startup "ghostty"
 spawn-at-startup "hiddify"
-// spawn-at-startup "/usr/share/applications/open-webui.desktop"
-// spawn-at-startup "qs" "-c" "noctalia-shell"
 // spawn-at-startup "mullvad-vpn"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
 spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+spawn-sh-at-startup "swaybg -m fill -i ~/.wallpapers/forest.jpg"
+spawn-sh-at-startup "swayidle -w timeout 300 'brightnessctl -s set 10%' resume 'brightnessctl -r' timeout 420 'swaylock -f' timeout 600 'mmsg -d disable_monitor,eDP-1' resume 'mmsg -d enable_monitor,eDP-1' before-sleep 'swaylock -f'"
 
 window-rule {
     match app-id="ghostty" at-startup=true
@@ -194,6 +196,12 @@ debug {
 window-rule {
   // Clips window contents to the rounded corner boundaries.
   clip-to-geometry true
+}
+
+window-rule {
+    match app-id="ghostty"
+    default-column-width { proportion 0.7; }
+    open-on-workspace "1"
 }
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {

@@ -4,32 +4,25 @@ set $terminal ghostty
 set $fileManager ghostty -e yazi
 set $menu rofi -show drun
 set $music spotify
-set $browser zen-browser
+set $browser brave
 
-set $lock 'swaylock \
-    --color 141415 \
-    --inside-color 1c1c24 \
-    --ring-color a986bc \
-    --inside-ver-color 9bb4bc \
-    --ring-ver-color 9bb4bc \
-    --inside-wrong-color d8647e \
-    --ring-wrong-color d8647e \
-    --key-hl-color e8b589 \
-    --bs-hl-color d8647e \
-    --text-color cdcdcd \
-    --indicator-radius 100 \
-    --indicator-thickness 10 \
-    --font "Nebula Sans Book"'
+set $lock swaylock -f
 
-output eDP-1 pos 0 0 scale 1.5
-output HDMI-A-1 pos 1920 0
+bar {
+  swaybar_command waybar
+}
+
+output eDP-1 pos 0 0 scale 2 mode 2880x1800@120hz
+output HDMI-A-1 pos 1920 0 mode 1920x1080@144hz
+
+
 
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
-exec --no-startup-id qs -c noctalia-shell
+exec kanshi
 exec mullvad-vpn
-exec flatpak run com.bitwarden.desktop
+exec hiddify
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
@@ -43,15 +36,14 @@ exec swayidle -w \
     resume 'swaymsg output "*" power on' \
     before-sleep 'swaylock -f --color 141415'
 
-# output HDMI-A-1 bg ~/dotfiles/backgrounds/.wallpapers/darkish.jpg fill
-# output eDP-1 bg ~/dotfiles/backgrounds/.wallpapers/darkish.jpg fill
+output HDMI-A-1 bg ~/.wallpapers/forest.jpg fill
+output eDP-1 bg ~/.wallpapers/forest.jpg fill
 
 set $bg_color #141415
 set $fg_color #cdcdcd
-set $accent #b4d4cf
-set $inactive_bg #1a1b26
+set $accent #6e94b2
+set $inactive_bg #333738
 set $urgent #d8647e
-set $visual #333738
 
 ### Vague
  #    bg = "#141415",
@@ -86,7 +78,7 @@ client.urgent           $urgent $urgent $fg_color $fg_color $urgent
 default_border pixel 1
 default_floating_border pixel 1
 gaps inner 4
-gaps outer 5
+gaps outer 2
 smart_borders off
 
 for_window [window_role="pop-up"] floating enable
@@ -96,6 +88,10 @@ input "type:touchpad" {
     tap enabled
     natural_scroll enabled
     scroll_factor 0.35
+}
+
+input "type:mouse" {
+    accel_profile flat
 }
 
 input "tpps/2-elan-trackpoint" {
@@ -110,7 +106,7 @@ input * {
 
 seat * hide_cursor 5000
 
-focus_on_window_activation smart
+focus_on_window_activation urgent
 
 bindsym $mod+Return exec $terminal
 bindsym $mod+q kill
@@ -118,25 +114,24 @@ bindsym $mod+Shift+End exit
 bindsym $mod+e exec $fileManager
 bindsym $mod+Shift+v floating toggle
 bindsym $mod+Tab focus next
-bindsym $mod+space exec qs -c noctalia-shell ipc call launcher toggle
-bindsym $mod+Mod1+space exec qs -c noctalia-shell ipc call launcher toggle
-bindsym $mod+r exec rofi -show run
-bindsym $mod+Mod1+r exec rofi -show run
+bindsym $mod+space exec $menu
+bindsym $mod+Shift+space exec rofi -show run
 bindsym $mod+m exec $music
-bindsym $mod+w exec $browser
 bindsym $mod+g exec gtk-launch "Steam (No VPN)"
+
+bindsym $mod+r reload
+bindsym $mod+t layout tabbed
 
 bindsym $mod+v exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-bindsym $mod+Mod1+BackSpace exec qs -c noctalia-shell ipc call lockScreen lock
-bindsym $mod+Shift+BackSpace exec qs -c noctalia-shell ipc call sessionMenu toggle
+bindsym $mod+Mod1+BackSpace exec rofi -show power-menu -modi power-menu:rofi-power-menu
+bindsym $mod+Shift+BackSpace exec $lock
 
 bindsym $mod+Shift+p exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/screenshots/window-$(date +%Y%m%d-%H%M%S).png"
 bindsym $mod+p exec grim -g "$(slurp)" "$HOME/Pictures/screenshots/region-$(date +%Y%m%d-%H%M%S).png"
 
-bindsym $mod+backslash exec hyprpicker
 bindsym $mod+i exec ghostty -e btop
-bindsym $mod+b exec ghostty -e bluetui
+bindsym $mod+b exec $browser
 
 bindsym $mod+h focus left
 bindsym $mod+l focus right
@@ -171,7 +166,7 @@ workspace 10 output eDP-1
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
-bindsym $mod+Shift+4 workspace 4
+bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -219,9 +214,11 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 
+for_window [workspace = "1"] layout tabbed
+
 for_window [app_id="^firefox$"] move to workspace 2
 for_window [app_id="^zen$"] move to workspace 2
-for_window [class="^brave-bin$"] move to workspace 2
+for_window [app_id="^brave-browser$"] move to workspace 2
 for_window [class="^helium$"] move to workspace 2
 
 for_window [title="^Picture-in-Picture$"] \
@@ -234,17 +231,19 @@ for_window [title="^Picture-in-Picture$"] \
 
 for_window [app_id="^com.mitchellh.ghostty$"] move to workspace 1, opacity 0.95
 
-for_window [app_id="^steam$"] move to workspace 3
-for_window [class="^steam$"] move to workspace 3
+for_window [app_id="^steam$"] move to workspace 3, nofocus
+for_window [class="^steam$"] move to workspace 3, nofocus
 for_window [title="^Friends List$"] move to workspace 3, resize set 435 1089
 
 for_window [class="^heroic$"] \
     move to workspace 3, \
-    floating enable
+    floating enable, \
+    nofocs
 
 for_window [class="^discord$"] \
     move to workspace 3, \
-    floating enable
+    floating enable, \
+    nofocus
 
 for_window [app_id="^org.prismlauncher.PrismLauncher$"] move to workspace 3
 
@@ -267,8 +266,6 @@ for_window [app_id="^spotify$"] \
 for_window [class="^blueman-manager$"] \
     floating enable, \
     resize set 651 452
-
-for_window [class="^Windscribe$"] floating enable
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable

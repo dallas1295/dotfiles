@@ -1,7 +1,7 @@
 local terminal = "ghostty"
 local fileManager = "ghostty -e yazi"
 local music = "spotify"
-local browser = "zen-browser"
+local browser = "brave"
 
 local mainMod = "SUPER"
 
@@ -83,13 +83,13 @@ hl.bind(mainMod .. "+SHIFT+6", hl.dsp.window.move({ workspace = 6 }))
 hl.bind(mainMod .. "+SHIFT+7", hl.dsp.window.move({ workspace = 7 }))
 hl.bind(mainMod .. "+SHIFT+8", hl.dsp.window.move({ workspace = 8 }))
 
--- Mouse wheel workspace scroll
-hl.bind(mainMod .. "+MOUSE_DOWN", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. "+MOUSE_UP", hl.dsp.focus({ workspace = "e-1" }))
-
--- Mouse binds
-hl.bind(mainMod .. "+mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mainMod .. "+mouse:273", hl.dsp.window.resize(), { mouse = true })
+-- -- Mouse wheel workspace scroll
+-- hl.bind(mainMod .. "+MOUSE_DOWN", hl.dsp.focus({ workspace = "e+1" }))
+-- hl.bind(mainMod .. "+MOUSE_UP", hl.dsp.focus({ workspace = "e-1" }))
+--
+-- -- Mouse binds
+-- hl.bind(mainMod .. "+mouse:272", hl.dsp.window.drag(), { mouse = true })
+-- hl.bind(mainMod .. "+mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Volume
 hl.bind(

@@ -1,3 +1,6 @@
+(set-face-attribute 'default nil :background "#181818" :foreground "#e4e4ef")
+(add-to-list 'default-frame-alist '(background-color . "#181818"))
+(add-to-list 'default-frame-alist '(foreground-color . "#e4e4ef"))
 (setq package-enable-at-startup nil)
 (defvar elpaca-installer-version 0.12)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))

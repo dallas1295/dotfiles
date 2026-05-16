@@ -1,6 +1,6 @@
 ;; Set custom file so no clutter
 (setq custom-file "~/.config/emacs/custom.el")
-;; (load "~/.config/emacs/meow.el")
+(load "~/.config/emacs/meow.el")
 
 ;; add elpaca hook for extensions
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
@@ -66,20 +66,6 @@
 (global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
 
 (global-set-key [escape] 'keyboard-escape-quit)
-
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-c p p") 'projectile-command-map);; projectile default
-(global-set-key (kbd "C-c p d") 'projectile-dired)
-(global-set-key (kbd "C-c p f") 'projectile-find-file)
-(global-set-key (kbd "C-c p b") 'projectile-switch-to-buffer)
-(global-set-key (kbd "C-c v") 'vterm-toggle)             ;; you already have this
-(global-set-key (kbd "C-c e d") 'xref-find-definitions)
-(global-set-key (kbd "C-c e r") 'xref-find-references)
-(global-set-key (kbd "C-c e a") 'eglot-code-actions)
-(global-set-key (kbd "C-c e f") 'eglot-format)
-(global-set-key (kbd "C-c e n") 'flymake-goto-next-error)
-(global-set-key (kbd "C-c e p") 'flymake-goto-prev-error)
-(global-set-key (kbd "C-c i") 'ibuffer)
 
 ;; Theme
 (use-package gruber-darker-theme
