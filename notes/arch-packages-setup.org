@@ -67,7 +67,6 @@ Edit =/etc/pacman.conf= and uncomment the multilib lines.
 sudo pacman -S \
   reflector \
   reflector-simple \
-  upower \
   auto-cpufreq \
   fwupd
 #+END_SRC
