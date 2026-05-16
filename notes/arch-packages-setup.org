@@ -36,17 +36,19 @@
 * Base System
 
 #+BEGIN_SRC bash
-sudo pacman -S \
-  base \
-  base-devel \
-  linux \
-  linux-firmware \
-  amd-ucode \
-  git \
-  networkmanager \
-  unzip
+  sudo pacman -S \
+    base \
+    base-devel \
+    linux \
+    linux-firmware \
+    amd-ucode \
+    git \
+    networkmanager \
+    7zip \
+    rocm-smi-lib \
+    unzip
 
-sudo systemctl enable --now NetworkManager.service
+  sudo systemctl enable --now NetworkManager.service
 #+END_SRC
 
 Install AUR helper:
