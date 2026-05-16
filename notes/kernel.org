@@ -1,0 +1,82 @@
+#+TITLE: Arch Linux Package Setup
+#+AUTHOR: dallas
+#+DATE: 2026-04-20
+
+* ToC :toc:
+- [[#grub-custom-font][GRUB Custom Font]]
+  - [[#kernal-flag-command][Kernal Flag Command]]
+  - [[#step-1-convert-ttfotf-to-pf2-with-grub-mkfont][Step 1: Convert TTF/OTF to PF2 with =grub-mkfont=]]
+  - [[#step-2-copy-font-to-grub-font-directory][Step 2: Copy font to GRUB font directory]]
+  - [[#step-3-edit-etcdefaultgrub][Step 3: Edit =/etc/default/grub=]]
+  - [[#step-4-if-using-a-grub-theme-set-font-in-theme-file][Step 4: If using a GRUB theme, set font in theme file]]
+  - [[#step-5-rebuild-grub-config][Step 5: Rebuild GRUB config]]
+  - [[#verify-check-loaded-fonts-at-grub-command-line-at-boot][Verify: check loaded fonts at GRUB command line (at boot)]]
+
+* GRUB Custom Font
+
+** Kernal Flag Command
+
+#+begin_src
+loglevel=3 quiet splash amdgpu.gpu_recovery=1 amdgpu.lockup_timeout=1000 amdgpu.gttsize=8192
+#+end_src
+
+
+** Step 1: Convert TTF/OTF to PF2 with =grub-mkfont=
+
+#+begin_src sh
+grub-mkfont --size=24 --output=/boot/grub/fonts/MyFont.pf2 /path/to/MyFont.ttf
+#+end_src
+
+Optional flags:
+- =--bold= convert to bold
+- =--name=NAME= set font family name (used in themes)
+- =--range=FROM-TO= limit to specific unicode ranges
+- =--no-bitmap= ignore bitmap strikes
+- =--no-hinting= disable hinting
+- =--force-autohint= force autohint
+- =--verbose= print verbose messages
+
+** Step 2: Copy font to GRUB font directory
+
+#+begin_src sh
+sudo mkdir -p /boot/grub/fonts
+sudo cp MyFont.pf2 /boot/grub/fonts/
+#+end_src
+
+** Step 3: Edit =/etc/default/grub=
+
+#+begin_src conf
+GRUB_FONT=/boot/grub/fonts/MyFont.pf2
+GRUB_GFXMODE=1920x1080x32
+GRUB_GFXPAYLOAD_LINUX=keep
+#+end_src
+
+** Step 4: If using a GRUB theme, set font in theme file
+
+In =/boot/grub/themes/THEME_NAME/theme.txt=:
+
+#+begin_src conf
+title-font: "MyFont"
+#+end_src
+
+For labels:
+#+begin_src conf
++ label { text="GRUB" font="MyFont 24" color="#FFF" }
+#+end_src
+
+For boot menu:
+#+begin_src conf
++ boot_menu { item_font="MyFont" selected_item_font="MyFont" }
+#+end_src
+
+** Step 5: Rebuild GRUB config
+
+#+begin_src sh
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+#+end_src
+
+** Verify: check loaded fonts at GRUB command line (at boot)
+
+#+begin_src
+lsfonts
+#+end_src
