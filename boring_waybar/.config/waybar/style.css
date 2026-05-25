@@ -1,6 +1,6 @@
 * {
-  font-family: "JetbrainsMono Nerd Font", "Noto Color Emoji";
-  font-size: 11.5px;
+  font-family: "Iosevka Nerd Font", "Noto Color Emoji";
+  font-size: 12.5px;
   transition: background-color 0.3s ease-out;
 }
 
@@ -9,7 +9,7 @@ window#waybar {
   /* background: #252530; */
   background: #141415;
   color: #cdcdcd;
-  font-family: "JetbrainsMono Nerd Font", "Noto Color Emoji";
+  font-family: "Iosevka Nerd Font", "Noto Color Emoji";
   /* padding: 0 0px; */
   /* border-radius: 10px; */
   margin: 4px 0px;
@@ -22,7 +22,7 @@ window#waybar {
 .modules-left,
 .modules-right {
   /* background: #141415; */
-  border-radius: 10px;
+  /* border-radius: 10px; */
   margin: 0px 0;
   border: none;
 }
@@ -43,7 +43,7 @@ window#waybar {
 #language,
 #mpd {
   padding: 0 3px;
-  border-radius: 0;
+  /* border-radius: 0; */
   margin: 0;
   color: #cdcdcd;
 }
@@ -73,12 +73,12 @@ window#waybar {
 }
 
 #workspaces button {
-  font-family: "JetbrainsMono Nerd Font", feather;
+  font-family: "Iosevka Nerd Font", feather;
   font-weight: 900;
   font-size: 11px;
   color: #cdcdcd;
   border: none;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   padding: 0px 4px;
   margin: 2px 1px;
   min-width: 0;
@@ -111,6 +111,11 @@ window#waybar {
 
 #tray {
   padding-left: 5px;
+}
+
+#window {
+  font-size: 14.5;
+  font-weight: bold;
 }
 
 #battery.critical {

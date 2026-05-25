@@ -5,6 +5,9 @@ while :; do
     date=$(date "+%Y/%m/%d")
     current_time=$(date "+%H:%M")
 
+    # Disk usage (/mnt)
+    disk_info=$(df -h /mnt | awk 'NR==2{printf "%s/%s", $3, $2}')
+
     # Battery
     if command -v upower >/dev/null 2>&1; then
         battery_info=$(upower --show-info $(upower --enumerate | grep 'BAT' | head -n1))
@@ -75,13 +78,13 @@ while :; do
             audio_icon="󰝟"
             audio_display_padded="Muted"
         elif [ "$audio_volume" -eq 0 ] 2>/dev/null; then
-            audio_icon=""
+            audio_icon=""
             audio_display_padded="  0%"
         elif [ "$audio_volume" -le 33 ] 2>/dev/null; then
-            audio_icon=""
+            audio_icon="󰖀"
             audio_display_padded=$(printf "%3s%%" "$audio_volume")
         elif [ "$audio_volume" -le 66 ] 2>/dev/null; then
-            audio_icon=""
+            audio_icon="󰖀"
             audio_display_padded=$(printf "%3s%%" "$audio_volume")
         else
             audio_icon="󰕾"
@@ -108,7 +111,7 @@ while :; do
         wifi_ssid=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2)
         wifi_strength=$(nmcli -t -f in-use,signal dev wifi | grep '^\*' | cut -d: -f2)
         if [ -z "$wifi_strength" ]; then
-            wifi_icon="󰖪"  # Disconnected
+            wifi_icon="󰤯"
             wifi_strength="0"
         elif [ "$wifi_strength" -ge 80 ]; then
             wifi_icon="󰤨"
@@ -124,7 +127,7 @@ while :; do
     else
         wifi_ssid="Not Connected"
         wifi_strength=""
-        wifi_icon="󰖪"
+        wifi_icon="󰤯"
     fi
 
     # CPU usage
@@ -133,20 +136,22 @@ while :; do
     cpu_display=$(printf "%3s%%" "$cpu_usage")
 
     # RAM usage
-    ram_usage=$(free | awk '/Mem:/ {printf("%.0f", $3/$2 * 100)}')
-    ram_display=$(printf "%3s%%" "$ram_usage")
+    ram_used=$(free -h | awk '/Mem:/ {printf "%.1fG", $3}')
+    ram_total=$(free -h | awk '/Mem:/ {printf "%.1fG", $2}')
+    ram_display="${ram_used}/${ram_total}"
 
     # Song status symbol
     if [ "$player_status" = "Playing" ]; then
         song_status='▶'
     elif [ "$player_status" = "Paused" ]; then
-        song_status='⏸'
+        song_status='󰏤'
     else
         song_status='⏹'
     fi
 
-    # Output
-    echo "<span foreground='#a986bc'>$song_status $media_artist - $media_song</span> | <span foreground='#7aa2f7'> $cpu_display</span> | <span foreground='#7aa2f7'> $ram_display</span> | <span foreground='#ffffff'>$audio_icon $audio_display_padded</span> | <span foreground='#ffffff'>$brightness_icon $brightness_display</span> | <span foreground='#ffffff'>$wifi_icon $wifi_ssid ($wifi_strength%)</span> | <span foreground='#9bb4bc'>$battery_icon $battery_charge</span> | <span foreground='#bb9af7'>$date  $current_time</span>"
+    cpu_icon=""
+    ram_icon=""
+    # Output — module order matches boring_waybar: clock, disk, cpu, memory | ... | network, pulseaudio, backlight, battery, tray
+    echo "<span foreground='#a986bc'>$song_status $media_artist - $media_song</span> | <span foreground='#7aa2f7'>$ram_display $ram_icon</span> | <span foreground='#7aa2f7'>$cpu_display $cpu_icon</span> | <span foreground='#7aa2f7'>$disk_info </span> | <span foreground='#ffffff'>$audio_icon $audio_display_padded</span> | <span foreground='#ffffff'>$brightness_icon $brightness_display</span> | <span foreground='#ffffff'>$wifi_icon $wifi_ssid</span> | <span foreground='#bb9af7'> $date  $current_time</span> | <span foreground='#9bb4bc'>$battery_icon $battery_charge</span>"
 
 done
-

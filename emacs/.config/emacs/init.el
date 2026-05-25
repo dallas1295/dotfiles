@@ -38,7 +38,7 @@
 (windmove-mode 1)
 (which-key-mode 1)
 
-(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 120)
+(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 120)
 (set-face-attribute 'font-lock-comment-face nil
                     :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil
@@ -73,7 +73,7 @@
   :config
   (load-theme 'gruber-darker t))
 
-;; Vtermjj
+;; Vterm
 (use-package vterm
   :ensure t)
 
@@ -339,7 +339,7 @@
          (c-mode . eglot-ensure)
          (elixir-mode . eglot-ensure))
   :config
-  (add-hook 'eglot-inlay-hints-mode 0)
+  (add-hook 'eglot-inlay-hints-mode -1)
   (add-to-list 'eglot-server-programs
                '((typescript-mode typescript-ts-mode
                                   javascript-mode js-mode js-ts-mode)
@@ -347,6 +347,7 @@
   (setq-default eglot-workspace-configuration
                 '((:gopls . ((staticcheck . t))))))
 
+(use-package elixir-mode :ensure)
 (use-package zig-mode :ensure t)
 (use-package racket-mode :ensure t)
 (use-package svelte-mode :ensure t)

@@ -136,7 +136,7 @@ sudo pacman -S \
 * Sound
 
 #+BEGIN_SRC bash
-sudo pacman -S --needed \
+paru -S --needed \
   pipewire \
   pipewire-alsa \
   pipewire-pulse \
@@ -154,7 +154,7 @@ sudo pacman -S --needed \
 * Bluetooth
 
 #+BEGIN_SRC bash
-sudo pacman -S \
+paru -S \
   bluez \
   bluez-utils \
   bluez-libs \
@@ -180,7 +180,7 @@ Config lives in =~/.config/niri/config.kdl=.
 Additional WM components:
 
 #+BEGIN_SRC bash
-sudo pacman -S --needed \
+paru -S --needed \
   waybar \
   swaync \
   swaybg \
@@ -233,7 +233,7 @@ sudo pacman -S --needed \
 * CLI Tools
 
 #+BEGIN_SRC bash
-sudo pacman -S \
+paru -S --needed \
   stow \
   tmux \
   lazygit \

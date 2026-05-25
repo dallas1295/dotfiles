@@ -1,22 +1,29 @@
 {
   "layer": "top",
-  "position": "top",
-  "height": 22,
-  "margin": [0, 10, 0, 10],
+  "position": "bottom",
+  "height": 23,
+  "margin": [
+    0,
+    10,
+    0,
+    10
+  ],
   "spacing": 1,
   "modules-left": [
-    "clock",
+    "disk",
     "cpu",
     "memory"
   ],
   "modules-center": [
-    "sway/workspaces",
+    "ext/workspaces"
   ],
   "modules-right": [
+    "dwl/window",
     "network",
     "pulseaudio",
     "backlight",
     "battery",
+    "clock",
     "tray"
   ],
   "include": [

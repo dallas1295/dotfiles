@@ -1,27 +1,36 @@
 set $mod Mod4
 
-set $terminal ghostty
-set $fileManager ghostty -e yazi
+set $terminal foot
+set $fileManager foot -e yazi
 set $menu rofi -show drun
 set $music spotify
-set $browser brave
+set $browser firefox
 
 set $lock swaylock -f
 
 bar {
   swaybar_command waybar
+  # position bottom
+  # font pango: Iosevka Nerd Font 11.5
+  # status_command ~/.config/sway/swaybar.sh
+  # colors {
+  #   focused_workspace  #a986bc #a986bc #141415
+  #   active_workspace   #333738 #333738 #cdcdcd
+  #   inactive_workspace #141415 #141415 #cdcdcd
+  #   urgent_workspace   #d8647e #d8647e #141415
+  # }
 }
 
-output eDP-1 pos 0 0 scale 2 mode 2880x1800@120hz
+output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz adaptive_sync off
 output HDMI-A-1 pos 1920 0 mode 1920x1080@144hz
 
 
-
+exec --no-startup-id systemctl --user import-environment WLR_DRM_NO_MODIFIERS
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
+# exec mullvad-vpn
 exec kanshi
-exec mullvad-vpn
 exec hiddify
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
@@ -55,7 +64,7 @@ set $urgent #d8647e
  #    builtin = "#b4d4cf",
  #    func = "#c48282",
  #    string = "#e8b589",
- #    number = "#e0a363",
+
  #    property = "#c3c3d5",
  #    constant = "#aeaed1",
  #    parameter = "#bb9dbd",
@@ -75,8 +84,8 @@ client.focused_inactive  $inactive_bg $inactive_bg $fg_color $fg_color $inactive
 client.unfocused        $bg_color $bg_color $fg_color $fg_color $bg_color
 client.urgent           $urgent $urgent $fg_color $fg_color $urgent
 
-default_border pixel 1
-default_floating_border pixel 1
+default_border normal 1
+default_floating_border normal 1
 gaps inner 4
 gaps outer 2
 smart_borders off
@@ -122,7 +131,7 @@ bindsym $mod+g exec gtk-launch "Steam (No VPN)"
 bindsym $mod+r reload
 bindsym $mod+t layout tabbed
 
-bindsym $mod+v exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
 bindsym $mod+Mod1+BackSpace exec rofi -show power-menu -modi power-menu:rofi-power-menu
 bindsym $mod+Shift+BackSpace exec $lock
@@ -130,7 +139,7 @@ bindsym $mod+Shift+BackSpace exec $lock
 bindsym $mod+Shift+p exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/screenshots/window-$(date +%Y%m%d-%H%M%S).png"
 bindsym $mod+p exec grim -g "$(slurp)" "$HOME/Pictures/screenshots/region-$(date +%Y%m%d-%H%M%S).png"
 
-bindsym $mod+i exec ghostty -e btop
+bindsym $mod+i exec foot -e btop
 bindsym $mod+b exec $browser
 
 bindsym $mod+h focus left
@@ -152,16 +161,7 @@ bindsym $mod+Mod1+p exec autotiling
 bindsym $mod+Shift+r move container to workspace current
 bindsym $mod+f fullscreen toggle
 
-workspace 1 output HDMI-A-1
-workspace 2 output HDMI-A-1
-workspace 3 output HDMI-A-1
-workspace 4 output HDMI-A-1
-workspace 5 output HDMI-A-1
-workspace 6 output eDP-1
-workspace 7 output eDP-1
-workspace 8 output eDP-1
-workspace 9 output eDP-1
-workspace 10 output eDP-1
+workspace 1 
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -229,7 +229,7 @@ for_window [title="^Picture-in-Picture$"] \
     focus no, \
     border none
 
-for_window [app_id="^com.mitchellh.ghostty$"] move to workspace 1, opacity 0.95
+for_window [app_id="^foot$"] move to workspace 1, opacity 0.95
 
 for_window [app_id="^steam$"] move to workspace 3, nofocus
 for_window [class="^steam$"] move to workspace 3, nofocus

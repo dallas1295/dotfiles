@@ -2,47 +2,42 @@ local add = function(s)
 	vim.pack.add(s, { confirm = false })
 end
 
--- Themes
-add({
-	{ src = "https://github.com/rebelot/kanagawa.nvim", name = "kanagawa" },
-})
-
--- Default options:
--- require("kanagawa").setup({
--- 	compile = false, -- enable compiling the colorscheme
--- 	undercurl = true, -- enable undercurls
--- 	commentStyle = { italic = true },
--- 	functionStyle = {},
--- 	keywordStyle = { italic = true },
--- 	statementStyle = { bold = true },
--- 	typeStyle = {},
--- 	transparent = true, -- do not set background color
--- 	dimInactive = true, -- dim inactive window `:h hl-NormalNC`
--- 	terminalColors = true, -- define vim.g.terminal_color_{0,17}
--- 	colors = { -- add/modify theme and palette colors
--- 		palette = {},
--- 		theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+-- -- Themes
+-- add({ { src = "https://github.com/miikanissi/modus-themes.nvim", name = "modus-themes" },
+-- })
+-- -- Default options
+-- require("modus-themes").setup({
+-- 	-- Theme comes in two styles `modus_operandi` and `modus_vivendi`
+-- 	-- `auto` will automatically set style based on background set with vim.o.background
+-- 	style = "modus_vivendi",
+--
+-- 	-- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
+-- 	variants = {
+-- 		modus_operandi = "default", -- Set variant for `modus_operandi` style
+-- 		modus_vivendi = "tinted", -- Set variant for `modus_vivendi` style
 -- 	},
--- 	theme = "dragon", -- Load "wave" theme
--- 	background = { -- map the value of 'background' option to a theme
--- 		dark = "dragon", -- try "dragon" !
--- 		light = "dragon",
+-- 	transparent = true, -- Transparent background (as supported by the terminal)
+-- 	dim_inactive = true, -- "non-current" windows are dimmed
+-- 	hide_inactive_statusline = false, -- Hide statuslines on inactive windows. Works with the standard **StatusLine**, **LuaLine** and **mini.statusline**
+-- 	line_nr_column_background = true, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
+-- 	sign_column_background = true, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
+-- 	styles = {
+-- 		-- Style to be applied to different syntax groups
+-- 		-- Value is any valid attr-list value for `:help nvim_set_hl`
+-- 		comments = { italic = true },
+-- 		keywords = { italic = true },
+-- 		functions = {},
+-- 		variables = {},
 -- 	},
 -- })
--- setup must be called before loading
--- vim.cmd("colorscheme kanagawa-dragon")
+--
+-- vim.cmd("colorscheme modus")
 
 add({
 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 })
 
 vim.cmd("colorscheme gruber-darker")
-
--- add({
--- 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim", name = "gruber-darker" },
--- })
---
--- vim.cmd("colorscheme gruber-darker")
 
 -- Mini
 add({

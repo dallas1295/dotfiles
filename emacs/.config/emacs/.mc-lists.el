@@ -3,10 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        beginning-of-buffer
-        keyboard-escape-quit
+        c-indent-line-or-region
+        meow-next
+        meow-prev
+        my/cancel
         my/mc-add-cursor-below
         my/mc-delete-cursor
+        undefined
         ))
 
 (setq mc/cmds-to-run-once

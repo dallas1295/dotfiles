@@ -10,7 +10,7 @@
     "memory"
   ],
   "modules-center": [
-    "niri/workspaces",
+    "dwl/window",
   ],
   "modules-right": [
     "network",
