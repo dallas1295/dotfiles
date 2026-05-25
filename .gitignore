@@ -7,6 +7,7 @@ emacs/.config/emacs/elpaca/
 emacs/.config/emacs/elpaca/builds/
 emacs/.config/emacs/elpaca/cache/
 emacs/.config/emacs/elpaca/repos/
+emacs/.config/emacs/.mc-lists.el
 # ---------- Compiled & Temporary Files ----------
 *.elc
 .#*
