@@ -38,7 +38,7 @@
 (windmove-mode 1)
 (which-key-mode 1)
 
-(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 120)
+(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
 (set-face-attribute 'font-lock-comment-face nil
                     :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil
@@ -339,7 +339,7 @@
          (c-mode . eglot-ensure)
          (elixir-mode . eglot-ensure))
   :config
-  (add-hook 'eglot-inlay-hints-mode -1)
+  (remove-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode)
   (add-to-list 'eglot-server-programs
                '((typescript-mode typescript-ts-mode
                                   javascript-mode js-mode js-ts-mode)

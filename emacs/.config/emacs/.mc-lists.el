@@ -4,6 +4,9 @@
 (setq mc/cmds-to-run-for-all
       '(
         c-indent-line-or-region
+        ignore
+        meow-insert
+        meow-insert-exit
         meow-next
         meow-prev
         my/cancel
