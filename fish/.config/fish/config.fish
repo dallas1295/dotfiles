@@ -1,12 +1,11 @@
 set -g fish_key_bindings fish_vi_key_bindings
-set -gx SUDOEDITOR nvim
-set -gx EDITOR nvim
+set -gx SUDOEDITOR emacs
+set -gx EDITOR emacs
 set -gx VISUAL $EDITOR
 set -gx TERMINAL ghostty
 set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/config"
-set -gx BROWSER brave-browser
 set -gx PYENV_ROOT "$HOME/.pyenv"
-set -gx WLR_RENDERER vulkan
+
 
 fish_add_path "$HOME/.local/bin"
 fish_add_path (go env GOPATH)/bin
@@ -20,6 +19,8 @@ end
 
 alias notes 'cd ~/vaults/stuff/ && nvim'
 alias hx helix
+
+alias pacman 'paru'
 
 alias ls lsd
 alias ll 'lsd -l'
