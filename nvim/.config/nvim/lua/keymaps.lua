@@ -35,6 +35,17 @@ keymap.set("n", "<leader>pl", function()
 	vim.pack.update()
 end)
 
+-- C funtions
+keymap.set("n", "<leader>cc", ":make!<CR>", { desc = "Compile C Project" })
+keymap.set("n", "<leader>co", ":copen<CR>", { desc = "Open Compiler Quickfix List" })
+
+-- LazyGit
+keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit" })
+
+-- Which-Key
+keymap.set("n", "<leader>?", function()
+	require("which-key").show({ global = false })
+end, { desc = "Open Which-key" })
 -- exit insert mode
 -- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 

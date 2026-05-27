@@ -4,6 +4,9 @@ vim.cmd("let g:netrw_liststyle = 3")
 vim.cmd(":hi statusline guibg=NONE")
 local opt = vim.opt -- for conciseness
 
+-- c compiler
+opt.makeprg = "make"
+
 -- completions
 opt.completeopt = "menu,menuone,noselect"
 

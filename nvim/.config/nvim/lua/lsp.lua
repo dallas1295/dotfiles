@@ -1,15 +1,11 @@
 -- First enable the LSPs
 vim.lsp.enable({
 	"clangd",
-	"denols",
 	"gopls",
 	"lua_ls",
 	"marksman",
-	"svelte",
-	"tailwindcss",
 	"ts_ls",
 	"rust-analyzer",
-	"elixirls",
 })
 
 -- Diagnostic formatting: prefix with LSP name

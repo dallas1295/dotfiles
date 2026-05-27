@@ -3,41 +3,35 @@ local add = function(s)
 end
 
 -- -- Themes
--- add({ { src = "https://github.com/miikanissi/modus-themes.nvim", name = "modus-themes" },
--- })
--- -- Default options
--- require("modus-themes").setup({
--- 	-- Theme comes in two styles `modus_operandi` and `modus_vivendi`
--- 	-- `auto` will automatically set style based on background set with vim.o.background
--- 	style = "modus_vivendi",
---
--- 	-- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
--- 	variants = {
--- 		modus_operandi = "default", -- Set variant for `modus_operandi` style
--- 		modus_vivendi = "tinted", -- Set variant for `modus_vivendi` style
--- 	},
--- 	transparent = true, -- Transparent background (as supported by the terminal)
--- 	dim_inactive = true, -- "non-current" windows are dimmed
--- 	hide_inactive_statusline = false, -- Hide statuslines on inactive windows. Works with the standard **StatusLine**, **LuaLine** and **mini.statusline**
--- 	line_nr_column_background = true, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
--- 	sign_column_background = true, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
--- 	styles = {
--- 		-- Style to be applied to different syntax groups
--- 		-- Value is any valid attr-list value for `:help nvim_set_hl`
--- 		comments = { italic = true },
--- 		keywords = { italic = true },
--- 		functions = {},
--- 		variables = {},
--- 	},
--- })
---
--- vim.cmd("colorscheme modus")
 
 add({
-	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
+	{ src = "https://github.com/datsfilipe/vesper.nvim", name = "vesper" },
 })
 
-vim.cmd("colorscheme gruber-darker")
+require("vesper").setup({
+	transparent = false, -- Boolean: Sets the background to transparent
+	italics = {
+		comments = true, -- Boolean: Italicizes comments
+		keywords = true, -- Boolean: Italicizes keywords
+		functions = true, -- Boolean: Italicizes functions
+		strings = true, -- Boolean: Italicizes strings
+		variables = true, -- Boolean: Italicizes variables
+	},
+	overrides = {}, -- A dictionary of group names, can be a function returning a dictionary or a table.
+	palette_overrides = {},
+})
+
+vim.cmd.colorscheme("vesper")
+
+-- Which-key
+add({
+	{ src = "https://github.com/folke/which-key.nvim", name = "which-key" },
+})
+
+-- Lazygit
+add({
+	{ src = "https://github.com/kdheepak/lazygit.nvim", name = "lazygit" },
+})
 
 -- Mini
 add({
