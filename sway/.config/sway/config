@@ -21,7 +21,7 @@ bar {
   # }
 }
 
-output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz adaptive_sync off
+output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz
 output HDMI-A-1 pos 1920 0 mode 1920x1080@144hz
 
 
@@ -35,58 +35,55 @@ exec hiddify
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
-exec gtk-launch "Steam (No VPN)"
 
 exec autotiling -l 2
 
 exec swayidle -w \
-    timeout 300 'swaylock -f --color 141415 --inside-color 1c1c24 --ring-color a986bc --inside-ver-color 9bb4bc --ring-ver-color 9bb4bc --inside-wrong-color d8647e --ring-wrong-color d8647e --key-hl-color e8b589 --bs-hl-color d8647e --text-color cdcdcd --indicator-radius 100 --indicator-thickness 10' \
+    timeout 300 'swaylock -f --color 181818 --inside-color 282828 --ring-color 96a6c8 --inside-ver-color 96a6c8 --ring-ver-color 96a6c8 --inside-wrong-color f43841 --ring-wrong-color f43841 --key-hl-color ffdd33 --bs-hl-color f43841 --text-color e4e4e4 --indicator-radius 100 --indicator-thickness 10' \
     timeout 600 'swaymsg output "*" power off' \
     resume 'swaymsg output "*" power on' \
-    before-sleep 'swaylock -f --color 141415'
+    before-sleep 'swaylock -f --color 181818'
 
 output HDMI-A-1 bg ~/.wallpapers/forest.jpg fill
 output eDP-1 bg ~/.wallpapers/forest.jpg fill
 
-set $bg_color #141415
-set $fg_color #cdcdcd
-set $accent #6e94b2
-set $inactive_bg #333738
-set $urgent #d8647e
+set $bg_color #181818
+set $fg_color #e4e4e4
+set $accent #95a99f
+set $inactive_bg #282828
+set $urgent #f43841
+set $select_border #96a6c8
 
-### Vague
- #    bg = "#141415",
- #    inactiveBg = "#1c1c24",
- #    fg = "#cdcdcd",
- #    floatBorder = "#878787",
- #    line = "#252530",
- #    comment = "#606079",
- #    builtin = "#b4d4cf",
- #    func = "#c48282",
- #    string = "#e8b589",
+### Gruber Darker
+ #    bg = "#181818",
+ #    bg+1 = "#282828",
+ #    fg = "#e4e4e4",
+ #    fg+1 = "#f4f4ff",
+ #    white = "#ffffff",
+ #    black = "#000000",
+ #    bg-1 = "#101010",
+ #    bg+2 = "#453d41",
+ #    bg+3 = "#484848",
+ #    bg+4 = "#52494e",
+ #    red = "#f43841",
+ #    red+1 = "#ff4f58",
+ #    green = "#73d936",
+ #    yellow = "#ffdd33",
+ #    brown = "#cc8c3c",
+ #    quartz = "#95a99f",
+ #    niagara-2 = "#303540",
+ #    niagara-1 = "#565f73",
+ #    niagara = "#96a6c8",
+ #    wisteria = "#9e95c7",
 
- #    property = "#c3c3d5",
- #    constant = "#aeaed1",
- #    parameter = "#bb9dbd",
- #    visual = "#333738",
- #    error = "#d8647e",
- #    warning = "#f3be7c",
- #    hint = "#7e98e8",
- #    operator = "#90a0b5",
- #    keyword = "#6e94b2",
- #    type = "#9bb4bc",
- #    search = "#405065",
- #    plus = "#7fa563",
- #    delta = "#f3be7c",
-
-client.focused          $accent $accent $bg_color $fg_color $accent
+client.focused          $select_border $bg_color #ffffff $fg_color $bg_color 
 client.focused_inactive  $inactive_bg $inactive_bg $fg_color $fg_color $inactive_bg
 client.unfocused        $bg_color $bg_color $fg_color $fg_color $bg_color
 client.urgent           $urgent $urgent $fg_color $fg_color $urgent
 
 default_border normal 1
 default_floating_border normal 1
-gaps inner 4
+gaps inner 2
 gaps outer 2
 smart_borders off
 
@@ -100,7 +97,7 @@ input "type:touchpad" {
 }
 
 input "type:mouse" {
-    accel_profile flat
+    # accel_profile flat
 }
 
 input "tpps/2-elan-trackpoint" {
@@ -126,18 +123,17 @@ bindsym $mod+Tab focus next
 bindsym $mod+space exec $menu
 bindsym $mod+Shift+space exec rofi -show run
 bindsym $mod+m exec $music
-bindsym $mod+g exec gtk-launch "Steam (No VPN)"
 
 bindsym $mod+r reload
 bindsym $mod+t layout tabbed
 
 bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-bindsym $mod+Mod1+BackSpace exec rofi -show power-menu -modi power-menu:rofi-power-menu
-bindsym $mod+Shift+BackSpace exec $lock
+bindsym $mod+Shift+P exec rofi -show power-menu -modi power-menu:rofi-power-menu
+bindsym $mod+alt+L exec $lock
 
-bindsym $mod+Shift+p exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/screenshots/window-$(date +%Y%m%d-%H%M%S).png"
-bindsym $mod+p exec grim -g "$(slurp)" "$HOME/Pictures/screenshots/region-$(date +%Y%m%d-%H%M%S).png"
+bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/screenshots/window-$(date +%Y%m%d-%H%M%S).png"
+bindsym $mod+s exec grim -g "$(slurp)" "$HOME/Pictures/screenshots/region-$(date +%Y%m%d-%H%M%S).png"
 
 bindsym $mod+i exec foot -e btop
 bindsym $mod+b exec $browser
@@ -152,16 +148,11 @@ bindsym $mod+Shift+l move right
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+j move down
 
-bindsym $mod+Mod1+h resize shrink left 20px
-bindsym $mod+Mod1+j resize grow down 20px
-bindsym $mod+Mod1+k resize shrink up 20px
-bindsym $mod+Mod1+l resize grow right 20px
-
 bindsym $mod+Mod1+p exec autotiling
 bindsym $mod+Shift+r move container to workspace current
 bindsym $mod+f fullscreen toggle
 
-workspace 1 
+workspace 1
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -191,8 +182,8 @@ bindsym $mod+period focus output right
 bindsym $mod+equal workspace next_on_output
 bindsym $mod+minus workspace prev_on_output
 
-bindsym $mod+Shift+s exec swaymsg move to scratchpad
-bindsym $mod+s exec swaymsg scratchpad show
+# bindsym $mod+Shift+s exec swaymsg move to scratchpad
+# bindsym $mod+s exec swaymsg scratchpad show
 
 bindsym $mod+button4 workspace prev_on_output
 bindsym $mod+button5 workspace next_on_output
@@ -214,7 +205,7 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 
-for_window [workspace = "1"] layout tabbed
+# for_window [workspace = "1"] layout tabbed
 
 for_window [app_id="^firefox$"] move to workspace 2
 for_window [app_id="^zen$"] move to workspace 2
@@ -231,14 +222,14 @@ for_window [title="^Picture-in-Picture$"] \
 
 for_window [app_id="^foot$"] move to workspace 1, opacity 0.95
 
-for_window [app_id="^steam$"] move to workspace 3, nofocus
 for_window [class="^steam$"] move to workspace 3, nofocus
-for_window [title="^Friends List$"] move to workspace 3, resize set 435 1089
+for_window [class="^steam$" title="^Steam$"] floating enable
+for_window [title="^Friends List$"] floating enable, move to workspace 3, resize set 300 650
 
 for_window [class="^heroic$"] \
     move to workspace 3, \
     floating enable, \
-    nofocs
+    nofocus
 
 for_window [class="^discord$"] \
     move to workspace 3, \
