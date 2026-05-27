@@ -14,8 +14,6 @@
 - [[#sound][Sound]]
 - [[#bluetooth][Bluetooth]]
 - [[#window-manager---niri][Window Manager - Niri]]
-  - [[#also-have-hyprland-installed-alongside][Also have Hyprland installed alongside:]]
-- [[#file-manager][File Manager]]
 - [[#terminal--shell][Terminal & Shell]]
 - [[#cli-tools][CLI Tools]]
 - [[#development][Development]]
@@ -136,7 +134,7 @@ sudo pacman -S \
 * Sound
 
 #+BEGIN_SRC bash
-paru -S --needed \
+pacman -S --needed \
   pipewire \
   pipewire-alsa \
   pipewire-pulse \
@@ -154,7 +152,7 @@ paru -S --needed \
 * Bluetooth
 
 #+BEGIN_SRC bash
-paru -S \
+pacman -S \
   bluez \
   bluez-utils \
   bluez-libs \
@@ -197,27 +195,6 @@ paru -S --needed \
   xdg-desktop-portal-gtk
 #+END_SRC
 
-** Also have Hyprland installed alongside:
-
-#+BEGIN_SRC bash
-sudo pacman -S \
-  hyprland \
-  hyprlock \
-  hypridle \
-  hyprpaper \
-  hyprpolkitagent \
-  xdg-desktop-portal-hyprland
-#+END_SRC
-
-* File Manager
-
-#+BEGIN_SRC bash
-sudo pacman -S \
-  thunar \
-  thunar-volman \
-  yazi
-#+END_SRC
-
 * Terminal & Shell
 
 #+BEGIN_SRC bash
@@ -233,7 +210,7 @@ sudo pacman -S --needed \
 * CLI Tools
 
 #+BEGIN_SRC bash
-paru -S --needed \
+pacman -S --needed \
   stow \
   tmux \
   lazygit \
@@ -326,7 +303,7 @@ sudo pacman -S \
 * Fonts
 
 #+BEGIN_SRC bash
-yay -S --needed\
+paru -S --needed\
   noto-fonts \
   noto-fonts-cjk \
   noto-fonts-extra \
