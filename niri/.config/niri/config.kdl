@@ -125,11 +125,13 @@ layout {
 }
 spawn-at-startup "waybar"
 spawn-at-startup "kanshi"
+spawn-at-startup "syncthing"
 // spawn-at-startup "emacs"
 spawn-at-startup "foot"
+spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
 spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
-spawn-sh-at-startup "swaybg -m fill -i ~/.wallpapers/forest.jpg"
+spawn-sh-at-startup "swaybg -m fill -i ~/.wallpapers/moon.jpg"
 spawn-sh-at-startup "swayidle -w timeout 300 'brightnessctl -s set 10%' resume 'brightnessctl -r' timeout 420 'swaylock -f' timeout 600 'mmsg -d disable_monitor,eDP-1' resume 'mmsg -d enable_monitor,eDP-1' before-sleep 'swaylock -f'"
 
 window-rule {
@@ -139,7 +141,6 @@ window-rule {
 
 // spawn-at-startup "steam"
 spawn-at-startup "swaync"
-spawn-sh-at-startup "syncthing"
 
 hotkey-overlay {
     skip-at-startup
@@ -321,7 +322,8 @@ binds {
     // Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "zen-browser"; }
     // Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "helium-browser"; }
     Mod+M hotkey-overlay-title="Open Spotify" { spawn "spotify"; }
-    Mod+E hotkey-overlay-title="Open Yazi" { spawn "foot" "-e" "yazi"; }
+    Mod+Y hotkey-overlay-title="Open Yazi" { spawn "foot" "-e" "yazi"; }
+    Mod+E hotkey-overlay-title="Open Emacs" { spawn "emacs";}
     Mod+Alt+S hotkey-overlay-title="Open Bluetooth" { spawn "foot" "-e" "bluetui"; }
     Mod+I hotkey-overlay-title="Open BTOP" { spawn "foot" "-e" "btop";}
     Mod+Space hotkey-overlay-title="Run an Application" { spawn-sh "rofi -show drun"; }
