@@ -5,6 +5,7 @@ set -gx VISUAL $EDITOR
 set -gx TERMINAL ghostty
 set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/config"
 set -gx PYENV_ROOT "$HOME/.pyenv"
+set -Ux XDG_CURRENT_DESKTOP sway
 
 
 fish_add_path "$HOME/.local/bin"
@@ -19,8 +20,16 @@ end
 
 alias notes 'cd ~/vaults/stuff/ && nvim'
 alias hx helix
+alias svim 'sudo -E nvim'
 
 alias pacman 'paru'
+
+alias poweroff 'loginctl poweroff'
+alias reboot 'loginctl reboot'
+alias xi 'sudo xbps-install'
+alias xr 'sudo xbps-remove'
+alias xq 'sudo xbps-query'
+alias xu 'sudo xbps-install -Su'
 
 alias ls lsd
 alias ll 'lsd -l'
@@ -33,8 +42,14 @@ alias sm 'ncpamixer -t o'
 
 alias ai 'llama-server --models-dir ~/models/ -ngl 30 -t 10 --ctx-size 128000 --port 42069 --models-max 1 --host 0.0.0.0 --sleep-idle-seconds 10'
 
+set -gx FZF_DEFAULT_COMMAND "fd --hidden --exclude .git --type f"
+set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+
 zoxide init fish | source
 # starship init fish | source
 
 clear
 # fastfetch
+
+# opencode
+fish_add_path /home/dallas/.opencode/bin

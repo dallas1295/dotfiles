@@ -1,5 +1,5 @@
 * {
-  font-family: "Iosevka Nerd Font", "Noto Color Emoji";
+  font-family: "Iosevka Nerd Font";
   font-size: 12.5px;
   transition: background-color 0.3s ease-out;
 }
@@ -9,7 +9,7 @@ window#waybar {
   /* background: #252530; */
   background: #141415;
   color: #cdcdcd;
-  font-family: "Iosevka Nerd Font", "Noto Color Emoji";
+  font-family: "Iosevka Nerd Font";
   /* padding: 0 0px; */
   /* border-radius: 10px; */
   margin: 4px 0px;
@@ -89,7 +89,7 @@ window#waybar {
 #workspaces button.focused,
 #workspaces button.active {
   background: #252530;
-  color: #7fa563;
+  color: #ffcfa8;
 }
 
 #workspaces button.urgent {
@@ -99,7 +99,7 @@ window#waybar {
 
 #workspaces button:hover {
   background: #252530;
-  color: #cdcdcd;
+  color: #82d9c2;
   box-shadow: none;
 }
 

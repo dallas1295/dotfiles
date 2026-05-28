@@ -1,82 +1,74 @@
+exec dbus-update-activation-environment &
+exec pipewire &
+
+font pango: Iosevka Nerd Font 10.5
 set $mod Mod4
 
 set $terminal foot
 set $fileManager foot -e yazi
 set $menu rofi -show drun
 set $music spotify
-set $browser firefox
+set $browser flatpak run app.zen_browser.zen
 
 set $lock swaylock -f
 
 bar {
-  swaybar_command waybar
-  # position bottom
-  # font pango: Iosevka Nerd Font 11.5
-  # status_command ~/.config/sway/swaybar.sh
-  # colors {
-  #   focused_workspace  #a986bc #a986bc #141415
-  #   active_workspace   #333738 #333738 #cdcdcd
-  #   inactive_workspace #141415 #141415 #cdcdcd
-  #   urgent_workspace   #d8647e #d8647e #141415
-  # }
+  swaybar_command /usr/bin/waybar
 }
 
 output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz
 output HDMI-A-1 pos 1920 0 mode 1920x1080@144hz
 
-
-exec --no-startup-id systemctl --user import-environment WLR_DRM_NO_MODIFIERS
-exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
+exec swaync
+exec syncthing
 # exec mullvad-vpn
 exec kanshi
-exec hiddify
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
 
-exec autotiling -l 2
+# exec autotiling -l 2
 
 exec swayidle -w \
-    timeout 300 'swaylock -f --color 181818 --inside-color 282828 --ring-color 96a6c8 --inside-ver-color 96a6c8 --ring-ver-color 96a6c8 --inside-wrong-color f43841 --ring-wrong-color f43841 --key-hl-color ffdd33 --bs-hl-color f43841 --text-color e4e4e4 --indicator-radius 100 --indicator-thickness 10' \
+    timeout 300 'swaylock -f --color 101010 --inside-color 232323 --ring-color FFCFA8 --inside-ver-color FFCFA8 --ring-ver-color FFCFA8 --inside-wrong-color FF8080 --ring-wrong-color FF8080 --key-hl-color FFC799 --bs-hl-color FF8080 --text-color CCCCCC --indicator-radius 100 --indicator-thickness 10' \
     timeout 600 'swaymsg output "*" power off' \
     resume 'swaymsg output "*" power on' \
-    before-sleep 'swaylock -f --color 181818'
+    before-sleep 'swaylock -f --color 101010'
 
 output HDMI-A-1 bg ~/.wallpapers/moon.jpg fill
 output eDP-1 bg ~/.wallpapers/moon.jpg fill
 
-set $bg_color #181818
-set $fg_color #e4e4e4
-set $accent #95a99f
-set $inactive_bg #282828
-set $urgent #f43841
-set $select_border #96a6c8
+set $bg_color #101010
+set $fg_color #CCCCCC
+set $accent #A0A0A0
+set $inactive_bg #232323
+set $urgent #FF8080
+set $select_border #FFC799
 
-### Gruber Darker
- #    bg = "#181818",
- #    bg+1 = "#282828",
- #    fg = "#e4e4e4",
- #    fg+1 = "#f4f4ff",
- #    white = "#ffffff",
- #    black = "#000000",
- #    bg-1 = "#101010",
- #    bg+2 = "#453d41",
- #    bg+3 = "#484848",
- #    bg+4 = "#52494e",
- #    red = "#f43841",
- #    red+1 = "#ff4f58",
- #    green = "#73d936",
- #    yellow = "#ffdd33",
- #    brown = "#cc8c3c",
- #    quartz = "#95a99f",
- #    niagara-2 = "#303540",
- #    niagara-1 = "#565f73",
- #    niagara = "#96a6c8",
- #    wisteria = "#9e95c7",
 
-client.focused          $select_border $bg_color #ffffff $fg_color $bg_color 
+### Vesper
+ #    bg = "#101010",
+ #    bgDark = "#161616",
+ #    bgDarker = "#232323",
+ #    bgFloat = "#282828",
+ #    bgOption = "#343434",
+ #    fg = "#CCCCCC",
+ #    fgAlt = "#FEFEFE",
+ #    fgInactive = "#65737E",
+ #    fgDisabled = "#505050",
+ #    border = "#505050",
+ #    borderFocus = "#65737E",
+ #    red = "#FF8080",
+ #    orange = "#FFCFA8",
+ #    green = "#82D9C2",
+ #    yellowDark = "#FFC799",
+ #    primary = "#A0A0A0",
+ #    purpleDark = "#515C65",
+ #    comment = "#7D7D7D",
+
+client.focused          $select_border $bg_color #ffffff $fg_color #505050 
 client.focused_inactive  $inactive_bg $inactive_bg $fg_color $fg_color $inactive_bg
 client.unfocused        $bg_color $bg_color $fg_color $fg_color $bg_color
 client.urgent           $urgent $urgent $fg_color $fg_color $urgent
@@ -123,13 +115,14 @@ bindsym $mod+Tab focus next
 bindsym $mod+space exec $menu
 bindsym $mod+Shift+space exec rofi -show run
 bindsym $mod+m exec $music
+bindsym $mod+n exec swaync-client -t
 
 bindsym $mod+r reload
 bindsym $mod+t layout tabbed
 
 bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-bindsym $mod+Shift+P exec rofi -show power-menu -modi power-menu:rofi-power-menu
+bindsym $mod+Shift+P exec rofi -show power-menu -modi power-menu:/home/dallas/opt/bin/rofi-power-menu
 bindsym $mod+alt+L exec $lock
 
 bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/screenshots/window-$(date +%Y%m%d-%H%M%S).png"
@@ -207,8 +200,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # for_window [workspace = "1"] layout tabbed
 
-for_window [app_id="^firefox$"] move to workspace 2
-for_window [app_id="^zen$"] move to workspace 2
+for_window [app_id="^Firefox$"] move to workspace 2
+for_window [app_id="^app.zen_browser.zen$"] move to workspace 2
 for_window [app_id="^brave-browser$"] move to workspace 2
 for_window [class="^helium$"] move to workspace 2
 
@@ -216,27 +209,26 @@ for_window [title="^Picture-in-Picture$"] \
     floating enable, \
     sticky enable, \
     resize set 495 287, \
-    move position 1383 px 864 px, \
+    move position 1410 px 760 px, \
     focus no, \
     border none
 
 for_window [app_id="^foot$"] move to workspace 1, opacity 0.95
 
 for_window [class="^steam$"] move to workspace 3, nofocus
-for_window [class="^steam$" title="^Steam$"] floating enable
-for_window [title="^Friends List$"] floating enable, move to workspace 3, resize set 300 650
-
-for_window [class="^heroic$"] \
-    move to workspace 3, \
-    floating enable, \
-    nofocus
-
-for_window [class="^discord$"] \
-    move to workspace 3, \
-    floating enable, \
-    nofocus
-
 for_window [app_id="^org.prismlauncher.PrismLauncher$"] move to workspace 3
+for_window [app_id="^com.hypixel.HytaleLauncher$"] move to workspace 3
+for_window [class="^heroic$"] \
+                   move to workspace 3, \
+                   floating enable, \
+                   nofocus
+for_window [class="^discord$"] \
+                  move to workspace 4, \
+                  floating enable, \
+                  nofocus
+
+for_window [class="^wechat$"] move to workspace 4, opacity .9
+
 
 for_window [class="^Mullvad VPN$"] \
     floating enable, \

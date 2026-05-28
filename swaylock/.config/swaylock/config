@@ -1,38 +1,38 @@
 font=JetBrains Mono Nerd Font
 
-image=/home/dallas/.wallpapers/forest.jpg
+image=/home/dallas/.wallpapers/moon.jpg
 scaling=fill
 
 indicator-radius=100
 indicator-thickness=10
 
-inside-color=1F1F28
-inside-clear-color=1F1F28
-inside-ver-color=2A2A37
-inside-wrong-color=1F1F28
-inside-caps-lock-color=1F1F28
+inside-color=232323
+inside-clear-color=232323
+inside-ver-color=FFCFA8
+inside-wrong-color=FF8080
+inside-caps-lock-color=232323
 
-ring-color=727169
-ring-clear-color=727169
-ring-ver-color=76956A
-ring-wrong-color=E82424
-ring-caps-lock-color=E6C384
+ring-color=000000
+ring-clear-color=FFCFA8
+ring-ver-color=FFCFA8
+ring-wrong-color=FF8080
+ring-caps-lock-color=FFC799
 
-key-hl-color=E6C384
-bs-hl-color=E82424
+key-hl-color=FFC799
+bs-hl-color=FF8080
 
 separator-color=00000000
 
-line-color=727169
-line-clear-color=727169
-line-ver-color=76956A
-line-wrong-color=E82424
-line-caps-lock-color=E6C384
+line-color=FFCFA8
+line-clear-color=FFCFA8
+line-ver-color=FFCFA8
+line-wrong-color=FF8080
+line-caps-lock-color=FFC799
 
-text-color=DCDCDC
-text-clear-color=DCDCDC
-text-ver-color=DCDCDC
-text-wrong-color=DCDCDC
-text-caps-lock-color=DCDCDC
+text-color=CCCCCC
+text-clear-color=CCCCCC
+text-ver-color=CCCCCC
+text-wrong-color=CCCCCC
+text-caps-lock-color=CCCCCC
 
 show-failed-attempts=true
