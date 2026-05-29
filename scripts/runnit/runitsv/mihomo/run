@@ -1,0 +1,17 @@
+#!/bin/sh
+# runit run script for mihomo
+
+# give network a moment (systemd had After=network.target etc.)
+sleep 1
+
+# set ulimits (soft limits)
+ulimit -u 500                # max user processes
+ulimit -n 1000000            # max open files
+
+# export any needed environment variables here, e.g.:
+# export MIHOMO_CONFIG_DIR=/etc/mihomo
+
+# drop privileges here if needed (run as non-root by svscan's owner or use setuid-wrapper)
+exec 2>&1
+exec /home/dallas/opt/bin/mihomo -d /home/dallas/opt/config/
+
