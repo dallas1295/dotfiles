@@ -37,8 +37,8 @@ exec swayidle -w \
     resume 'swaymsg output "*" power on' \
     before-sleep 'swaylock -f --color 101010'
 
-output HDMI-A-1 bg ~/.wallpapers/moon.jpg fill
-output eDP-1 bg ~/.wallpapers/moon.jpg fill
+output HDMI-A-1 bg ~/.wallpapers/void.png fill
+output eDP-1 bg ~/.wallpapers/void.png fill
 
 set $bg_color #101010
 set $fg_color #CCCCCC

@@ -6,26 +6,26 @@ scaling=fill
 indicator-radius=100
 indicator-thickness=10
 
-inside-color=232323
-inside-clear-color=232323
-inside-ver-color=FFCFA8
-inside-wrong-color=FF8080
-inside-caps-lock-color=232323
+inside-color=161616
+inside-clear-color=161616
+inside-ver-color=161616
+inside-wrong-color=161616
+inside-caps-lock-color=161616
 
-ring-color=000000
+ring-color=505050
 ring-clear-color=FFCFA8
-ring-ver-color=FFCFA8
+ring-ver-color=65737E
 ring-wrong-color=FF8080
 ring-caps-lock-color=FFC799
 
-key-hl-color=FFC799
+key-hl-color=FFCFA8
 bs-hl-color=FF8080
 
 separator-color=00000000
 
-line-color=FFCFA8
-line-clear-color=FFCFA8
-line-ver-color=FFCFA8
+line-color=505050
+line-clear-color=65737E
+line-ver-color=65737E
 line-wrong-color=FF8080
 line-caps-lock-color=FFC799
 
