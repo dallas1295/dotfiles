@@ -57,7 +57,7 @@
   },
   "disk": {
     "path": "/mnt",
-    "format": "󰋊 {used}/{total}"
+    "format": " 󰋊 {used}/{total}"
   },
   "backlight": {
     "format": " {icon}",

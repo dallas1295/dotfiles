@@ -1,38 +1,38 @@
 font=JetBrains Mono Nerd Font
 
-image=/home/dallas/.wallpapers/moon.jpg
+image=/home/dallas/.wallpapers/adam.jpg
 scaling=fill
 
 indicator-radius=100
 indicator-thickness=10
 
-inside-color=161616
-inside-clear-color=161616
-inside-ver-color=161616
-inside-wrong-color=161616
-inside-caps-lock-color=161616
+inside-color=282828
+inside-clear-color=282828
+inside-ver-color=282828
+inside-wrong-color=282828
+inside-caps-lock-color=282828
 
-ring-color=505050
-ring-clear-color=FFCFA8
-ring-ver-color=65737E
-ring-wrong-color=FF8080
-ring-caps-lock-color=FFC799
+ring-color=453D41
+ring-clear-color=96A6C8
+ring-ver-color=96A6C8
+ring-wrong-color=F43841
+ring-caps-lock-color=FFDD33
 
-key-hl-color=FFCFA8
-bs-hl-color=FF8080
+key-hl-color=FFDD33
+bs-hl-color=F43841
 
 separator-color=00000000
 
-line-color=505050
-line-clear-color=65737E
-line-ver-color=65737E
-line-wrong-color=FF8080
-line-caps-lock-color=FFC799
+line-color=453D41
+line-clear-color=96A6C8
+line-ver-color=96A6C8
+line-wrong-color=F43841
+line-caps-lock-color=FFDD33
 
-text-color=CCCCCC
-text-clear-color=CCCCCC
-text-ver-color=CCCCCC
-text-wrong-color=CCCCCC
-text-caps-lock-color=CCCCCC
+text-color=E4E4E4
+text-clear-color=E4E4E4
+text-ver-color=E4E4E4
+text-wrong-color=E4E4E4
+text-caps-lock-color=E4E4E4
 
 show-failed-attempts=true

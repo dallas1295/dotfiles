@@ -6,9 +6,9 @@
 
 window#waybar {
   background: transparent;
-  /* background: #252530; */
-  background: #141415;
-  color: #cdcdcd;
+  /* background: #453D41; */
+  background: #181818;
+  color: #E4E4E4;
   font-family: "Iosevka Nerd Font";
   /* padding: 0 0px; */
   /* border-radius: 10px; */
@@ -21,7 +21,7 @@ window#waybar {
 .modules-center,
 .modules-left,
 .modules-right {
-  /* background: #141415; */
+  /* background: #181818; */
   /* border-radius: 10px; */
   margin: 0px 0;
   border: none;
@@ -45,7 +45,7 @@ window#waybar {
   padding: 0 3px;
   /* border-radius: 0; */
   margin: 0;
-  color: #cdcdcd;
+  color: #E4E4E4;
 }
 
 #tray {
@@ -69,14 +69,14 @@ window#waybar {
 #power-profiles-daemon:hover,
 #language:hover,
 #mpd:hover {
-  background: #252530;
+  background: #453D41;
 }
 
 #workspaces button {
   font-family: "Iosevka Nerd Font", feather;
   font-weight: 900;
   font-size: 11px;
-  color: #cdcdcd;
+  color: #E4E4E4;
   border: none;
   /* border-radius: 8px; */
   padding: 0px 4px;
@@ -88,18 +88,18 @@ window#waybar {
 
 #workspaces button.focused,
 #workspaces button.active {
-  background: #252530;
-  color: #ffcfa8;
+  background: #453D41;
+  color: #FFDD33;
 }
 
 #workspaces button.urgent {
-  background: #d8647e;
-  color: #cdcdcd;
+  background: #F43841;
+  color: #E4E4E4;
 }
 
 #workspaces button:hover {
-  background: #252530;
-  color: #82d9c2;
+  background: #453D41;
+  color: #96A6C8;
   box-shadow: none;
 }
 
@@ -119,6 +119,6 @@ window#waybar {
 }
 
 #battery.critical {
-  background: #d8647e;
-  color: #cdcdcd;
+  background: #F43841;
+  color: #E4E4E4;
 }

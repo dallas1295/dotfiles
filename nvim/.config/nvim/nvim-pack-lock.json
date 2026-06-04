@@ -8,6 +8,18 @@
       "rev": "fea9eedc6894c44d44cbb772a5cd11c93b82d7a1",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
+    "gruber": {
+      "rev": "df9b1751b2d44153ed9dee11e2e9130c61b348c2",
+      "src": "https://github.com/ring0-rootkit/gruber-darker.nvim"
+    },
+    "gruber-darker": {
+      "rev": "df9b1751b2d44153ed9dee11e2e9130c61b348c2",
+      "src": "https://github.com/ring0-rootkit/gruber-darker.nvim"
+    },
+    "gruber-darker.nvim": {
+      "rev": "aba065c3a79b58cc3863d5c9db319255abd1258a",
+      "src": "https://github.com/blazkowolf/gruber-darker.nvim"
+    },
     "lazygit": {
       "rev": "a04ad0dbc725134edbee3a5eea29290976695357",
       "src": "https://github.com/kdheepak/lazygit.nvim"
@@ -43,6 +55,10 @@
     "which-key": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"
+    },
+    "zenburn.nvim": {
+      "rev": "f5ee12b30119499c7fa7f95719cd7c5aab9f9f29",
+      "src": "https://github.com/phha/zenburn.nvim"
     }
   }
 }
