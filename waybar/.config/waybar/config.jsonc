@@ -15,9 +15,10 @@
     "memory"
   ],
   "modules-center": [
-    "sway/workspaces"
+    "ext/workspaces"
   ],
   "modules-right": [
+    "dwl/window",
     "network",
     "pulseaudio",
     "backlight",

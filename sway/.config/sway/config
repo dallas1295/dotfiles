@@ -14,16 +14,16 @@ bar {
   swaybar_command /usr/bin/waybar
 }
 
-output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz
-output HDMI-A-1 pos 1920 0 mode 1920x1080@144hz
+output eDP-1 pos -1920 0 scale 1.6 mode 2880x1800@120hz
+output HDMI-A-1 pos 0 0 mode 1920x1080@144hz
 exec_always xrandr --output XWAYLAND0 --primary
 
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 exec swaync
 exec syncthing
-# exec mullvad-vpn
-exec kanshi
+exec mullvad-vpn
+# exec kanshi
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
@@ -221,7 +221,8 @@ for_window [title="^Picture-in-Picture$"] \
     focus no, \
     border none
 
-for_window [app_id="^foot$"] move to workspace 1, opacity 0.95
+# for_window [app_id="^foot$"] move to workspace 1, opacity 0.95
+for_window [app_id="^foot$"] opacity 0.95
 
 for_window [class="^steam$"] move to workspace 3, nofocus
 for_window [app_id="^org.prismlauncher.PrismLauncher$"] move to workspace 3
