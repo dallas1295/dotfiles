@@ -15,10 +15,10 @@
     "memory"
   ],
   "modules-center": [
-    "ext/workspaces"
+    "niri/workspaces"
   ],
   "modules-right": [
-    "dwl/window",
+    "niri/window",
     "network",
     "pulseaudio",
     "backlight",
