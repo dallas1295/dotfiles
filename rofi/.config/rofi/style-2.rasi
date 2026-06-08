@@ -68,7 +68,7 @@ window {
     padding:                     0px;
     border:                      1px solid;
     border-radius:               0px;
-    border-color:                #FFCFA8;
+    border-color:                var(border);
     cursor:                      "default";
     background-color:            @background-colour;
 }
@@ -209,7 +209,7 @@ element-icon {
 element-text {
     background-color:            transparent;
     text-color:                  inherit;
-    highlight:                   #FFC799;
+    highlight:                   #fabd2f;
     cursor:                      inherit;
     vertical-align:              0.5;
     horizontal-align:            0.0;

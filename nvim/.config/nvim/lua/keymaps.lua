@@ -35,9 +35,12 @@ keymap.set("n", "<leader>pl", function()
 	vim.pack.update()
 end)
 
--- C funtions
+-- functions
 keymap.set("n", "<leader>cc", ":make!<CR>", { desc = "Compile C Project" })
 keymap.set("n", "<leader>co", ":copen<CR>", { desc = "Open Compiler Quickfix List" })
+keymap.set("n", "<leader>rr", ":Crun<CR>")
+keymap.set("n", "<leader>rb", ":Cbuild ")
+keymap.set("n", "<leader>rc", ":Ccheck<CR>")
 
 -- LazyGit
 keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit" })
@@ -50,13 +53,13 @@ end, { desc = "Open Which-key" })
 -- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 -- pane navigation
-keymap.set("n", "<c-j>", ":wincmd j<CR>")
-keymap.set("n", "<c-k>", ":wincmd k<CR>")
-keymap.set("n", "<c-h>", ":wincmd h<CR>")
-keymap.set("n", "<c-l>", ":wincmd l<CR>")
+keymap.set({ "n", "t" }, "<c-j>", ":wincmd j<CR>")
+keymap.set({ "n", "t" }, "<c-k>", ":wincmd k<CR>")
+keymap.set({ "n", "t" }, "<c-h>", ":wincmd h<CR>")
+keymap.set({ "n", "t" }, "<c-l>", ":wincmd l<CR>")
 
 -- Diagnostics (via fzf-lua)
-keymap.set("n", "<leader>dl", function()
+keymap.set("n", "<leader>dw", function()
 	require("fzf-lua").diagnostics_workspace()
 end, { desc = "Workspace diagnostics" })
 
@@ -71,6 +74,8 @@ end, { desc = "Go to next diagnostic error" })
 keymap.set("n", "<leader>dp", function()
 	vim.diagnostic.get_prev()
 end, { desc = "Go to next diagnostic error" })
+
+vim.keymap.set("n", "dl", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 
 -- super-tab
 vim.keymap.set("i", "<Tab>", function()
@@ -159,3 +164,21 @@ keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
 keymap.set("n", "<S-l>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
+
+-- Terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
+	callback = function()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+	end,
+})
+
+keymap.set("n", "<leader>tt", function()
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd("startinsert")
+	vim.cmd.wincmd("J")
+	vim.api.nvim_win_set_height(0, 15)
+end)
+keymap.set("t", "<esc><esc>", "<C-\\><C-n>:bd!<CR>")

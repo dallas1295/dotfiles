@@ -13,7 +13,8 @@
     "sort-by-id": true
   },
   "dwl/window": {
-    "format": "[{layout}] {title}"
+    "format": "{title}",
+    "max-length": 45
   },
   "niri/workspaces": {
     "format": "{index}",
