@@ -4,40 +4,40 @@ end
 
 -- -- Themes
 
--- add({
--- 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
+add({
+	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
+})
+
+vim.cmd.colorscheme("gruber-darker")
+
+-- vim.pack.add({
+-- 	"https://github.com/ellisonleao/gruvbox.nvim",
 -- })
 --
--- vim.cmd.colorscheme("gruber-darker")
-
-vim.pack.add({
-	"https://github.com/ellisonleao/gruvbox.nvim",
-})
-
-require("gruvbox").setup({
-	terminal_colors = true, -- add neovim terminal colors
-	undercurl = true,
-	underline = true,
-	bold = true,
-	italic = {
-		strings = true,
-		emphasis = true,
-		comments = true,
-		operators = false,
-		folds = true,
-	},
-	strikethrough = true,
-	invert_selection = false,
-	invert_signs = false,
-	invert_tabline = false,
-	inverse = true, -- invert background for search, diffs, statuslines and errors
-	contrast = "dark", -- can be "hard", "soft" or empty string
-	palette_overrides = {},
-	overrides = {},
-	dim_inactive = false,
-	transparent_mode = false,
-})
-vim.cmd("colorscheme gruvbox")
+-- require("gruvbox").setup({
+-- 	terminal_colors = true, -- add neovim terminal colors
+-- 	undercurl = true,
+-- 	underline = true,
+-- 	bold = true,
+-- 	italic = {
+-- 		strings = true,
+-- 		emphasis = true,
+-- 		comments = true,
+-- 		operators = false,
+-- 		folds = true,
+-- 	},
+-- 	strikethrough = true,
+-- 	invert_selection = false,
+-- 	invert_signs = false,
+-- 	invert_tabline = false,
+-- 	inverse = true, -- invert background for search, diffs, statuslines and errors
+-- 	contrast = "dark", -- can be "hard", "soft" or empty string
+-- 	palette_overrides = {},
+-- 	overrides = {},
+-- 	dim_inactive = false,
+-- 	transparent_mode = false,
+-- })
+-- vim.cmd("colorscheme gruvbox")
 
 -- Which-key
 add({
@@ -115,15 +115,15 @@ require("fzf-lua").setup({
 	},
 	files = {
 		file_ignore_patterns = {
-			"^.git/",
-			"^.vscode/",
-			"^.svelte-kit/",
-			"^node_modules/",
-			"^.next/",
-			"^dist/",
-			"^build/",
-			"^.DS_Store",
-			"^target/",
+			"%.git/",
+			"%.vscode/",
+			"%.svelte%-kit/",
+			"node_modules/",
+			"%.next/",
+			"dist/",
+			"build/",
+			"%.DS_Store",
+			"target/",
 		},
 		fd_opts = [[--color=never --type f --type l --hidden --exclude .git --exclude .vscode --exclude .svelte-kit --exclude node_modules --exclude .next --exclude dist --exclude build --exclude target]],
 		rg_opts = [[--color=never --files --hidden --glob '!.git' --glob '!.vscode' --glob '!.svelte-kit' --glob '!node_modules' --glob '!.next' --glob '!dist' --glob '!build' --glob '!target/**']],

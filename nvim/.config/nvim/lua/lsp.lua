@@ -6,7 +6,7 @@ vim.lsp.enable({
 	"zls",
 	"marksman",
 	"ts_ls",
-	-- "rust-analyzer",
+	"rust-analyzer",
 })
 
 -- Diagnostic config: squiggles + signs only, no inline text

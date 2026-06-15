@@ -1,12 +1,12 @@
 font pango: Iosevka Nerd Font 10.5
+exec pipewire
 
 set $mod Mod4
 
 set $terminal foot
-set $fileManager foot -e yazi
+set $fileManager foot -T Yazi -e yazi
 set $menu rofi -show drun
-set $music spotify
-set $browser brave
+set $browser flatpak run io.gitlab.librewolf-community
 
 set $lock swaylock -f
 
@@ -14,16 +14,15 @@ bar {
   swaybar_command /usr/bin/waybar
 }
 
-output eDP-1 pos -1920 0 scale 1.6 mode 2880x1800@120hz
-output HDMI-A-1 pos 0 0 mode 1920x1080@144hz
+output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz
+output HDMI-A-1 pos 1800 0 mode 1920x1080@144hz
 exec_always xrandr --output XWAYLAND0 --primary
 
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 exec swaync
 exec syncthing
-exec mullvad-vpn
-# exec kanshi
+exec kanshi
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
@@ -67,7 +66,7 @@ set $select_border #95A99F
  #    niagara = "#96A6C8",
  #    wisteria = "#9E95C7",
 
-client.focused          $select_border $bg_color #ffffff $fg_color $select_border 
+client.focused          $select_border $bg_color #ffffff $fg_color $select_border
 client.focused_inactive  $inactive_bg $inactive_bg $fg_color $fg_color $inactive_bg
 client.unfocused        $bg_color $bg_color $fg_color $fg_color $bg_color
 client.urgent           $urgent $urgent $fg_color $fg_color $urgent
@@ -114,7 +113,7 @@ bindsym $mod+Shift+v floating toggle
 bindsym $mod+Tab focus next
 bindsym $mod+space exec $menu
 bindsym $mod+Shift+space exec rofi -show run
-bindsym $mod+m exec $music
+bindsym $mod+m exec foot -T kew -e kew
 bindsym $mod+n exec swaync-client -t
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
@@ -123,11 +122,11 @@ bindsym $mod+r reload
 
 bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-bindsym $mod+Shift+P exec rofi -show power-menu -modi power-menu:rofi-power-menu
+bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:/home/dallas/opt/bin/rofi-power-menu
 bindsym $mod+alt+L exec $lock
 
-bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/screenshots/window-$(date +%Y%m%d-%H%M%S).png"
-bindsym $mod+s exec grim -g "$(slurp)" "$HOME/Pictures/screenshots/region-$(date +%Y%m%d-%H%M%S).png"
+bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/window-$(date +%Y%m%d-%H%M%S).png"
+bindsym $mod+s exec grim -g "$(slurp)" "$HOME/Pictures/region-$(date +%Y%m%d-%H%M%S).png"
 
 bindsym $mod+i exec foot -e btop
 bindsym $mod+b exec $browser
@@ -146,13 +145,13 @@ bindsym $mod+Mod1+p exec autotiling
 bindsym $mod+Shift+r move container to workspace current
 bindsym $mod+f fullscreen toggle
 
-workspace 1 output HDMI-A-1
-workspace 2 output HDMI-A-1
-workspace 3 output HDMI-A-1
-workspace 4 output HDMI-A-1
-workspace 5 output eDP-1
-workspace 6 output eDP-1
-workspace 7 output eDP-1
+workspace 1
+workspace 2
+workspace 3
+workspace 4
+workspace 5
+workspace 6
+workspace 7
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -184,8 +183,8 @@ bindsym $mod+Shift+period move container to output right
 bindsym $mod+equal workspace next_on_output
 bindsym $mod+minus workspace prev_on_output
 
-# bindsym $mod+Shift+s exec swaymsg move to scratchpad
-# bindsym $mod+s exec swaymsg scratchpad show
+bindsym $mod+Shift+z exec swaymsg move to scratchpad
+bindsym $mod+z exec swaymsg scratchpad show
 
 bindsym $mod+button4 workspace prev_on_output
 bindsym $mod+button5 workspace next_on_output
@@ -209,7 +208,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # for_window [workspace = "1"] layout tabbed
 
-for_window [app_id="^firefox$"] move to workspace 2
+for_window [app_id="^Firefox$"] move to workspace 2
+for_window [app_id="^librewolf$"] move to workspace 2
 for_window [app_id="^app.zen_browser.zen$"] move to workspace 2
 for_window [app_id="^brave-browser$"] move to workspace 2
 for_window [class="^helium$"] move to workspace 2
@@ -222,43 +222,16 @@ for_window [title="^Picture-in-Picture$"] \
     focus no, \
     border none
 
-# for_window [app_id="^foot$"] move to workspace 1, opacity 0.95
-for_window [app_id="^foot$"] opacity 0.95
+
+for_window [app_id="^foot$" title="kew"] move to scratchpad, opacity 0.95, urgent none
+for_window [app_id="^foot$" title="Yazi"] opacity 0.95
+for_window [app_id="^foot$"] move to workspace 1, opacity 0.95
 
 for_window [class="^steam$"] move to workspace 3, nofocus
-for_window [app_id="^org.prismlauncher.PrismLauncher$"] move to workspace 3
-for_window [app_id="^com.hypixel.HytaleLauncher$"] move to workspace 3
-for_window [class="^heroic$"] \
-                   move to workspace 3, \
-                   floating enable, \
-                   nofocus
-for_window [class="^discord$"] \
-                  move to workspace 4, \
-                  floating enable, \
-                  nofocus
-
 for_window [class="^wechat$"] move to workspace 4, opacity .9
-
-
 for_window [class="^Mullvad VPN$"] \
     floating enable, \
     move position 1444 px 60 px
-
-for_window [class="^Bitwarden$"] \
-    move to workspace 4, \
-    floating enable, \
-    resize set 651 601, \
-    move position 897 px 74 px
-
-for_window [app_id="^spotify$"] \
-    move to workspace 4, \
-    floating enable, \
-    resize set 859 960, \
-    move position 15 px 130 px
-
-for_window [class="^blueman-manager$"] \
-    floating enable, \
-    resize set 651 452
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable

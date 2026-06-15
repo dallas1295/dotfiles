@@ -56,17 +56,6 @@
 (setq dired-listing-switches "-alh")
 (setq dired-mouse-drag-files t)
 
-
-;; Some helpful binds
-(global-set-key (kbd "C-S-<up>") #'my/increment-number-at-point)
-(global-set-key (kbd "C-S-<down>") #'my/decrement-number-at-point)
-(global-set-key (kbd "C-=") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
-(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
-
-(global-set-key [escape] 'keyboard-escape-quit)
-
 ;; Theme
 (use-package gruber-darker-theme
   :ensure t

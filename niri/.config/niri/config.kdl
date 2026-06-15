@@ -119,6 +119,8 @@ layout {
         // bottom 64
     }
 }
+
+spawn-at-startup "pipewire"
 spawn-at-startup "waybar"
 spawn-at-startup "kanshi"
 spawn-at-startup "syncthing"

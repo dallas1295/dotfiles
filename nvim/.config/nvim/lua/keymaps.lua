@@ -174,11 +174,35 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
+local term_buf = nil
+
 keymap.set("n", "<leader>tt", function()
-	vim.cmd.vnew()
-	vim.cmd.term()
-	vim.cmd("startinsert")
-	vim.cmd.wincmd("J")
-	vim.api.nvim_win_set_height(0, 15)
-end)
-keymap.set("t", "<esc><esc>", "<C-\\><C-n>:bd!<CR>")
+	if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+		local wins = vim.fn.win_findbuf(term_buf)
+		if #wins > 0 then
+			vim.fn.win_gotoid(wins[1])
+			vim.cmd("hide")
+		else
+			vim.cmd("belowright new")
+			vim.api.nvim_win_set_height(0, 15)
+			vim.api.nvim_win_set_buf(0, term_buf)
+			vim.cmd("startinsert")
+		end
+	else
+		vim.cmd("belowright new")
+		vim.api.nvim_win_set_height(0, 15)
+		vim.cmd.term()
+		vim.cmd("startinsert")
+		term_buf = vim.api.nvim_get_current_buf()
+	end
+end, { desc = "Toggle terminal" })
+
+keymap.set("t", "<esc><esc>", "<C-\\><C-n>:hide<CR>", { desc = "Hide terminal" })
+keymap.set("t", "<esc><S-esc>", "<C-\\><C-n>:bdelete!<CR>", { desc = "Close terminal" })
+
+keymap.set("n", "<leader>tq", function()
+	if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+		vim.cmd("bdelete! " .. term_buf)
+		term_buf = nil
+	end
+end, { desc = "Close terminal" })
