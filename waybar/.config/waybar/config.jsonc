@@ -15,10 +15,10 @@
     "memory"
   ],
   "modules-center": [
-    "niri/workspaces"
+    "sway/workspaces"
   ],
   "modules-right": [
-    "niri/window",
+    "sway/window",
     "network",
     "pulseaudio",
     "backlight",

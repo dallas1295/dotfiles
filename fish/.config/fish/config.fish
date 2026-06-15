@@ -38,8 +38,6 @@ alias lla 'lsd -la'
 alias lt 'lsd --tree --depth 2'
 alias lg 'lsd -la --git'
 
-alias mv 'mullvad-tui'
-
 set -gx FZF_DEFAULT_COMMAND "fd --hidden --exclude .git --type f"
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 
