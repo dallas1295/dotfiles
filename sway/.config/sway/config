@@ -88,7 +88,7 @@ input "type:touchpad" {
 }
 
 input "type:mouse" {
-    # accel_profile flat
+    accel_profile flat
 }
 
 input "tpps/2-elan-trackpoint" {
