@@ -2,4 +2,4 @@
 # VERSION: 3.0
 SETUVAR --export XDG_CURRENT_DESKTOP:sway
 SETUVAR __fish_initialized:4300
-SETUVAR fish_user_paths:/home/dallas/\x2ecargo/bin\x1e/home/dallas/\x2eopencode/bin\x1e/home/dallas/opt/bin
+SETUVAR fish_user_paths:/home/dallas/\x2ecargo/bin\x1e/home/dallas/opt/bin\x1e/home/dallas/\x2eopencode/bin

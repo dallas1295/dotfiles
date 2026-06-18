@@ -16,7 +16,6 @@ fish_add_path "$PYENV_ROOT/bin"
 fish_add_path "$HOME/.opencode/bin"
 fish_add_path "$HOME/opt/bin"
 
-alias hx helix
 alias svim 'sudo -E nvim'
 
 # alias pacman 'paru'
@@ -27,7 +26,7 @@ alias xi 'sudo xbps-install'
 alias xr 'sudo xbps-remove'
 alias xq 'sudo xbps-query'
 alias xu 'sudo xbps-install -Su'
-alisa vsv 'sudo vsv'
+alias vsv 'sudo vsv'
 
 alias ls lsd
 alias ll 'lsd -l'
@@ -40,7 +39,11 @@ set -gx FZF_DEFAULT_COMMAND "fd --hidden --exclude .git --type f"
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 
 zoxide init fish | source
-starship init fish | source
 
 clear
 # fastfetch
+
+# ZVM
+set -gx ZVM_INSTALL "$HOME/.zvm/self"
+set -gx PATH $PATH "$HOME/.zvm/bin"
+set -gx PATH $PATH "$ZVM_INSTALL/"

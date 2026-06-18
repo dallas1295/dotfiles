@@ -6,7 +6,7 @@ set $mod Mod4
 set $terminal foot
 set $fileManager foot -T Yazi -e yazi
 set $menu rofi -show drun
-set $browser flatpak run io.gitlab.librewolf-community
+set $browser flatpak run app.zen_browser.zen 
 
 set $lock swaylock -f
 
@@ -122,7 +122,7 @@ bindsym $mod+r reload
 
 bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:/home/dallas/opt/bin/rofi-power-menu
+bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:/home/dallas/opt/data/rofi-power-menu/rofi-power-menu
 bindsym $mod+alt+L exec $lock
 
 bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/window-$(date +%Y%m%d-%H%M%S).png"
