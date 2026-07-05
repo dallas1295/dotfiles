@@ -1,4 +1,4 @@
-font pango: Iosevka Nerd Font 10.5
+font pango: Iosevka Nerd Font 11
 exec pipewire
 
 set $mod Mod4
@@ -16,7 +16,7 @@ bar {
 
 output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz
 output HDMI-A-1 pos 1800 0 mode 1920x1080@144hz
-exec_always xrandr --output XWAYLAND0 --primary
+# exec_always xrandr --output XWAYLAND0 --primary
 
 exec swaync
 exec syncthing
