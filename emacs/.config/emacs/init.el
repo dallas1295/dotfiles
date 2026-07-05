@@ -1,13 +1,11 @@
 ;; Set custom file so no clutter
 (setq custom-file "~/.config/emacs/custom.el")
-(load "~/.config/emacs/meow.el")
 
 ;; add elpaca hook for extensions
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
 
 ;; get trash file
 (setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
-
 
 ;; Sane defaults (for me)
 (setq inhibit-splash-screen t)
@@ -44,6 +42,24 @@
 (set-face-attribute 'font-lock-keyword-face nil
                     :slant 'italic)
 
+;; Binds
+(global-unset-key (kbd "M-SPC"))
+
+;; file stuff
+(global-set-key (kbd "M-SPC /") 'consult-line)
+(global-set-key (kbd "M-SPC i") 'consult-buffer)
+(global-set-key (kbd "M-SPC f r") 'consult-recent-file)
+(global-set-key (kbd "M-SPC f d") 'dired-jump)
+(global-set-key (kbd "M-SPC r g") 'consult-ripgrep)
+(global-set-key (kbd "M-SPC r q") 'query-replace)
+(global-set-key (kbd "M-SPC d b") 'consult-flymake)
+(global-set-key (kbd "M-SPC k a") 'projectile-kill-buffers)
+(global-set-key (kbd "M-SPC p d") 'consult-projectile)
+
+(global-set-key (kbd "M-SPC b d") '(lambda () (interactive) (kill-buffer (current-buffer))))
+(global-set-key (kbd "M-SPC b l") '(lambda () (interactive) (switch-to-buffer nil)))
+
+
 ;; dired and ibuffer
 (setq display-buffer-alist
       '(("\\*Buffer List\\*" . (display-buffer-same-window))
@@ -70,7 +86,7 @@
   :ensure t
   :after vterm
   :commands vterm-toggle
-  :bind ("C-c v" . vterm-toggle)
+  :bind ("M-SPC v" . vterm-toggle)
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (setq vterm-toggle-scope 'project)
@@ -83,54 +99,6 @@
                  (display-buffer-reuse-window display-buffer-at-bottom)
                  (reusable-frames . visible)
                  (window-height . 0.4))))
-
-
-;; Multiple cursors
-(use-package multiple-cursors
-  :ensure t
-  :config
-  (require 'multiple-cursors)
-  (global-set-key (kbd "C-S-c") 'my/mc-add-cursor-below)
-  (global-set-key (kbd "C-S-d") 'my/mc-delete-cursor)
-  (global-set-key (kbd "C->") 'mc/marknext-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
-
-(defun my/mc-add-cursor-below ()
-  "Add a cursor on the next line, maintaining column."
-  (interactive)
-  (unless mc--executing-command-for-fake-cursor
-    (let ((col (current-column)))
-      (mc/create-fake-cursor-at-point)
-      (forward-line 1)
-      (move-to-column col)
-      (mc/maybe-multiple-cursors-mode))))
-
-(defun my/mc-delete-cursor ()
-  "Delete nearest fake cursor above real cursor and move there."
-  (interactive)
-  (unless mc--executing-command-for-fake-cursor
-    (let* ((current-line (line-number-at-pos))
-           (cursor-above
-            (cl-find-if
-             (lambda (o)
-               (and (mc/fake-cursor-p o)
-                    (< (line-number-at-pos (overlay-get o 'point))
-                       current-line)))
-             (sort (mc/all-fake-cursors)
-                   (lambda (a b)
-                     (> (line-number-at-pos (overlay-get a 'point))
-                        (line-number-at-pos (overlay-get b 'point))))))))
-      (when cursor-above
-        (let ((target-line (line-number-at-pos (overlay-get cursor-above 'point)))
-              (target-col (save-excursion
-                            (goto-char (overlay-get cursor-above 'point))
-                            (current-column))))
-          (mc/remove-fake-cursor cursor-above)
-          (forward-line (- target-line current-line))
-          (move-to-column target-col)
-          (mc/maybe-multiple-cursors-mode))))))
-
 
 ;; QoL
 (use-package diminish
@@ -210,37 +178,10 @@
 (require 'org-tempo)
 
 (setq org-directory "~/org")
-(setq org-agenda-files '("~/org/life.org" "~/org/coding.org"))
 (setq org-todo-keywords
       '((sequence "TODO(t)" "IN-PROGRESS(i)" "|" "DONE(d)" "CANCELLED(c)")))
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
-(setq org-agenda-span 'week)
-(setq org-agenda-start-on-weekday 1)
-(setq org-agenda-custom-commands
-      '(("d" "Daily Agenda"
-         ((agenda "" ((org-agenda-span 'day)))
-          (todo "IN-PROGRESS" ((org-agenda-overriding-header "In Progress")))
-          (todo "TODO" ((org-agenda-overriding-header "Todo")))))
-        ("l" "Life"
-         agenda ""
-         ((org-agenda-files '("~/org/life.org"))
-          (org-agenda-span 'week)))
-        ("C" "Coding"
-         agenda ""
-         ((org-agenda-files '("~/org/coding.org"))
-          (org-agenda-span 'week)))))
-
-(setq org-capture-templates
-      '(("l" "Life Todo" entry
-         (file "~/org/life.org")
-         "* TODO %?\n  %U\n")
-        ("c" "Coding Todo" entry
-         (file "~/org/coding.org")
-         "* TODO %?\n  %U\n")
-        ("n" "Quick Note" entry
-         (file "~/org/notes.org")
-         "* %?\n  %U\n")))
 
 
 ;; Magit
@@ -315,18 +256,15 @@
 (use-package eglot
   :ensure nil
   :diminish
-  :hook ((rust-mode . eglot-ensure)
-         (go-mode . eglot-ensure)
+  :hook ((go-mode . eglot-ensure)
          (typescript-mode . eglot-ensure)
          (tsx-mode . eglot-ensure)
          (lua-mode . eglot-ensure)
          (html-mode . eglot-ensure)
          (css-mode . eglot-ensure)
-         (zig-mode . eglot-ensure)
          (web-mode . eglot-ensure)
-         (cmake-mode . eglot-ensure)
-         (c-mode . eglot-ensure)
-         (elixir-mode . eglot-ensure))
+         (cmake-mode . eglot-ensure))
+
   :config
   (remove-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode)
   (add-to-list 'eglot-server-programs
@@ -336,17 +274,11 @@
   (setq-default eglot-workspace-configuration
                 '((:gopls . ((staticcheck . t))))))
 
-(use-package elixir-mode :ensure)
 (use-package zig-mode :ensure t)
-(use-package racket-mode :ensure t)
-(use-package svelte-mode :ensure t)
-(use-package go-mode :ensure t)
 (use-package rust-mode :ensure t)
 (use-package yaml-mode :ensure t)
 (use-package toml-mode :ensure t)
 (use-package typescript-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
 (use-package lua-mode :ensure t)
-(use-package markdown-mode :ensure t)
-(use-package php-mode :ensure t)
 (use-package cmake-mode :ensure t)

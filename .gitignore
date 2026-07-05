@@ -47,3 +47,6 @@ btop/.config/btop/btop.log
 */cache/
 node_modules/
 .aider*
+
+# ---------- Helix -----------
+helix/.config/helix/runtime

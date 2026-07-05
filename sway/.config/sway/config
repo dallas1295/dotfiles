@@ -3,10 +3,10 @@ exec pipewire
 
 set $mod Mod4
 
-set $terminal foot
+set $terminal foot -e zellij attach --create prometheus
 set $fileManager foot -T Yazi -e yazi
 set $menu rofi -show drun
-set $browser flatpak run app.zen_browser.zen 
+set $browser flatpak run app.zen_browser.zen
 
 set $lock swaylock -f
 
@@ -18,8 +18,6 @@ output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz
 output HDMI-A-1 pos 1800 0 mode 1920x1080@144hz
 exec_always xrandr --output XWAYLAND0 --primary
 
-exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
-exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 exec swaync
 exec syncthing
 exec kanshi
@@ -88,7 +86,7 @@ input "type:touchpad" {
 }
 
 input "type:mouse" {
-    accel_profile flat
+    # accel_profile flat
 }
 
 input "tpps/2-elan-trackpoint" {
@@ -114,7 +112,6 @@ bindsym $mod+Tab focus next
 bindsym $mod+space exec $menu
 bindsym $mod+Shift+space exec rofi -show run
 bindsym $mod+m exec foot -T kew -e kew
-bindsym $mod+n exec swaync-client -t
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
 bindsym $mod+r reload
@@ -145,7 +142,7 @@ bindsym $mod+Mod1+p exec autotiling
 bindsym $mod+Shift+r move container to workspace current
 bindsym $mod+f fullscreen toggle
 
-workspace 1
+workspace 1 
 workspace 2
 workspace 3
 workspace 4
@@ -183,6 +180,11 @@ bindsym $mod+Shift+period move container to output right
 bindsym $mod+equal workspace next_on_output
 bindsym $mod+minus workspace prev_on_output
 
+bindsym $mod+n workspace next_on_output
+bindsym $mod+p workspace prev_on_output
+bindsym $mod+Up workspace next_on_output
+bindsym $mod+Down workspace prev_on_output
+
 bindsym $mod+Shift+z exec swaymsg move to scratchpad
 bindsym $mod+z exec swaymsg scratchpad show
 
@@ -206,11 +208,11 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 
-# for_window [workspace = "1"] layout tabbed
+for_window [workspace = "1"] layout tabbed
 
 for_window [app_id="^Firefox$"] move to workspace 2
 for_window [app_id="^librewolf$"] move to workspace 2
-for_window [app_id="^app.zen_browser.zen$"] move to workspace 2
+for_window [app_id="^app.zen_browser.zen$"] move to workspace 2, focus
 for_window [app_id="^brave-browser$"] move to workspace 2
 for_window [class="^helium$"] move to workspace 2
 
@@ -223,15 +225,14 @@ for_window [title="^Picture-in-Picture$"] \
     border none
 
 
-for_window [app_id="^foot$" title="kew"] move to scratchpad, opacity 0.95, urgent none
-for_window [app_id="^foot$" title="Yazi"] opacity 0.95
-for_window [app_id="^foot$"] move to workspace 1, opacity 0.95
+for_window [app_id="^foot$" title="kew"] move to scratchpad
+for_window [app_id="^foot$"] move to workspace 1, focus
 
 for_window [class="^steam$"] move to workspace 3, nofocus
-for_window [class="^wechat$"] move to workspace 4, opacity .9
-for_window [class="^Mullvad VPN$"] \
-    floating enable, \
-    move position 1444 px 60 px
+for_window [class="^wechat$"] move to workspace 4, opacity .9, nofocus
+# for_window [class="^Mullvad VPN$"] \
+#     floating enable, \
+#     move position 1444 px 60 px
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable

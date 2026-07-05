@@ -14,7 +14,7 @@
    '("f f" .  dired-jump)
    '("r g" . consult-ripgrep)
    '("r q" . query-replace)
-   '("i" . consult-buffer)
+   ;; '("i" . consult-buffer)
    '("d b" . consult-flymake)
 
    ;; Vterm
@@ -120,7 +120,7 @@
    '("m" . meow-join)
    '("n" . meow-search)
    '("o" . meow-block)
-   '("/" . consult-line)
+   ;; '("/" . consult-line)
    '("t" . meow-till)
    '("u" . meow-undo)
    '("C-r" . undo-redo)

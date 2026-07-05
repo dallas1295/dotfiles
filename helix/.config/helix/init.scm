@@ -1,0 +1,27 @@
+(require (prefix-in helix. "helix/commands.scm"))
+(require (prefix-in helix.static. "helix/static.scm"))
+(require "helix/configuration.scm")
+(require "helix/keymaps.scm")
+
+(require "notify/notify.scm")
+(require "oil/oil.scm")
+(require "oil/oil-notify.scm")
+
+(helix.theme "gruber-darker")
+(file-picker (fp-hidden #t))
+(cursorline #t)
+(soft-wrap (sw-enable #t))
+(line-number "relative")
+(mouse #t)
+(bufferline "multiple")
+(completion-replace #t)
+(rainbow-brackets #t)
+(color-modes #t)
+
+(true-color #t)
+(auto-info #t)
+(cursorline #t)
+(undercurl #t)
+
+;; (oil-configure! show-dotfiles show-git-ignored)
+(oil-configure! #true #false)
