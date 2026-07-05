@@ -70,7 +70,7 @@ auto-pairs = { "<" = ">", "{" = "}", "[" = "]", "(" = ")" }
 name = "go"
 roots = ["go.mod", "go.sum", "go.work"]
 language-servers = ["gopls"]
-formatter = { command = "goimports" }
+formatter = { command = "sh", args = ["-c", "goimports | gofumpt"] }
 auto-format = true
 
 [[language]]

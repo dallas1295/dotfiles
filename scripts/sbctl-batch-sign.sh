@@ -16,7 +16,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 export ESP_PATH=/boot
-sbctl verify 2>/dev/null | awk '/✗/ {print $2}' | while IFS= read -r entry; do
+sbctl verify 2>/dev/null | sed -n 's/^✗ \(.*\) is not signed$/\1/p' | while IFS= read -r entry; do
     # We expect users who use this script to enroll their
     # own keys alongside Microsoft's.
     # With that in mind, there's no need to sign MS ESP

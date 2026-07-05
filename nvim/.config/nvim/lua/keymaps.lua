@@ -41,6 +41,12 @@ keymap.set("n", "<leader>co", ":copen<CR>", { desc = "Open Compiler Quickfix Lis
 keymap.set("n", "<leader>rr", ":Crun<CR>")
 keymap.set("n", "<leader>rb", ":Cbuild ")
 keymap.set("n", "<leader>rc", ":Ccheck<CR>")
+keymap.set("n", "<leader>zc", ":! zig build<CR>", { desc = "Zig build" })
+keymap.set("n", "<leader>zr", ":! zig run %<CR>", { desc = "Zig run current file" })
+keymap.set("n", "<leader>zt", ":! zig test %<CR>", { desc = "Zig test current file" })
+keymap.set("n", "<leader>zR", ":! zig build run<CR>", { desc = "Zig build run" })
+keymap.set("n", "<leader>zT", ":! zig build test<CR>", { desc = "Zig build test" })
+
 
 -- LazyGit
 keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit" })

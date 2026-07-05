@@ -121,13 +121,13 @@ layout {
 }
 
 spawn-at-startup "pipewire"
-spawn-at-startup "waybar"
-spawn-at-startup "kanshi"
+spawn-at-startup "sh" "-c" "until waybar; do sleep 1; done"
+spawn-sh-at-startup "kanshi"
 spawn-at-startup "syncthing"
 // spawn-at-startup "emacs"
 // spawn-at-startup "steam"
 spawn-at-startup "swaync"
-spawn-at-startup "foot"
+spawn-at-startup "foot" "-e" "zellij" "attach" "--create" "prometheus"
 spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
 spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
@@ -136,7 +136,7 @@ spawn-sh-at-startup "swayidle -w timeout 300 'brightnessctl -s set 10%' resume '
 
 window-rule {
     match app-id="foot" at-startup=true
-    default-column-width { proportion 0.6667; }
+    default-column-width { proportion 0.90; }
 }
 
 
@@ -194,6 +194,11 @@ window-rule {
     default-column-width { proportion 0.3333; }
 }
 
+window-rule {
+  match app-id=r#"foot"#
+  open-on-workspace "1"
+}
+
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
@@ -216,28 +221,13 @@ window-rule {
 // Open emacs on workspace 1
 window-rule {
   match app-id=r#"emacs|Emacs"#
-  default-column-width { proportion 0.75; }
   open-on-workspace "1"
 }
 
 // Open Zen on workspace 2
 window-rule {
   match app-id="zen"
-  open-maximized true
-  open-on-workspace "2"
-}
-
-// Open Helium on workspace 2
-window-rule {
-  match app-id="helium"
-  default-column-width { proportion 0.75; }
-  open-on-workspace "2"
-}
-
-// Open Brave on workspace 2
-window-rule {
-  match app-id="brave-browser"
-  default-column-width { proportion 0.85; }
+  default-column-width { proportion 0.80; }
   open-on-workspace "2"
 }
 
@@ -248,30 +238,25 @@ window-rule {
   open-on-workspace "2"
 }
 
-// Open VPN on workspace 2
-window-rule {
-  match app-id="v2rayN"
-  default-column-width { proportion 0.5; }
-  open-on-workspace "2"
-}
-
 // Open Steam on workspace 3
 window-rule {
   match app-id=r#"steam"# title="^Friends List$"
   default-column-width { proportion 0.33; }
+  open-focused false
   open-on-workspace "3"
 }
 
 window-rule {
   match app-id="steam"
   default-column-width { proportion 0.66; }
+  open-focused false
   open-on-workspace "3"
 }
 
 window-rule {
   match app-id="wechat"
-  default-column-width { proportion 0.66; }
-  open-on-workspace "3"
+  // default-column-width { proportion 0.66; }
+  open-on-workspace "4"
 }
 
 // Open Heroic on workspace 3
@@ -314,21 +299,19 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
-    Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "brave"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot";} 
+    Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "flatpak" "run" "app.zen_browser.zen"; }
     // Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "zen-browser"; }
     // Mod+B hotkey-overlay-title="Open a Web Browser" { spawn "helium-browser"; }
     Mod+M hotkey-overlay-title="Open Music" { spawn "foot" "-T" "kew" "-e" "kew"; }
-    Mod+Y hotkey-overlay-title="Open Yazi" { spawn "foot" "-e" "yazi"; }
-    Mod+A hotkey-overlay-title="Open Home Folder Opencode" { spawn "foot" "-T" "Opencode" "-e" "opencode"; }
+    Mod+E hotkey-overlay-title="Open Yazi" { spawn "foot" "-T" "yazi" "-e" "yazi"; }
     // Mod+E hotkey-overlay-title="Open Emacs" { spawn "emacs";}
     Mod+Alt+S hotkey-overlay-title="Open Bluetooth" { spawn "foot" "-e" "bluetui"; }
     Mod+I hotkey-overlay-title="Open BTOP" { spawn "foot" "-e" "btop";}
     Mod+Space hotkey-overlay-title="Run an Application" { spawn-sh "rofi -show drun"; }
-    Alt+Space hotkey-overlay-title="Run an Application" { spawn-sh "rofi -show drun"; }
     Mod+Shift+Space hotkey-overlay-title="Run a Command" {spawn-sh "rofi -show run";}
     Mod+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "swaylock"; }
-    Mod+Shift+P hotkey-overlay-title="Power Menu" { spawn-sh "rofi -show power-menu -modi power-menu:rofi-power-menu"; }
+    Mod+Shift+P hotkey-overlay-title="Power Menu" { spawn-sh "rofi -show power-menu -modi power-menu:/home/dallas/opt/data/rofi-power-menu/rofi-power-menu"; }
 
     // Mod+Space hotkey-overlay-title="Run an Application" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     // Alt+Space hotkey-overlay-title="Run an Application" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }

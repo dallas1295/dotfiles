@@ -1,13 +1,11 @@
 set -g fish_greeting
 set -g fish_key_bindings fish_vi_key_bindings
 set -gx SUDOEDITOR nvim
-set -gx EDITOR nvim 
+set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx TERMINAL foot
 set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/config"
 set -gx PYENV_ROOT "$HOME/.pyenv"
-set -Ux XDG_CURRENT_DESKTOP sway
-
 
 fish_add_path "$HOME/.local/bin"
 fish_add_path (go env GOPATH)/bin
@@ -18,13 +16,11 @@ fish_add_path "$HOME/opt/bin"
 
 alias svim 'sudo -E nvim'
 
-# alias pacman 'paru'
-
 alias poweroff 'loginctl poweroff'
 alias reboot 'loginctl reboot'
 alias xi 'sudo xbps-install'
 alias xr 'sudo xbps-remove'
-alias xq 'sudo xbps-query'
+alias xq 'sudo xbps-query -Rs'
 alias xu 'sudo xbps-install -Su'
 alias vsv 'sudo vsv'
 
@@ -47,3 +43,8 @@ clear
 set -gx ZVM_INSTALL "$HOME/.zvm/self"
 set -gx PATH $PATH "$HOME/.zvm/bin"
 set -gx PATH $PATH "$ZVM_INSTALL/"
+
+if status is-interactive
+    and not set -q ZELLIJ
+    exec zellij
+end
