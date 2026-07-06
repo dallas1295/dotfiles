@@ -230,9 +230,6 @@ for_window [app_id="^foot$"] move to workspace 1, focus
 
 for_window [class="^steam$"] move to workspace 3, nofocus
 for_window [class="^wechat$"] move to workspace 4, opacity .9, nofocus
-# for_window [class="^Mullvad VPN$"] \
-#     floating enable, \
-#     move position 1444 px 60 px
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable
