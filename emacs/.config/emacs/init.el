@@ -1,4 +1,4 @@
-;; Set custom file so no clutter
+;; Set Customs file so no clutter
 (setq custom-file "~/.config/emacs/custom.el")
 
 ;; add elpaca hook for extensions
@@ -43,22 +43,26 @@
                     :slant 'italic)
 
 ;; Binds
-(global-unset-key (kbd "M-SPC"))
+(global-unset-key (kbd "M-c"))
+(global-set-key (kbd "M-c f") 'find-file)
+(global-set-key (kbd "M-c F") 'dired)
+(global-set-key (kbd "M-c i") 'consult-buffer)
+(global-set-key (kbd "M-c I") 'dired-jump)
+(global-set-key (kbd "M-c k a") 'projectile-kill-buffers)
+(global-set-key (kbd "M-c p p") 'consult-projectile)
+(global-set-key (kbd "M-c p s") 'consult-projectile-switch-project)
+(global-set-key (kbd "M-c s") 'consult-line)
 
-;; file stuff
-(global-set-key (kbd "M-SPC /") 'consult-line)
-(global-set-key (kbd "M-SPC i") 'consult-buffer)
-(global-set-key (kbd "M-SPC f r") 'consult-recent-file)
-(global-set-key (kbd "M-SPC f d") 'dired-jump)
-(global-set-key (kbd "M-SPC r g") 'consult-ripgrep)
-(global-set-key (kbd "M-SPC r q") 'query-replace)
-(global-set-key (kbd "M-SPC d b") 'consult-flymake)
-(global-set-key (kbd "M-SPC k a") 'projectile-kill-buffers)
-(global-set-key (kbd "M-SPC p d") 'consult-projectile)
+(global-set-key (kbd "M-c b d") '(lambda () (interactive) (kill-buffer (current-buffer))))
+(global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
 
-(global-set-key (kbd "M-SPC b d") '(lambda () (interactive) (kill-buffer (current-buffer))))
-(global-set-key (kbd "M-SPC b l") '(lambda () (interactive) (switch-to-buffer nil)))
+(global-set-key (kbd "M-c c") 'compile)
+(global-set-key (kbd "M-c o") 'magit)
+(global-set-key (kbd "M-c ,") 'vterm-toggle)
+(global-set-key (kbd "C-c c") 'capitalize-word)
 
+
+;; Dependencies
 
 ;; dired and ibuffer
 (setq display-buffer-alist
@@ -78,27 +82,6 @@
   :config
   (load-theme 'gruber-darker t))
 
-;; Vterm
-(use-package vterm
-  :ensure t)
-
-(use-package vterm-toggle
-  :ensure t
-  :after vterm
-  :commands vterm-toggle
-  :bind ("M-SPC v" . vterm-toggle)
-  :config
-  (setq vterm-toggle-fullscreen-p nil)
-  (setq vterm-toggle-scope 'project)
-  (add-to-list 'display-buffer-alist
-               '((lambda (buffer-or-name _)
-                   (let ((buffer (get-buffer buffer-or-name)))
-                     (with-current-buffer buffer
-                       (or (equal major-mode 'vterm-mode)
-                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                 (display-buffer-reuse-window display-buffer-at-bottom)
-                 (reusable-frames . visible)
-                 (window-height . 0.4))))
 
 ;; QoL
 (use-package diminish
@@ -204,6 +187,9 @@
   :after projectile
   :commands consult-projectile)
 
+(use-package embrace
+  :ensure t
+  :bind ("C-," . embrace-commander))
 
 ;; Coding essentials
 ;; Snippets
@@ -263,6 +249,7 @@
          (html-mode . eglot-ensure)
          (css-mode . eglot-ensure)
          (web-mode . eglot-ensure)
+         (odin-mode . eglot-ensure)
          (cmake-mode . eglot-ensure))
 
   :config
@@ -282,3 +269,6 @@
 (use-package dockerfile-mode :ensure t)
 (use-package lua-mode :ensure t)
 (use-package cmake-mode :ensure t)
+(use-package odin-mode
+  :ensure (:host github :repo "mattt-b/odin-mode")
+  :mode ("\\.odin\\'" . odin-mode))

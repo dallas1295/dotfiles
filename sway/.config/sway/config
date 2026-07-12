@@ -3,24 +3,43 @@ exec pipewire
 
 set $mod Mod4
 
-set $terminal foot -e zellij attach --create prometheus
+set $terminal foot
 set $fileManager foot -T Yazi -e yazi
 set $menu rofi -show drun
-set $browser flatpak run app.zen_browser.zen
+set $browser firefox
 
 set $lock swaylock -f
 
 bar {
   swaybar_command /usr/bin/waybar
+#  position bottom
+#  height 23
+#  font pango:Iosevka Nerd Font 11
+#  status_command ~/.config/sway/swaybar.sh
+#  workspace_buttons yes
+#  separator_symbol " "
+#  colors {
+#   background #181818
+#   statusline #E4E4E4
+#   separator  #52494E
+#
+#    # ws bg text indicator border  (Gruber darker)
+#    focused_workspace   #453D41 #453D41 #FFDD33
+#    active_workspace    #453D41 #453D41 #FFDD33
+#    inactive_workspace  #181818 #181818 #E4E4E4
+#    urgent_workspace    #F43841 #F43841 #E4E4E4
+#    binding_mode        #F43841 #F43841 #E4E4E4
+  # }
 }
 
-output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz
-output HDMI-A-1 pos 1800 0 mode 1920x1080@144hz
+# output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz
+# output positions/scale are managed by kanshi (see ~/.config/kanshi/config)
+# output HDMI-A-1 pos 1800 0 mode 1920x1080@144hz
 # exec_always xrandr --output XWAYLAND0 --primary
 
 exec swaync
 exec syncthing
-exec kanshi
+exec_always --no-startup-id "pkill -x kanshi; kanshi"
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
@@ -74,7 +93,7 @@ default_border pixel 1
 default_floating_border normal 1
 gaps inner 0
 gaps outer 0
-smart_borders on
+# smart_borders off
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable
@@ -86,7 +105,7 @@ input "type:touchpad" {
 }
 
 input "type:mouse" {
-    # accel_profile flat
+    accel_profile flat
 }
 
 input "tpps/2-elan-trackpoint" {
@@ -111,11 +130,12 @@ bindsym $mod+Shift+v floating toggle
 bindsym $mod+Tab focus next
 bindsym $mod+space exec $menu
 bindsym $mod+Shift+space exec rofi -show run
-bindsym $mod+m exec foot -T kew -e kew
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
 bindsym $mod+r reload
 # bindsym $mod+t layout tabbed
+
+bindsym $mod+shift+m exec ~/.config/sway/toggle-edp1.sh
 
 bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
@@ -142,7 +162,7 @@ bindsym $mod+Mod1+p exec autotiling
 bindsym $mod+Shift+r move container to workspace current
 bindsym $mod+f fullscreen toggle
 
-workspace 1 
+workspace 1
 workspace 2
 workspace 3
 workspace 4
@@ -225,7 +245,6 @@ for_window [title="^Picture-in-Picture$"] \
     border none
 
 
-for_window [app_id="^foot$" title="kew"] move to scratchpad
 for_window [app_id="^foot$"] move to workspace 1, focus
 
 for_window [class="^steam$"] move to workspace 3, nofocus

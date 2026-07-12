@@ -10,34 +10,9 @@ add({
 
 vim.cmd.colorscheme("gruber-darker")
 
--- vim.pack.add({
--- 	"https://github.com/ellisonleao/gruvbox.nvim",
--- })
---
--- require("gruvbox").setup({
--- 	terminal_colors = true, -- add neovim terminal colors
--- 	undercurl = true,
--- 	underline = true,
--- 	bold = true,
--- 	italic = {
--- 		strings = true,
--- 		emphasis = true,
--- 		comments = true,
--- 		operators = false,
--- 		folds = true,
--- 	},
--- 	strikethrough = true,
--- 	invert_selection = false,
--- 	invert_signs = false,
--- 	invert_tabline = false,
--- 	inverse = true, -- invert background for search, diffs, statuslines and errors
--- 	contrast = "dark", -- can be "hard", "soft" or empty string
--- 	palette_overrides = {},
--- 	overrides = {},
--- 	dim_inactive = false,
--- 	transparent_mode = false,
--- })
--- vim.cmd("colorscheme gruvbox")
+add( {
+  { src = "https://github.com/christoomey/vim-tmux-navigator" },
+})
 
 -- Which-key
 add({
@@ -179,6 +154,14 @@ conform.setup({
 		c = { "clang-format" },
 		cpp = { "clang-format" },
 		zig = { "zigfmt" },
+		odin = { "odinfmt" },
+	},
+	formatters = {
+		odinfmt = {
+			command = "odinfmt",
+			args = { "-stdin" },
+			stdin = true,
+		},
 	},
 	format_on_save = {
 		lsp_fallback = true,

@@ -46,5 +46,5 @@ set -gx PATH $PATH "$ZVM_INSTALL/"
 
 if status is-interactive
     and not set -q ZELLIJ
-    exec zellij
+    exec zellij attach --create prometheous
 end
