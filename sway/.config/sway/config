@@ -1,5 +1,5 @@
 font pango: Iosevka Nerd Font 11
-exec pipewire
+# exec pipewire
 
 set $mod Mod4
 
@@ -8,50 +8,46 @@ set $fileManager foot -T Yazi -e yazi
 set $menu rofi -show drun
 set $browser firefox
 
-set $lock swaylock -f
+set $lock swaylock -f --color 000000ff
 
 bar {
   swaybar_command /usr/bin/waybar
-#  position bottom
-#  height 23
-#  font pango:Iosevka Nerd Font 11
-#  status_command ~/.config/sway/swaybar.sh
-#  workspace_buttons yes
-#  separator_symbol " "
-#  colors {
-#   background #181818
-#   statusline #E4E4E4
-#   separator  #52494E
-#
-#    # ws bg text indicator border  (Gruber darker)
-#    focused_workspace   #453D41 #453D41 #FFDD33
-#    active_workspace    #453D41 #453D41 #FFDD33
-#    inactive_workspace  #181818 #181818 #E4E4E4
-#    urgent_workspace    #F43841 #F43841 #E4E4E4
-#    binding_mode        #F43841 #F43841 #E4E4E4
-  # }
+ # position bottom
+ # height 23
+ # font pango:Iosevka Nerd Font 11
+ # status_command ~/.config/sway/swaybar.sh
+ # workspace_buttons yes
+ # separator_symbol " "
+ # colors {
+ #  background #181818
+ #  statusline #E4E4E4
+ #  separator  #52494E
+ #
+ #   # ws bg text indicator border  (Gruber darker)
+ #   focused_workspace   #453D41 #453D41 #FFDD33
+ #   active_workspace    #453D41 #453D41 #FFDD33
+ #   inactive_workspace  #181818 #181818 #E4E4E4
+ #   urgent_workspace    #F43841 #F43841 #E4E4E4
+ #   binding_mode        #F43841 #F43841 #E4E4E4
+ #  }
 }
-
-# output eDP-1 pos 0 0 scale 1.6 mode 2880x1800@120hz
-# output positions/scale are managed by kanshi (see ~/.config/kanshi/config)
-# output HDMI-A-1 pos 1800 0 mode 1920x1080@144hz
-# exec_always xrandr --output XWAYLAND0 --primary
 
 exec swaync
 exec syncthing
+exec mullvad-vpn
 exec_always --no-startup-id "pkill -x kanshi; kanshi"
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
 
 exec swayidle -w \
-    timeout 300 'swaylock -f' \
+    timeout 300 '$lock' \
     timeout 600 'swaymsg output "*" power off' \
     resume 'swaymsg output "*" power on' \
-    before-sleep 'swaylock -f'
+    before-sleep '$lock'
 
-output HDMI-A-1 bg ~/.wallpapers/adam.jpg fill
-output eDP-1 bg ~/.wallpapers/adam.jpg fill
+# output HDMI-A-1 bg ~/.wallpapers/adam.jpg fill
+# output eDP-1 bg ~/.wallpapers/adam.jpg fill
 
 set $bg_color #181818
 set $fg_color #E4E4E4
@@ -104,7 +100,7 @@ input "type:touchpad" {
     scroll_factor 0.35
 }
 
-input "type:mouse" {
+input "type:pointer" {
     accel_profile flat
 }
 
@@ -139,7 +135,7 @@ bindsym $mod+shift+m exec ~/.config/sway/toggle-edp1.sh
 
 bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:/home/dallas/opt/data/rofi-power-menu/rofi-power-menu
+bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:rofi-power-menu
 bindsym $mod+alt+L exec $lock
 
 bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/window-$(date +%Y%m%d-%H%M%S).png"
@@ -230,9 +226,9 @@ bindsym XF86AudioPrev exec playerctl previous
 
 for_window [workspace = "1"] layout tabbed
 
-for_window [app_id="^Firefox$"] move to workspace 2
+for_window [app_id="^firefox$"] move to workspace 2
 for_window [app_id="^librewolf$"] move to workspace 2
-for_window [app_id="^app.zen_browser.zen$"] move to workspace 2, focus
+for_window [app_id="^zen$"] move to workspace 2, focus
 for_window [app_id="^brave-browser$"] move to workspace 2
 for_window [class="^helium$"] move to workspace 2
 

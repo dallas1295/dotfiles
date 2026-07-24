@@ -1,6 +1,6 @@
-font=JetBrains Mono Nerd Font
+font=Iosevka Nerd Font
 
-image=/home/dallas/.wallpapers/adam.jpg
+# image=/home/dallas/.wallpapers/adam.jpg
 scaling=fill
 
 indicator-radius=100

@@ -56,7 +56,7 @@ keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Open Which-key" })
 -- exit insert mode
--- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 -- pane navigation
 keymap.set({ "n", "t" }, "<c-j>", ":wincmd j<CR>")

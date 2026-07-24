@@ -35,6 +35,7 @@
 (electric-pair-mode 1)
 (windmove-mode 1)
 (which-key-mode 1)
+(icomplete-mode 1)
 
 (set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
 (set-face-attribute 'font-lock-comment-face nil
@@ -43,22 +44,24 @@
                     :slant 'italic)
 
 ;; Binds
+(global-set-key (kbd "M-n") #'next-line)
+(global-set-key (kbd "M-p") #'previous-line)
+
+
 (global-unset-key (kbd "M-c"))
 (global-set-key (kbd "M-c f") 'find-file)
 (global-set-key (kbd "M-c F") 'dired)
-(global-set-key (kbd "M-c i") 'consult-buffer)
+(global-set-key (kbd "M-c i") 'switch-to-buffer)
 (global-set-key (kbd "M-c I") 'dired-jump)
 (global-set-key (kbd "M-c k a") 'projectile-kill-buffers)
-(global-set-key (kbd "M-c p p") 'consult-projectile)
-(global-set-key (kbd "M-c p s") 'consult-projectile-switch-project)
-(global-set-key (kbd "M-c s") 'consult-line)
+(global-set-key (kbd "M-c p s") 'projectile-switch-project)
+
 
 (global-set-key (kbd "M-c b d") '(lambda () (interactive) (kill-buffer (current-buffer))))
 (global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
 
 (global-set-key (kbd "M-c c") 'compile)
 (global-set-key (kbd "M-c o") 'magit)
-(global-set-key (kbd "M-c ,") 'vterm-toggle)
 (global-set-key (kbd "C-c c") 'capitalize-word)
 
 
@@ -82,30 +85,8 @@
   :config
   (load-theme 'gruber-darker t))
 
-
 ;; QoL
 (use-package diminish
-  :ensure t)
-
-(use-package compat
-  :ensure t)
-
-(use-package vertico
-  :ensure t
-  :init
-  (vertico-mode))
-
-(use-package orderless
-  :ensure t
-  :custom
-  (completion-styles '(orderless basic)))
-
-(use-package marginalia
-  :ensure t
-  :init
-  (marginalia-mode))
-
-(use-package consult
   :ensure t)
 
 
@@ -182,10 +163,7 @@
   :config
   (setq projectile-project-search-path '("~/projects"))
   (setq projectile-enable-caching t))
-(use-package consult-projectile
-  :ensure t
-  :after projectile
-  :commands consult-projectile)
+
 
 (use-package embrace
   :ensure t

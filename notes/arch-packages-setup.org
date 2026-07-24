@@ -152,7 +152,7 @@ pacman -S --needed \
 * Bluetooth
 
 #+BEGIN_SRC bash
-pacman -S \
+pacman -S --needed \
   bluez \
   bluez-utils \
   bluez-libs \
@@ -178,7 +178,7 @@ Config lives in =~/.config/niri/config.kdl=.
 Additional WM components:
 
 #+BEGIN_SRC bash
-paru -S --needed \
+pacman -S --needed \
   waybar \
   swaync \
   swaybg \
@@ -193,6 +193,7 @@ paru -S --needed \
   nwg-look \
   xdg-desktop-portal \
   xdg-desktop-portal-gtk
+  xdg-desktop-portal-wlr
 #+END_SRC
 
 * Terminal & Shell
@@ -237,7 +238,6 @@ sudo pacman -S --needed \
   go \
   zig \
   rustup \
-  npm \
   deno \
   luarocks \
   jdk-openjdk \
@@ -257,7 +257,6 @@ sudo pacman -S \
   gofumpt \
   rust-analyzer \
   yaml-language-server \
-  zls \
   marksman \
   svelte-language-server \
   tailwindcss-language-server \
@@ -295,8 +294,6 @@ sudo pacman -S \
   steam \
   gamemode \
   mangohud \
-  gamescope \
-  heroic-games-launcher-bin \
   prismlauncher
 #+END_SRC
 
@@ -361,7 +358,6 @@ xdg-mime default gimp.desktop image/png
 
 #+BEGIN_SRC bash
 sudo pacman -S \
-  bitwarden \
   flatpak \
   openssh \
   keyd
@@ -372,7 +368,7 @@ flatpak install -y flathub com.bitwarden.desktop
 * Printing
 
 #+BEGIN_SRC bash
-sudo pacman -S \
+sudo pacman -S --needed \
   cups \
   cups-filters \
   cups-pdf \

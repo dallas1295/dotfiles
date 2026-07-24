@@ -1,10 +1,11 @@
 #!/bin/bash
 # swaybar status (Gruber darker, monochrome #E4E4E4)
-# Visual order right-to-left: time · brightness(%) · wifi · storage · ram · cpu
+# Visual order right-to-left: time · battery(%) · brightness(%) · wifi · storage · ram · cpu
 # status text renders left-to-right, so rightmost item is last in the string.
 
 bright_icons=(󱩎 󱩏 󱩐 󱩑 󱩒 󱩓 󱩔 󱩕 󱩖 󰛨)
 wifi_icons=(󰤯 󰤟 󰤢 󰤥 󰤨)
+battery_icons=(󰁺 󰁻 󰁼 󰁽 󰁾 󰁿 󰂀 󰂁 󰂂 󰁹)
 cpu_icon=$'\uF2DB'   # microchip
 ram_icon=$'\uEFC5'   # memory
 
@@ -19,7 +20,7 @@ while :; do
     # memory
     ram_used=$(free -h | awk '/Mem:/ {printf "%.1fG", $3}')
     ram_total=$(free -h | awk '/Mem:/ {printf "%.1fG", $2}')
-    ram="${ram_icon} ${ram_used}/${ram_total}"
+    ram="${ram_icon}  ${ram_used}/${ram_total}"
 
     # disk (/mnt)
     disk_info=$(df -h /mnt 2>/dev/null | awk 'NR==2{printf "%s/%s", $3, $2}')
@@ -48,9 +49,18 @@ while :; do
     b_idx=$(clamp $(( b_pct / 10 )) 0 9)
     bright=$(printf " %s %3s%%" "${bright_icons[$b_idx]}" "$b_pct")
 
+    # battery (icon + %)
+    batt_cap=$(cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || cat /sys/class/power_supply/BAT1/capacity 2>/dev/null)
+    if [ -n "$batt_cap" ]; then
+        b_idx=$(clamp $(( batt_cap / 10 )) 0 9)
+        batt=$(printf " %s %3s%%" "${battery_icons[$b_idx]}" "$batt_cap")
+    else
+        batt=""
+    fi
+
     # clock
     clock=" $(date '+%H:%M') "
 
-    echo "${cpu} ${ram} ${disk} ${wifi} ${bright} ${clock}"
-    sleep 1
+    echo "${cpu} ${ram} ${disk} ${wifi} ${bright} ${batt} ${clock}"
+    sleep 5
 done

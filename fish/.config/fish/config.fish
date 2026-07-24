@@ -7,22 +7,24 @@ set -gx TERMINAL foot
 set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/config"
 set -gx PYENV_ROOT "$HOME/.pyenv"
 
-fish_add_path "$HOME/.local/bin"
 fish_add_path (go env GOPATH)/bin
 fish_add_path "$HOME/.cargo/bin"
 fish_add_path "$PYENV_ROOT/bin"
 fish_add_path "$HOME/.opencode/bin"
-fish_add_path "$HOME/opt/bin"
+fish_add_path "$HOME/.local/bin"
+fish_add_path "$HOME/thirdparty/bin"
 
 alias svim 'sudo -E nvim'
 
-alias poweroff 'loginctl poweroff'
-alias reboot 'loginctl reboot'
-alias xi 'sudo xbps-install'
-alias xr 'sudo xbps-remove'
-alias xq 'sudo xbps-query -Rs'
-alias xu 'sudo xbps-install -Su'
-alias vsv 'sudo vsv'
+
+alias pacman 'yay'
+# alias poweroff 'loginctl poweroff'
+# alias reboot 'loginctl reboot'
+# alias xi 'sudo xbps-install'
+# alias xr 'sudo xbps-remove'
+# alias xq 'sudo xbps-query -Rs'
+# alias xu 'sudo xbps-install -Su'
+# alias vsv 'sudo vsv'
 
 alias ls lsd
 alias ll 'lsd -l'
@@ -45,6 +47,9 @@ set -gx PATH $PATH "$HOME/.zvm/bin"
 set -gx PATH $PATH "$ZVM_INSTALL/"
 
 if status is-interactive
-    and not set -q ZELLIJ
-    exec zellij attach --create prometheous
+    and not set -q TMUX
+    exec tmux new-session -A -s Main
 end
+
+# uv
+fish_add_path "/home/dallas/.local/bin"
