@@ -1,4 +1,4 @@
-# theme = "gruber-darker"
+theme = "gruber-darker"
 
 [editor]
 # line-number = "relative"
@@ -7,11 +7,11 @@
 trim-trailing-whitespace = true
 end-of-line-diagnostics = "disable"
 # rainbow-brackets = true
-# color-modes = true
-# true-color = true
-# auto-info = true
-# cursorline = true
-# undercurl = true
+color-modes = true
+true-color = true
+auto-info = true
+cursorline = true
+undercurl = true
 
 [editor.cursor-shape]
 insert = "underline"
@@ -56,13 +56,13 @@ j = {k = "normal_mode"}
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
-# - =   [':sh rm -f /tmp/unique-file',
-#   ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
-#   ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-#   ':open %sh{cat /tmp/unique-file}',
-#   ':redraw',
-#   ]
-- = ":oil"
+- =   [':sh rm -f /tmp/unique-file',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+  ]
+# - = ":oil"
 S-h = ":bprev"
 S-l = ":bnext"
 0 = "goto_line_start"
@@ -107,19 +107,19 @@ c =  {c = "toggle_comments"}
 [keys.select.g]
 c =  {c = "toggle_comments"}
 
-[keys.normal.space.o]
-o = ":oil"
-e = ":oil-enter"
-b = ":oil-back"
-g = ":oil-root"
-s = ":oil-save"
-r = ":oil-refresh"
-q = ":oil-close"
-h = ":oil-toggle-hidden"
-i = ":oil-toggle-git-ignored"
+# [keys.normal.space.o]
+# o = ":oil"
+# e = ":oil-enter"
+# b = ":oil-back"
+# g = ":oil-root"
+# s = ":oil-save"
+# r = ":oil-refresh"
+# q = ":oil-close"
+# h = ":oil-toggle-hidden"
+# i = ":oil-toggle-git-ignored"
 
-[keys.normal.space.o.m]
-y = ":oil-yank"
-x = ":oil-cut"
-p = ":oil-paste"
-c = ":oil-clipboard-clear"
+# [keys.normal.space.o.m]
+# y = ":oil-yank"
+# x = ":oil-cut"
+# p = ":oil-paste"
+# c = ":oil-clipboard-clear"

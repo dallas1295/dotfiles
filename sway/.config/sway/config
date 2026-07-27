@@ -32,6 +32,7 @@ bar {
  #  }
 }
 
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec swaync
 exec syncthing
 exec mullvad-vpn
@@ -46,8 +47,8 @@ exec swayidle -w \
     resume 'swaymsg output "*" power on' \
     before-sleep '$lock'
 
-# output HDMI-A-1 bg ~/.wallpapers/adam.jpg fill
-# output eDP-1 bg ~/.wallpapers/adam.jpg fill
+output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/dotcircle.png fill
+output eDP-1 bg ~/dotfiles/sway/.config/sway/dotcircle.png fill
 
 set $bg_color #181818
 set $fg_color #E4E4E4

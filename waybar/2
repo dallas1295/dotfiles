@@ -10,10 +10,9 @@
   ],
   "spacing": 1,
   "modules-left": [
+    "disk",
     "cpu",
-    "memory",
-    "disk#root",
-    "disk#str"
+    "memory"
   ],
   "modules-center": [
     "sway/workspaces"

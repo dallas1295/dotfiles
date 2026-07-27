@@ -56,9 +56,13 @@
     "tooltip": false,
     "on-click": "foot -e btop"
   },
-  "disk": {
-    "path": "/mnt",
-    "format": " 󰋊 {used}/{total}"
+  "disk#root": {
+    "path": "/",
+    "format": " 󰋊 Main: {used}/{total}"
+  },
+  "disk#str": {
+    "path": "/media/str",
+    "format": " 󰋊 Storage: {used}/{total}"
   },
   "backlight": {
     "format": " {icon}",

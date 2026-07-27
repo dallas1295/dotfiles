@@ -1,5 +1,11 @@
 local vim = vim
 
+vim.filetype.add({
+	extension = {
+		odin = "odin",
+	},
+})
+
 vim.cmd("let g:netrw_liststyle = 3")
 vim.cmd(":hi statusline guibg=NONE")
 local opt = vim.opt -- for conciseness

@@ -5,9 +5,6 @@ vim.pack.add({
 vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site/pack/core/opt/nvim-treesitter/runtime")
 
 local languages = {
-	"elixir",
-	"heex",
-	"eex",
 	"go",
 	"json",
 	"javascript",
@@ -18,18 +15,15 @@ local languages = {
 	"css",
 	"markdown",
 	"markdown_inline",
-	"graphql",
 	"bash",
 	"lua",
 	"dockerfile",
 	"gitignore",
-	"query",
 	"vimdoc",
 	"cpp",
 	"rust",
 	"zig",
-	"sql",
-	"svelte",
+	"odin",
 }
 
 require("nvim-treesitter.config").setup()

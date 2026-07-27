@@ -15,10 +15,12 @@
 (setq auto-save-default nil)
 (setq display-line-numbers-type 'relative)
 
-(add-hook 'org-mode-hook (lambda ()
-                           (setq-local electric-pair-inhibit-predicate
-                                       `(lambda (c)
-                                          (if (char-equal c ?<) t (electric-pair-inhibit-predicate c))))))
+(add-hook 'org-mode-hook
+          (lambda ()
+            (let ((orig electric-pair-inhibit-predicate))
+              (setq-local electric-pair-inhibit-predicate
+                          (lambda (c)
+                            (if (char-equal c ?<) t (funcall orig c)))))))
 
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -59,6 +61,7 @@
 
 (global-set-key (kbd "M-c b d") '(lambda () (interactive) (kill-buffer (current-buffer))))
 (global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
+(global-set-key (kbd "M-c b s") #'split-window-right)
 
 (global-set-key (kbd "M-c c") 'compile)
 (global-set-key (kbd "M-c o") 'magit)
@@ -69,7 +72,11 @@
 
 ;; dired and ibuffer
 (setq display-buffer-alist
-      '(("\\*Buffer List\\*" . (display-buffer-same-window))
+      '(("\\*compilation\\*"
+         (display-buffer-in-direction)
+         (direction . below)
+         (window-height . 0.35))
+        ("\\*Buffer List\\*" . (display-buffer-same-window))
         ("\\*.*\\*" . (display-buffer-pop-up-window))))
 
 (require 'dired-x)
@@ -123,8 +130,8 @@
  '(org-level-3 ((t (:inherit outline-3 :height 1.5))))
  '(org-level-4 ((t (:inherit outline-4 :height 1.4))))
  '(org-level-5 ((t (:inherit outline-5 :height 1.3))))
- '(org-level-6 ((t (:inherit outline-5 :height 1.2))))
- '(org-level-7 ((t (:inherit outline-5 :height 1.1)))))
+  '(org-level-6 ((t (:inherit outline-6 :height 1.2))))
+  '(org-level-7 ((t (:inherit outline-7 :height 1.1)))))
 
 ;; | Typing the below + TAB | Expands to ...                          |
 ;; |------------------------+-----------------------------------------|
@@ -175,8 +182,7 @@
   :ensure t
   :commands (tempel-expand tempel-done)
   :config
-  (global-set-key (kbd "M-+") 'tempel-expand)
-  (global-set-key (kbd "M-*") 'tempel-done))
+   (global-set-key (kbd "M-+") 'tempel-expand))
 
 (use-package tempel-collection
   :ensure t)
