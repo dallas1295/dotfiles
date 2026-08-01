@@ -67,6 +67,14 @@
 (global-set-key (kbd "M-c o") 'magit)
 (global-set-key (kbd "C-c c") 'capitalize-word)
 
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-unset-key (kbd "C-S-<down-mouse-1>"))
+(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
+(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 
 ;; Dependencies
 
@@ -96,6 +104,13 @@
 (use-package diminish
   :ensure t)
 
+(use-package multiple-cursors
+  :ensure t
+  :config
+  (setq mc/always-run-for-all t)
+  (dolist (cmd '(my/mc-add-cursor-here my/mc-cursor-forward-word overwrite-mode))
+    (add-to-list 'mc/cmds-to-run-once cmd)
+    (setq mc/cmds-to-run-for-all (remove cmd mc/cmds-to-run-for-all))))
 
 ;; Colors for Hex and Brackets
 (use-package rainbow-delimiters
@@ -130,8 +145,8 @@
  '(org-level-3 ((t (:inherit outline-3 :height 1.5))))
  '(org-level-4 ((t (:inherit outline-4 :height 1.4))))
  '(org-level-5 ((t (:inherit outline-5 :height 1.3))))
-  '(org-level-6 ((t (:inherit outline-6 :height 1.2))))
-  '(org-level-7 ((t (:inherit outline-7 :height 1.1)))))
+ '(org-level-6 ((t (:inherit outline-6 :height 1.2))))
+ '(org-level-7 ((t (:inherit outline-7 :height 1.1)))))
 
 ;; | Typing the below + TAB | Expands to ...                          |
 ;; |------------------------+-----------------------------------------|
@@ -178,27 +193,27 @@
 
 ;; Coding essentials
 ;; Snippets
-(use-package tempel
-  :ensure t
-  :commands (tempel-expand tempel-done)
-  :config
-   (global-set-key (kbd "M-+") 'tempel-expand))
+;; (use-package tempel
+;;   :ensure t
+;;   :commands (tempel-expand tempel-done)
+;;   :config
+;;   (global-set-key (kbd "M-+") 'tempel-expand))
 
-(use-package tempel-collection
-  :ensure t)
+;; (use-package tempel-collection
+;;   :ensure t)
 
-;; Completions
-(use-package corfu
-  :ensure t
-  :init
-  (global-corfu-mode)
-  :config
-  (setq
-   corfu-auto t
-   corfu-auto-delay 0.2
-   corfu-auto-trigger "."
-   corfu-quit-no-match 'separator)
-  (add-to-list 'completion-at-point-functions #'tempel-expand))
+;; ;; Completions
+;; (use-package corfu
+;;   :ensure t
+;;   :init
+;;   (global-corfu-mode)
+;;   :config
+;;   (setq
+;;    corfu-auto t
+;;    corfu-auto-delay 0.2
+;;    corfu-auto-trigger "."
+;;    corfu-quit-no-match 'separator)
+;;   (add-to-list 'completion-at-point-functions #'tempel-expand))
 
 ;; Formatting
 (use-package apheleia

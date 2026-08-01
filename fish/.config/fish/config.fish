@@ -4,20 +4,13 @@ set -gx SUDOEDITOR nvim
 set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx TERMINAL foot
-set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/config"
-set -gx PYENV_ROOT "$HOME/.pyenv"
-
-fish_add_path (go env GOPATH)/bin
-fish_add_path "$HOME/.cargo/bin"
-fish_add_path "$PYENV_ROOT/bin"
-fish_add_path "$HOME/.opencode/bin"
 fish_add_path "$HOME/.local/bin"
 fish_add_path "$HOME/thirdparty/bin"
 
 alias svim 'sudo -E nvim'
 
+alias pacman 'sudo pacman'
 
-alias pacman 'yay'
 # alias poweroff 'loginctl poweroff'
 # alias reboot 'loginctl reboot'
 # alias xi 'sudo xbps-install'
@@ -41,15 +34,9 @@ zoxide init fish | source
 clear
 # fastfetch
 
-# ZVM
-set -gx ZVM_INSTALL "$HOME/.zvm/self"
-set -gx PATH $PATH "$HOME/.zvm/bin"
-set -gx PATH $PATH "$ZVM_INSTALL/"
 
 if status is-interactive
     and not set -q TMUX
     exec tmux new-session -A -s Main
 end
 
-# uv
-fish_add_path "/home/dallas/.local/bin"

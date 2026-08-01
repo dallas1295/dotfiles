@@ -33,6 +33,7 @@ bar {
 }
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec wayland-pipewire-idle-inhibit
 exec swaync
 exec syncthing
 exec mullvad-vpn
@@ -136,7 +137,7 @@ bindsym $mod+shift+m exec ~/.config/sway/toggle-edp1.sh
 
 bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:rofi-power-menu
+bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:/home/dallas/thirdparty/data/rofi-power-menu/rofi-power-menu
 bindsym $mod+alt+L exec $lock
 
 bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/window-$(date +%Y%m%d-%H%M%S).png"
