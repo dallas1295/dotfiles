@@ -1,0 +1,52 @@
+###############################################################################
+#  ATK A9 Mini+  —  udev rules
+###############################################################################
+#  Lets your normal user (not root) talk to the mouse + dongle so the web
+#  configurator (WebHID) can actually open the device. Without these rules the
+#  /dev/hidraw* nodes are owned root-only (mode 600) and the configurator
+#  finds the device but fails with "device initialization failed".
+#
+#  Compx / ATK uses TWO different vendor IDs — rules must cover BOTH:
+#    373b  =  normal operating mode  (wired mouse, dongle, settings)
+#    3554  =  BOOTLOADER / DFU mode  ("Update boot device" during firmware flash)
+#
+#  *** WHY 3554 IS NEEDED ***
+#  When you start a firmware update, the device RESETS and re-enumerates under
+#  a completely DIFFERENT vendor id (3554, also Compx) as product F410 named
+#  "Update boot device". If the rules only granted 373b, the freshly-enumerated
+#  bootloader node would come back root-only (mode 600) the instant the flash
+#  began, the browser would lose access, and the update would fail with a
+#  generic "failure" right after you click Next. Covering 3554 is what fixes
+#  firmware updates.
+#
+#  Each rule type appears twice on purpose:
+#    1) SUBSYSTEM=="usb"   -> raw USB device node  (/dev/bus/usb/...)
+#    2) KERNEL=="hidraw*"  -> HID node             (/dev/hidraw*)
+#  Different tools talk to different nodes, so we cover both.
+#
+#  Known IDs:
+#    373b:128e  =  WIRED mouse      (cable; also settings mode)
+#    373b:1278  =  2.4GHz DONGLE    (8K USB receiver; wireless config)
+#    3554:f410  =  BOOTLOADER       ("Update boot device" during flash)
+#
+#  Install:  sudo cp thisfile /etc/udev/rules.d/99-atk-mouse.rules
+#  Reload:   sudo udevadm control --reload-rules && sudo udevadm trigger
+###############################################################################
+
+
+# ===========================================================================
+#  Compx / ATK  normal operating mode  (vendor 373b)  — any product
+#  Covers wired mouse (128e), 2.4GHz dongle (1278), and future variants.
+# ===========================================================================
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="373b", MODE="0666"
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="373b", MODE="0666", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+
+
+# ===========================================================================
+#  Compx / ATK  BOOTLOADER / DFU mode  (vendor 3554)
+#  Observed during firmware update: product F410 "Update boot device".
+#  Matches the whole 3554 vendor in case other bootloader PIDs exist.
+#  THIS is the section that makes firmware updates succeed.
+# ===========================================================================
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="3554", MODE="0666"
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", MODE="0666", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
