@@ -1,5 +1,5 @@
 font pango: Iosevka Nerd Font 11
-# exec pipewire
+exec pipewire
 
 set $mod Mod4
 
@@ -227,7 +227,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 for_window [workspace = "1"] layout tabbed
 
-for_window [app_id="^firefox$"] move to workspace 2
+for_window [app_id="^Firefox$"] move to workspace 2
 for_window [app_id="^librewolf$"] move to workspace 2
 for_window [app_id="^zen$"] move to workspace 2, focus
 for_window [app_id="^brave-browser$"] move to workspace 2
