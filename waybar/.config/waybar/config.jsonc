@@ -13,7 +13,7 @@
     "cpu",
     "memory",
     "disk#root",
-    "disk#str"
+    "disk#extra"
   ],
   "modules-center": [
     "sway/workspaces"
