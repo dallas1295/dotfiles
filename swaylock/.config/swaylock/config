@@ -1,6 +1,6 @@
 font=Iosevka Nerd Font
 
-# image=/home/dallas/.wallpapers/adam.jpg
+image=/home/dallas/dotfiles/sway/.config/sway/dotcircle.png
 scaling=fill
 
 indicator-radius=100

@@ -8,7 +8,7 @@ set $fileManager foot -T Yazi -e yazi
 set $menu rofi -show drun
 set $browser firefox
 
-set $lock swaylock -f --color 000000ff
+set $lock swaylock -f
 
 bar {
   swaybar_command /usr/bin/waybar
@@ -35,27 +35,22 @@ bar {
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec swaync
 exec syncthing
-exec mullvad-vpn
 exec_always --no-startup-id "pkill -x kanshi; kanshi"
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
 
-exec swayidle -w \
+exec_always swayidle -w \
+    timeout 540 'brightnessctl -q -s set 10%' \
     timeout 600 '$lock' \
     timeout 1000 'swaymsg output "*" power off' \
-    resume 'swaymsg output "*" power on' \
+    resume 'swaymsg output "*" power on && brightnessctl -q -r' \
     before-sleep '$lock'
+
+exec_always sway-audio-idle-inhibit
 
 output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/dotcircle.png fill
 output eDP-1 bg ~/dotfiles/sway/.config/sway/dotcircle.png fill
-
-set $bg_color #181818
-set $fg_color #E4E4E4
-set $accent #95A99F
-set $inactive_bg #282828
-set $urgent #F43841
-set $select_border #95A99F
 
 
 ### Gruber Darker
@@ -80,17 +75,24 @@ set $select_border #95A99F
  #    niagara = "#96A6C8",
  #    wisteria = "#9E95C7",
 
-client.focused          $select_border $bg_color #ffffff $fg_color $select_border
-client.focused_inactive  $inactive_bg $inactive_bg $fg_color $fg_color $inactive_bg
-client.unfocused        $bg_color $bg_color $fg_color $fg_color $bg_color
-client.urgent           $urgent $urgent $fg_color $fg_color $urgent
+# set $bg_color #181818
+# set $fg_color #E4E4E4
+# set $accent #95A99F
+# set $inactive_bg #282828
+# set $urgent #F43841
+# set $select_border #96A99F
+#
+# client.focused          $select_border $bg_color #ffffff $fg_color $select_border
+# client.focused_inactive  $inactive_bg $inactive_bg $fg_color $fg_color $inactive_bg
+# client.unfocused        $bg_color $bg_color $fg_color $fg_color $bg_color
+# client.urgent           $urgent $urgent $fg_color $fg_color $urgent
 
 # default_border normal 1
 default_border pixel 1
 default_floating_border normal 1
 gaps inner 0
 gaps outer 0
-# smart_borders off
+smart_borders off
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable
@@ -245,7 +247,8 @@ for_window [title="^Picture-in-Picture$"] \
 for_window [app_id="^foot$"] move to workspace 1, focus
 
 for_window [class="^steam$"] move to workspace 3, nofocus
-for_window [class="^wechat$"] move to workspace 4, opacity .9, nofocus
+for_window [class="^wechat$"] move to workspace 4, floating, nofocus
+for_window [app_id="^discord$"] move to workspace 4, floating, nofocus
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable

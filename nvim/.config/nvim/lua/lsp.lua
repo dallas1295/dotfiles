@@ -3,7 +3,6 @@ vim.lsp.enable({
 	"clangd",
 	"gopls",
 	"lua_ls",
-	"zls",
 	"ols",
 	"marksman",
 	"ts_ls",
