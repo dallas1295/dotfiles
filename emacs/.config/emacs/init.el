@@ -100,6 +100,7 @@
   :config
   (load-theme 'gruber-darker t))
 
+
 ;; QoL
 (use-package diminish
   :ensure t)
@@ -203,17 +204,17 @@
 ;;   :ensure t)
 
 ;; ;; Completions
-;; (use-package corfu
-;;   :ensure t
-;;   :init
-;;   (global-corfu-mode)
-;;   :config
-;;   (setq
-;;    corfu-auto t
-;;    corfu-auto-delay 0.2
-;;    corfu-auto-trigger "."
-;;    corfu-quit-no-match 'separator)
-;;   (add-to-list 'completion-at-point-functions #'tempel-expand))
+(use-package corfu
+  :ensure t
+  :init
+  (global-corfu-mode)
+  :config
+  (setq
+   corfu-auto t
+   corfu-auto-delay 0.2
+   corfu-auto-trigger "."
+   corfu-quit-no-match 'separator)
+  (add-to-list 'completion-at-point-functions #'tempel-expand))
 
 ;; Formatting
 (use-package apheleia

@@ -1,5 +1,4 @@
 font pango: Iosevka Nerd Font 11
-exec pipewire
 
 set $mod Mod4
 
@@ -12,24 +11,6 @@ set $lock swaylock -f
 
 bar {
   swaybar_command /usr/bin/waybar
- # position bottom
- # height 23
- # font pango:Iosevka Nerd Font 11
- # status_command ~/.config/sway/swaybar.sh
- # workspace_buttons yes
- # separator_symbol " "
- # colors {
- #  background #181818
- #  statusline #E4E4E4
- #  separator  #52494E
- #
- #   # ws bg text indicator border  (Gruber darker)
- #   focused_workspace   #453D41 #453D41 #FFDD33
- #   active_workspace    #453D41 #453D41 #FFDD33
- #   inactive_workspace  #181818 #181818 #E4E4E4
- #   urgent_workspace    #F43841 #F43841 #E4E4E4
- #   binding_mode        #F43841 #F43841 #E4E4E4
- #  }
 }
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -51,41 +32,6 @@ exec_always sway-audio-idle-inhibit
 
 output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/dotcircle.png fill
 output eDP-1 bg ~/dotfiles/sway/.config/sway/dotcircle.png fill
-
-
-### Gruber Darker
- #    bg-1 = "#101010",
- #    bg   = "#181818",
- #    bg+1 = "#282828",
- #    bg+2 = "#453D41",
- #    bg+3 = "#484848",
- #    bg+4 = "#52494E",
- #    fg   = "#E4E4E4",
- #    fg+1 = "#F4F4FF",
- #    fg+2 = "#F5F5F5",
- #    white   = "#FFFFFF",
- #    black   = "#000000",
- #    red-1   = "#C73C3F",
- #    red     = "#F43841",
- #    red+1   = "#FF4F58",
- #    green   = "#73D936",
- #    yellow  = "#FFDD33",
- #    brown   = "#CC8C3C",
- #    quartz  = "#95A99F",
- #    niagara = "#96A6C8",
- #    wisteria = "#9E95C7",
-
-# set $bg_color #181818
-# set $fg_color #E4E4E4
-# set $accent #95A99F
-# set $inactive_bg #282828
-# set $urgent #F43841
-# set $select_border #96A99F
-#
-# client.focused          $select_border $bg_color #ffffff $fg_color $select_border
-# client.focused_inactive  $inactive_bg $inactive_bg $fg_color $fg_color $inactive_bg
-# client.unfocused        $bg_color $bg_color $fg_color $fg_color $bg_color
-# client.urgent           $urgent $urgent $fg_color $fg_color $urgent
 
 # default_border normal 1
 default_border pixel 1
@@ -229,7 +175,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 for_window [workspace = "1"] layout tabbed
 
-for_window [app_id="^Firefox$"] move to workspace 2
+for_window [app_id="^firefox$"] move to workspace 2
 for_window [app_id="^librewolf$"] move to workspace 2
 for_window [app_id="^zen$"] move to workspace 2, focus
 for_window [app_id="^brave-browser$"] move to workspace 2
