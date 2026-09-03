@@ -9,15 +9,15 @@ fish_add_path "$HOME/thirdparty/bin"
 
 alias svim 'sudo -E nvim'
 
-alias pacman 'sudo pacman'
+# alias pacman 'sudo pacman'
 
-# alias poweroff 'loginctl poweroff'
-# alias reboot 'loginctl reboot'
-# alias xi 'sudo xbps-install'
-# alias xr 'sudo xbps-remove'
-# alias xq 'sudo xbps-query -Rs'
-# alias xu 'sudo xbps-install -Su'
-# alias vsv 'sudo vsv'
+alias poweroff 'loginctl poweroff'
+alias reboot 'loginctl reboot'
+alias xi 'sudo xbps-install'
+alias xr 'sudo xbps-remove'
+alias xq 'sudo xbps-query -Rs'
+alias xu 'sudo xbps-install -Su'
+alias vsv 'sudo vsv'
 
 alias ls lsd
 alias ll 'lsd -l'
@@ -26,6 +26,7 @@ alias lla 'lsd -la'
 alias lt 'lsd --tree --depth 2'
 alias lg 'lsd -la --git'
 
+fzf --fish | source
 set -gx FZF_DEFAULT_COMMAND "fd --hidden --exclude .git --type f"
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 
@@ -39,4 +40,3 @@ if status is-interactive
     and not set -q TMUX
     exec tmux new-session -A -s Main
 end
-

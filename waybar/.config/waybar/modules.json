@@ -61,7 +61,7 @@
     "format": " 󰋊 Main: {used}/{total}"
   },
   "disk#extra": {
-    "path": "/media/extra",
+    "path": "/media/storage",
     "format": " 󰋊 Storage: {used}/{total}"
   },
   "backlight": {

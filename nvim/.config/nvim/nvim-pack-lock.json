@@ -1,15 +1,15 @@
 {
   "plugins": {
     "conform": {
-      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
+      "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fzf-lua": {
-      "rev": "8671012a7b2a1648595952c655039d51fb301c14",
+      "rev": "05e44d38de0a79c11fba5f7bf8138791b1dbdd1e",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gruber-darker.nvim": {
-      "rev": "9b68f84bfd6c1278fef2143802ca40c60f2471c0",
+      "rev": "83d99c0eb0fa2513fa5268d097194801fad26660",
       "src": "https://github.com/blazkowolf/gruber-darker.nvim"
     },
     "lazygit": {
@@ -17,7 +17,7 @@
       "src": "https://github.com/kdheepak/lazygit.nvim"
     },
     "mini.nvim": {
-      "rev": "3e47ec3709716177bf28e2d17e35c7ab39db126e",
+      "rev": "fb2bbae327f3c306f3c825031345b89dd176ce60",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "monokai-pro.nvim": {
@@ -25,11 +25,11 @@
       "src": "https://github.com/loctvl842/monokai-pro.nvim"
     },
     "monokai.nvim": {
-      "rev": "b8bd44d5796503173627d7a1fc51f77ec3a08a63",
+      "rev": "fca3943173f6026347f9ffc68baab39454446c3b",
       "src": "https://github.com/tanvirtin/monokai.nvim"
     },
     "nvim-treesitter": {
-      "rev": "3d3321b560a63ff92a8692401f303a5123336b86",
+      "rev": "857651fce37eba032ebe28f3a206283cdc65c45a",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-ts-autotag": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "f422cb5c6855f150e2ddcfaf44e7157b98b34f6a",
+      "rev": "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "vague.nvim": {

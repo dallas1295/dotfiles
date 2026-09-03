@@ -4,6 +4,13 @@
 ;; add elpaca hook for extensions
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
 
+;; GUI emacs doesn't source ~/.zshenv — mirror its PATH entries here
+(dolist (dir '("~/.opencode/bin" "~/opt/bin" "~/.cargo/bin"
+               "~/go/bin" "~/thirdparty/bin" "~/.local/bin"))
+  (let ((dir (expand-file-name dir)))
+    (add-to-list 'exec-path dir)
+    (setenv "PATH" (concat dir path-separator (getenv "PATH")))))
+
 ;; get trash file
 (setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
 

@@ -7,6 +7,7 @@ vim.lsp.enable({
 	"marksman",
 	"ts_ls",
 	"rust-analyzer",
+	"pyright",
 })
 
 -- Diagnostic config: squiggles + signs only, no inline text

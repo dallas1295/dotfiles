@@ -10,6 +10,7 @@ add({
 
 vim.cmd.colorscheme("gruber-darker")
 
+-- tmux
 add({
 	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
 })
@@ -35,6 +36,7 @@ require("mini.surround").setup()
 require("mini.ai").setup()
 require("mini.pairs").setup()
 require("mini.statusline").setup()
+require("mini.statuscolumn").setup()
 require("mini.diff").setup({
 	style = "number",
 })

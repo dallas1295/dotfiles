@@ -1,4 +1,5 @@
 font pango: Iosevka Nerd Font 11
+exec pipewire
 
 set $mod Mod4
 
@@ -21,11 +22,15 @@ exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
 
-exec_always swayidle -w \
+# kanshi desyncs from display state across output power off/on and can
+# get stuck re-applying profiles in a loop (displays flashing). Restart it
+# on resume so it re-syncs fresh; the pgrep guard leaves it alone when it
+# was already stopped (manual dual-screen mode via toggle-edp1.sh).
+exec_always pkill -x swayidle; swayidle -w \
     timeout 540 'brightnessctl -q -s set 10%' \
     timeout 600 '$lock' \
     timeout 1000 'swaymsg output "*" power off' \
-    resume 'swaymsg output "*" power on && brightnessctl -q -r' \
+    resume 'swaymsg output "*" power on && brightnessctl -q -r; pgrep -x kanshi >/dev/null && { pkill -x kanshi; kanshi >/dev/null 2>&1 & }' \
     before-sleep '$lock'
 
 exec_always sway-audio-idle-inhibit
@@ -175,26 +180,32 @@ bindsym XF86AudioPrev exec playerctl previous
 
 for_window [workspace = "1"] layout tabbed
 
-for_window [app_id="^firefox$"] move to workspace 2
+for_window [app_id="^Firefox$"] move to workspace 2
 for_window [app_id="^librewolf$"] move to workspace 2
 for_window [app_id="^zen$"] move to workspace 2, focus
 for_window [app_id="^brave-browser$"] move to workspace 2
 for_window [class="^helium$"] move to workspace 2
 
 for_window [title="^Picture-in-Picture$"] \
+    urgent disable, \
     floating enable, \
     sticky enable, \
     resize set 495 287, \
-    move position 1410 px 760 px, \
-    focus no, \
-    border none
+    move position 1273 px 799 px, \
+    border none, \
+
+no_focus [title="^Picture-in-Picture$"]
 
 
 for_window [app_id="^foot$"] move to workspace 1, focus
 
-for_window [class="^steam$"] move to workspace 3, nofocus
-for_window [class="^wechat$"] move to workspace 4, floating, nofocus
-for_window [app_id="^discord$"] move to workspace 4, floating, nofocus
+for_window [class="^steam$"] move to workspace 3
+for_window [class="^wechat$"] move to workspace 4, floating
+for_window [app_id="^discord$"] move to workspace 4, floating
+
+no_focus [class="^steam$"]
+no_focus [class="^wechat$"]
+no_focus [app_id="^discord$"]
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable
