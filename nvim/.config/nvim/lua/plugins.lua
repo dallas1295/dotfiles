@@ -15,15 +15,11 @@ add({
 	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
 })
 
--- Which-key
+-- Better highlights
 add({
-	{ src = "https://github.com/folke/which-key.nvim", name = "which-key" },
+	{ src = "https://github.com/kevinhwang91/nvim-hlslens" },
 })
-
--- Lazygit
-add({
-	{ src = "https://github.com/kdheepak/lazygit.nvim", name = "lazygit" },
-})
+require("hlslens").setup()
 
 -- Mini
 add({
@@ -35,6 +31,7 @@ require("mini.icons").setup()
 require("mini.surround").setup()
 require("mini.ai").setup()
 require("mini.pairs").setup()
+require("mini.tabline").setup()
 require("mini.statusline").setup()
 require("mini.statuscolumn").setup()
 require("mini.diff").setup({

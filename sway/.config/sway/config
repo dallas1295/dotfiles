@@ -3,8 +3,8 @@ exec pipewire
 
 set $mod Mod4
 
-set $terminal foot
-set $fileManager foot -T Yazi -e yazi
+set $terminal ghostty
+set $fileManager ghostty  -e yazi
 set $menu rofi -show drun
 set $browser firefox
 
@@ -95,7 +95,7 @@ bindsym $mod+alt+L exec $lock
 bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/window-$(date +%Y%m%d-%H%M%S).png"
 bindsym $mod+s exec grim -g "$(slurp)" "$HOME/Pictures/region-$(date +%Y%m%d-%H%M%S).png"
 
-bindsym $mod+i exec foot -e btop
+bindsym $mod+i exec ghostty -e btop
 bindsym $mod+b exec $browser
 
 bindsym $mod+h focus left
@@ -113,12 +113,6 @@ bindsym $mod+Shift+r move container to workspace current
 bindsym $mod+f fullscreen toggle
 
 workspace 1
-workspace 2
-workspace 3
-workspace 4
-workspace 5
-workspace 6
-workspace 7
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -198,6 +192,7 @@ no_focus [title="^Picture-in-Picture$"]
 
 
 for_window [app_id="^foot$"] move to workspace 1, focus
+for_window [app_id="^com.mitchellh.ghostty$"] move to workspace 1, focus
 
 for_window [class="^steam$"] move to workspace 3
 for_window [class="^wechat$"] move to workspace 4, floating
