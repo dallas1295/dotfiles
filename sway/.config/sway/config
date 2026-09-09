@@ -3,8 +3,8 @@ exec pipewire
 
 set $mod Mod4
 
-set $terminal ghostty
-set $fileManager ghostty  -e yazi
+set $terminal foot
+set $fileManager foot -T Yazi  -e yazi
 set $menu rofi -show drun
 set $browser firefox
 
@@ -95,7 +95,7 @@ bindsym $mod+alt+L exec $lock
 bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/window-$(date +%Y%m%d-%H%M%S).png"
 bindsym $mod+s exec grim -g "$(slurp)" "$HOME/Pictures/region-$(date +%Y%m%d-%H%M%S).png"
 
-bindsym $mod+i exec ghostty -e btop
+bindsym $mod+i exec foot -T BTOP -e btop
 bindsym $mod+b exec $browser
 
 bindsym $mod+h focus left
@@ -173,6 +173,11 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 
 for_window [workspace = "1"] layout tabbed
+
+for_window [class="Ohmin Audio"] \
+    floating disable, \
+    move to workspace 1, \
+    
 
 for_window [app_id="^Firefox$"] move to workspace 2
 for_window [app_id="^librewolf$"] move to workspace 2
