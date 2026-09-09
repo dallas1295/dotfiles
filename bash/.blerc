@@ -1,0 +1,63 @@
+blerc_lscolors=${LS_COLORS:-di=01;34:ln=01;36:so=01;35:pi=40;33:ex=01;32:*.tar=01;31:*.tgz=01;31}
+bleopt filename_ls_colors="${blerc_lscolors/di=01;34/di=01;33}"
+unset blerc_lscolors
+
+ble-face filename_ls_colors=none
+
+ble-face syntax_default=none
+ble-face syntax_command='fg=green,bold'
+ble-face syntax_quoted='fg=green'
+ble-face syntax_quotation='fg=green,bold'
+ble-face syntax_escape='fg=magenta'
+ble-face syntax_expr='fg=brown'
+ble-face syntax_error='fg=white,bg=red'
+ble-face syntax_varname='fg=cyan'
+ble-face syntax_delimiter='bold'
+ble-face syntax_param_expansion='fg=magenta,bold'
+ble-face syntax_history_expansion='fg=black,bg=brown'
+ble-face syntax_function_name='fg=cyan,bold'
+ble-face syntax_comment='fg=8'
+ble-face syntax_glob='fg=blue'
+ble-face syntax_brace='fg=brown,bold'
+ble-face syntax_tilde='fg=blue,bold'
+ble-face syntax_document='fg=brown'
+ble-face syntax_document_begin='fg=brown,bold'
+
+ble-face command_builtin_dot='fg=red,bold'
+ble-face command_builtin='fg=red'
+ble-face command_alias='fg=teal'
+ble-face command_function='fg=cyan'
+ble-face command_file='fg=green,bold'
+ble-face command_keyword='fg=blue,bold'
+ble-face command_jobs='fg=red,bold'
+ble-face command_directory='fg=yellow'
+ble-face command_suffix='fg=8'
+ble-face command_suffix_new='fg=red'
+ble-face argument_option='fg=teal'
+ble-face argument_error='fg=black,bg=brown'
+
+ble-face filename_directory='fg=yellow'
+ble-face filename_directory_sticky='fg=black,bg=green'
+ble-face filename_link='fg=cyan,bold'
+ble-face filename_orphan='fg=black,bg=red,bold'
+ble-face filename_setuid='fg=white,bg=red'
+ble-face filename_setgid='fg=black,bg=brown'
+ble-face filename_executable='fg=green,bold'
+ble-face filename_socket='fg=magenta,bold'
+ble-face filename_pipe='fg=black,bg=brown'
+ble-face filename_character='fg=black,bg=brown,bold'
+ble-face filename_block='fg=black,bg=brown,bold'
+ble-face filename_other=none
+ble-face filename_warning='fg=red'
+ble-face filename_url='fg=blue'
+
+ble-face varname_unset='fg=brown'
+ble-face varname_empty='fg=cyan'
+ble-face varname_number='fg=green'
+ble-face varname_expr='fg=magenta,bold'
+ble-face varname_array='fg=brown,bold'
+ble-face varname_hash='fg=green,bold'
+ble-face varname_readonly='fg=red'
+ble-face varname_export='fg=red,bold'
+ble-face varname_new='fg=green,bold'
+ble-face varname_transform='fg=cyan,bold'
