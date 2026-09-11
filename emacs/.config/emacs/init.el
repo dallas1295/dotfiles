@@ -1,8 +1,14 @@
+;; -*- lexical-binding: t; -*-
+
+;; lexical bindings
+(set-default-toplevel-value 'lexical-binding t)
+
 ;; Set Customs file so no clutter
 (setq custom-file "~/.config/emacs/custom.el")
 
 ;; add elpaca hook for extensions
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
+
 
 ;; GUI emacs doesn't source ~/.zshenv — mirror its PATH entries here
 (dolist (dir '("~/.opencode/bin" "~/opt/bin" "~/.cargo/bin"
@@ -78,7 +84,7 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-unset-key (kbd "C-S-<down-mouse-1>"))
+(globa-unset-key (kbd "C-S-<down-mouse-1>"))
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
 (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
@@ -201,14 +207,14 @@
 
 ;; Coding essentials
 ;; Snippets
-;; (use-package tempel
-;;   :ensure t
-;;   :commands (tempel-expand tempel-done)
-;;   :config
-;;   (global-set-key (kbd "M-+") 'tempel-expand))
+(use-package tempel
+  :ensure t
+  :commands (tempel-expand tempel-done)
+  :config
+  (global-set-key (kbd "M-+") 'tempel-expand))
 
-;; (use-package tempel-collection
-;;   :ensure t)
+(use-package tempel-collection
+  :ensure t)
 
 ;; ;; Completions
 (use-package corfu
@@ -256,9 +262,7 @@
          (html-mode . eglot-ensure)
          (css-mode . eglot-ensure)
          (web-mode . eglot-ensure)
-         (odin-mode . eglot-ensure)
-         (cmake-mode . eglot-ensure))
-
+         (odin-mode . eglot-ensure))
   :config
   (remove-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode)
   (add-to-list 'eglot-server-programs
@@ -275,7 +279,6 @@
 (use-package typescript-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
 (use-package lua-mode :ensure t)
-(use-package cmake-mode :ensure t)
 (use-package odin-mode
   :ensure (:host github :repo "mattt-b/odin-mode")
   :mode ("\\.odin\\'" . odin-mode))

@@ -3,23 +3,28 @@ local add = function(s)
 end
 
 -- -- Themes
-
 add({
 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 })
 
 vim.cmd.colorscheme("gruber-darker")
 
--- tmux
-add({
-	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
-})
-
+-- -- tmux
+-- add({
+-- 	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
+-- })
+--
 -- Better highlights
 add({
 	{ src = "https://github.com/kevinhwang91/nvim-hlslens" },
 })
 require("hlslens").setup()
+
+-- Tab out of things
+add({
+	{ src = "https://github.com/abecodes/tabout.nvim" },
+})
+require("tabout").setup()
 
 -- Mini
 add({

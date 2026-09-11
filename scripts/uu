@@ -1,0 +1,29 @@
+#!/bin/bash
+# uu plugin easy on and off switch in bash
+# check if the service is running if so sv down, if not sv up.
+set -euo pipefail
+sudo -v
+
+
+svc=uuplugin
+
+if sv status "$svc" | grep -q '^run:'; then
+  echo "Stopping $svc ..."
+  sudo sv down "$svc"
+  for i in $(seq 1 5); do
+    pgrep -f '/tmp/uu/uuplugin' >/dev/null 2&>1 || { echo "UUBooster stopped."; exit 0; }
+    sleep 1
+  done
+  echo "/tmp/uu/uuplugin still alive after 5 sec -- check: pgrep -af uu" >&2
+  exit 1
+else
+  echo "Starting $svc"
+  sudo sv up "$svc"
+  for i in $(seq 1 15); do
+    pgrep -x uuplugin >/dev/null 2>&1 && { echo "UUBooster running."; exit 0; }
+    sleep 1
+  done
+  echo "Plugin didn't spawn -- check: vsv status $svc" >&2
+  exit 1
+fi
+

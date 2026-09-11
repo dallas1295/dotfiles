@@ -14,6 +14,7 @@ bar {
   swaybar_command /usr/bin/waybar
 }
 
+exec autotiling
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec swaync
 exec syncthing
@@ -172,7 +173,7 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 
-for_window [workspace = "1"] layout tabbed
+# for_window [workspace = "1"] layout tabbed
 
 for_window [class="Ohmin Audio"] \
     floating disable, \

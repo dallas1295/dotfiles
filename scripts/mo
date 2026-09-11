@@ -1,0 +1,106 @@
+#!/bin/bash
+## An attempt at rewriting cvp in bash
+set -euo pipefail
+API_URL='127.0.0.1:9090'
+
+die() {
+  printf '%s\n' "$*" >&2
+  exit 1
+}
+
+api_req() {
+  local method=$1 path=$2 body=${3:-}
+  local args=( -Ss --fail-with-body -X "$method" "${API_URL}${path}")
+
+  if [[ -n $body ]]; then
+    args+=(-H 'Content-Type: application/json' -d "$body")
+  fi
+
+  curl "${args[@]}" || die "connection error: ensure mihomo server is running"
+}
+
+on() {
+  api_req PATCH /configs '{"tun": {"enable": true}}' >/dev/null
+  echo "Mihomo TUN: enabled"
+}
+
+off() {
+  api_req PATCH /configs '{"tun": {"enable": false}}' >/dev/null
+  echo "Mihomo TUN: disabled"
+}
+
+use() {
+  local proxy=$1
+  api_req PUT /proxies/Proxy "{\"name\":\"$proxy\"}" >/dev/null
+  echo "Selected proxy: $proxy"
+}
+
+refresh_list() {
+  command -v jq >/dev/null || die "MISSING DEP: jq"
+  local provider
+  while read -r provider; do
+    api_req PUT "/providers/proxies/$provider" >/dev/null
+  done < <(api_req GET /providers/proxies | jq -r '.providers | to_entries[] | select(.value.vehicleType == "HTTP") | .key')
+}
+
+list_servers() {
+  command -v fzf >/dev/null || die "MISSING DEP: fzf"
+  local selection
+  selection=$(
+    {
+      echo "[auto] Fastest"
+      echo "[auto] DIRECT"
+      api_req GET /providers/proxies |
+        jq -r '.providers[].proxies[] | select((.type == "Selector" or .type == "URLTest" or .type == "Fallback" or .type == "LoadBalance") | not) | "[\(.["provider-name"])] \(.name)"'
+    } | fzf
+  ) || exit 0
+
+  local _ name
+  read -r _ name <<<"$selection"
+  use "$name"
+}
+
+status() {
+  command -v jq >/dev/null || die "MISSING DEP: jq"
+  local tun server
+  tun=$(api_req GET /configs | jq -r '.tun.enable')
+  server=$(api_req GET /proxies/Proxy | jq -r '.now // "No Proxies Detected"')
+
+  if [[ $tun == true ]]; then
+    tun=on 
+    echo "Proxy: $server | TUN Status: $tun"
+  fi
+
+  if [[ $tun == false ]]; then
+    echo "Proxy: $server"
+  fi
+}
+
+help() {
+  cat >&2 <<'EOF'
+Usage: mo <command> [args]
+
+Commands:
+  on            Enable TUN mode
+  off           Disable TUN mode
+  c <server>    Connect to server (or switch)
+  c fast        Use Fastest auto-selection
+  ls            List and select a server
+  ls -r         Refresh and list servers
+  i             Show VPN status
+EOF
+  exit 1
+}
+
+case ${1:-} in
+  on)  on ;;
+  off) off ;;
+  ls)  [[ ${2:-} == -r ]] && refresh_list
+       list_servers ;;
+  i)   status ;;
+  c)   [[ -z ${2:-} ]] && die "usage: mo c <server>"
+       if [[ $2 == fast ]]; then use Fastest; else use "$2"; fi ;;
+  *)   echo "Unknown command ${1:-}" >&2; help ;;
+esac
+
+
