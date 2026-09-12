@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+sudo -v
+
+## first check for system being ran
+if [[ -d /etc/runit ]]; then
+  init="runit"
+  echo "user init system: $init"
+elif [[ -d /run/systemd/system  ]]; then
+    init="systemd"
+    echo "currently $init is not supported by bootstrap"
+    exit 1
+else
+  echo "init system not supported by bootstap"
+  exit 1
+fi
+
+echo "------------------------------------"
+echo "Checking for essential service files"
+echo "------------------------------------"
+
+# essential services
+essentials=(dbus polkitd NetworkManager chronyd)
+declare -A pkg=( [dbus]=dbus [polkitd]=polkit [NetworkManager]=NetworkManger [chronyd]=chrony)
+for svc in "${essentials[@]}"; do
+  if [[ ! -d /etc/sv/$svc ]]; then
+    echo "service not found: $svc = installing ${pkgs[$svc]}"
+    sudo xbps-install -y "${pkg[$svc]}"
+  fi
+  if [[ ! -d /etc/sv/$svc ]]; then
+    echo "essential service install failed - exiting"
+    exit 1
+  fi
+  if [[ -e /var/service/$svc ]]; then
+    echo "service $svc: already enabled"
+  else 
+    sudo ln -s "/etc/sv/$svc" "/var/service/$svc"
+    echo "service $svc: enabling now"
+  fi
+done
+
+echo "-----------------------------------"
+echo "Checking for external service files"
+echo "-----------------------------------"
+
+## then we need to confirm if our thirdparty directory is here
+if [[ -n $1 && -d $1 ]]; then
+    tpfiles=$1
+    echo "found files at $tpfiles"
+elif [[ -d $HOME/thirdparty/config/sv/ ]]; then
+  tpfiles=$HOME/thirdparty/config/sv/
+  echo "found thirdparty directory"
+else 
+  echo "no sv directory found"
+  exit 1
+fi
+echo "-----------------------------------"
+
+# Then we go thorugh the sv directory and confirm recursively the run scripts are
+# Then link the parent directory name in the /var/service... easy
+while IFS= read -r -d '' run; do
+  svc=$(dirname "$run")
+  name=$(basename "$svc")
+  if [[ -e /var/service/$name ]]; then
+    echo "service $name: already enabled"
+  else 
+    sudo ln -s "$svc" "/var/service/$name"
+    echo "service $name: enabling now"
+  fi
+done < <(find "$tpfiles" -type f -name run -not -path '*/log/*' -print0)
+
+echo "IMPORTANT: services like keyd, cups (Printing services), and greetd are not linked"
+echo "pipewire/bluetooth also not installed or linked"
+echo "please check voidlinux.org/documentation for relevant information"
+
+echo "-----------------------------------"
+echo "Checking for external service files"
+echo "-----------------------------------"
+
