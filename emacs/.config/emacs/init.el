@@ -64,19 +64,18 @@
 (global-unset-key (kbd "M-c"))
 (global-set-key (kbd "M-c f") 'find-file)
 (global-set-key (kbd "M-c F") 'dired)
-(global-set-key (kbd "M-c i") 'switch-to-buffer)
+(global-set-key (kbd "M-c i") 'consult-buffer)
 (global-set-key (kbd "M-c I") 'dired-jump)
+(global-set-key (kbd "M-c g") 'consult-ripgrep)
+(global-set-key (kbd "M-c r") 'consult-recent-file)
 (global-set-key (kbd "M-c k a") 'projectile-kill-buffers)
 (global-set-key (kbd "M-c p s") 'projectile-switch-project)
 
-
-(global-set-key (kbd "M-c b D") '(lambda () (interactive) (kill-buffer (current-buffer))))
-(global-set-key (kbd "M-c b d") '(lambda () (interactive) (delete-window)))
+(global-set-key (kbd "M-c b d") '(kill-buffer-and-window))
 (global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
 (global-set-key (kbd "M-c b s") #'split-window-right)
 
 (global-set-key (kbd "M-c c") 'compile)
-(global-set-key (kbd "M-c o") 'magit)
 (global-set-key (kbd "C-c c") 'capitalize-word)
 
 ;; Dependencies
@@ -97,6 +96,14 @@
 (setq dired-listing-switches "-alh")
 (setq dired-mouse-drag-files t)
 
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode 1)
+  :config
+  (setq vertico-cycle t
+        vertico-count 15))
+
 ;; Theme
 (use-package gruber-darker-theme
   :ensure t
@@ -106,6 +113,9 @@
 
 ;; QoL
 (use-package diminish
+  :ensure t)
+
+(use-package consult
   :ensure t)
 
 ;; Colors for Hex and Brackets
