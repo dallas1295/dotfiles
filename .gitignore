@@ -50,3 +50,6 @@ node_modules/
 
 # ---------- Helix -----------
 helix/.config/helix/runtime
+
+#---------- BASH ---------
+.bash_history

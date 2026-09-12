@@ -9,8 +9,6 @@
 ;; add elpaca hook for extensions
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
 
-
-;; GUI emacs doesn't source ~/.zshenv — mirror its PATH entries here
 (dolist (dir '("~/.opencode/bin" "~/opt/bin" "~/.cargo/bin"
                "~/go/bin" "~/thirdparty/bin" "~/.local/bin"))
   (let ((dir (expand-file-name dir)))
@@ -72,22 +70,14 @@
 (global-set-key (kbd "M-c p s") 'projectile-switch-project)
 
 
-(global-set-key (kbd "M-c b d") '(lambda () (interactive) (kill-buffer (current-buffer))))
+(global-set-key (kbd "M-c b D") '(lambda () (interactive) (kill-buffer (current-buffer))))
+(global-set-key (kbd "M-c b d") '(lambda () (interactive) (delete-window)))
 (global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
 (global-set-key (kbd "M-c b s") #'split-window-right)
 
 (global-set-key (kbd "M-c c") 'compile)
 (global-set-key (kbd "M-c o") 'magit)
 (global-set-key (kbd "C-c c") 'capitalize-word)
-
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(globa-unset-key (kbd "C-S-<down-mouse-1>"))
-(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
-(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
-(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 
 ;; Dependencies
 
@@ -118,71 +108,11 @@
 (use-package diminish
   :ensure t)
 
-(use-package multiple-cursors
-  :ensure t
-  :config
-  (setq mc/always-run-for-all t)
-  (dolist (cmd '(my/mc-add-cursor-here my/mc-cursor-forward-word overwrite-mode))
-    (add-to-list 'mc/cmds-to-run-once cmd)
-    (setq mc/cmds-to-run-for-all (remove cmd mc/cmds-to-run-for-all))))
-
 ;; Colors for Hex and Brackets
 (use-package rainbow-delimiters
   :ensure t
   :hook ((emacs-lisp-mode . rainbow-delimiters-mode)
          (clojure-mode . rainbow-delimiters-mode)))
-
-(use-package rainbow-mode
-  :diminish
-  :ensure t
-  :hook (org-mode prog-mode))
-
-;; Org-mode
-(setq org-confirm-babel-evaluate nil)
-(setq org-babel-default-header-args '((:results . "silent")))
-
-(use-package toc-org
-  :ensure t
-  :hook (org-mode . toc-org-enable))
-
-(use-package
-  org-bullets
-  :ensure t
-  :hook (org-mode . org-bullets-mode))
-
-(setq org-return-follows-link t)
-(add-hook 'org-mode-hook 'org-indent-mode)
-
-(custom-set-faces
- '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
- '(org-level-2 ((t (:inherit outline-2 :height 1.6))))
- '(org-level-3 ((t (:inherit outline-3 :height 1.5))))
- '(org-level-4 ((t (:inherit outline-4 :height 1.4))))
- '(org-level-5 ((t (:inherit outline-5 :height 1.3))))
- '(org-level-6 ((t (:inherit outline-6 :height 1.2))))
- '(org-level-7 ((t (:inherit outline-7 :height 1.1)))))
-
-;; | Typing the below + TAB | Expands to ...                          |
-;; |------------------------+-----------------------------------------|
-;; | <a                     | '#+BEGIN_EXPORT ascii' … '#+END_EXPORT  |
-;; | <c                     | '#+BEGIN_CENTER' … '#+END_CENTER'       |
-;; | <C                     | '#+BEGIN_COMMENT' … '#+END_COMMENT'     |
-;; | <e                     | '#+BEGIN_EXAMPLE' … '#+END_EXAMPLE'     |
-;; | <E                     | '#+BEGIN_EXPORT' … '#+END_EXPORT'       |
-;; | <h                     | '#+BEGIN_EXPORT html' … '#+END_EXPORT'  |
-;; | <l                     | '#+BEGIN_EXPORT latex' … '#+END_EXPORT' |
-;; | <q                     | '#+BEGIN_QUOTE' … '#+END_QUOTE'         |
-;; | <s                     | '#+BEGIN_SRC' … '#+END_SRC'             |
-;; | <v                     | '#+BEGIN_VERSE' … '#+END_VERSE'         |
-
-(require 'org-tempo)
-
-(setq org-directory "~/org")
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "IN-PROGRESS(i)" "|" "DONE(d)" "CANCELLED(c)")))
-(setq org-log-done 'time)
-(setq org-log-into-drawer t)
-
 
 ;; Magit
 (use-package magit
@@ -197,7 +127,7 @@
   :init
   (projectile-mode +1)
   :config
-  (setq projectile-project-search-path '("~/projects"))
+  (setq projectile-project-search-path '("~/Projects"))
   (setq projectile-enable-caching t))
 
 
@@ -207,14 +137,6 @@
 
 ;; Coding essentials
 ;; Snippets
-(use-package tempel
-  :ensure t
-  :commands (tempel-expand tempel-done)
-  :config
-  (global-set-key (kbd "M-+") 'tempel-expand))
-
-(use-package tempel-collection
-  :ensure t)
 
 ;; ;; Completions
 (use-package corfu

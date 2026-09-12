@@ -1,163 +1,3 @@
-clear
-exit
-nvim .bashrc
-nvim .blerc 
-source .bashrc
-exit
-clear
-source .bashrc
-clear
-ls
-ls | fzf
-clear
-source .bashrc
-ll
-la
-la
-ll
-clear
-nvim .bashrc
-clear
-source .bashrc
-z Projects/
-clear
-z
-clear
-z .bashrc
-nvim .bashrc
-ls
-source .bashrc
-ll
-nvim .bashrc
-grep
-grep .bashrc
-grep ~/thirdparty/bin
-grep ~/thirdparty/bin mihomo
-grep 
-grep mihomo
-z bin
-z
-z thirdparty/bin
-clear
-grep mihomo
-clear
-ls
-ls | hl 'trackor'
-clear
-z
-clear
-nvim .bashrc
-source .bashrc
-ls
-ll
-clear
-ll
-clear
-clear
-mv .bashrc ~/dotfiles/bash/.config/
-mv --help
-mv --help | fzf
-mkdir -p ~/dotfiles/bash/.config/
-mv .bashrc ~/dotfiles/bash/.config/
-ls dotfiles/bash/.config
-clear
-mv .blerc ~/dotfiles/bash/.config/
-mv .bash_history ~/dotfiles/bash/.config/
-ls
-ls | grep bash
-ls | grep 'bash'
-clear
-ls | fzf
-z dotfiles
-stow bash
-source .bashrc
-ls
-stow -d bash
-stow -D bash
-mv bash/.config/* bash/
-mv bash/.config/.* bash/
-ls bash
-rm bash/.config
-rm -rf bash/.config
-clear
-stow bash
-z
-stow bash
-ls |grep bash
-clear
-source .bashrc
-clear
-clea
-lazygit
-fzf .sh
-fzf
-mv uu.sh uu
-cd thirdparty/bin/uu.sh 
-cd thirdparty/bin/
-ls
-mv uu.sh uu
-uu
-uu
-z
-uu
-clear
-nvim .bashrc
-source .bashrc
-uu
-\uu
-uu
-\uu
-clear
-nvim .bashrc
-source .bashrc
-uu
-nvim ~/thirdparty/bin/uu 
-uu
-exit
-uu
-clear
-uu
-clear
-z mull
-ls
-clear
-z
-clear
-nvim
-z
-clear
-nvim .bashrc
-source .bashrc
-clear
-z mull
-bash -n mullvad-wg.sh 
-bash -n mullvad-up.sh
-bash -n mullvad_proxy.sh 
-clear
-z
-clear
-z nvim
-nvim
-nvim
-nvim
-z pro
-ls
-z ohmin
-nvim main
-nvim main.odin 
-clear
-clear
-clear
-cleear
-clear
-jkjk
-clear
-bash -n mullvad-wg.sh 
-clear
-nvim .zshrc
-source .bashrc
-opencode
-z Projects/
 z ohmin
 nvim
 git diff
@@ -498,3 +338,163 @@ xi -Syu
 clear
 xq niri
 mango
+xi cliphist
+git -C /home/dallas/dotfiles show 131db76^:niri/.config/niri/config.dkl >  /home/dallas/dotfiles/niri/config.kdl 
+rm -rf dotfiles/niri/config.kdl 
+git -C /home/dallas/dotfiles show 131db76^:niri/.config/niri/config.dkl >  /home/dallas/dotfiles/niri/config.kdl 
+z dotfiles/
+git -C /home/dallas/dotfiles show 131db76^:niri/.config/niri/config.dkl >  /home/dallas/dotfiles/niri/config.kdl 
+lazygit
+git -C /home/dallas/dotfiles show '131db76^:niri/.config/niri/config.kdl' >  /home/dallas/dotfiles/niri/config.kdl 
+z niri
+ls
+mkdir -p .config/niri
+ls
+mv config.kdl .config/niri/
+z .config/
+z niri
+nvim config.kdl 
+xi xwayland-satellite
+xi xdg-desktop-portal-kde
+nvim config.kdl 
+pkill waybar
+waybar
+pkill swaybg; swaybg -m fill -i ~/.config/sway/dotcircle.png 
+z niri
+nvim config.kdl 
+z waybar
+nvim
+reboot
+fastfetch
+fastfetch
+fastfetch
+clear
+mo ls -r
+mo ls
+z nvim
+nvim
+pi
+clear
+z
+clear
+uu
+uu
+clear
+mo ls
+chmod +x bootstrap 
+./bootstrap
+./bootstrap
+./bootstrap
+clear
+clear
+./bootstrap
+./bootstrap
+clear
+clear
+./bootstrap
+./bootstrap
+./bootstrap
+clera
+clear
+clear
+clera
+./bootstrap
+./bootstrap
+sudo rm /var/service/fstrim
+./bootstrap
+exit
+./bootstrap
+clear
+./bootstrap
+./bootstrap
+./bootstrap
+./bootstrap
+clear
+./bootstrap
+exit
+z Projects
+mkdir bootstrap
+z bootstrap
+touch bootstrap
+nvim bootstrap 
+nvim bootstrap 
+./bootstrap 
+clear
+./bootstrap 
+nvim bootstrap 
+z thirdparty/confsv/
+z thirdparty/config/sv/
+nvim
+z thirdparty/config/sv/
+cd ~/thirdparty/config/sv
+ls
+z fstrim
+nvim
+clear
+z
+clear
+vsv
+sudo rm /var/service/fstrim
+z Projects/bootstrap/
+./bootstrap 
+sudo rm /var/service/fstrim
+z sv
+z fstrim
+ls
+sudo rm -rf supervise/
+clear
+z boot
+./bootstrap 
+vsv
+xq polkit
+./bootstrap 
+./bootstrap 
+z proj
+z bootstrap/
+nvim
+mv bootstrap bootstrap_sv
+z Projects
+z thirdparty
+z config
+z sv
+vsv
+vsv
+mo ls
+mo ls
+mo ls
+mo ls -r
+mo ls
+mu 
+mu 
+md
+nmtui
+uu
+nvim
+emacs
+uu
+z bootstrap
+nvim  bootstrap_sv 
+uu
+uu
+ clear
+xu
+xq darkman
+xi darkman
+man darkman
+sudo ls /etc/sv/
+darkman
+darkman run
+xi geoclue
+xi geoclue2
+darkman run
+clear
+xi geoclue2
+darkman run
+darkman get
+darkman run
+sudo ls /etc/sv/
+xi geoclue2
+darkman get
+darkman --help
+darkman check
+xr geoclue2 darkman

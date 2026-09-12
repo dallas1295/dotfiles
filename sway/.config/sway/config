@@ -201,6 +201,7 @@ for_window [app_id="^foot$"] move to workspace 1, focus
 for_window [app_id="^com.mitchellh.ghostty$"] move to workspace 1, focus
 
 for_window [class="^steam$"] move to workspace 3
+for_window [app_id="^com.heroicgameslauncher.hgl$"] move to workspace 3
 for_window [class="^wechat$"] move to workspace 4, floating
 for_window [app_id="^discord$"] move to workspace 4, floating
 
