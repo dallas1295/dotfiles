@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+sudo -v
+
+
+## Accumulate orphans and remove them
+orphans="$(pacman -Qtdq)"
+[[ -n "$orphans" ]] && sudo pacman -Rns $orphans --noconfirm
+
+## remove sandboxed dirs
+sudo rm -rf /var/cache/pacman/pkg/download-*/ 2>/dev/null
+
+## clear cache
+sudo pacman -Sc --noconfirm
