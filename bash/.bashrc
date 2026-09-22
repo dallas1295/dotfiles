@@ -10,14 +10,17 @@ PATH="$PATH:$HOME/go/bin"
 PATH="$PATH:$HOME/.opencode/bin"
 
 alias svim='sudo -E nvim'
+alias emacs='emacs &'
 
-alias poweroff='loginctl poweroff'
-alias reboot='loginctl reboot'
-alias xi='sudo xbps-install -Sy'
-alias xr='sudo xbps-remove'
-alias xq='sudo xbps-query -Rs'
-alias xu='sudo xbps-install -Su'
-alias vsv='sudo vsv'
+alias pacman='sudo pacman'
+
+# alias poweroff='loginctl poweroff'
+# alias reboot='loginctl reboot'
+# alias xi='sudo xbps-install'
+# alias xr='sudo xbps-remove'
+# alias xq='sudo xbps-query -Rs'
+# alias xu='sudo xbps-install -Su'
+# alias vsv='sudo vsv'
 
 alias mu='~/thirdparty/data/mullvad/mullvad_up.sh'
 alias md='~/thirdparty/data/mullvad/mullvad_down.sh'
