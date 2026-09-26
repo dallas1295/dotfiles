@@ -2,18 +2,57 @@ local add = function(s)
 	vim.pack.add(s, { confirm = false })
 end
 
--- -- Themes
+-- Theme
 add({
 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 })
 
-vim.cmd.colorscheme("gruber-darker")
+add({
+	{ src = "https://github.com/scottmckendry/cyberdream.nvim" },
+})
+
+add({
+	{ src = "https://github.com/miikanissi/modus-themes.nvim" },
+})
+
+add({
+	{ src = "https://github.com/loctvl842/monokai-pro.nvim" },
+})
+
+add({
+	{ src = "https://github.com/tomasr/molokai" },
+})
+
+vim.cmd.colorscheme("modus")
 
 -- Better highlights
 add({
 	{ src = "https://github.com/kevinhwang91/nvim-hlslens" },
 })
-require("hlslens").setup()
+-- require("hlslens").setup()
+-- which-key
+add({
+	{ src = "https://github.com/folke/which-key.nvim" },
+})
+require("which-key").setup()
+-- Neogit
+add({
+	{ src = "https://github.com/NeogitOrg/neogit", name = "neogit" },
+	{ src = "https://github.com/sindrets/diffview.nvim" },
+	{ src = "https://github.com/m00qek/baleia.nvim" },
+})
+require("neogit").setup({
+	kind = "split",
+})
+
+local dv_actions = require("diffview.actions")
+require("diffview").setup({
+	keymaps = {
+		view = { ["q"] = dv_actions.close },
+		file_panel = { ["q"] = dv_actions.close },
+		file_history_panel = { ["q"] = dv_actions.close },
+	},
+})
 
 -- Mini
 add({
@@ -22,11 +61,10 @@ add({
 require("mini.snippets").setup()
 require("mini.completion").setup({})
 require("mini.icons").setup()
+require("mini.icons").mock_nvim_web_devicons()
 require("mini.surround").setup()
 require("mini.ai").setup()
 require("mini.pairs").setup()
-require("mini.tabline").setup()
-require("mini.statusline").setup()
 require("mini.statuscolumn").setup()
 require("mini.diff").setup({
 	style = "number",
@@ -89,6 +127,7 @@ require("fzf-lua").setup({
 			"node_modules/",
 			"%.next/",
 			"dist/",
+			".trackor/",
 			"build/",
 			"%.DS_Store",
 			"target/",

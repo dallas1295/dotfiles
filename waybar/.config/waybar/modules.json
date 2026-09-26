@@ -61,7 +61,7 @@
     "format": " 󰋊 Main: {used}/{total}"
   },
   "disk#extra": {
-    "path": "/media/storage",
+    "path": "/media/extra",
     "format": " 󰋊 Storage: {used}/{total}"
   },
   "backlight": {
@@ -90,7 +90,6 @@
     },
     "format": "{icon} {capacity}%",
     "format-charging": "{icon} {capacity}%",
-    "format-full": "󰚥 Full",
     "format-plugged": "󰚥 {capacity}%",
     "format-alt": "{time}  {icon}",
     "format-icons": {

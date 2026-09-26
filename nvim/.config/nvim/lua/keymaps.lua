@@ -30,8 +30,8 @@ local function pack_clean()
 	end
 end
 
-keymap.set("n", "<leader>pc", pack_clean)
-keymap.set("n", "<leader>pl", function()
+keymap.set("n", "<leader>lc", pack_clean)
+keymap.set("n", "<leader>ll", function()
 	vim.pack.update()
 end)
 
@@ -41,16 +41,9 @@ keymap.set("n", "<leader>co", ":copen<CR>", { desc = "Open Compiler Quickfix Lis
 keymap.set("n", "<leader>rr", ":Crun<CR>")
 keymap.set("n", "<leader>rb", ":Cbuild ")
 keymap.set("n", "<leader>rc", ":Ccheck<CR>")
-keymap.set("n", "<leader>oc", ":! odin compile ")
-keymap.set("n", "<leader>or", ":! odin run .<CR>")
+keymap.set("n", "<leader>rt", "<cmd>! cargo test<CR>")
+keymap.set("n", "<leader>or", ":! odin run . ")
 
--- LazyGit
-keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit" })
-
--- Which-Key
-keymap.set("n", "<leader>?", function()
-	require("which-key").show({ global = false })
-end, { desc = "Open Which-key" })
 -- exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
@@ -90,15 +83,15 @@ end, { expr = true })
 -- Fzf-lua
 keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
 keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "recent files" })
-keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })
+-- keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })
 keymap.set("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search word under cursor" })
 keymap.set("n", "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Search WORD under cursor" })
 keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search highlighted" })
 keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep in root" })
 keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep resume=true<cr>", { desc = "Resume live grep in root" })
 keymap.set("n", "<leader>fp", "<cmd>FzfLua search_history<cr>", { desc = "Search History" })
-keymap.set("n", "<leader>i", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
-keymap.set("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>", { desc = "Open quickfix" })
+keymap.set("n", "<leader>bi", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
+-- keymap.set("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>", { desc = "Open quickfix" })
 
 -- LSP symbols and navigation (via fzf-lua)
 keymap.set("n", "gd", function()
@@ -162,6 +155,18 @@ keymap.set("n", "<leader>xC", "<cmd>q!<CR>", { desc = "Force close Neovim" })
 
 -- Oil
 keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
+
+-- Neogit / Diffview
+keymap.set("n", "<leader>gg", function()
+	require("neogit").open({ kind = "vsplit" })
+end, { desc = "Open Neogit" })
+keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diffview: repo changes" })
+keymap.set("n", "<leader>gH", "<cmd>DiffviewFileHistory %<cr>", { desc = "Diffview: history of current file" })
+keymap.set("n", "<leader>gx", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
+
+--Trackor
+keymap.set("n", "<leader>ii", "<cmd>Trackor<cr>", { desc = "Trackor issues" })
+keymap.set("n", "<leader>in", ":! trackor new ", { desc = "Trackor issues (quickfix)" })
 
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })

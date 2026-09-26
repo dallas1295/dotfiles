@@ -29,6 +29,9 @@ opt.smartindent = true -- copy indent from current line when starting new one
 -- line wrapping
 opt.wrap = false
 
+-- column ruler
+opt.colorcolumn = "100" -- vertical line at 100 chars so you see lines getting too long
+
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
@@ -41,7 +44,7 @@ opt.conceallevel = 2
 opt.winborder = "rounded"
 opt.scroll = 10
 
-opt.background = "dark" -- colorschemes that can be light or dark will be made dark
+-- opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 -- backspace

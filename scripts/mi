@@ -45,18 +45,29 @@ refresh_list() {
 
 list_servers() {
   command -v fzf >/dev/null || die "MISSING DEP: fzf"
+  command -v jq  >/dev/null || die "MISSING DEP: jq"
   local selection
   selection=$(
-    {
-      echo "[auto] Fastest"
-      echo "[auto] DIRECT"
-      api_req GET /providers/proxies |
-        jq -r '.providers[].proxies[] | select((.type == "Selector" or .type == "URLTest" or .type == "Fallback" or .type == "LoadBalance") | not) | "[\(.["provider-name"])] \(.name)"'
-    } | fzf
-  ) || exit 0
+    api_req GET /providers/proxies |
+      jq -r '
+        def pad($s; $w): $s + (" " * ([ $w - ($s | length), 0 ] | max));
+        [ .providers[].proxies[]
+          | select((.type == "Selector" or .type == "URLTest" or .type == "Fallback" or .type == "LoadBalance") | not)
+          | select(.alive == true and ((.history[-1].delay // 0) > 0))
+          | {p: ("[" + .["provider-name"] + "]"), n: .name, d: (.history[-1].delay // 0)} ]
+        | ([ (map(.p | length) | max // 0), 6 ] | max) as $pw
+        | ([ (map(.n | length) | max // 0), 8 ] | max) as $nw
+        | sort_by(.p, .d)
+        | [ "\(pad("[auto]"; $pw))\t\(pad("Fastest"; $nw))\t\(pad("--"; 6))",
+            "\(pad("[auto]"; $pw))\t\(pad("DIRECT";  $nw))\t\(pad("--"; 6))" ]
+          + map("\(pad(.p; $pw))\t\(pad(.n; $nw))\t\(pad((.d | tostring) + "ms"; 6))")
+        | .[]' |
+      fzf --delimiter='\t' --with-nth=1,2,3
+  ) || exit 1
 
   local _ name
-  read -r _ name <<<"$selection"
+  IFS=$'\t' read -r _ name _  <<<"$selection"
+  name="${name%"${name##*[! ]}"}"
   use "$name"
 }
 
@@ -67,7 +78,7 @@ status() {
   server=$(api_req GET /proxies/Proxy | jq -r '.now // "No Proxies Detected"')
 
   if [[ $tun == true ]]; then
-    tun=on 
+    tun=on
     echo "Proxy: $server | TUN Status: $tun"
   fi
 
@@ -86,7 +97,7 @@ Commands:
   c <server>    Connect to server (or switch)
   c fast        Use Fastest auto-selection
   ls            List and select a server
-  ls -r         Refresh and list servers
+  ls -r         Force-refresh subscriptions, then list
   i             Show VPN status
 EOF
   exit 1
@@ -102,5 +113,3 @@ case ${1:-} in
        if [[ $2 == fast ]]; then use Fastest; else use "$2"; fi ;;
   *)   echo "Unknown command ${1:-}" >&2; help ;;
 esac
-
-
