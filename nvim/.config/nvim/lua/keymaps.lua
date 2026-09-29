@@ -41,7 +41,7 @@ keymap.set("n", "<leader>co", ":copen<CR>", { desc = "Open Compiler Quickfix Lis
 keymap.set("n", "<leader>rr", ":Crun<CR>")
 keymap.set("n", "<leader>rb", ":Cbuild ")
 keymap.set("n", "<leader>rc", ":Ccheck<CR>")
-keymap.set("n", "<leader>rt", "<cmd>! cargo test<CR>")
+keymap.set("n", "<leader>rt", "<cmd>! cargo test -- --show-output<CR>")
 keymap.set("n", "<leader>or", ":! odin run . ")
 
 -- exit insert mode

@@ -23,13 +23,13 @@ add({
 	{ src = "https://github.com/tomasr/molokai" },
 })
 
-vim.cmd.colorscheme("modus")
+vim.cmd.colorscheme("monokai-pro")
 
 -- Better highlights
 add({
 	{ src = "https://github.com/kevinhwang91/nvim-hlslens" },
 })
--- require("hlslens").setup()
+require("hlslens").setup()
 -- which-key
 add({
 	{ src = "https://github.com/folke/which-key.nvim" },

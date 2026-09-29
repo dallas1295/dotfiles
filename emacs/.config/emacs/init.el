@@ -57,35 +57,41 @@
                     :slant 'italic)
 
 ;; Binds
-(global-set-key (kbd "M-n") #'next-line)
-(global-set-key (kbd "M-p") #'previous-line)
+;; (global-set-key (kbd "M-n") #'next-line)
+;; (global-set-key (kbd "M-p") #'previous-line)
 
 
-(global-unset-key (kbd "M-c"))
-(global-set-key (kbd "M-c f") 'find-file)
-(global-set-key (kbd "M-c F") 'dired)
-(global-set-key (kbd "M-c i") 'consult-buffer)
-(global-set-key (kbd "M-c I") 'dired-jump)
-(global-set-key (kbd "M-c g") 'consult-ripgrep)
-(global-set-key (kbd "M-c r") 'consult-recent-file)
-(global-set-key (kbd "M-c k a") 'projectile-kill-buffers)
-(global-set-key (kbd "M-c p s") 'projectile-switch-project)
+;; (global-unset-key (kbd "M-c"))
+;; (global-set-key (kbd "M-c f") 'find-file)
+;; (global-set-key (kbd "M-c F") 'dired)
+;; (global-set-key (kbd "M-c i") 'consult-buffer)
+;; (global-set-key (kbd "M-c I") 'dired-jump)
+;; (global-set-key (kbd "M-c g") 'consult-ripgrep)
+;; (global-set-key (kbd "M-c r") 'consult-recent-file)
+;; (global-set-key (kbd "M-c k a") 'projectile-kill-buffers)
+;; (global-set-key (kbd "M-c p s") 'projectile-switch-project)
 
-(global-set-key (kbd "M-c b d") '(kill-buffer-and-window))
-(global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
-(global-set-key (kbd "M-c b s") #'split-window-right)
+;; (global-set-key (kbd "M-c b d") '(kill-buffer-and-window))
+;; (global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
+;; (global-set-key (kbd "M-c b s") #'split-window-right)
 
-(global-set-key (kbd "M-c c") 'compile)
+;; (global-set-key (kbd "M-c c") 'compile)
 
-(defun my/compile-at-project-root (fn &rest args)
-  (let ((default-directory (or (ignore-errors (projectile-project-root))
-                               default-directory)))
-    (apply fn args)))
+;; (defun my/compile-at-project-root (fn &rest args)
+;;   (let ((default-directory (or (ignore-errors (projectile-project-root))
+;;                                default-directory)))
+;;     (apply fn args)))
 
-(advice-add #'compile :around #'my/compile-at-project-root)
-(global-set-key (kbd "C-c c") 'capitalize-word)
+;; (advice-add #'compile :around #'my/compile-at-project-root)
+;; (global-set-key (kbd "C-c c") 'capitalize-word)
 
 ;; Dependencies
+
+;; helix
+(use-package helix
+  :ensure t
+  :config
+  (helix-mode))
 
 ;; dired and ibuffer
 (setq display-buffer-alist
@@ -111,63 +117,11 @@
   (setq vertico-cycle t
         vertico-count 15))
 
-                                        ; ;; Theme
-                                        ; (use-package gruber-darker-theme
-                                        ;   :ensure t
-                                        ;   :config
-                                        ;   (load-theme 'gruber-darker t))
-
-(use-package modus-themes
+;; Theme
+(use-package gruber-darker-theme
   :ensure t
-  :demand t
-  :init
-  ;; Starting with version 5.0.0 of the `modus-themes', other packages
-  ;; can be built on top to provide their own "Modus" derivatives.
-  ;; For example, this is what I do with my `ef-themes' and
-  ;; `standard-themes' (starting with versions 2.0.0 and 3.0.0,
-  ;; respectively).
-  ;;
-  ;; The `modus-themes-include-derivatives-mode' makes all Modus
-  ;; commands that act on a theme consider all such derivatives, if
-  ;; their respective packages are available and have been loaded.
-  ;;
-  ;; Note that those packages can even completely take over from the
-  ;; Modus themes such that, for example, `modus-themes-rotate' only
-  ;; goes through the Ef themes (to this end, the Ef themes provide
-  ;; the `ef-themes-take-over-modus-themes-mode' and the Standard
-  ;; themes have the `standard-themes-take-over-modus-themes-mode'
-  ;; equivalent).
-  ;;
-  ;; If you only care about the Modus themes, then (i) you do not need
-  ;; to enable the `modus-themes-include-derivatives-mode' and (ii) do
-  ;; not install and activate those other theme packages.
-  (modus-themes-include-derivatives-mode 1)
-  :bind
-  (("<f5>" . modus-themes-rotate)
-   ("C-<f5>" . modus-themes-select)
-   ("M-<f5>" . modus-themes-load-random))
   :config
-  ;; Your customizations here.  All customizations must evaluated
-  ;; BEFORE loading the theme.
-  (setq modus-themes-to-toggle '(modus-operandi modus-vivendi)
-        modus-themes-to-rotate modus-themes-items
-        modus-themes-mixed-fonts t
-        modus-themes-variable-pitch-ui t
-        modus-themes-italic-constructs t
-        modus-themes-bold-constructs t
-        modus-themes-completions '((t . (bold)))
-        modus-themes-prompts '(bold)
-        modus-themes-headings
-        '((agenda-structure . (variable-pitch light 2.2))
-          (agenda-date . (variable-pitch regular 1.3))
-          (t . (regular 1.15))))
-
-  (setq modus-themes-common-palette-overrides nil)
-
-  ;; Finally, load your theme of choice (or a random one with
-  ;; `modus-themes-load-random', `modus-themes-load-random-dark',
-  ;; `modus-themes-load-random-light').
-  (modus-themes-load-theme 'modus-operandi))
+  (load-theme 'gruber-darker t))
 
 ;; QoL
 (use-package diminish
