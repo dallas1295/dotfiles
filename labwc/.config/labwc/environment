@@ -1,0 +1,13 @@
+# labwc session environment, loaded before autostart
+# sway equivalent: input * { xkb_layout us; xkb_options caps:escape }
+XKB_DEFAULT_LAYOUT=us
+XKB_DEFAULT_OPTIONS=caps:escape
+
+# Desktop identity. "XFCE" makes xfce4-panel, portals and GTK theming
+# behave; revert to "labwc:wlroots" if you prefer xdg-desktop-portal-wlr.
+XDG_CURRENT_DESKTOP=labwc:wlroots
+XDG_SESSION_DESKTOP=labwc
+XDG_SESSION_TYPE=wayland
+
+# Firefox native Wayland
+MOZ_ENABLE_WAYLAND=1

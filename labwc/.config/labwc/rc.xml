@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labwc_config>
+
+  <!-- ==========================================================
+       Translated from ~/.config/sway/config
+       Modifier legend: W = Super (sway $mod), A = Alt, S = Shift, C = Ctrl
+       Docs: man labwc-config, labwc-actions, labwc-theme
+       ========================================================== -->
+
+  <theme>
+    <name>Nightmare-02</name>
+    <font name="Iosevka Nerd Font" size="11" />
+    <cornerRadius>0</cornerRadius>
+    <keepBorder>yes</keepBorder>
+  </theme>
+
+  <core>
+    <adaptiveSync>fullscreen</adaptiveSync>
+    <allowTearing>fullscreenForced</allowTearing>
+  </core>
+
+  <windowSwitcher preview="yes" outlines="yes" order="focus">
+  <osd show="yes" style="classic" output="all" thumbnailLabelFormat="%T" />
+  <fields>
+    <field content="icon" width="5%" />
+    <field content="desktop_entry_name" width="30%" />
+    <field content="title" width="65%" />
+  </fields>
+</windowSwitcher>
+
+  <!-- 10 workspaces, like sway numbers 1 to 10 -->
+  <desktops>
+    <popupTime>1000</popupTime>
+    <names>
+      <name>1</name>
+      <name>2</name>
+      <name>3</name>
+    </names>
+  </desktops>
+
+  <!-- sway: repeat_delay 300, repeat_rate 50 (xkb layout/options are
+       set in the environment file via XKB_DEFAULT_*) -->
+  <keyboard>
+    <repeatDelay>300</repeatDelay>
+    <repeatRate>50</repeatRate>
+
+    <keybind key="W-q">
+      <action name="Close" />
+    </keybind>
+
+    <keybind key="W-S-o">
+      <action name="ToggleShade" />
+    </keybind>
+
+    <!-- $mod+Shift+End: exit session -->
+    <keybind key="W-S-End">
+      <action name="Exit" />
+    </keybind>
+
+    <!-- $mod+e: file manager -->
+    <keybind key="W-Return">
+      <action name="Execute">
+        <command>foot</command>
+      </action>
+    </keybind>
+
+    <!-- $mod+e: file manager -->
+    <keybind key="W-e">
+      <action name="Execute">
+        <command>thunar</command>
+      </action>
+    </keybind>
+
+    <keybind key="W-Tab">
+      <action name="NextWindow" />
+    </keybind>
+
+    <keybind key="W-S-Tab">
+      <action name="PreviousWindow" />
+    </keybind>
+
+    <!-- $mod+space / $mod+Shift+space: noctalia launcher panel -->
+    <keybind key="W-space">
+      <action name="Execute">
+        <command>rofi -show drun</command>
+      </action>
+    </keybind>
+
+    <!-- $mod+r: reload config -->
+    <keybind key="W-r">
+      <action name="Reconfigure" />
+    </keybind>
+
+    <!-- $mod+Shift+m: toggle laptop panel (wlr-randr port, needs
+         the wlr-randr package) -->
+    <keybind key="W-S-m">
+      <action name="Execute">
+        <command>~/.config/labwc/toggle-edp1.sh</command>
+      </action>
+    </keybind>
+
+    <!-- $mod+Shift+c: clipboard history picker -->
+    <keybind key="W-S-c">
+      <action name="Execute">
+        <command>"cliphist list | rofi -dmenu | cliphist decode | wl-copy"</command>
+      </action>
+    </keybind>
+
+    <!-- $mod+Shift+p: power menu -->
+    <keybind key="W-S-p">
+      <action name="Execute">
+        <command>rofi -show power-menu -modi power-menu:/home/dallas/thirdparty/data/rofi-power-menu/rofi-power-menu</command>
+      </action>
+    </keybind>
+
+    <!-- $mod+Alt+l: lock. swaylock speaks the standard session-lock
+         protocol, works under labwc. -->
+    <keybind key="W-A-l">
+      <action name="Execute">
+        <command>swaylock -f</command>
+      </action>
+    </keybind>
+
+    <!-- Screenshots. Region shot identical to sway. The old window
+         shot used `swaymsg get_tree` for the focused rectangle, which
+         needs sway IPC; slurp -o (click an output) is the closest
+         labwc equivalent. -->
+    <keybind key="W-s">
+      <action name="Execute">
+        <command>sh -c 'grim -g "$(slurp)" "$HOME/Pictures/region-$(date +%Y%m%d-%H%M%S).png"'</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-s">
+      <action name="Execute">
+        <command>sh -c 'grim -g "$(slurp -o)" "$HOME/Pictures/output-$(date +%Y%m%d-%H%M%S).png"'</command>
+      </action>
+    </keybind>
+
+    <!-- $mod+i: system monitor, $mod+b: browser -->
+    <keybind key="W-i">
+      <action name="Execute">
+        <command>foot -T BTOP -e btop</command>
+      </action>
+    </keybind>
+    <keybind key="W-b">
+      <action name="Execute">
+        <command>firefox</command>
+      </action>
+    </keybind>
+
+    <!-- Focus: sway $mod+j/k focused windows directionally -->
+    <keybind key="W-j"><action name="NextWindowImmediate" /></keybind>
+    <keybind key="W-l"><action name="NextWindowImmediate" /></keybind>
+    <keybind key="W-k"><action name="PreviousWindowImmediate" /></keybind>
+    <keybind key="W-h"><action name="PreviousWindowImmediate" /></keybind>
+
+    <!-- Move: sway Shift+hjkl moved the container. MoveRelative
+         nudges 10px per press; held keys repeat at repeatRate.
+         Positive y is down, so j=down, k=up. -->
+    <keybind key="W-S-h"><action name="MoveRelative" x="-10" y="0" /></keybind>
+    <keybind key="W-S-j"><action name="MoveRelative" x="0" y="10" /></keybind>
+    <keybind key="W-S-k"><action name="MoveRelative" x="0" y="-10" /></keybind>
+    <keybind key="W-S-l"><action name="MoveRelative" x="10" y="0" /></keybind>
+
+    <!-- Ctrl+Alt+hjkl: Windows-style snapping. Each fills 50% of the
+         output in that direction; Toggle* pressing the same combo
+         again restores the pre-snap geometry. combine="yes" chains:
+         C-A-h then C-A-k = top-left quarter. -->
+    <keybind key="C-S-h"><action name="ToggleSnapToEdge" direction="left" combine="yes" /></keybind>
+    <keybind key="C-S-j"><action name="ToggleSnapToEdge" direction="down" combine="yes" /></keybind>
+    <keybind key="C-S-k"><action name="ToggleSnapToEdge" direction="up" combine="yes" /></keybind>
+    <keybind key="C-S-l"><action name="ToggleSnapToEdge" direction="right" combine="yes" /></keybind>
+
+    <keybind key="W-C-h"><action name="ResizeRelative" right="-10" left="-10" /></keybind>
+    <keybind key="W-C-l"><action name="ResizeRelative" right="10" left ="10" /></keybind>
+    <keybind key="W-C-k"><action name="ResizeRelative" top="10" bottom="10" /></keybind>
+    <keybind key="W-C-j"><action name="ResizeRelative" top="-10" bottom="-10" /></keybind>
+
+    
+
+    <!-- $mod+f: maximize (NOT fullscreen), $mod+Shift+f: fullscreen -->
+    <keybind key="W-f"><action name="ToggleMaximize" direction="both" /></keybind>
+    <keybind key="W-S-f"><action name="ToggleFullscreen" /></keybind>
+
+    <!-- $mod+g: geometry picker. Drag a rectangle over a window;
+         slurp prints "x,y WxH": paste straight into MoveTo /
+         ResizeTo windowRules. Result also lands in the clipboard. -->
+    <keybind key="W-g">
+      <action name="Execute">
+        <command>sh -c 'g=$(slurp) &amp;&amp; wl-copy "$g" &amp;&amp; notify-send -t 2000 "geometry" "$g"'</command>
+      </action>
+    </keybind>
+
+    <!-- Workspaces: W+number switches, W+Shift+number sends window.
+         sway `move container to workspace N` did not follow, hence
+         follow="no". -->
+    <keybind key="W-1"><action name="GoToDesktop" to="1" /></keybind>
+    <keybind key="W-2"><action name="GoToDesktop" to="2" /></keybind>
+    <keybind key="W-3"><action name="GoToDesktop" to="3" /></keybind>
+    <keybind key="W-4"><action name="GoToDesktop" to="4" /></keybind>
+    <keybind key="W-5"><action name="GoToDesktop" to="5" /></keybind>
+    <keybind key="W-6"><action name="GoToDesktop" to="6" /></keybind>
+    <keybind key="W-7"><action name="GoToDesktop" to="7" /></keybind>
+    <keybind key="W-8"><action name="GoToDesktop" to="8" /></keybind>
+    <keybind key="W-9"><action name="GoToDesktop" to="9" /></keybind>
+    <keybind key="W-0"><action name="GoToDesktop" to="10" /></keybind>
+
+    <keybind key="W-S-1"><action name="SendToDesktop" to="1" follow="no" /></keybind>
+    <keybind key="W-S-2"><action name="SendToDesktop" to="2" follow="no" /></keybind>
+    <keybind key="W-S-3"><action name="SendToDesktop" to="3" follow="no" /></keybind>
+    <keybind key="W-S-4"><action name="SendToDesktop" to="4" follow="no" /></keybind>
+    <keybind key="W-S-5"><action name="SendToDesktop" to="5" follow="no" /></keybind>
+    <keybind key="W-S-6"><action name="SendToDesktop" to="6" follow="no" /></keybind>
+    <keybind key="W-S-7"><action name="SendToDesktop" to="7" follow="no" /></keybind>
+    <keybind key="W-S-8"><action name="SendToDesktop" to="8" follow="no" /></keybind>
+    <keybind key="W-S-9"><action name="SendToDesktop" to="9" follow="no" /></keybind>
+    <keybind key="W-S-0"><action name="SendToDesktop" to="10" follow="no" /></keybind>
+
+    <!-- Output focus and window-to-output, sway $mod+comma/period -->
+    <keybind key="W-comma"><action name="FocusOutput" direction="left" /></keybind>
+    <keybind key="W-period"><action name="FocusOutput" direction="right" /></keybind>
+    <keybind key="W-S-comma"><action name="MoveToOutput" direction="left" /></keybind>
+    <keybind key="W-S-period"><action name="MoveToOutput" direction="right" /></keybind>
+
+    <!-- Workspace cycling, sway next_on_output / prev_on_output on
+         $mod+equal, $mod+minus, $mod+n, $mod+p, $mod+Up, $mod+Down -->
+    <keybind key="W-n"><action name="GoToDesktop" to="right" /></keybind>
+    <keybind key="W-p"><action name="GoToDesktop" to="left" /></keybind>
+
+    <!-- Media and brightness keys: identical commands -->
+    <keybind key="XF86AudioRaiseVolume">
+      <action name="Execute"><command>wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+</command></action>
+    </keybind>
+    <keybind key="XF86AudioLowerVolume">
+      <action name="Execute"><command>wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-</command></action>
+    </keybind>
+    <keybind key="XF86AudioMute">
+      <action name="Execute"><command>wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle</command></action>
+    </keybind>
+    <keybind key="XF86AudioMicMute">
+      <action name="Execute"><command>wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle</command></action>
+    </keybind>
+    <keybind key="XF86MonBrightnessUp">
+      <action name="Execute"><command>brightnessctl s 10%+</command></action>
+    </keybind>
+    <keybind key="XF86MonBrightnessDown">
+      <action name="Execute"><command>brightnessctl s 10%-</command></action>
+    </keybind>
+    <keybind key="XF86AudioNext">
+      <action name="Execute"><command>playerctl next</command></action>
+    </keybind>
+    <keybind key="XF86AudioPrev">
+      <action name="Execute"><command>playerctl previous</command></action>
+    </keybind>
+    <keybind key="XF86AudioPlay">
+      <action name="Execute"><command>playerctl play-pause</command></action>
+    </keybind>
+    <keybind key="XF86AudioPause">
+      <action name="Execute"><command>playerctl play-pause</command></action>
+    </keybind>
+
+    <!-- Bonus: since the global window rule hides titlebars, this
+         restores decorations per window (first press: titlebar back) -->
+    <keybind key="W-S-d"><action name="ToggleDecorations" /></keybind>
+  </keyboard>
+
+  <!-- <mouse> -->
+  <!--   <default /> -->
+    <!-- Frame = any part of a window; events bound here are NEVER
+         passed to the app, so only Super-modified binds belong here.
+         Plain clicks fall through to the Client context and focus
+         normally (click-to-focus is labwc default). This replaces
+         sway: floating_modifier $mod normal, whole-window
+         $mod+drag move / $mod+rightdrag resize, $mod+wheel
+         workspace prev/next. -->
+    <!-- <context name="Frame"> -->
+    <!--   <mousebind button="W-Left" action="Press"> -->
+    <!--     <action name="Move" /> -->
+    <!--   </mousebind> -->
+    <!--   <mousebind button="W-Right" action="Press"> -->
+    <!--     <action name="Resize" /> -->
+    <!--   </mousebind> -->
+    <!--   <mousebind direction="W-Up" action="Scroll"> -->
+    <!--     <action name="GoToDesktop" to="left" /> -->
+    <!--   </mousebind> -->
+    <!--   <mousebind direction="W-Down" action="Scroll"> -->
+    <!--     <action name="GoToDesktop" to="right" /> -->
+    <!--   </mousebind> -->
+    <!-- </context> -->
+  <!-- </mouse> -->
+
+  <!-- sway input blocks. Trackpoint block was empty, nothing to port.
+       Keyboard layout/options live in the environment file. -->
+  <libinput>
+    <!-- type:touchpad: tap enabled, natural_scroll enabled,
+         scroll_factor 0.35 -->
+    <device category="touchpad">
+      <tap>yes</tap>
+      <naturalScroll>yes</naturalScroll>
+      <scrollFactor>0.35</scrollFactor>
+    </device>
+    <!-- type:pointer: accel_profile flat -->
+    <device category="non-touch">
+      <accelProfile>flat</accelProfile>
+    </device>
+  </libinput>
+
+  <windowRules>
+    <!-- Pixel borders everywhere: sway `default_border pixel 1`.
+         ToggleDecorations on first map hides the titlebar but keeps
+         the border and resize area. W-S-d brings a titlebar back. -->
+    <!-- Browsers live on workspace 2 -->
+    <windowRule identifier="firefox">
+      <action name="SendToDesktop" to="2" follow="no" />
+      <action name="ResizeTo">
+        <width>1196</width> 
+        <height>1025</height>
+      </action>
+      <action name="MoveTo" x="257" y="48" />
+    </windowRule>
+    <windowRule identifier="librewolf">
+      <action name="SendToDesktop" to="2" follow="no" />
+      <action name="SetDecorations" decorations="border" />
+    </windowRule>
+    <windowRule identifier="zen">
+      <action name="SendToDesktop" to="2" follow="yes" />
+      <action name="SetDecorations" decorations="border" />
+    </windowRule>
+    <windowRule identifier="brave-browser">
+      <action name="SendToDesktop" to="2" follow="no" />
+      <action name="SetDecorations" decorations="border" />
+    </windowRule>
+    <windowRule identifier="helium">
+      <action name="SendToDesktop" to="2" follow="no" />
+      <action name="SetDecorations" decorations="border" />
+    </windowRule>
+
+    <!-- Terminals live on workspace 1 -->
+    <windowRule identifier="foot">
+      <action name="SendToDesktop" to="1" follow="yes" />
+      <action name="SetDecorations" decorations="full" />
+      <action name="ResizeTo"> 207,167 1285x878
+        <width>1285</width>
+        <height>878</height>
+      </action>
+      <action name="MoveTo" x="260" y="135" />
+    </windowRule>
+
+    <!-- Games on workspace 3 -->
+    <windowRule identifier="steam" ignoreFocusRequest="yes">
+      <action name="SendToDesktop" to="3" follow="no" />
+      <action name="SetDecorations" decorations="border" />
+    </windowRule>
+    <windowRule identifier="com.heroicgameslauncher.hgl" ignoreFocusRequest="yes">
+      <action name="SendToDesktop" to="3" follow="no" />
+      <action name="SetDecorations" decorations="full" />
+    </windowRule>
+
+    <!-- Chat on workspace 4 -->
+    <windowRule identifier="wechat">
+      <action name="SendToDesktop" to="4" follow="no" />
+      <action name="SetDecorations" decorations="full" />
+    </windowRule>
+    <windowRule identifier="discord">
+      <action name="SendToDesktop" to="4" follow="no" />
+      <action name="SetDecorations" decorations="full" />
+    </windowRule>
+
+    <!-- Firefox Picture-in-Picture: sticky, fixed size and position,
+         no decorations (sway version also disabled its urgency) -->
+    <windowRule title="Picture-in-Picture">
+      <action name="ToggleOmnipresent" />
+      <action name="ResizeTo">
+        <width>495</width>
+        <height>287</height>
+      </action>
+      <action name="MoveTo">
+        <x>1273</x>
+        <y>799</y>
+      </action>
+    </windowRule>
+  </windowRules>
+
+</labwc_config>

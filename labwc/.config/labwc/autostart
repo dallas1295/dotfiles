@@ -1,0 +1,30 @@
+#!/bin/sh
+# labwc session autostart. Translations of the sway config exec lines.
+# Not ported: autotiling (sway IPC only; labwc is a stacking WM).
+
+# Let the systemd user session and D-Bus apps see the compositor
+# (portals, xdg desktop services, pipewire GUI helpers)
+dbus-update-activation-environment --systemd \
+  WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_DESKTOP DISPLAY
+
+# Panel: replaces the sway bar (see notes in rc.xml about bindings)
+# noctalia >/dev/null 2>&1 &
+waybar >/dev/null 2>&1 &
+
+# background
+swaybg -i ~/dotfiles/sway/.config/sway/bwsquiggly.png
+
+# Background sync
+syncthing >/dev/null 2>&1 &
+
+# Clipboard history
+wl-paste --type text --watch cliphist store >/dev/null 2>&1 &
+wl-paste --type image --watch cliphist store >/dev/null 2>&1 &
+
+# Output profiles; same kanshi config works under labwc. The pkill
+# guard mirrors the sway exec_always restart behavior.
+pkill -x kanshi 2>/dev/null
+kanshi >/dev/null 2>&1 &
+
+# First terminal, like sway `exec $terminal`
+foot >/dev/null 2>&1 &
