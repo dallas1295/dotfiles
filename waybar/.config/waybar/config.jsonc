@@ -3,7 +3,7 @@
   "position": "bottom",
   "height": 23,
   "margin": [
-    0,
+    5,
     10,
     0,
     10
@@ -16,7 +16,7 @@
     "disk#extra"
   ],
   "modules-center": [
-    "sway/workspaces"
+    "ext/workspaces"
   ],
   "modules-right": [
     "network",

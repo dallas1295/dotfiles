@@ -9,8 +9,12 @@ PATH="$PATH:$HOME/.cargo/bin"
 PATH="$PATH:$HOME/go/bin"
 PATH="$PATH:$HOME/.opencode/bin"
 
+export EDITOR="nvim"
+
 alias svim='sudo -E nvim'
 alias emacs='emacs &'
+alias spark='~/dotfiles/scripts/spark'
+alias llm='sudo systemctl restart llama-cpp'
 
 alias pacman='sudo pacman'
 

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+COMPOSE="docker compose -f $HOME/searxng/docker-compose.yml"
+
+if $COMPOSE ps --quiet --status running | grep -q .; then
+  $COMPOSE stop >/dev/null 2>&1
+  echo "SearXNG down"
+else
+  $COMPOSE start >/dev/null 2>&1
+  echo "SearXNG up"
+fi
+

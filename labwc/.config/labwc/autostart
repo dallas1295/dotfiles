@@ -12,7 +12,15 @@ dbus-update-activation-environment --systemd \
 waybar >/dev/null 2>&1 &
 
 # background
-swaybg -i ~/dotfiles/sway/.config/sway/bwsquiggly.png
+swaybg -i ~/dotfiles/sway/.config/sway/bwsquiggly.png -m fill &
+
+# idle
+pkill -x swayidle; swayidle -w \
+    timeout 540 'brightnessctl -q -s set 10%' \
+    timeout 600 'swaylock -f' \
+    timeout 1000 'swaymsg output "*" power off' \
+    resume 'swaymsg output "*" power on && brightnessctl -q -r; pgrep -x kanshi >/dev/null && { pkill -x kanshi; kanshi >/dev/null 2>&1 & }' \
+    before-sleep 'swaylock -f' &
 
 # Background sync
 syncthing >/dev/null 2>&1 &

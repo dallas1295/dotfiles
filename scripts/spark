@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+sudo -v 
+
+spark="aichat --agent spark -s main"
+restart_llm="sudo systemctl restart llama-cpp"
+
+$spark && $restart_llm
+
+echo "Done"

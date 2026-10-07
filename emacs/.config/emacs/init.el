@@ -57,41 +57,35 @@
                     :slant 'italic)
 
 ;; Binds
-;; (global-set-key (kbd "M-n") #'next-line)
-;; (global-set-key (kbd "M-p") #'previous-line)
+(global-set-key (kbd "M-n") #'next-line)
+(global-set-key (kbd "M-p") #'previous-line)
 
 
-;; (global-unset-key (kbd "M-c"))
-;; (global-set-key (kbd "M-c f") 'find-file)
-;; (global-set-key (kbd "M-c F") 'dired)
-;; (global-set-key (kbd "M-c i") 'consult-buffer)
-;; (global-set-key (kbd "M-c I") 'dired-jump)
-;; (global-set-key (kbd "M-c g") 'consult-ripgrep)
-;; (global-set-key (kbd "M-c r") 'consult-recent-file)
-;; (global-set-key (kbd "M-c k a") 'projectile-kill-buffers)
-;; (global-set-key (kbd "M-c p s") 'projectile-switch-project)
+(global-unset-key (kbd "M-c"))
+(global-set-key (kbd "M-c f") 'find-file)
+(global-set-key (kbd "M-c F") 'dired)
+(global-set-key (kbd "M-c i") 'consult-buffer)
+(global-set-key (kbd "M-c I") 'dired-jump)
+(global-set-key (kbd "M-c g") 'consult-ripgrep)
+(global-set-key (kbd "M-c r") 'consult-recent-file)
+(global-set-key (kbd "M-c k a") 'projectile-kill-buffers)
+(global-set-key (kbd "M-c p s") 'projectile-switch-project)
 
-;; (global-set-key (kbd "M-c b d") '(kill-buffer-and-window))
-;; (global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
-;; (global-set-key (kbd "M-c b s") #'split-window-right)
+(global-set-key (kbd "M-c b d") '(kill-buffer-and-window))
+(global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
+(global-set-key (kbd "M-c b s") #'split-window-right)
 
-;; (global-set-key (kbd "M-c c") 'compile)
+(global-set-key (kbd "M-c c") 'compile)
 
-;; (defun my/compile-at-project-root (fn &rest args)
-;;   (let ((default-directory (or (ignore-errors (projectile-project-root))
-;;                                default-directory)))
-;;     (apply fn args)))
+(defun my/compile-at-project-root (fn &rest args)
+  (let ((default-directory (or (ignore-errors (projectile-project-root))
+                               default-directory)))
+    (apply fn args)))
 
-;; (advice-add #'compile :around #'my/compile-at-project-root)
-;; (global-set-key (kbd "C-c c") 'capitalize-word)
+(advice-add #'compile :around #'my/compile-at-project-root)
+(global-set-key (kbd "C-c c") 'capitalize-word)
 
 ;; Dependencies
-
-;; helix
-(use-package helix
-  :ensure t
-  :config
-  (helix-mode))
 
 ;; dired and ibuffer
 (setq display-buffer-alist

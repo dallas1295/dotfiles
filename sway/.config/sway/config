@@ -3,32 +3,36 @@ set $mod Mod4
 set $terminal foot
 set $fileManager thunar
 set $menu rofi -show drun
+# set $menu noctalia msg panel-toggle launcher
 set $browser firefox
 
 set $lock swaylock -f
+# set $lock noctalia msg session lock
 
-bar {
-    position bottom
-    height 23
-    font pango: Iosevka Nerd Font 11
-    status_command ~/.config/sway/swaybar.sh
-    colors {
-        background #000000
-        statusline #E4E4E4
-        separator #454545
-        #                   border  bg      text
-        focused_workspace   #000000 #000000 #FFDD33
-        active_workspace    #000000 #000000 #E4E4E4
-        inactive_workspace  #000000 #000000 #686868
-        urgent_workspace    #000000 #000000 #F43841
-    }
-}
+# bar {
+#     position bottom
+#     height 23
+#     font pango: Iosevka Nerd Font 11
+    # status_command ~/.config/sway/swaybar.sh
+#     colors {
+#         background #000000
+#         statusline #E4E4E4
+#         separator #454545
+#         #                   border  bg      text
+#         focused_workspace   #000000 #000000 #FFDD33
+#         active_workspace    #000000 #000000 #E4E4E4
+#         inactive_workspace  #000000 #000000 #686868
+#         urgent_workspace    #000000 #000000 #F43841
+#     }
+# }
 
 exec autotiling
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 # exec mullvad-vpn
+exec flatpak run com.surfshark.Surfshark
 exec swaync
 exec syncthing
+exec waybar
 exec_always --no-startup-id "pkill -x kanshi; kanshi"
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
@@ -44,15 +48,15 @@ exec_always pkill -x swayidle; swayidle -w \
     timeout 1000 'swaymsg output "*" power off' \
     resume 'swaymsg output "*" power on && brightnessctl -q -r; pgrep -x kanshi >/dev/null && { pkill -x kanshi; kanshi >/dev/null 2>&1 & }' \
     before-sleep '$lock'
-
-# output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
+#
+output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
 output eDP-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
 
-default_border normal 1
-# default_border pixel 1
+# default_border normal 1
+default_border pixel 1
 default_floating_border normal 5
-gaps inner 0
-gaps outer 0
+gaps inner 5
+gaps outer 3
 smart_borders off
 
 for_window [window_role="pop-up"] floating enable
@@ -91,14 +95,17 @@ bindsym $mod+Tab focus mode_toggle
 bindsym $mod+space exec $menu
 bindsym $mod+Shift+space exec rofi -show run
 bindsym $mod+Shift+n exec swaync-client -t -sw
+bindsym $mod+m exec firefox --new-window localhost:7337
 
 bindsym $mod+r reload
 
 bindsym $mod+shift+m exec ~/.config/sway/toggle-edp1.sh
 
 bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+# bindsym $mod+Shift+c exec noctalia msg panel-toggle clipboard
 
 bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:/home/dallas/thirdparty/data/rofi-power-menu/rofi-power-menu
+# bindsym $mod+Shift+p exec noctalia msg panel-toggle session
 bindsym $mod+alt+L exec $lock
 
 bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/window-$(date +%Y%m%d-%H%M%S).png"
@@ -118,16 +125,16 @@ bindsym $mod+Shift+l move right
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+j move down
 
-bindsym $mod+Ctrl+l  resize shrink width 20 px or 20 ppt
-bindsym $mod+Ctrl+h resize grow width 20 px or 20 ppt
+bindsym $mod+Ctrl+l  resize grow width 20 px or 20 ppt
+bindsym $mod+Ctrl+h resize shrink width 20 px or 20 ppt
 bindsym $mod+Ctrl+j    resize shrink height 20 px or 20 ppt
 bindsym $mod+Ctrl+k  resize grow height 20 px or 20 ppt
 
 bindsym $mod+Shift+r move container to workspace current
 bindsym $mod+f fullscreen toggle
 
-for_window [workspace=1] layout stacking
-for_window [workspace=3] layout tabbed
+# for_window [workspace=1] layout stacking
+# for_window [workspace=3] layout tabbed
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -138,7 +145,8 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+
+
 
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -149,7 +157,6 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
 
 bindsym $mod+comma focus output left
 bindsym $mod+period focus output right
@@ -203,31 +210,36 @@ for_window [title="^Picture-in-Picture$"] \
     sticky enable, \
     resize set 495 287, \
     move position 1273 px 799 px, \
-    border none, \
+    border none
 
 no_focus [title="^Picture-in-Picture$"]
 
 for_window [app_id="^thunar$"] floating enable
 for_window [class="^thunar$"] floating enable
 
+for_window [title="^llama-ui — Mozilla Firefox$"] \
+    floating enable, \
+    resize set 769 746, \
+    move position 892 px 233 px
 
 for_window [app_id="^foot$"] move to workspace 1, focus
 for_window [app_id="^com.mitchellh.ghostty$"] move to workspace 1, focus
 
 for_window [class="^steam$"] move to workspace 3, no focus
 for_window [class="^steam$"] [title="^Friends List"] \
-  move to workspace 3, \
   floating enable, \
-  fullscreen disable, \
+  move to workspace 3, \
   resize set 650 860, \
   move position 761 101, \
-  no focus, 
+  no focus,
 
 for_window [app_id="^com.heroicgameslauncher.hgl$"] move to workspace 3, no focus
 for_window [class="^wechat$"] move to workspace 4, floating
 for_window [app_id="^discord$"] move to workspace 4, floating
-
+for_window [app_id="^io.github.Faugus.faugus-launcher$"] move to workspace 4, no focus
+for_window [title="Battle.net"] move to workspace 4, no focus
 no_focus [class="^steam$"]
+no_focus [app_id="^steam$"]
 no_focus [class="^wechat$"]
 no_focus [app_id="^discord$"]
 
@@ -236,3 +248,10 @@ for_window [window_role="dialog"] floating enable
 
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen
+# for_window [app_id=.*] focus
+
+for_window [title = "^BTOP$"] \
+  floating enable, \
+  move scratchpad, \
+  focus, \
+  resize set 1069 736, \

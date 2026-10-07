@@ -35,6 +35,8 @@
       <name>1</name>
       <name>2</name>
       <name>3</name>
+      <name>4</name>
+      <name>5</name>
     </names>
   </desktops>
 
@@ -149,9 +151,9 @@
     </keybind>
 
     <!-- Focus: sway $mod+j/k focused windows directionally -->
-    <keybind key="W-j"><action name="NextWindowImmediate" /></keybind>
+    <keybind key="W-j"><action name="NextWindow" /></keybind>
     <keybind key="W-l"><action name="NextWindowImmediate" /></keybind>
-    <keybind key="W-k"><action name="PreviousWindowImmediate" /></keybind>
+    <keybind key="W-k"><action name="PreviousWindow" /></keybind>
     <keybind key="W-h"><action name="PreviousWindowImmediate" /></keybind>
 
     <!-- Move: sway Shift+hjkl moved the container. MoveRelative

@@ -1,0 +1,94 @@
+theme = "monokai_pro"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+mouse = true
+# rainbow-brackets = true
+trim-trailing-whitespace = true
+end-of-line-diagnostics = "disable"
+color-modes = true
+true-color = true
+auto-info = true
+cursorline = true
+undercurl = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+
+[editor.indent-guides]
+render = true
+character = "|"
+skip-levels = 0
+
+[editor.inline-diagnostics]
+other-lines = "disable"
+cursor-line = "disable"
+
+[editor.auto-save]
+focus-lost = true
+after-delay.enable = true
+after-delay.timeout = 30000
+
+[editor.statusline]
+left = ["mode", "spacer","spinner", "spacer", "diagnostics", "file-modification-indicator"]
+center = ["file-name", "spacer", "file-encoding"]
+right = ["version-control", "spacer", "spacer", "position", "total-line-numbers", "position-percentage", "spacer"]
+separator = "│"
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
+diagnostics = ["warning", "error"]
+workspace-diagnostics = ["warning", "error"]
+
+[keys.select]
+"$" = "goto_line_end"
+"^"= "goto_first_nonwhitespace"
+j = ["extend_line_down", "extend_to_line_bounds"]
+k = ["extend_line_up", "extend_to_line_bounds"]
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+- =   [':sh rm -f /tmp/unique-file',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+  ]
+S-h = ":bprev"
+S-l = ":bnext"
+V = ["select_mode", "extend_to_line_bounds"]
+x = ["select_mode", "extend_to_line_bounds"]
+D = ["ensure_selections_forward", "extend_to_line_end", "delete_selection"]
+
+[keys.normal.space.r]
+c = [":hsplit-new", ":insert-output cargo check"]
+r = ":sh cargo run"
+
+[keys.normal.space.C]
+r = ":config-reload"
+o = ":config-open"
+
+[keys.normal.space]
+d = ":yank-diagnostic"
+t = "diagnostics_picker"
+i = "buffer_picker"
+F = "no_op"
+space = "file_picker"
+l = "global_search"
+
+[keys.normal.space.b]
+r = ":reload"
+d = ":buffer-close"
+D = ":buffer-close!"
+o = ":buffer-close-others"
+w = ":write"
+Q = ":quit!"
+q = ":quit"
+l = ":toggle lsp.display-inlay-hints"
+
+[keys.normal.space.s]
+v = ":vsplit-new"
+h = ":hsplit-new"
