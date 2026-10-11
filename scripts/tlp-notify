@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+get_profile() {
+    tlpctl get 2>/dev/null
+}
+
+last_profile="$(get_profile)"
+
+dbus-monitor --system \
+  "type='signal',interface='org.freedesktop.DBus.Properties',member='PropertiesChanged',path='/org/freedesktop/UPower/PowerProfiles'" |
+while IFS= read -r line; do
+    # Only check after a D-Bus signal reports a property change.
+    if [[ "$line" == *"member=PropertiesChanged"* ]]; then
+        profile="$(get_profile)"
+
+        if [[ -n "$profile" && "$profile" != "$last_profile" ]]; then
+            notify-send -a "TLP" "Power profile changed" \
+                "Now using: $profile"
+            last_profile="$profile"
+        fi
+    fi
+done

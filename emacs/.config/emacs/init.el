@@ -112,10 +112,15 @@
         vertico-count 15))
 
 ;; Theme
-(use-package gruber-darker-theme
+;; (use-package gruber-darker-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'gruber-darker t))
+
+(use-package monokai-pro-theme
   :ensure t
   :config
-  (load-theme 'gruber-darker t))
+  (load-them 'monokai-pro t ))
 
 ;; QoL
 (use-package diminish

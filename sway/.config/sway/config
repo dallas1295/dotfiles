@@ -31,12 +31,14 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 # exec mullvad-vpn
 exec flatpak run com.surfshark.Surfshark
 exec swaync
+exec lxqt-policykit-agent
 exec syncthing
 exec waybar
 exec_always --no-startup-id "pkill -x kanshi; kanshi"
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
+exec ~/dotfiles/scripts/tlp-notify
 
 # kanshi desyncs from display state across output power off/on and can
 # get stuck re-applying profiles in a loop (displays flashing). Restart it
@@ -52,12 +54,19 @@ exec_always pkill -x swayidle; swayidle -w \
 output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
 output eDP-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
 
-# default_border normal 1
-default_border pixel 1
+default_border normal 1
+# default_border pixel 1 
 default_floating_border normal 5
 gaps inner 5
 gaps outer 3
 smart_borders off
+
+client.focused              #e1e1e1 #000000 #e1e1e1 #e1e1e1   #e1e1e1
+client.focused_inactive     #333333 #333333 #e1e1e1 #333333   #333333
+client.unfocused            #333333 #333333 #e1e1e1 #333333   #333333
+client.urgent               #333333 #333333 #e1e1e1 #333333   #333333
+client.placeholder          #333333 #333333 #e1e1e1 #333333   #333333
+
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable
@@ -96,6 +105,7 @@ bindsym $mod+space exec $menu
 bindsym $mod+Shift+space exec rofi -show run
 bindsym $mod+Shift+n exec swaync-client -t -sw
 bindsym $mod+m exec firefox --new-window localhost:7337
+bindsym $mod+F1 exec ~/dotfiles/scripts/tlp-change
 
 bindsym $mod+r reload
 
@@ -237,9 +247,10 @@ for_window [app_id="^com.heroicgameslauncher.hgl$"] move to workspace 3, no focu
 for_window [class="^wechat$"] move to workspace 4, floating
 for_window [app_id="^discord$"] move to workspace 4, floating
 for_window [app_id="^io.github.Faugus.faugus-launcher$"] move to workspace 4, no focus
-for_window [title="Battle.net"] move to workspace 4, no focus
+for_window [title="Battle.net"] floating enable, move to workspace 4, no focus
 no_focus [class="^steam$"]
 no_focus [app_id="^steam$"]
+no_focus [class="^steam_app_default$"] move scratchpad
 no_focus [class="^wechat$"]
 no_focus [app_id="^discord$"]
 

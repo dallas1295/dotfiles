@@ -16,7 +16,7 @@
     "disk#extra"
   ],
   "modules-center": [
-    "ext/workspaces"
+    "sway/workspaces"
   ],
   "modules-right": [
     "network",

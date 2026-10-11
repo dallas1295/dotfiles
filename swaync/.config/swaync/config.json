@@ -40,8 +40,7 @@
     "mpris": {
       "image-size": 96,
       "image-radius": 12,
-      "player": "spotify"
+      "player": "kew"
     }
   }
 }
-

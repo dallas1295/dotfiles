@@ -9,8 +9,7 @@ PATH="$PATH:$HOME/.cargo/bin"
 PATH="$PATH:$HOME/go/bin"
 PATH="$PATH:$HOME/.opencode/bin"
 
-# export EDITOR="nvim"
-export EDITOR="helix"
+export EDITOR="nvim"
 
 alias gg='gitu'
 alias svim='sudo -E nvim'

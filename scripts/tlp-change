@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+curr_profile=$(tlpctl get)
+profiles=(power-saver balanced performance)
+
+idx=0
+
+for i in "${!profiles[@]}"; do
+    if [[ "${profiles[$i]}" == "$curr_profile" ]]; then
+        idx=$(( (i + 1) % ${#profiles[@]} ))
+        break
+    fi
+done
+
+# Switch to the next profile
+next="${profiles[$idx]}"
+tlpctl set "$next"

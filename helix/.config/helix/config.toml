@@ -50,6 +50,8 @@ j = ["extend_line_down", "extend_to_line_bounds"]
 k = ["extend_line_up", "extend_to_line_bounds"]
 
 [keys.normal]
+C-a = "goto_line_start"
+C-e = "goto_line_end"
 esc = ["collapse_selection", "keep_primary_selection"]
 - =   [':sh rm -f /tmp/unique-file',
   ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
@@ -59,6 +61,7 @@ esc = ["collapse_selection", "keep_primary_selection"]
   ]
 S-h = ":bprev"
 S-l = ":bnext"
+S-k = "hover"
 V = ["select_mode", "extend_to_line_bounds"]
 x = ["select_mode", "extend_to_line_bounds"]
 D = ["ensure_selections_forward", "extend_to_line_end", "delete_selection"]

@@ -8,28 +8,17 @@ add({
 })
 
 add({
-	{ src = "https://github.com/scottmckendry/cyberdream.nvim" },
-})
-
-add({
-	{ src = "https://github.com/miikanissi/modus-themes.nvim" },
-})
-
-add({
 	{ src = "https://github.com/loctvl842/monokai-pro.nvim" },
 })
-
-add({
-	{ src = "https://github.com/tomasr/molokai" },
-})
-
 vim.cmd.colorscheme("monokai-pro")
 
 -- Better highlights
 add({
 	{ src = "https://github.com/kevinhwang91/nvim-hlslens" },
 })
+
 require("hlslens").setup()
+
 -- which-key
 add({
 	{ src = "https://github.com/folke/which-key.nvim" },

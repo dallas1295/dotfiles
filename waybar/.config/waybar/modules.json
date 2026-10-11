@@ -58,7 +58,7 @@
   "disk#extra": {
     "path": "/media/extra",
     "format": " 󰋊 Storage: {used}/{total}",
-    "on-click": "thunar"
+    "on-click": "thunar /media/extra"
   },
   "backlight": {
     "format": " {icon} {percent}%",

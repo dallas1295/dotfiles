@@ -16,96 +16,96 @@
 @define-color border #484848;
 
 * {
-    font-family: "JetBrains Mono Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
+  font-family:
+    "Ioseveka Nerd Font Mono", "Font Awesome 6 Free", "Font Awesome 6 Brands",
+    "Font Awesome 6 Solid";
 }
 
 /* Control Center */
 .control-center {
-    background: @bg0_h;
-    border: 1px solid @border;
-    border-radius: 10px;
+  background: @bg0_h;
+  border: 1px solid @border;
+  border-radius: 10px;
 }
 
 /* Notification Card */
 .notification-row {
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
 }
 
 .notification-row:hover {
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
 }
 
 .notification-row:hover {
-    outline: none;
-    background: transparent;
+  outline: none;
+  background: transparent;
 }
 
 .notification {
-    background: @bg0;
-    border: 1px solid @bg2;
-    border-radius: 8px;
-    margin: 6px;
-    padding: 12px;
-    outline: none;
+  background: @bg0;
+  border: 1px solid @bg2;
+  border-radius: 8px;
+  margin: 6px;
+  padding: 12px;
+  outline: none;
 }
 
 .notification:hover {
-    outline: none;
-    border: 1px solid @bg2;
+  outline: none;
+  border: 1px solid @bg2;
 }
 
 .notification-content {
-    background: transparent;
+  background: transparent;
 }
 
 .notification-default-action {
-    border-radius: 8px;
-    margin: 4px;
+  border-radius: 8px;
+  margin: 4px;
 }
 
-
-
 .close-button {
-    background: @bg1;
-    color: @fg;
-    border-radius: 6px;
+  background: @bg1;
+  color: @fg;
+  border-radius: 6px;
 }
 
 .close-button:hover {
-    background: @red;
-    color: @fg0;
+  background: @red;
+  color: @fg0;
 }
 
 /* Notification Image */
 .notification-image {
-    border-radius: 6px;
+  border-radius: 6px;
 }
 
 /* Notification Body */
 .summary {
-    color: @fg0;
-    font-size: 14px;
-    font-weight: bold;
+  color: @fg0;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .time {
-    color: @gray;
+  color: @gray;
 }
 
 .body {
-    color: @fg;
-    font-size: 13px;
+  color: @fg;
+  font-size: 13px;
 }
 
 /* Actions */
 .notification-action {
-    background: @bg1;
-    color: @fg;
-    border: 1px solid @bg2;
-    border-radius: 6px;
-    margin: 4px;
+  background: @bg1;
+  color: @fg;
+  border: 1px solid @bg2;
+  border-radius: 6px;
+  margin: 4px;
 }
 
 .notification-action:hover {
@@ -113,96 +113,96 @@
 
 /* Placeholder */
 .placeholder {
-    color: @gray;
+  color: @gray;
 }
 
 /* Title Widget */
 .title-widget {
-    color: @fg0;
-    font-size: 16px;
-    font-weight: bold;
+  color: @fg0;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 /* Button */
 .button {
-    background: @bg1;
-    color: @fg;
-    border: 1px solid @bg2;
-    border-radius: 6px;
+  background: @bg1;
+  color: @fg;
+  border: 1px solid @bg2;
+  border-radius: 6px;
 }
 
 .button:hover {
-    background: @bg2;
-    color: @fg0;
+  background: @bg2;
+  color: @fg0;
 }
 
 /* DND Widget */
 .dnd-widget {
-    background: @bg1;
-    border: 1px solid @bg2;
-    border-radius: 8px;
+  background: @bg1;
+  border: 1px solid @bg2;
+  border-radius: 8px;
 }
 
 .dnd-toggle {
-    background: @bg2;
-    color: @gray;
+  background: @bg2;
+  color: @gray;
 }
 
 .dnd-toggle:checked {
-    background: @red;
-    color: @fg0;
+  background: @red;
+  color: @fg0;
 }
 
 /* Label Widget */
 .label-widget {
-    color: @fg;
+  color: @fg;
 }
 
 /* MPRIS Widget */
 .mpris-widget {
-    background: @bg1;
-    border: 1px solid @bg2;
-    border-radius: 8px;
+  background: @bg1;
+  border: 1px solid @bg2;
+  border-radius: 8px;
 }
 
 .mpris-title {
-    color: @fg0;
+  color: @fg0;
 }
 
 .mpris-artist {
-    color: @fg;
+  color: @fg;
 }
 
 .mpris-album {
-    color: @gray;
+  color: @gray;
 }
 
 /* Progress Bar */
 .progress-bar {
-    background: @bg2;
-    border-radius: 4px;
+  background: @bg2;
+  border-radius: 4px;
 }
 
 .progress-bar > trough {
-    background: @bg1;
-    border-radius: 4px;
+  background: @bg1;
+  border-radius: 4px;
 }
 
 .progress-bar > trough > progress {
-    background: @blue;
-    border-radius: 4px;
+  background: @blue;
+  border-radius: 4px;
 }
 
 /* Scrollbar */
- scrollbar {
-    background: @bg0_h;
+scrollbar {
+  background: @bg0_h;
 }
 
- scrollbar slider {
-    background: @bg2;
-    border-radius: 4px;
+scrollbar slider {
+  background: @bg2;
+  border-radius: 4px;
 }
 
- scrollbar slider:hover {
-    background: @gray;
+scrollbar slider:hover {
+  background: @gray;
 }
