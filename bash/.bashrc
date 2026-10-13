@@ -13,7 +13,7 @@ export EDITOR="nvim"
 
 alias gg='gitu'
 alias svim='sudo -E nvim'
-alias emacs='emacs &'
+alias emacs='emacsclient . &'
 alias spark='~/dotfiles/scripts/spark'
 alias llm='sudo systemctl restart llama-cpp'
 

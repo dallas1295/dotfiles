@@ -1,6 +1,6 @@
 set $mod Mod4
 
-set $terminal foot
+set $terminal emacsclient -c
 set $fileManager thunar
 set $menu rofi -show drun
 # set $menu noctalia msg panel-toggle launcher
@@ -55,7 +55,7 @@ output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
 output eDP-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
 
 default_border normal 1
-# default_border pixel 1 
+# default_border pixel 1
 default_floating_border normal 5
 gaps inner 5
 gaps outer 3
@@ -86,7 +86,7 @@ input "tpps/2-elan-trackpoint" {
 
 input * {
     xkb_layout us
-    xkb_options caps:escape
+    xkb_options ctrl:nocaps
     repeat_delay 300
     repeat_rate 50
 }
@@ -105,7 +105,7 @@ bindsym $mod+space exec $menu
 bindsym $mod+Shift+space exec rofi -show run
 bindsym $mod+Shift+n exec swaync-client -t -sw
 bindsym $mod+m exec firefox --new-window localhost:7337
-bindsym $mod+F1 exec ~/dotfiles/scripts/tlp-change
+bindsym $mod+alt+p exec ~/dotfiles/scripts/tlp-change
 
 bindsym $mod+r reload
 
@@ -178,8 +178,6 @@ bindsym $mod+minus workspace prev_on_output
 
 bindsym $mod+n workspace next_on_output
 bindsym $mod+p workspace prev_on_output
-bindsym $mod+Up workspace next_on_output
-bindsym $mod+Down workspace prev_on_output
 
 bindsym $mod+Shift+z exec swaymsg move to scratchpad
 bindsym $mod+z exec swaymsg scratchpad show

@@ -10,13 +10,12 @@
   ],
   "spacing": 1,
   "modules-left": [
-    "cpu",
-    "memory",
-    "disk#root",
-    "disk#extra"
+    "sway/workspaces",
   ],
   "modules-center": [
-    "sway/workspaces"
+    "temperature",
+    "cpu",
+    "memory",
   ],
   "modules-right": [
     "network",

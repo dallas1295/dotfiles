@@ -25,6 +25,7 @@
 (setq-default indent-tabs-mode nil)
 (setq auto-save-default nil)
 (setq display-line-numbers-type 'relative)
+(setq initial-major-mode 'vterm-mode)
 
 (add-hook 'org-mode-hook
           (lambda ()
@@ -42,7 +43,7 @@
 (column-number-mode 1)
 (show-paren-mode 1)
 (global-display-line-numbers-mode 1)
-(global-set-key [escape] 'keyboard-escape-quit)
+(global-set-key (kbd  "<escape>") #'keyboard-quit)
 (delete-selection-mode 1)
 (electric-indent-mode 1)
 (electric-pair-mode 1)
@@ -57,25 +58,28 @@
                     :slant 'italic)
 
 ;; Binds
+(global-set-key (kbd "C-M-n") 'move-text-down)
+(global-set-key (kbd "C-M-p") 'move-text-up)
+
 (global-set-key (kbd "M-n") #'next-line)
 (global-set-key (kbd "M-p") #'previous-line)
 
 
 (global-unset-key (kbd "M-c"))
-(global-set-key (kbd "M-c f") 'find-file)
-(global-set-key (kbd "M-c F") 'dired)
-(global-set-key (kbd "M-c i") 'consult-buffer)
-(global-set-key (kbd "M-c I") 'dired-jump)
-(global-set-key (kbd "M-c g") 'consult-ripgrep)
-(global-set-key (kbd "M-c r") 'consult-recent-file)
-(global-set-key (kbd "M-c k a") 'projectile-kill-buffers)
-(global-set-key (kbd "M-c p s") 'projectile-switch-project)
+(global-set-key (kbd "C-c f") 'find-file)
+(global-set-key (kbd "C-c F") 'dired)
+(global-set-key (kbd "C-c i") 'consult-buffer)
+(global-set-key (kbd "C-c I") 'dired-jump)
+(global-set-key (kbd "C-c r") 'consult-recent-file)
+(global-set-key (kbd "C-c p a") 'projectile-kill-buffers)
+(global-set-key (kbd "C-c p s") 'projectile-switch-project)
+(global-set-key (kbd "C-c p g") 'projectile-grep)
 
-(global-set-key (kbd "M-c b d") '(kill-buffer-and-window))
-(global-set-key (kbd "M-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
-(global-set-key (kbd "M-c b s") #'split-window-right)
+(global-set-key (kbd "C-c b d") 'kill-buffer-and-window)
+(global-set-key (kbd "C-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
+(global-set-key (kbd "C-c b s") #'split-window-right)
 
-(global-set-key (kbd "M-c c") 'compile)
+(global-set-key (kbd "C-c C-c") 'compile)
 
 (defun my/compile-at-project-root (fn &rest args)
   (let ((default-directory (or (ignore-errors (projectile-project-root))
@@ -84,6 +88,16 @@
 
 (advice-add #'compile :around #'my/compile-at-project-root)
 (global-set-key (kbd "C-c c") 'capitalize-word)
+
+(global-set-key (kbd "C-c t") 'vterm-toggle)
+(global-set-key (kbd "C-c g") 'magit)
+
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C-.") 'mc/mark-next-word-like-this)
+(global-set-key (kbd "C-C C-,") 'mc/mark-previous-like-this-word)
 
 ;; Dependencies
 
@@ -112,15 +126,10 @@
         vertico-count 15))
 
 ;; Theme
-;; (use-package gruber-darker-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'gruber-darker t))
-
-(use-package monokai-pro-theme
+(use-package gruber-darker-theme
   :ensure t
   :config
-  (load-them 'monokai-pro t ))
+  (load-theme 'gruber-darker t))
 
 ;; QoL
 (use-package diminish
@@ -141,6 +150,37 @@
 (use-package transient
   :ensure t)
 
+;; move-text
+(use-package move-text
+  :ensure t)
+
+(defun indent-region-advice (&rest ignored)
+  (let ((deactivate deactivate-mark))
+    (if (region-active-p)
+        (indent-region (region-beginning) (region-end))
+      (indent-region (line-beginning-position) (line-end-position)))
+    (setq deactivate-mark deactivate)))
+
+(advice-add 'move-text-up :after 'indent-region-advice)
+(advice-add 'move-text-down :after 'indent-region-advice)
+
+;; multiple cursors
+(use-package multiple-cursors
+  :ensure t)
+
+;; vterm
+(use-package vterm
+  :ensure t
+  :config
+  (add-hook 'vterm-mode-hook
+            (lambda ()
+              (setq-local vterm-directory-tracking t)))
+  )
+
+(use-package vterm-toggle
+  :ensure t
+  :config
+  (setq vterm-toggle-project-root t))
 
 ;; Projectile
 (use-package projectile
@@ -157,8 +197,6 @@
   :bind ("C-," . embrace-commander))
 
 ;; Coding essentials
-;; Snippets
-
 ;; ;; Completions
 (use-package corfu
   :ensure t
@@ -169,8 +207,7 @@
    corfu-auto t
    corfu-auto-delay 0.2
    corfu-auto-trigger "."
-   corfu-quit-no-match 'separator)
-  (add-to-list 'completion-at-point-functions #'tempel-expand))
+   corfu-quit-no-match 'separator))
 
 ;; Formatting
 (use-package apheleia
@@ -184,24 +221,12 @@
 
 
 ;; LSP/Syntax Highlighting
-(defun my-detect-ts-lsp-server (&optional interactive)
-  "Detect TypeScript/JavaScript project type and return appropriate LSP server.
-  INTERACTIVE is non-nil if called interactively."
-  (let ((file (buffer-file-name)))
-    (unless file (user-error "Not visiting a file"))
-    (let ((deno-root (locate-dominating-file file "deno.json")))
-      (if deno-root
-          (list "deno" "lsp")
-        (let ((node-root (locate-dominating-file file "package.json")))
-          (if node-root
-              (list "typescript-language-server" "--stdio")
-            (list "typescript-language-server" "--stdio")))))))
-
 (use-package eglot
   :ensure nil
   :diminish
   :hook ((go-mode . eglot-ensure)
-         (typescript-mode . eglot-ensure)
+         (typescript-ts-mode . eglot-ensure)
+         (rust-mode . eglot-ensure)
          (tsx-mode . eglot-ensure)
          (lua-mode . eglot-ensure)
          (html-mode . eglot-ensure)
@@ -210,10 +235,6 @@
          (odin-mode . eglot-ensure))
   :config
   (remove-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode)
-  (add-to-list 'eglot-server-programs
-               '((typescript-mode typescript-ts-mode
-                                  javascript-mode js-mode js-ts-mode)
-                 . my-detect-ts-lsp-server))
   (setq-default eglot-workspace-configuration
                 '((:gopls . ((staticcheck . t))))))
 
