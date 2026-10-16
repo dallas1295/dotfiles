@@ -172,6 +172,27 @@ keymap.set("n", "<leader>in", ":! trackor new ", { desc = "Trackor issues (quick
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
 keymap.set("n", "<S-l>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
 
+-- Flash
+keymap.set({ "n", "x", "o" }, "z", function()
+	require("flash").jump()
+end, { desc = "Flash Jump" })
+
+keymap.set({ "n", "x", "o" }, "Z", function()
+	require("flash").treesitter()
+end, { desc = "Flash Treesitter-based select" })
+
+keymap.set("o", "r", function()
+	require("flash").remote()
+end, { desc = "Flash remote" })
+
+keymap.set({ "x", "o" }, "R", function()
+	require("flash").treesitter_search()
+end, { desc = "Treesitter Search" })
+
+keymap.set("c", "<C-s>", function()
+	require("flash").toggle()
+end, { desc = "Toggle Flash Search" })
+
 -- Terminal
 vim.api.nvim_create_autocmd("TermOpen", {
 	group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),

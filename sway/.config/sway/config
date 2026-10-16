@@ -1,6 +1,6 @@
 set $mod Mod4
 
-set $terminal emacsclient -c
+set $terminal foot
 set $fileManager thunar
 set $menu rofi -show drun
 # set $menu noctalia msg panel-toggle launcher
@@ -29,7 +29,7 @@ set $lock swaylock -f
 exec autotiling
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 # exec mullvad-vpn
-exec flatpak run com.surfshark.Surfshark
+# exec flatpak run com.surfshark.Surfshark
 exec swaync
 exec lxqt-policykit-agent
 exec syncthing
@@ -86,7 +86,7 @@ input "tpps/2-elan-trackpoint" {
 
 input * {
     xkb_layout us
-    xkb_options ctrl:nocaps
+    xkb_options caps:escape
     repeat_delay 300
     repeat_rate 50
 }

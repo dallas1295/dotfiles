@@ -6,11 +6,13 @@ end
 add({
 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 })
+vim.cmd.colorscheme("gruber-darker")
 
-add({
-	{ src = "https://github.com/loctvl842/monokai-pro.nvim" },
-})
-vim.cmd.colorscheme("monokai-pro")
+-- add({
+-- 	{ src = "https://github.com/vossenwout/guts.nvim" },
+-- })
+--
+-- vim.cmd.colorscheme("guts")
 
 -- Better highlights
 add({
@@ -43,6 +45,11 @@ require("diffview").setup({
 	},
 })
 
+-- Flash
+add({
+	{ src = "https://github.com/folke/flash.nvim", name = "flash" },
+})
+
 -- Mini
 add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini.nvim" },
@@ -54,10 +61,12 @@ require("mini.icons").mock_nvim_web_devicons()
 require("mini.surround").setup()
 require("mini.ai").setup()
 require("mini.pairs").setup()
+require("mini.statusline").setup()
 require("mini.statuscolumn").setup()
 require("mini.diff").setup({
 	style = "number",
 })
+-- require("mini.jump").setup({})
 require("mini.move").setup({
 	mappings = {
 		left = "<M-C-h>",

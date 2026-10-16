@@ -25,7 +25,7 @@
 (setq-default indent-tabs-mode nil)
 (setq auto-save-default nil)
 (setq display-line-numbers-type 'relative)
-(setq initial-major-mode 'vterm-mode)
+;; (setq initial-major-mode 'vterm-mode)
 
 (add-hook 'org-mode-hook
           (lambda ()
@@ -36,7 +36,6 @@
 
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -233,10 +232,45 @@
          (css-mode . eglot-ensure)
          (web-mode . eglot-ensure)
          (odin-mode . eglot-ensure))
+  :bind (:map eglot-mode-map
+              ("C-c k" . eldoc-print-current-symbol-info)  ; your Shift+K
+              ("C-c K" . eldoc-doc-buffer))               ; full docs in a help buffer
   :config
-  (remove-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode)
   (setq-default eglot-workspace-configuration
-                '((:gopls . ((staticcheck . t))))))
+                '((:gopls . ((staticcheck . t)))))
+  '(:rust-analyzer
+    (:inlayHints (:typeHints (:enable :json-false)
+                             :parameterHints (:enable :json-false)
+                             :chainingHints (:enable :json-false)))))
+
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :init
+;;   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   :hook ((go-mode . lsp)
+;;          (typescript-ts-mode . lsp)
+;;          (rust-mode . lsp)
+;;          (tsx-mode . lsp)
+;;          (lua-mode . lsp)
+;;          (html-mode . lsp)
+;;          (css-mode . lsp)
+;;          (web-mode . lsp)
+;;          (odin-mode . lsp)XS
+
+;;          ;; if you want which-key integration
+;;          (lsp-mode . lsp-enable-which-key-integration))
+;;   :commands lsp)
+
+;; ;; optionally
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :custom
+;;   (lsp-ui-doc-delay 2.0)
+;;   :commands lsp-ui-mode)
+;; (use-package lsp-treemacs
+;;   :ensure t
+;;   :commands lsp-treemacs-errors-list)
 
 (use-package zig-mode :ensure t)
 (use-package rust-mode :ensure t)
