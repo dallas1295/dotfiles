@@ -1,3 +1,4 @@
+exec pipewire
 set $mod Mod4
 
 set $terminal emacs
@@ -245,6 +246,7 @@ for_window [class="^steam$"] [title="^Friends List"] \
   move position 761 101, \
   no focus,
 
+for_window [app_id="^lxqt-policykit-agent"] floating
 for_window [app_id="^com.heroicgameslauncher.hgl$"] move to workspace 3, no focus
 for_window [class="^wechat$"] move to workspace 4, floating
 for_window [app_id="^discord$"] move to workspace 4, floating

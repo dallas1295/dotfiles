@@ -1,0 +1,13 @@
+# see https://github.com/sigoden/aichat/blob/main/config.example.yaml
+
+compress_threshold: 52000
+
+agent_prelude: main
+
+model: Llama.cpp:Qwen3.5-4B-UD-Q8_K_XL
+clients:
+  - type: openai-compatible
+    name: Llama.cpp
+    api_base: http://localhost:7337/v1
+    models:
+      - name: Qwen3.5-4B-UD-Q8_K_XL

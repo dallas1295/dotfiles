@@ -23,15 +23,15 @@ alias svim='sudo -E nvim'
 alias spark='~/dotfiles/scripts/spark'
 alias llm='sudo systemctl restart llama-cpp'
 
-alias pacman='sudo pacman'
+# alias pacman='sudo pacman'
 
-# alias poweroff='loginctl poweroff'
-# alias reboot='loginctl reboot'
-# alias xi='sudo xbps-install'
-# alias xr='sudo xbps-remove'
-# alias xq='sudo xbps-query -Rs'
-# alias xu='sudo xbps-install -Su'
-# alias vsv='sudo vsv'
+alias poweroff='loginctl poweroff'
+alias reboot='loginctl reboot'
+alias xi='sudo xbps-install'
+alias xr='sudo xbps-remove'
+alias xq='sudo xbps-query -Rs'
+alias xu='sudo xbps-install -Su'
+alias vsv='sudo vsv'
 
 alias mu='~/thirdparty/data/mullvad/mullvad_up.sh'
 alias md='~/thirdparty/data/mullvad/mullvad_down.sh'
@@ -56,3 +56,4 @@ source -- ~/thirdparty/bin/share/blesh/ble.sh
 
 # Pi
 export PATH="$HOME/.local/bin:$PATH"
+. "$HOME/.cargo/env"

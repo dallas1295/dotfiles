@@ -140,6 +140,10 @@
   (setq vertico-cycle t
         vertico-count 15))
 
+;; sudo editing
+(use-package sudo-edit
+  :ensure t)
+
 ;; Theme
 (use-package gruber-darker-theme
   :ensure t
