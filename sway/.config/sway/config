@@ -1,6 +1,6 @@
 set $mod Mod4
 
-set $terminal foot
+set $terminal emacs
 set $fileManager thunar
 set $menu rofi -show drun
 # set $menu noctalia msg panel-toggle launcher
@@ -30,9 +30,9 @@ exec autotiling
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 # exec mullvad-vpn
 # exec flatpak run com.surfshark.Surfshark
+# exec syncthing
 exec swaync
 exec lxqt-policykit-agent
-exec syncthing
 exec waybar
 exec_always --no-startup-id "pkill -x kanshi; kanshi"
 exec wl-paste --type text --watch cliphist store
@@ -83,12 +83,16 @@ input "type:pointer" {
 
 input "tpps/2-elan-trackpoint" {
 }
-
 input * {
-    xkb_layout us
-    xkb_options caps:escape
     repeat_delay 300
     repeat_rate 50
+}
+
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_layout us
+    # xkb_options caps:escape
+    xkb_options ctrl:nocaps
+    xkb_file ~/.config/xkb/custom
 }
 
 seat * hide_cursor 5000
@@ -245,10 +249,8 @@ for_window [app_id="^com.heroicgameslauncher.hgl$"] move to workspace 3, no focu
 for_window [class="^wechat$"] move to workspace 4, floating
 for_window [app_id="^discord$"] move to workspace 4, floating
 for_window [app_id="^io.github.Faugus.faugus-launcher$"] move to workspace 4, no focus
-for_window [title="Battle.net"] floating enable, move to workspace 4, no focus
 no_focus [class="^steam$"]
 no_focus [app_id="^steam$"]
-no_focus [class="^steam_app_default$"] move scratchpad
 no_focus [class="^wechat$"]
 no_focus [app_id="^discord$"]
 

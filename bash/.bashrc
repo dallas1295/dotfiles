@@ -3,6 +3,13 @@ PS1='\[\e[1;32m\]\u\[\e[0m\]@ \[\e[36m\]\w\[\e[0m\] \$ '
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 
+# If you are inside vterm, map 'e' or 'emacs' to open files in the host instance
+if [ "$INSIDE_EMACS" = "vterm" ]; then
+    e() {
+        vterm_cmd find-file "$(realpath "${1:-.}")"
+    }
+fi
+
 PATH="$PATH:$HOME/thirdparty/bin"
 PATH="$PATH:$HOME/opt/bin"
 PATH="$PATH:$HOME/.cargo/bin"
@@ -13,7 +20,6 @@ export EDITOR="nvim"
 
 alias gg='gitu'
 alias svim='sudo -E nvim'
-alias emacs='emacsclient . &'
 alias spark='~/dotfiles/scripts/spark'
 alias llm='sudo systemctl restart llama-cpp'
 

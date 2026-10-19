@@ -154,7 +154,8 @@ keymap.set("n", "<leader>xc", "<cmd>q<CR>", { desc = "Close Neovim" })
 keymap.set("n", "<leader>xC", "<cmd>q!<CR>", { desc = "Force close Neovim" })
 
 -- Oil
-keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
+-- keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
+keymap.set("n", "-", "<Cmd>Explore<CR>", { desc = "Open Explore" })
 
 -- Neogit / Diffview
 keymap.set("n", "<leader>gg", function()

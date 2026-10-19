@@ -1,0 +1,22 @@
+xkb_keymap {
+    xkb_keycodes { include "evdev+aliases(qwerty)" };
+    xkb_types    { include "complete" };
+    xkb_compat   { include "complete" };
+    
+    xkb_symbols  {
+        include "pc+inet(evdev)+us"
+        include "ctrl(nocaps)"
+        include "level3(ralt_switch)"
+
+        // Top Left: Plain = Esc | Shift = Esc | RightAlt = ` | RightAlt+Shift = ~
+        key <TLDE> { [ Escape, Escape, grave, asciitilde ] };          
+
+        // Right Alt layer mappings (Vim arrows & volume)
+        key <AC06> { [ h, H, Left ] };                          
+        key <AC07> { [ j, J, Down ] };                        
+        key <AC08> { [ k, K, Up ] };                          
+        key <AC09> { [ l, L, Right ] };                       
+        key <AD04> { [ r, R, XF86AudioRaiseVolume ] };        
+        key <AD03> { [ e, E, XF86AudioLowerVolume ] };        
+    };
+};

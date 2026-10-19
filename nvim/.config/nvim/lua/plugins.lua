@@ -8,12 +8,6 @@ add({
 })
 vim.cmd.colorscheme("gruber-darker")
 
--- add({
--- 	{ src = "https://github.com/vossenwout/guts.nvim" },
--- })
---
--- vim.cmd.colorscheme("guts")
-
 -- Better highlights
 add({
 	{ src = "https://github.com/kevinhwang91/nvim-hlslens" },
@@ -94,12 +88,12 @@ hipatterns.setup({
 })
 
 -- Oil
-add({
-	{ src = "https://github.com/stevearc/oil.nvim", name = "oil" },
-})
-require("oil").setup({
-	default_file_explorer = true,
-})
+-- add({
+-- 	{ src = "https://github.com/stevearc/oil.nvim", name = "oil" },
+-- })
+-- require("oil").setup({
+-- 	default_file_explorer = true,
+-- })
 
 -- Fzf
 add({

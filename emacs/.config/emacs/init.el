@@ -9,6 +9,21 @@
 ;; add elpaca hook for extensions
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
 
+(defun my/open-vterm-on-client-connect (&optional frame)
+  "Open or switch to vterm and make it take over the entire frame."
+  (when (daemonp)
+    (with-selected-frame (or frame (selected-frame))
+      (let ((vterm-buffer (get-buffer "*vterm*")))
+        (if vterm-buffer
+            (switch-to-buffer vterm-buffer)
+          (vterm)))
+      ;; After vterm is open (whether new or existing),
+      ;; wipe out any splits so it occupies 100% of the frame.
+      (delete-other-windows))))
+
+;; Hook into server window/frame creation for emacsclient
+(add-hook 'server-after-make-frame-hook #'my/open-vterm-on-client-connect)
+
 (dolist (dir '("~/.opencode/bin" "~/opt/bin" "~/.cargo/bin"
                "~/go/bin" "~/thirdparty/bin" "~/.local/bin"))
   (let ((dir (expand-file-name dir)))
@@ -25,7 +40,7 @@
 (setq-default indent-tabs-mode nil)
 (setq auto-save-default nil)
 (setq display-line-numbers-type 'relative)
-;; (setq initial-major-mode 'vterm-mode)
+(setq initial-major-mode 'vterm-mode)
 
 (add-hook 'org-mode-hook
           (lambda ()
@@ -50,6 +65,7 @@
 (which-key-mode 1)
 (icomplete-mode 1)
 
+(add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font-14"))
 (set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
 (set-face-attribute 'font-lock-comment-face nil
                     :slant 'italic)
@@ -78,7 +94,7 @@
 (global-set-key (kbd "C-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
 (global-set-key (kbd "C-c b s") #'split-window-right)
 
-(global-set-key (kbd "C-c C-c") 'compile)
+(global-set-key (kbd "C-c C-c") 'my/compile-at-project-root)
 
 (defun my/compile-at-project-root (fn &rest args)
   (let ((default-directory (or (ignore-errors (projectile-project-root))
@@ -137,6 +153,12 @@
 (use-package consult
   :ensure t)
 
+;; More aggressive garbage collecting
+(use-package gcmh
+  :ensure t
+  :init
+  (gcmh-mode 1))
+
 ;; Colors for Hex and Brackets
 (use-package rainbow-delimiters
   :ensure t
@@ -171,9 +193,19 @@
 (use-package vterm
   :ensure t
   :config
+  ;; This hook tells Emacs to follow the shell's current directory
+  (add-hook 'vterm-set-window-title-functions
+            (lambda (title)
+              (when (string-match-p "^vterm:" title)
+                ;; vterm passes directory info via title escape sequences
+                )))
+
+  ;; Alternatively, vterm has a built-in tracking mechanism:
+  (setq vterm-kill-buffer-on-exit t)
   (add-hook 'vterm-mode-hook
             (lambda ()
-              (setq-local vterm-directory-tracking t)))
+              (setq-local vterm-directory-tracking t)
+              (display-line-numbers-mode -1)))
   )
 
 (use-package vterm-toggle
@@ -181,9 +213,14 @@
   :config
   (setq vterm-toggle-project-root t))
 
+;; Allow vterm to trigger find-file directly in the host Emacs instance
+(with-eval-after-load 'vterm
+  (add-to-list 'vterm-eval-cmds '("find-file" find-file)))
+
 ;; Projectile
 (use-package projectile
   :ensure t
+  :diminish
   :init
   (projectile-mode +1)
   :config
@@ -223,6 +260,9 @@
 (use-package eglot
   :ensure nil
   :diminish
+  :init
+  (setq eglot-code-action-indications nil)
+  (setq eldoc-echo-area-use-multiline-p t)
   :hook ((go-mode . eglot-ensure)
          (typescript-ts-mode . eglot-ensure)
          (rust-mode . eglot-ensure)
@@ -233,44 +273,22 @@
          (web-mode . eglot-ensure)
          (odin-mode . eglot-ensure))
   :bind (:map eglot-mode-map
-              ("C-c k" . eldoc-print-current-symbol-info)  ; your Shift+K
-              ("C-c K" . eldoc-doc-buffer))               ; full docs in a help buffer
+              ("C-c C-k" . eldoc-doc-buffer))               ; full docs in a help buffer
   :config
+  (setq eglot-autoshutdown t)
+  (add-hook 'eglot-managed-mode-hook
+            (lambda ()
+              (eglot-inlay-hints-mode -1)))
   (setq-default eglot-workspace-configuration
-                '((:gopls . ((staticcheck . t)))))
-  '(:rust-analyzer
-    (:inlayHints (:typeHints (:enable :json-false)
-                             :parameterHints (:enable :json-false)
-                             :chainingHints (:enable :json-false)))))
+                '((:gopls . ((staticcheck . t))))))
 
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :init
-;;   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-;;   (setq lsp-keymap-prefix "C-c l")
-;;   :hook ((go-mode . lsp)
-;;          (typescript-ts-mode . lsp)
-;;          (rust-mode . lsp)
-;;          (tsx-mode . lsp)
-;;          (lua-mode . lsp)
-;;          (html-mode . lsp)
-;;          (css-mode . lsp)
-;;          (web-mode . lsp)
-;;          (odin-mode . lsp)XS
-
-;;          ;; if you want which-key integration
-;;          (lsp-mode . lsp-enable-which-key-integration))
-;;   :commands lsp)
-
-;; ;; optionally
-;; (use-package lsp-ui
-;;   :ensure t
-;;   :custom
-;;   (lsp-ui-doc-delay 2.0)
-;;   :commands lsp-ui-mode)
-;; (use-package lsp-treemacs
-;;   :ensure t
-;;   :commands lsp-treemacs-errors-list)
+;; eldoc-box (On-demand via keybinding)
+(use-package eldoc-box
+  :ensure t
+  :bind (:map eglot-mode-map
+              ("C-c k" . eldoc-box-eglot-help-at-point))
+  :config
+  (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t))
 
 (use-package zig-mode :ensure t)
 (use-package rust-mode :ensure t)

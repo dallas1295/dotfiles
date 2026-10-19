@@ -16,10 +16,6 @@
       "rev": "5f0f270fdc7c5b0c21d903ee85b9cb06f2ac636a",
       "src": "https://github.com/folke/flash.nvim"
     },
-    "flash.nvim": {
-      "rev": "5f0f270fdc7c5b0c21d903ee85b9cb06f2ac636a",
-      "src": "https://github.com/folke/flash.nvim"
-    },
     "fzf-lua": {
       "rev": "9405672f62767695d5f20db171336f7f4911ce86",
       "src": "https://github.com/ibhagwan/fzf-lua"
@@ -27,10 +23,6 @@
     "gruber-darker.nvim": {
       "rev": "35cb97959ef01f7193c94c404c13ddb3d4346654",
       "src": "https://github.com/blazkowolf/gruber-darker.nvim"
-    },
-    "guts.nvim": {
-      "rev": "e033ab8d594159d79c099764f8e7c63a733aa471",
-      "src": "https://github.com/vossenwout/guts.nvim"
     },
     "mini.nvim": {
       "rev": "e3f2349a65143ff062f0b70ee9d68d8ce35c7059",
