@@ -1,7 +1,7 @@
 exec pipewire
 set $mod Mod4
 
-set $terminal emacs
+set $terminal foot
 set $fileManager thunar
 set $menu rofi -show drun
 # set $menu noctalia msg panel-toggle launcher
@@ -13,8 +13,8 @@ set $lock swaylock -f
 # bar {
 #     position bottom
 #     height 23
-#     font pango: Iosevka Nerd Font 11
-    # status_command ~/.config/sway/swaybar.sh
+#     font pango: Iosevka Nerd Font 9.5
+#     status_command ~/.config/sway/swaybar.sh
 #     colors {
 #         background #000000
 #         statusline #E4E4E4
@@ -29,8 +29,7 @@ set $lock swaylock -f
 
 exec autotiling
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-# exec mullvad-vpn
-# exec flatpak run com.surfshark.Surfshark
+exec flatpak run com.surfshark.Surfshark
 # exec syncthing
 exec swaync
 exec lxqt-policykit-agent
@@ -92,8 +91,8 @@ input * {
 input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout us
     # xkb_options caps:escape
-    xkb_options ctrl:nocaps
-    xkb_file ~/.config/xkb/custom
+    # xkb_options ctrl:nocaps
+    # xkb_file ~/.config/xkb/custom
 }
 
 seat * hide_cursor 5000

@@ -1,5 +1,4 @@
 ;; -*- lexical-binding: t; -*-
-
 ;; lexical bindings
 (set-default-toplevel-value 'lexical-binding t)
 
@@ -44,7 +43,7 @@
 
 (add-hook 'org-mode-hook
           (lambda ()
-            (let ((orig electric-pair-inhibit-predicate))
+            (let ((orig electrci-pair-inhibit-predicate))
               (setq-local electric-pair-inhibit-predicate
                           (lambda (c)
                             (if (char-equal c ?<) t (funcall orig c)))))))
@@ -63,7 +62,7 @@
 (electric-pair-mode 1)
 (windmove-mode 1)
 (which-key-mode 1)
-(icomplete-mode 1)
+;; (icomplete-mode 1)
 
 (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font-14"))
 (set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
@@ -76,10 +75,6 @@
 (global-set-key (kbd "C-M-n") 'move-text-down)
 (global-set-key (kbd "C-M-p") 'move-text-up)
 
-(global-set-key (kbd "M-n") #'next-line)
-(global-set-key (kbd "M-p") #'previous-line)
-
-
 (global-unset-key (kbd "M-c"))
 (global-set-key (kbd "C-c f") 'find-file)
 (global-set-key (kbd "C-c F") 'dired)
@@ -90,10 +85,12 @@
 (global-set-key (kbd "C-c p s") 'projectile-switch-project)
 (global-set-key (kbd "C-c p g") 'projectile-grep)
 
-(global-set-key (kbd "C-c b d") 'kill-buffer-and-window)
+(global-set-key (kbd "C-c b D") 'kill-buffer-and-window)
+(global-set-key (kbd "C-c b d") 'delete-window)
 (global-set-key (kbd "C-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
 (global-set-key (kbd "C-c b s") #'split-window-right)
 
+(global-set-key (kbd "M-c c") 'compile)
 (global-set-key (kbd "C-c C-c") 'my/compile-at-project-root)
 
 (defun my/compile-at-project-root (fn &rest args)
@@ -140,6 +137,13 @@
   (setq vertico-cycle t
         vertico-count 15))
 
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
+
 ;; sudo editing
 (use-package sudo-edit
   :ensure t)
@@ -156,12 +160,6 @@
 
 (use-package consult
   :ensure t)
-
-;; More aggressive garbage collecting
-(use-package gcmh
-  :ensure t
-  :init
-  (gcmh-mode 1))
 
 ;; Colors for Hex and Brackets
 (use-package rainbow-delimiters

@@ -90,7 +90,7 @@ keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search hi
 keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep in root" })
 keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep resume=true<cr>", { desc = "Resume live grep in root" })
 keymap.set("n", "<leader>fp", "<cmd>FzfLua search_history<cr>", { desc = "Search History" })
-keymap.set("n", "<leader>bi", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
+keymap.set("n", "<leader>i", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
 -- keymap.set("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>", { desc = "Open quickfix" })
 
 -- LSP symbols and navigation (via fzf-lua)
@@ -154,8 +154,8 @@ keymap.set("n", "<leader>xc", "<cmd>q<CR>", { desc = "Close Neovim" })
 keymap.set("n", "<leader>xC", "<cmd>q!<CR>", { desc = "Force close Neovim" })
 
 -- Oil
--- keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
-keymap.set("n", "-", "<Cmd>Explore<CR>", { desc = "Open Explore" })
+keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
+-- keymap.set("n", "-", "<Cmd>Explore<CR>", { desc = "Open Explore" })
 
 -- Neogit / Diffview
 keymap.set("n", "<leader>gg", function()
@@ -166,8 +166,8 @@ keymap.set("n", "<leader>gH", "<cmd>DiffviewFileHistory %<cr>", { desc = "Diffvi
 keymap.set("n", "<leader>gx", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
 
 --Trackor
-keymap.set("n", "<leader>ii", "<cmd>Trackor<cr>", { desc = "Trackor issues" })
-keymap.set("n", "<leader>in", ":! trackor new ", { desc = "Trackor issues (quickfix)" })
+keymap.set("n", "<leader>ti", "<cmd>Trackor<cr>", { desc = "Trackor issues" })
+keymap.set("n", "<leader>tn", ":! trackor new ", { desc = "Trackor issues (quickfix)" })
 
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
@@ -195,43 +195,61 @@ keymap.set("c", "<C-s>", function()
 end, { desc = "Toggle Flash Search" })
 
 -- Terminal
-vim.api.nvim_create_autocmd("TermOpen", {
-	group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
-	callback = function()
-		vim.opt.number = false
-		vim.opt.relativenumber = false
-	end,
-})
-
 local term_buf = nil
+local term_win = nil
 
-keymap.set("n", "<leader>tt", function()
-	if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
-		local wins = vim.fn.win_findbuf(term_buf)
-		if #wins > 0 then
-			vim.fn.win_gotoid(wins[1])
-			vim.cmd("hide")
-		else
-			vim.cmd("belowright new")
-			vim.api.nvim_win_set_height(0, 15)
-			vim.api.nvim_win_set_buf(0, term_buf)
-			vim.cmd("startinsert")
-		end
-	else
-		vim.cmd("belowright new")
-		vim.api.nvim_win_set_height(0, 15)
-		vim.cmd.term()
-		vim.cmd("startinsert")
-		term_buf = vim.api.nvim_get_current_buf()
-	end
-end, { desc = "Toggle terminal" })
+local function toggle_terminal()
+    -- 1. If terminal window is open and valid, close it (toggle off)
+    if term_win and vim.api.nvim_win_is_valid(term_win) then
+        vim.api.nvim_win_close(term_win, true)
+        term_win = nil
+        return
+    end
 
+    local current_win = vim.api.nvim_get_current_win()
+    local win_width = vim.api.nvim_win_get_width(current_win)
+    local win_height = vim.api.nvim_win_get_height(current_win)
+
+    -- Target: 100 char line + 10 chars padding = 110 chars needed for vertical split
+    if win_width >= 110 then
+        -- Open vertical split taking remaining width beyond 110 chars
+        local target_width = win_width - 110
+        -- Prevent zero or tiny windows on exact edge cases
+        if target_width < 15 then target_width = 15 end
+        
+        vim.cmd(target_width .. "vsplit")
+    else
+        -- Open horizontal split using a standard proportion (e.g., 30% of current height)
+        local target_height = math.floor(win_height * 0.3)
+        if target_height < 5 then target_height = 5 end
+        
+        vim.cmd(target_height .. "split")
+    end
+
+    term_win = vim.api.nvim_get_current_win()
+
+    -- 2. Reuse terminal buffer if valid, otherwise create a new one
+    if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+        vim.api.nvim_win_set_buf(term_win, term_buf)
+    else
+        vim.cmd("terminal")
+        term_buf = vim.api.nvim_get_current_buf()
+        -- Keep buffer unlisted so it never pollutes :bnext / :bprevious
+        vim.bo[term_buf].buflisted = false
+    end
+
+    vim.cmd("startinsert")
+end
+
+vim.keymap.set("n", "<leader>tt", toggle_terminal, { desc = "Toggle terminal (responsive size)" })
 keymap.set("t", "<esc><esc>", "<C-\\><C-n>:hide<CR>", { desc = "Hide terminal" })
-keymap.set("t", "<esc><S-esc>", "<C-\\><C-n>:bdelete!<CR>", { desc = "Close terminal" })
 
-keymap.set("n", "<leader>tq", function()
-	if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
-		vim.cmd("bdelete! " .. term_buf)
-		term_buf = nil
-	end
-end, { desc = "Close terminal" })
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function()
+        local opts = { buffer = 0, desc = "Toggle terminal normal/insert mode" }
+        -- From live terminal -> enter normal mode (to select, copy, or view)
+        vim.keymap.set("t", "<C-c><C-t>", "<C-\\><C-n>", opts)
+        -- From normal mode -> return to live terminal
+        vim.keymap.set("n", "<C-c><C-t>", "<cmd>startinsert<CR>", opts)
+    end,
+})

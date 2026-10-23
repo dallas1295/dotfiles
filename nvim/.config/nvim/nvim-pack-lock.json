@@ -1,7 +1,7 @@
 {
   "plugins": {
     "baleia.nvim": {
-      "rev": "710537ff5cd669c5a76c5f5b6a9169fd9b913d18",
+      "rev": "14c279cc7241d97585f8000dfd7dcdbca9fb4458",
       "src": "https://github.com/m00qek/baleia.nvim"
     },
     "conform": {
@@ -17,7 +17,7 @@
       "src": "https://github.com/folke/flash.nvim"
     },
     "fzf-lua": {
-      "rev": "9405672f62767695d5f20db171336f7f4911ce86",
+      "rev": "5dca84ef44f37b960a128a43d044ee348ff86fb4",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gruber-darker.nvim": {
@@ -25,19 +25,23 @@
       "src": "https://github.com/blazkowolf/gruber-darker.nvim"
     },
     "mini.nvim": {
-      "rev": "e3f2349a65143ff062f0b70ee9d68d8ce35c7059",
+      "rev": "a6e23131010b800ecbab85fa6adc0ff38eae2c2d",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
-      "rev": "a6549816e62cec7037f1549d8f1659d45635370c",
+      "rev": "832a2db084ac25c2801fd73a3fab58f3c82ed2ec",
       "src": "https://github.com/NeogitOrg/neogit"
+    },
+    "no-clown-fiesta.nvim": {
+      "rev": "04b808e9769ded988089772ffcaf08d92d75d927",
+      "src": "https://github.com/aktersnurra/no-clown-fiesta.nvim"
     },
     "nvim-hlslens": {
       "rev": "be2d7b2be01860b5445a007ff2bc72b29896db6b",
       "src": "https://github.com/kevinhwang91/nvim-hlslens"
     },
     "nvim-treesitter": {
-      "rev": "ca581c3436fc2b236847f5b739ebc263739e5ca6",
+      "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-ts-autotag": {

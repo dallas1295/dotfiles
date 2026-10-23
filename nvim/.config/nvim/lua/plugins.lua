@@ -6,7 +6,11 @@ end
 add({
 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 })
-vim.cmd.colorscheme("gruber-darker")
+
+add({
+	{ src = "https://github.com/aktersnurra/no-clown-fiesta.nvim" },
+})
+vim.cmd.colorscheme("no-clown-fiesta")
 
 -- Better highlights
 add({
@@ -88,12 +92,25 @@ hipatterns.setup({
 })
 
 -- Oil
--- add({
--- 	{ src = "https://github.com/stevearc/oil.nvim", name = "oil" },
--- })
--- require("oil").setup({
--- 	default_file_explorer = true,
--- })
+add({
+	{ src = "https://github.com/stevearc/oil.nvim", name = "oil" },
+})
+require("oil").setup({
+	default_file_explorer = true,
+  win_options = {
+    wrap = false,
+    signcolumn = "no",
+    cursorcolumn = false,
+    foldcolumn = "0",
+    spell = false,
+    list = false,
+    conceallevel = 3,
+    concealcursor = "nvic",
+  },
+  view_options = {
+    show_hidden = true,
+  },
+})
 
 -- Fzf
 add({
