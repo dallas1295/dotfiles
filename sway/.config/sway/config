@@ -5,7 +5,7 @@ set $terminal foot
 set $fileManager thunar
 set $menu rofi -show drun
 # set $menu noctalia msg panel-toggle launcher
-set $browser firefox
+set $browser flatpak run io.gitlab.librewolf-community
 
 set $lock swaylock -f
 # set $lock noctalia msg session lock
@@ -29,12 +29,12 @@ set $lock swaylock -f
 
 exec autotiling
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec flatpak run com.surfshark.Surfshark
+# exec flatpak run com.surfshark.Surfshark
 # exec syncthing
 exec swaync
 exec lxqt-policykit-agent
 exec waybar
-exec_always --no-startup-id "pkill -x kanshi; kanshi"
+# exec_always --no-startup-id "pkill -x kanshi; kanshi"
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
@@ -51,8 +51,10 @@ exec_always pkill -x swayidle; swayidle -w \
     resume 'swaymsg output "*" power on && brightnessctl -q -r; pgrep -x kanshi >/dev/null && { pkill -x kanshi; kanshi >/dev/null 2>&1 & }' \
     before-sleep '$lock'
 #
-output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
+# output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
 output eDP-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
+output eDP-1 mode 2880x1800@120Hz scale 1.6 position 0 0
+
 
 default_border normal 1
 # default_border pixel 1
@@ -86,14 +88,13 @@ input "tpps/2-elan-trackpoint" {
 input * {
     repeat_delay 300
     repeat_rate 50
-}
-
-input "1:1:AT_Translated_Set_2_keyboard" {
-    xkb_layout us
+        xkb_layout us
     # xkb_options caps:escape
     # xkb_options ctrl:nocaps
     # xkb_file ~/.config/xkb/custom
 }
+
+
 
 seat * hide_cursor 5000
 
@@ -208,7 +209,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 
 for_window [app_id="^firefox$"] move to workspace 2, focus
-for_window [app_id="^librewolf$"] move to workspace 2
+for_window [app_id="^librewolf$"] move to workspace 2, focus
 for_window [app_id="^brave-browser$"] move to workspace 2
 for_window [title="^Grayjay$"] \
 floating enable, \

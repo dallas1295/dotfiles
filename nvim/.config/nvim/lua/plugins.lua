@@ -7,11 +7,7 @@ add({
 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 })
 
-add({
-	{ src = "https://github.com/aktersnurra/no-clown-fiesta.nvim" },
-})
-vim.cmd.colorscheme("no-clown-fiesta")
-
+vim.cmd.colorscheme("gruber-darker")
 -- Better highlights
 add({
 	{ src = "https://github.com/kevinhwang91/nvim-hlslens" },
@@ -24,6 +20,7 @@ add({
 	{ src = "https://github.com/folke/which-key.nvim" },
 })
 require("which-key").setup()
+
 -- Neogit
 add({
 	{ src = "https://github.com/NeogitOrg/neogit", name = "neogit" },
@@ -53,7 +50,7 @@ add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini.nvim" },
 })
 require("mini.snippets").setup()
-require("mini.completion").setup({})
+require("mini.completion").setup({})  
 require("mini.icons").setup()
 require("mini.icons").mock_nvim_web_devicons()
 require("mini.surround").setup()
@@ -64,7 +61,6 @@ require("mini.statuscolumn").setup()
 require("mini.diff").setup({
 	style = "number",
 })
--- require("mini.jump").setup({})
 require("mini.move").setup({
 	mappings = {
 		left = "<M-C-h>",
@@ -83,36 +79,36 @@ require("mini.move").setup({
 local hipatterns = require("mini.hipatterns")
 hipatterns.setup({
 	highlighters = {
-		fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
-		hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
-		todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
-		note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+		fixme = { pattern = "%f[%w]()fixme()%f[%w]", group = "minihipatternsfixme" },
+		hack = { pattern = "%f[%w]()hack()%f[%w]", group = "minihipatternshack" },
+		todo = { pattern = "%f[%w]()todo()%f[%w]", group = "minihipatternstodo" },
+		note = { pattern = "%f[%w]()note()%f[%w]", group = "minihipatternsnote" },
 		hex_color = hipatterns.gen_highlighter.hex_color(),
 	},
 })
 
--- Oil
-add({
-	{ src = "https://github.com/stevearc/oil.nvim", name = "oil" },
-})
-require("oil").setup({
-	default_file_explorer = true,
-  win_options = {
-    wrap = false,
-    signcolumn = "no",
-    cursorcolumn = false,
-    foldcolumn = "0",
-    spell = false,
-    list = false,
-    conceallevel = 3,
-    concealcursor = "nvic",
-  },
-  view_options = {
-    show_hidden = true,
-  },
-})
-
--- Fzf
+-- oil
+-- add({
+-- 	{ src = "https://github.com/stevearc/oil.nvim", name = "oil" },
+-- })
+-- require("oil").setup({
+-- 	default_file_explorer = false,
+--   win_options = {
+--     wrap = false,
+--     signcolumn = "no",
+--     cursorcolumn = false,
+--     foldcolumn = "0",
+--     spell = false,
+--     list = false,
+--     conceallevel = 3,
+--     concealcursor = "nvic",
+--   },
+--   view_options = {
+--     show_hidden = true,
+--   },
+-- })
+--
+-- fzf
 add({
 	{ src = "https://github.com/ibhagwan/fzf-lua", name = "fzf-lua" },
 })
@@ -125,7 +121,7 @@ require("fzf-lua").setup({
 	},
 	keymap = {
 		builtin = {
-			["<C-g>"] = "toggle-preview",
+			["<c-g>"] = "toggle-preview",
 		},
 	},
 	files = {
@@ -136,9 +132,8 @@ require("fzf-lua").setup({
 			"node_modules/",
 			"%.next/",
 			"dist/",
-			".trackor/",
 			"build/",
-			"%.DS_Store",
+			"%.ds_store",
 			"target/",
 		},
 		fd_opts = [[--color=never --type f --type l --hidden --exclude .git --exclude .vscode --exclude .svelte-kit --exclude node_modules --exclude .next --exclude dist --exclude build --exclude target]],
@@ -157,19 +152,13 @@ require("fzf-lua").setup({
 	},
 })
 
--- Render Markdown (for notes)
-add({
-	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
-})
-require("render-markdown").setup({}) -- only mandatory if you want to set custom options
-
--- HTML Autotagging
+-- html autotagging
 add({
 	{ src = "https://github.com/windwp/nvim-ts-autotag", name = "nvim-ts-autotag" },
 })
 require("nvim-ts-autotag").setup()
 
--- Formatter
+-- formatter
 add({
 	{ src = "https://github.com/stevearc/conform.nvim", name = "conform" },
 })
@@ -216,4 +205,4 @@ vim.keymap.set({ "n", "v" }, "<leader>cf", function()
 		async = false,
 		timeout_ms = 1000,
 	})
-end, { desc = "Format file" })
+end, { desc = "format file" })

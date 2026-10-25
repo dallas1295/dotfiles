@@ -8,7 +8,7 @@
 ;; add elpaca hook for extensions
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
 
-(defun my/open-vterm-on-client-connect (&optional frame)
+(defun dallas/open-vterm-on-client-connect (&optional frame)
   "Open or switch to vterm and make it take over the entire frame."
   (when (daemonp)
     (with-selected-frame (or frame (selected-frame))
@@ -21,7 +21,7 @@
       (delete-other-windows))))
 
 ;; Hook into server window/frame creation for emacsclient
-(add-hook 'server-after-make-frame-hook #'my/open-vterm-on-client-connect)
+(add-hook 'server-after-make-frame-hook #'dallas/open-vterm-on-client-connect)
 
 (dolist (dir '("~/.opencode/bin" "~/opt/bin" "~/.cargo/bin"
                "~/go/bin" "~/thirdparty/bin" "~/.local/bin"))
@@ -39,7 +39,17 @@
 (setq-default indent-tabs-mode nil)
 (setq auto-save-default nil)
 (setq display-line-numbers-type 'relative)
-(setq initial-major-mode 'vterm-mode)
+(setq confirm-kill-processes nil)
+(setq use-short-answers t)
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            ;; 1. Make sure *scratch* exists and remains untouched
+            (get-buffer-create "*scratch*")
+            ;; 2. Create a dedicated *vterm* buffer, switch to it, and start vterm inside it
+            (let ((buf (get-buffer-create "*vterm*")))
+              (switch-to-buffer buf)
+              (vterm-mode))))
 
 (add-hook 'org-mode-hook
           (lambda ()
@@ -85,11 +95,10 @@
 (global-set-key (kbd "C-c p s") 'projectile-switch-project)
 (global-set-key (kbd "C-c p g") 'projectile-grep)
 
-(global-set-key (kbd "C-c b D") 'kill-buffer-and-window)
 (global-set-key (kbd "C-c b d") 'delete-window)
+(global-set-key (kbd "C-c b D") 'kill-buffer-and-window)
 (global-set-key (kbd "C-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
 (global-set-key (kbd "C-c b s") #'split-window-right)
-
 (global-set-key (kbd "M-c c") 'compile)
 (global-set-key (kbd "C-c C-c") 'my/compile-at-project-root)
 
@@ -195,6 +204,7 @@
 (use-package vterm
   :ensure t
   :config
+  (setq vterm-kill-buffer-on-exit t)
   ;; This hook tells Emacs to follow the shell's current directory
   (add-hook 'vterm-set-window-title-functions
             (lambda (title)
@@ -212,8 +222,15 @@
 
 (use-package vterm-toggle
   :ensure t
+  :bind ("C-c t" . vterm-toggle)
   :config
-  (setq vterm-toggle-project-root t))
+  ;; Keep the toggle window neatly at the bottom using your display rules
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+               '("\\*vterm\\*"
+                 (display-buffer-below-selected)
+                 (window-height . 0.3)
+                 (preserve-size . (nil . t)))))
 
 ;; Allow vterm to trigger find-file directly in the host Emacs instance
 (with-eval-after-load 'vterm
@@ -236,16 +253,63 @@
 
 ;; Coding essentials
 ;; ;; Completions
-(use-package corfu
-  :ensure t
-  :init
-  (global-corfu-mode)
+;; (use-package corfu
+;;   :ensure t
+;;   :init
+;;   (global-corfu-mode)
+;;   :config
+;;   (setq
+;;    corfu-auto t
+;;    corfu-auto-delay 0.2
+;;    corfu-auto-trigger "."
+;;    corfu-quit-no-match 'separator))
+
+(use-package completion-preview
+  :ensure nil
+  :demand t
+  :bind
+  ( :map completion-preview-active-mode-map
+    ("M-i" . completion-preview-insert-word)
+    ("M-n" . completion-preview-next-candidate)
+    ("M-p" . completion-preview-prev-candidate)
+    ("M-<return>" . completion-preview-insert)
+    ;; With TAB we effectively defer to the *Completions* buffer to
+    ;; show more completion candidates at once.
+    ("<tab>" . completion-preview-complete))
   :config
-  (setq
-   corfu-auto t
-   corfu-auto-delay 0.2
-   corfu-auto-trigger "."
-   corfu-quit-no-match 'separator))
+  (setq completion-preview-minimum-symbol-length 2)
+  (setq completion-preview-idle-delay 0.25)
+  (with-eval-after-load 'org
+    (add-to-list 'completion-preview-commands #'org-self-insert-command))
+  (global-completion-preview-mode 1))
+
+(add-to-list 'display-buffer-alist
+             '("\\*Completions\\*"
+               (display-buffer-below-selected)
+               (window-height . fit-window-to-buffer)
+               (preserve-size . (nil . t))))
+
+;; I have a more detailed configuration (and explanation) that works
+;; with Emacs 31 built-in completion capabilities:
+;; https://protesilaos.com/codelog/2026-07-29-emacs-default-minibuffer-completion-overview/.
+(use-package minibuffer
+  :ensure nil
+  :demand t
+  :bind
+  ( :map completion-in-region-mode-map
+    ("M-i" . minibuffer-choose-completion)
+    ("M-n" . minibuffer-next-completion)
+    ("M-p" . minibuffer-previous-completion))
+  :config
+  (setq completion-show-help nil)
+  ;; (setq completions-header-format nil)
+  (setq completions-format 'one-column)
+  (setq completions-max-height 12)
+  (setq completion-auto-help t)
+  (setq completion-auto-select t)
+  (setq minibuffer-visible-completions t)
+  (setq completion-eager-update t))
+
 
 ;; Formatting
 (use-package apheleia
@@ -259,6 +323,31 @@
 
 
 ;; LSP/Syntax Highlighting
+(defun dallas/toggle-eldoc-box ()
+  "Toggle eldoc-box open or closed without ever trapping cursor focus."
+  (interactive)
+  (if (and (boundp 'eldoc-box--frame)
+           eldoc-box--frame
+           (frame-live-p eldoc-box--frame)
+           (frame-visible-p eldoc-box--frame))
+      ;; If the box is open, close it (even if focus is inside it)
+      (if (eq (selected-frame) eldoc-box--frame)
+          (progn
+            ;; Select main frame back and quit
+            (select-frame-set-input-focus (car (frame-list)))
+            (eldoc-box-quit-frame))
+        (eldoc-box-quit-frame))
+    ;; Otherwise, open it at point
+    (eldoc-box-help-at-point)))
+
+
+(defun dallas/show-and-focus-eldoc-buffer ()
+  "Open the context-aware eldoc documentation buffer and immediately select/focus its window."
+  (interactive)
+  (let ((win (eldoc-doc-buffer t)))
+    (when (window-live-p win)
+      (select-window win))))
+
 (use-package eglot
   :ensure nil
   :diminish
@@ -275,7 +364,8 @@
          (web-mode . eglot-ensure)
          (odin-mode . eglot-ensure))
   :bind (:map eglot-mode-map
-              ("C-c C-k" . eldoc-doc-buffer))               ; full docs in a help buffer
+              ("C-c k" . dallas/toggle-eldoc-box)
+              ("C-c C-k" . dallas/show-and-focus-eldoc-buffer))               ; full docs in a help buffer
   :config
   (setq eglot-autoshutdown t)
   (add-hook 'eglot-managed-mode-hook
@@ -284,13 +374,27 @@
   (setq-default eglot-workspace-configuration
                 '((:gopls . ((staticcheck . t))))))
 
-;; eldoc-box (On-demand via keybinding)
-(use-package eldoc-box
-  :ensure t
-  :bind (:map eglot-mode-map
-              ("C-c k" . eldoc-box-eglot-help-at-point))
+
+
+(use-package eldoc
+  :ensure nil
   :config
-  (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t))
+  ;; Tell ElDoc how to combine and display signatures
+  (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+  ;; Allow ElDoc to use up to 5 lines so long signatures fit cleanly
+  (setq eldoc-echo-area-use-multiline-p 5)
+  (setq eldoc-idle-delay 0.1))
+
+;; eldoc-box (Strictly on-demand via C-c k)
+(use-package eldoc-box
+  :ensure t)
+
+(add-to-list 'display-buffer-alist
+             '("\\*eldoc\\*"
+               (display-buffer-below-selected)
+               (window-height . fit-window-to-buffer)
+               (preserve-size . (nil . t))))
 
 (use-package zig-mode :ensure t)
 (use-package rust-mode :ensure t)

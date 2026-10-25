@@ -15,6 +15,7 @@ PATH="$PATH:$HOME/opt/bin"
 PATH="$PATH:$HOME/.cargo/bin"
 PATH="$PATH:$HOME/go/bin"
 PATH="$PATH:$HOME/.opencode/bin"
+PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 export EDITOR="nvim"
 
 alias gg='gitu'

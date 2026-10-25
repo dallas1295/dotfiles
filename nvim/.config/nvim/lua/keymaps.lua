@@ -8,8 +8,7 @@ local keymap = vim.keymap -- for conciseness
 local function pack_clean()
 	local active_plugins = {}
 	local unused_plugins = {}
-
-	for _, plugin in ipairs(vim.pack.get()) do
+for _, plugin in ipairs(vim.pack.get()) do
 		active_plugins[plugin.spec.name] = plugin.active
 	end
 
@@ -47,11 +46,11 @@ keymap.set("n", "<leader>or", ":! odin run . ")
 -- exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
--- pane navigation
-keymap.set({ "n", "t" }, "<c-j>", ":wincmd j<CR>")
-keymap.set({ "n", "t" }, "<c-k>", ":wincmd k<CR>")
-keymap.set({ "n", "t" }, "<c-h>", ":wincmd h<CR>")
-keymap.set({ "n", "t" }, "<c-l>", ":wincmd l<CR>")
+-- -- pane navigation
+keymap.set({ "n", "t" }, "<M-j>", ":wincmd j<CR>")
+keymap.set({ "n", "t" }, "<M-k>", ":wincmd k<CR>")
+keymap.set({ "n", "t" }, "<M-h>", ":wincmd h<CR>")
+keymap.set({ "n", "t" }, "<M-l>", ":wincmd l<CR>")
 
 -- Diagnostics (via fzf-lua)
 keymap.set("n", "<leader>dw", function()
@@ -83,7 +82,6 @@ end, { expr = true })
 -- Fzf-lua
 keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
 keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "recent files" })
--- keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep search" })
 keymap.set("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search word under cursor" })
 keymap.set("n", "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Search WORD under cursor" })
 keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search highlighted" })
@@ -91,7 +89,6 @@ keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep i
 keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep resume=true<cr>", { desc = "Resume live grep in root" })
 keymap.set("n", "<leader>fp", "<cmd>FzfLua search_history<cr>", { desc = "Search History" })
 keymap.set("n", "<leader>i", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
--- keymap.set("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>", { desc = "Open quickfix" })
 
 -- LSP symbols and navigation (via fzf-lua)
 keymap.set("n", "gd", function()
@@ -143,6 +140,7 @@ keymap.set("n", "<leader>bk", "<C-w>5+", { desc = "Increase the height of the bu
 keymap.set("n", "<leader>bj", "<C-w>5-", { desc = "Decrease the height of the buffer split" })
 keymap.set("n", "<leader>bl", "<C-w>5<", { desc = "Increase the width of the buffer split" })
 keymap.set("n", "<leader>bh", "<C-w>5>", { desc = "Decrease the width of the buffer split" })
+keymap.set("n", "<leader>bo", "<C-w>o", { desc = "Breakout split buffer"})
 keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" })
 
 keymap.set("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create an empty buffer" })
@@ -154,8 +152,8 @@ keymap.set("n", "<leader>xc", "<cmd>q<CR>", { desc = "Close Neovim" })
 keymap.set("n", "<leader>xC", "<cmd>q!<CR>", { desc = "Force close Neovim" })
 
 -- Oil
-keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
--- keymap.set("n", "-", "<Cmd>Explore<CR>", { desc = "Open Explore" })
+-- keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
+keymap.set("n", "-", "<Cmd>Explore<CR>", { desc = "Open Netrw" })
 
 -- Neogit / Diffview
 keymap.set("n", "<leader>gg", function()
@@ -163,11 +161,7 @@ keymap.set("n", "<leader>gg", function()
 end, { desc = "Open Neogit" })
 keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diffview: repo changes" })
 keymap.set("n", "<leader>gH", "<cmd>DiffviewFileHistory %<cr>", { desc = "Diffview: history of current file" })
-keymap.set("n", "<leader>gx", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
-
---Trackor
-keymap.set("n", "<leader>ti", "<cmd>Trackor<cr>", { desc = "Trackor issues" })
-keymap.set("n", "<leader>tn", ":! trackor new ", { desc = "Trackor issues (quickfix)" })
+keymap.set("n", "<leader>gX", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
 
 -- Buffer navigation
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
@@ -242,7 +236,7 @@ local function toggle_terminal()
 end
 
 vim.keymap.set("n", "<leader>tt", toggle_terminal, { desc = "Toggle terminal (responsive size)" })
-keymap.set("t", "<esc><esc>", "<C-\\><C-n>:hide<CR>", { desc = "Hide terminal" })
+keymap.set("t", "qq", "<C-\\><C-n>:hide<CR>", { desc = "Hide terminal" })
 
 vim.api.nvim_create_autocmd("TermOpen", {
     callback = function()
