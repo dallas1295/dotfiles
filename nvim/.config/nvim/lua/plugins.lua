@@ -8,6 +8,8 @@ add({
 })
 
 vim.cmd.colorscheme("gruber-darker")
+
+
 -- Better highlights
 add({
 	{ src = "https://github.com/kevinhwang91/nvim-hlslens" },
@@ -40,11 +42,6 @@ require("diffview").setup({
 	},
 })
 
--- Flash
-add({
-	{ src = "https://github.com/folke/flash.nvim", name = "flash" },
-})
-
 -- Mini
 add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini.nvim" },
@@ -52,6 +49,7 @@ add({
 require("mini.snippets").setup()
 require("mini.completion").setup({})  
 require("mini.icons").setup()
+require("mini.jump").setup()
 require("mini.icons").mock_nvim_web_devicons()
 require("mini.surround").setup()
 require("mini.ai").setup()
@@ -87,7 +85,7 @@ hipatterns.setup({
 	},
 })
 
--- oil
+-- Oil
 -- add({
 -- 	{ src = "https://github.com/stevearc/oil.nvim", name = "oil" },
 -- })

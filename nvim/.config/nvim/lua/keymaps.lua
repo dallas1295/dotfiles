@@ -194,7 +194,7 @@ local term_win = nil
 
 local function toggle_terminal()
     -- 1. If terminal window is open and valid, close it (toggle off)
-    if term_win and vim.api.nvim_win_is_valid(term_win) then
+    if term_win and vim.api.nvim_win_is_valid(term_win) then 
         vim.api.nvim_win_close(term_win, true)
         term_win = nil
         return
