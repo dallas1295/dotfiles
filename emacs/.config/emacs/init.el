@@ -8,21 +8,6 @@
 ;; add elpaca hook for extensions
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
 
-(defun dallas/open-vterm-on-client-connect (&optional frame)
-  "Open or switch to vterm and make it take over the entire frame."
-  (when (daemonp)
-    (with-selected-frame (or frame (selected-frame))
-      (let ((vterm-buffer (get-buffer "*vterm*")))
-        (if vterm-buffer
-            (switch-to-buffer vterm-buffer)
-          (vterm)))
-      ;; After vterm is open (whether new or existing),
-      ;; wipe out any splits so it occupies 100% of the frame.
-      (delete-other-windows))))
-
-;; Hook into server window/frame creation for emacsclient
-(add-hook 'server-after-make-frame-hook #'dallas/open-vterm-on-client-connect)
-
 (dolist (dir '("~/.opencode/bin" "~/opt/bin" "~/.cargo/bin"
                "~/go/bin" "~/thirdparty/bin" "~/.local/bin"))
   (let ((dir (expand-file-name dir)))
@@ -41,19 +26,11 @@
 (setq display-line-numbers-type 'relative)
 (setq confirm-kill-processes nil)
 (setq use-short-answers t)
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            ;; 1. Make sure *scratch* exists and remains untouched
-            (get-buffer-create "*scratch*")
-            ;; 2. Create a dedicated *vterm* buffer, switch to it, and start vterm inside it
-            (let ((buf (get-buffer-create "*vterm*")))
-              (switch-to-buffer buf)
-              (vterm-mode))))
+(setq org-edit-src-content-indentation 0)
 
 (add-hook 'org-mode-hook
           (lambda ()
-            (let ((orig electrci-pair-inhibit-predicate))
+            (let ((orig electric-pair-inhibit-predicate))
               (setq-local electric-pair-inhibit-predicate
                           (lambda (c)
                             (if (char-equal c ?<) t (funcall orig c)))))))
@@ -66,13 +43,13 @@
 (column-number-mode 1)
 (show-paren-mode 1)
 (global-display-line-numbers-mode 1)
-(global-set-key (kbd  "<escape>") #'keyboard-quit)
+(global-set-key [escape] 'keyboard-escape-quit)
 (delete-selection-mode 1)
 (electric-indent-mode 1)
 (electric-pair-mode 1)
 (windmove-mode 1)
 (which-key-mode 1)
-;; (icomplete-mode 1)
+(windmove-default-keybindings)
 
 (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font-14"))
 (set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
@@ -96,7 +73,7 @@
 (global-set-key (kbd "C-c p g") 'projectile-grep)
 
 (global-set-key (kbd "C-c b d") 'delete-window)
-(global-set-key (kbd "C-c b D") 'kill-buffer-and-window)
+(global-set-key (kbd "C-c b q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-c b l") '(lambda () (interactive) (switch-to-buffer nil)))
 (global-set-key (kbd "C-c b s") #'split-window-right)
 (global-set-key (kbd "M-c c") 'compile)
@@ -109,8 +86,9 @@
 
 (advice-add #'compile :around #'my/compile-at-project-root)
 (global-set-key (kbd "C-c c") 'capitalize-word)
+(global-set-key (kbd "C-c d") 'dired-jump)
 
-(global-set-key (kbd "C-c t") 'vterm-toggle)
+
 (global-set-key (kbd "C-c g") 'magit)
 
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -120,7 +98,145 @@
 (global-set-key (kbd "C-c C-.") 'mc/mark-next-word-like-this)
 (global-set-key (kbd "C-C C-,") 'mc/mark-previous-like-this-word)
 
+(global-set-key (kbd "C-c o l") #'org-store-link)
+(global-set-key (kbd "C-c o a") #'org-agenda)
+(global-set-key (kbd "C-c o c") #'org-capture)
+
+(global-set-key (kbd "C-c C-l") 'buf-move-right)
+(global-set-key (kbd "C-c C-h") 'buf-move-left)
+(global-set-key (kbd "C-c C-n") 'buf-move-down)
+(global-set-key (kbd "C-c C-p") 'buf-move-up)
+
+(global-set-key (kbd "C-c s e") 'sudo-edit)
+(global-set-key (kbd "C-c s f") 'sudo-edit-find-file)
+
 ;; Dependencies
+(require 'windmove)
+;;;###autoload
+(defun buf-move-up ()
+  "Swap the current buffer and the buffer above the split.
+If there is no split, ie now window above the current one, an
+error is signaled."
+  ;;  "Switches between the current buffer, and the buffer above the
+  ;;  split, if possible."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'up))
+	     (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No window above this one")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-down ()
+  "Swap the current buffer and the buffer under the split.
+If there is no split, ie now window under the current one, an
+error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'down))
+	     (buf-this-buf (window-buffer (selected-window))))
+    (if (or (null other-win)
+            (string-match "^ \\*Minibuf" (buffer-name (window-buffer other-win))))
+        (error "No window under this one")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-left ()
+  "Swap the current buffer and the buffer on the left of the split.
+If there is no split, ie now window on the left of the current
+one, an error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'left))
+	     (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No left split")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-right ()
+  "Swap the current buffer and the buffer on the right of the split.
+If there is no split, ie now window on the right of the current
+one, an error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'right))
+	     (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No right split")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;; org
+(setq org-directory (expand-file-name "~/org/"))
+(setq org-capture-templates
+      '(("t" "Task" entry
+         (file+headline "~/org/inbox.org" "Tasks")
+         "* TODO %?\n")
+        ("n" "Note" entry
+         (file+headline "~/org/inbox.org" "Notes")
+         "* %?\n")))
+(unless (file-directory-p org-directory)
+  (make-directory org-directory t))
+
+;; Agenda reads Org files from ~/org
+(setq org-agenda-files (list org-directory))
+
+(setq org-default-notes-file
+      (expand-file-name "inbox.org" org-directory))
+
+(setq org-capture-templates
+      '(("t" "Task" entry
+         (file+headline "~/org/inbox.org" "Tasks")
+         "* TODO %?\n")
+        ("n" "Note" entry
+         (file+headline "~/org/inbox.org" "Notes")
+         "* %?\n")))
+
+(custom-set-faces
+ '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.6))))
+ '(org-level-3 ((t (:inherit outline-3 :height 1.5))))
+ '(org-level-4 ((t (:inherit outline-4 :height 1.4))))
+ '(org-level-5 ((t (:inherit outline-5 :height 1.3))))
+ '(org-level-6 ((t (:inherit outline-5 :height 1.2))))
+ '(org-level-7 ((t (:inherit outline-5 :height 1.1)))))
+
+(use-package toc-org
+  :ensure t
+  :commands toc-org-enable
+  :init
+  (add-hook 'org-mode-hook 'toc-org-enable))
+(add-hook 'org-mode-hook 'org-indent-mode)
+(use-package org-bullets
+  :ensure t)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;; | Typing the below + TAB | Expands to ...                          |
+;; |------------------------+-----------------------------------------|
+;; | <a                     | '#+BEGIN_EXPORT ascii' … '#+END_EXPORT  |
+;; | <c                     | '#+BEGIN_CENTER' … '#+END_CENTER'       |
+;; | <C                     | '#+BEGIN_COMMENT' … '#+END_COMMENT'     |
+;; | <e                     | '#+BEGIN_EXAMPLE' … '#+END_EXAMPLE'     |
+;; | <E                     | '#+BEGIN_EXPORT' … '#+END_EXPORT'       |
+;; | <h                     | '#+BEGIN_EXPORT html' … '#+END_EXPORT'  |
+;; | <l                     | '#+BEGIN_EXPORT latex' … '#+END_EXPORT' |
+;; | <q                     | '#+BEGIN_QUOTE' … '#+END_QUOTE'         |
+;; | <s                     | '#+BEGIN_SRC' … '#+END_SRC'             |
+;; | <v                     | '#+BEGIN_VERSE' … '#+END_VERSE'         |
+(require 'org-tempo)
 
 ;; dired and ibuffer
 (setq display-buffer-alist
@@ -200,42 +316,6 @@
 (use-package multiple-cursors
   :ensure t)
 
-;; vterm
-(use-package vterm
-  :ensure t
-  :config
-  (setq vterm-kill-buffer-on-exit t)
-  ;; This hook tells Emacs to follow the shell's current directory
-  (add-hook 'vterm-set-window-title-functions
-            (lambda (title)
-              (when (string-match-p "^vterm:" title)
-                ;; vterm passes directory info via title escape sequences
-                )))
-
-  ;; Alternatively, vterm has a built-in tracking mechanism:
-  (setq vterm-kill-buffer-on-exit t)
-  (add-hook 'vterm-mode-hook
-            (lambda ()
-              (setq-local vterm-directory-tracking t)
-              (display-line-numbers-mode -1)))
-  )
-
-(use-package vterm-toggle
-  :ensure t
-  :bind ("C-c t" . vterm-toggle)
-  :config
-  ;; Keep the toggle window neatly at the bottom using your display rules
-  (setq vterm-toggle-fullscreen-p nil)
-  (add-to-list 'display-buffer-alist
-               '("\\*vterm\\*"
-                 (display-buffer-below-selected)
-                 (window-height . 0.3)
-                 (preserve-size . (nil . t)))))
-
-;; Allow vterm to trigger find-file directly in the host Emacs instance
-(with-eval-after-load 'vterm
-  (add-to-list 'vterm-eval-cmds '("find-file" find-file)))
-
 ;; Projectile
 (use-package projectile
   :ensure t
@@ -252,18 +332,6 @@
   :bind ("C-," . embrace-commander))
 
 ;; Coding essentials
-;; ;; Completions
-;; (use-package corfu
-;;   :ensure t
-;;   :init
-;;   (global-corfu-mode)
-;;   :config
-;;   (setq
-;;    corfu-auto t
-;;    corfu-auto-delay 0.2
-;;    corfu-auto-trigger "."
-;;    corfu-quit-no-match 'separator))
-
 (use-package completion-preview
   :ensure nil
   :demand t
@@ -289,9 +357,6 @@
                (window-height . fit-window-to-buffer)
                (preserve-size . (nil . t))))
 
-;; I have a more detailed configuration (and explanation) that works
-;; with Emacs 31 built-in completion capabilities:
-;; https://protesilaos.com/codelog/2026-07-29-emacs-default-minibuffer-completion-overview/.
 (use-package minibuffer
   :ensure nil
   :demand t
@@ -355,13 +420,12 @@
   (setq eglot-code-action-indications nil)
   (setq eldoc-echo-area-use-multiline-p t)
   :hook ((go-mode . eglot-ensure)
-         (typescript-ts-mode . eglot-ensure)
          (rust-mode . eglot-ensure)
-         (tsx-mode . eglot-ensure)
          (lua-mode . eglot-ensure)
          (html-mode . eglot-ensure)
+         (odin-mode . eglot-ensure)
          (css-mode . eglot-ensure)
-         (web-mode . eglot-ensure)
+         (c-mode . eglot-ensure)
          (odin-mode . eglot-ensure))
   :bind (:map eglot-mode-map
               ("C-c k" . dallas/toggle-eldoc-box)
@@ -374,6 +438,10 @@
   (setq-default eglot-workspace-configuration
                 '((:gopls . ((staticcheck . t))))))
 
+;; Add a hook to autostart OLS
+(add-hook 'odin-mode-hook #'eglot-ensure)
+
+
 
 
 (use-package eldoc
@@ -385,6 +453,12 @@
   ;; Allow ElDoc to use up to 5 lines so long signatures fit cleanly
   (setq eldoc-echo-area-use-multiline-p 5)
   (setq eldoc-idle-delay 0.1))
+
+(defun my/disable-flymake-for-c ()
+  (when (derived-mode-p 'c-mode 'c++-mode)
+    (flymake-mode -1)))
+
+(add-hook 'eglot-managed-mode-hook #'my/disable-flymake-for-c)
 
 ;; eldoc-box (Strictly on-demand via C-c k)
 (use-package eldoc-box
@@ -400,14 +474,13 @@
 (use-package rust-mode :ensure t)
 (use-package yaml-mode :ensure t)
 (use-package toml-mode :ensure t)
-(use-package typescript-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
 (use-package lua-mode :ensure t)
-(defun my-odin-mode-setup ()
-  (setq-local indent-tabs-mode t)
-  (setq-local indent-line-function #'indent-relative))
+;; (defun my-odin-mode-setup ()
+;;   (setq-local indent-tabs-mode t)
+;;   (setq-local indent-line-function #'indent-relative))
 
+;; Enable odin-mode and configure OLS as the language server
 (use-package odin-mode
   :ensure (:host github :repo "mattt-b/odin-mode")
-  :mode ("\\.odin\\'" . odin-mode)
-  :hook (odin-mode . my-odin-mode-setup))
+  :mode ("\\.odin\\'" . odin-mode))

@@ -9,13 +9,20 @@ add({
 
 vim.cmd.colorscheme("gruber-darker")
 
-
 -- Better highlights
 add({
 	{ src = "https://github.com/kevinhwang91/nvim-hlslens" },
 })
 
 require("hlslens").setup()
+
+-- org.nvim
+add({ "https://github.com/xheisenbugx/org.nvim" })
+require("org").setup({
+	org_directory = "~/org",
+	agenda_files = { "~/org/**/*.org" },
+	default_notes_file = "~/org/refile.org",
+})
 
 -- which-key
 add({
@@ -42,12 +49,17 @@ require("diffview").setup({
 	},
 })
 
+-- Tmux
+add({
+	{ src = "https://github.com/alexghergh/nvim-tmux-navigation" },
+})
+
 -- Mini
 add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini.nvim" },
 })
 require("mini.snippets").setup()
-require("mini.completion").setup({})  
+require("mini.completion").setup({})
 require("mini.icons").setup()
 require("mini.jump").setup()
 require("mini.icons").mock_nvim_web_devicons()

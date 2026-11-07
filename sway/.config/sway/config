@@ -1,14 +1,12 @@
-exec pipewire
 set $mod Mod4
 
 set $terminal foot
+set $editor emacs
 set $fileManager thunar
 set $menu rofi -show drun
-# set $menu noctalia msg panel-toggle launcher
-set $browser flatpak run io.gitlab.librewolf-community
+set $browser firefox
 
 set $lock swaylock -f
-# set $lock noctalia msg session lock
 
 # bar {
 #     position bottom
@@ -28,36 +26,34 @@ set $lock swaylock -f
 # }
 
 exec autotiling
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
 # exec flatpak run com.surfshark.Surfshark
-# exec syncthing
+exec blueman-applet
+exec syncthing
 exec swaync
 exec lxqt-policykit-agent
 exec waybar
+exec keepassxc
 # exec_always --no-startup-id "pkill -x kanshi; kanshi"
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
 exec ~/dotfiles/scripts/tlp-notify
 
-# kanshi desyncs from display state across output power off/on and can
-# get stuck re-applying profiles in a loop (displays flashing). Restart it
-# on resume so it re-syncs fresh; the pgrep guard leaves it alone when it
-# was already stopped (manual dual-screen mode via toggle-edp1.sh).
 exec_always pkill -x swayidle; swayidle -w \
     timeout 540 'brightnessctl -q -s set 10%' \
     timeout 600 '$lock' \
     timeout 1000 'swaymsg output "*" power off' \
-    resume 'swaymsg output "*" power on && brightnessctl -q -r; pgrep -x kanshi >/dev/null && { pkill -x kanshi; kanshi >/dev/null 2>&1 & }' \
+    resume 'swaymsg output "*" power on && brightnessctl -q -s set 70%; pgrep -x kanshi >/dev/null && { pkill -x kanshi; kanshi >/dev/null 2>&1 & }' \
     before-sleep '$lock'
-#
+
 # output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
 output eDP-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
-output eDP-1 mode 2880x1800@120Hz scale 1.6 position 0 0
+output eDP-1 mode 2880x1800@120Hz scale 1.5 position 0 0
 
 
-default_border normal 1
-# default_border pixel 1
+# default_border normal 1
+default_border pixel 1
 default_floating_border normal 5
 gaps inner 5
 gaps outer 3
@@ -94,18 +90,18 @@ input * {
     # xkb_file ~/.config/xkb/custom
 }
 
-
-
 seat * hide_cursor 5000
 
 focus_on_window_activation urgent
 
-bindsym $mod+Return exec $terminal
+bindsym $mod+Return exec $editor
+bindsym $mod+t exec $terminal
+# bindsym $mod+Return exec $terminal
 bindsym $mod+q kill
 bindsym $mod+Shift+End exit
 bindsym $mod+e exec $fileManager
 bindsym $mod+Shift+v floating toggle
-bindsym $mod+Tab focus mode_toggle
+bindsym $mod+Shift+Tab focus mode_toggle
 bindsym $mod+space exec $menu
 bindsym $mod+Shift+space exec rofi -show run
 bindsym $mod+Shift+n exec swaync-client -t -sw
@@ -113,14 +109,13 @@ bindsym $mod+m exec firefox --new-window localhost:7337
 bindsym $mod+alt+p exec ~/dotfiles/scripts/tlp-change
 
 bindsym $mod+r reload
+bindsym $mod+Tab focus mode_toggle
 
 bindsym $mod+shift+m exec ~/.config/sway/toggle-edp1.sh
 
 bindsym $mod+Shift+c exec "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-# bindsym $mod+Shift+c exec noctalia msg panel-toggle clipboard
 
 bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:/home/dallas/thirdparty/data/rofi-power-menu/rofi-power-menu
-# bindsym $mod+Shift+p exec noctalia msg panel-toggle session
 bindsym $mod+alt+L exec $lock
 
 bindsym $mod+Shift+s exec grim -w "$(swaymsg -t get_tree | jq -j '.. | select(.focused?) .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "$HOME/Pictures/window-$(date +%Y%m%d-%H%M%S).png"
@@ -147,9 +142,6 @@ bindsym $mod+Ctrl+k  resize grow height 20 px or 20 ppt
 
 bindsym $mod+Shift+r move container to workspace current
 bindsym $mod+f fullscreen toggle
-
-# for_window [workspace=1] layout stacking
-# for_window [workspace=3] layout tabbed
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -230,13 +222,8 @@ no_focus [title="^Picture-in-Picture$"]
 for_window [app_id="^thunar$"] floating enable
 for_window [class="^thunar$"] floating enable
 
-for_window [title="^llama-ui — Mozilla Firefox$"] \
-    floating enable, \
-    resize set 769 746, \
-    move position 892 px 233 px
-
-for_window [app_id="^foot$"] move to workspace 1, focus
-for_window [app_id="^com.mitchellh.ghostty$"] move to workspace 1, focus
+for_window [app_id="^foot$"] move to scratchpad, focus, resize set 1069 736
+for_window [app_id="^emacs$"] move to workspace 1, focus
 
 for_window [class="^steam$"] move to workspace 3, no focus
 for_window [class="^steam$"] [title="^Friends List"] \
@@ -246,11 +233,13 @@ for_window [class="^steam$"] [title="^Friends List"] \
   move position 761 101, \
   no focus,
 
-for_window [app_id="^lxqt-policykit-agent"] floating
+for_window [app_id="^lxqt-policykit-agent"] floating enable
 for_window [app_id="^com.heroicgameslauncher.hgl$"] move to workspace 3, no focus
-for_window [class="^wechat$"] move to workspace 4, floating
-for_window [app_id="^discord$"] move to workspace 4, floating
+for_window [app_id="^wechat$"] move to workspace 4, floating enable
+for_window [app_id="^discord$"] move to workspace 4, floating enable
+for_window [app_id="^audacious$"] move to workspace 4
 for_window [app_id="^io.github.Faugus.faugus-launcher$"] move to workspace 4, no focus
+for_window [app_id="^org.keepassxc.KeePassXC$"] move to scratchpad, focus, floating enable
 no_focus [class="^steam$"]
 no_focus [app_id="^steam$"]
 no_focus [class="^wechat$"]
@@ -261,7 +250,7 @@ for_window [window_role="dialog"] floating enable
 
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen
-# for_window [app_id=.*] focus
+for_window [app_id=.*] focus
 
 for_window [title = "^BTOP$"] \
   floating enable, \

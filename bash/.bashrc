@@ -10,12 +10,15 @@ if [ "$INSIDE_EMACS" = "vterm" ]; then
     }
 fi
 
+# if [ -z "$TMUX" ] && [ -t 1 ]; then
+#   tmux attach -t main 2>/dev/null || tmux new -s main
+# fi
+
 PATH="$PATH:$HOME/thirdparty/bin"
 PATH="$PATH:$HOME/opt/bin"
 PATH="$PATH:$HOME/.cargo/bin"
 PATH="$PATH:$HOME/go/bin"
 PATH="$PATH:$HOME/.opencode/bin"
-PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 export EDITOR="nvim"
 
 alias gg='gitu'
@@ -53,7 +56,5 @@ source -- ~/thirdparty/bin/share/blesh/ble.sh
     . /usr/share/bash-completion/bash_completion
 
 
-
 # Pi
-export PATH="$HOME/.local/bin:$PATH"
-. "$HOME/.cargo/env"
+export PATH="/home/dallas/.pi/agent/bin:$PATH"

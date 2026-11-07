@@ -8,7 +8,7 @@ local keymap = vim.keymap -- for conciseness
 local function pack_clean()
 	local active_plugins = {}
 	local unused_plugins = {}
-for _, plugin in ipairs(vim.pack.get()) do
+	for _, plugin in ipairs(vim.pack.get()) do
 		active_plugins[plugin.spec.name] = plugin.active
 	end
 
@@ -41,7 +41,6 @@ keymap.set("n", "<leader>rr", ":Crun<CR>")
 keymap.set("n", "<leader>rb", ":Cbuild ")
 keymap.set("n", "<leader>rc", ":Ccheck<CR>")
 keymap.set("n", "<leader>rt", "<cmd>! cargo test -- --show-output<CR>")
-keymap.set("n", "<leader>or", ":! odin run . ")
 
 -- exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
@@ -71,22 +70,14 @@ end, { desc = "Go to next diagnostic error" })
 
 vim.keymap.set("n", "dl", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 
--- super-tab
-vim.keymap.set("i", "<Tab>", function()
-	if vim.fn.pumvisible() == 1 then
-		return vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
-	end
-	return vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
-end, { expr = true })
-
 -- Fzf-lua
 keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
 keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "recent files" })
 keymap.set("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search word under cursor" })
 keymap.set("n", "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Search WORD under cursor" })
 keymap.set("n", "<leader>fv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search highlighted" })
-keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep in root" })
-keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep resume=true<cr>", { desc = "Resume live grep in root" })
+keymap.set("n", "<leader>fL", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep in root" })
+keymap.set("n", "<leader>fl", "<cmd>FzfLua live_grep resume=true<cr>", { desc = "Resume live grep in root" })
 keymap.set("n", "<leader>fp", "<cmd>FzfLua search_history<cr>", { desc = "Search History" })
 keymap.set("n", "<leader>i", "<cmd>FzfLua buffers<cr>", { desc = "Show buffers" })
 
@@ -127,6 +118,9 @@ keymap.set("n", "<leader>lw", function()
 	vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle line wrapping" })
 
+-- Multiple Cursors
+keymap.set("n", "C", "Q")
+
 -- Yank/paste to/from system clipboard
 keymap.set("v", "<leader>y", '"+y', { desc = "Yank selection to system clipboard" })
 keymap.set("n", "<leader>yy", '"+yy', { desc = "Yank line to system clipboard" })
@@ -140,7 +134,7 @@ keymap.set("n", "<leader>bk", "<C-w>5+", { desc = "Increase the height of the bu
 keymap.set("n", "<leader>bj", "<C-w>5-", { desc = "Decrease the height of the buffer split" })
 keymap.set("n", "<leader>bl", "<C-w>5<", { desc = "Increase the width of the buffer split" })
 keymap.set("n", "<leader>bh", "<C-w>5>", { desc = "Decrease the width of the buffer split" })
-keymap.set("n", "<leader>bo", "<C-w>o", { desc = "Breakout split buffer"})
+keymap.set("n", "<leader>bo", "<C-w>o", { desc = "Breakout split buffer" })
 keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" })
 
 keymap.set("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create an empty buffer" })
@@ -151,8 +145,6 @@ keymap.set("n", "<leader>xs", "<cmd>w<CR>", { desc = "Close current buffer" })
 keymap.set("n", "<leader>xc", "<cmd>q<CR>", { desc = "Close Neovim" })
 keymap.set("n", "<leader>xC", "<cmd>q!<CR>", { desc = "Force close Neovim" })
 
--- Oil
--- keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open Oil" })
 keymap.set("n", "-", "<Cmd>Explore<CR>", { desc = "Open Netrw" })
 
 -- Neogit / Diffview
@@ -167,83 +159,66 @@ keymap.set("n", "<leader>gX", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview
 keymap.set("n", "<S-h>", "<Cmd>bprev<CR>", { desc = "Previous buffer" })
 keymap.set("n", "<S-l>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
 
--- Flash
-keymap.set({ "n", "x", "o" }, "z", function()
-	require("flash").jump()
-end, { desc = "Flash Jump" })
-
-keymap.set({ "n", "x", "o" }, "Z", function()
-	require("flash").treesitter()
-end, { desc = "Flash Treesitter-based select" })
-
-keymap.set("o", "r", function()
-	require("flash").remote()
-end, { desc = "Flash remote" })
-
-keymap.set({ "x", "o" }, "R", function()
-	require("flash").treesitter_search()
-end, { desc = "Treesitter Search" })
-
-keymap.set("c", "<C-s>", function()
-	require("flash").toggle()
-end, { desc = "Toggle Flash Search" })
-
 -- Terminal
 local term_buf = nil
 local term_win = nil
 
 local function toggle_terminal()
-    -- 1. If terminal window is open and valid, close it (toggle off)
-    if term_win and vim.api.nvim_win_is_valid(term_win) then 
-        vim.api.nvim_win_close(term_win, true)
-        term_win = nil
-        return
-    end
+	-- 1. If terminal window is open and valid, close it (toggle off)
+	if term_win and vim.api.nvim_win_is_valid(term_win) then
+		vim.api.nvim_win_close(term_win, true)
+		term_win = nil
+		return
+	end
 
-    local current_win = vim.api.nvim_get_current_win()
-    local win_width = vim.api.nvim_win_get_width(current_win)
-    local win_height = vim.api.nvim_win_get_height(current_win)
+	local current_win = vim.api.nvim_get_current_win()
+	local win_width = vim.api.nvim_win_get_width(current_win)
+	local win_height = vim.api.nvim_win_get_height(current_win)
 
-    -- Target: 100 char line + 10 chars padding = 110 chars needed for vertical split
-    if win_width >= 110 then
-        -- Open vertical split taking remaining width beyond 110 chars
-        local target_width = win_width - 110
-        -- Prevent zero or tiny windows on exact edge cases
-        if target_width < 15 then target_width = 15 end
-        
-        vim.cmd(target_width .. "vsplit")
-    else
-        -- Open horizontal split using a standard proportion (e.g., 30% of current height)
-        local target_height = math.floor(win_height * 0.3)
-        if target_height < 5 then target_height = 5 end
-        
-        vim.cmd(target_height .. "split")
-    end
+	-- Target: 100 char line + 10 chars padding = 110 chars needed for vertical split
+	if win_width >= 110 then
+		-- Open vertical split taking remaining width beyond 110 chars
+		local target_width = win_width - 110
+		-- Prevent zero or tiny windows on exact edge cases
+		if target_width < 15 then
+			target_width = 15
+		end
 
-    term_win = vim.api.nvim_get_current_win()
+		vim.cmd(target_width .. "vsplit")
+	else
+		-- Open horizontal split using a standard proportion (e.g., 30% of current height)
+		local target_height = math.floor(win_height * 0.3)
+		if target_height < 5 then
+			target_height = 5
+		end
 
-    -- 2. Reuse terminal buffer if valid, otherwise create a new one
-    if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
-        vim.api.nvim_win_set_buf(term_win, term_buf)
-    else
-        vim.cmd("terminal")
-        term_buf = vim.api.nvim_get_current_buf()
-        -- Keep buffer unlisted so it never pollutes :bnext / :bprevious
-        vim.bo[term_buf].buflisted = false
-    end
+		vim.cmd(target_height .. "split")
+	end
 
-    vim.cmd("startinsert")
+	term_win = vim.api.nvim_get_current_win()
+
+	-- 2. Reuse terminal buffer if valid, otherwise create a new one
+	if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+		vim.api.nvim_win_set_buf(term_win, term_buf)
+	else
+		vim.cmd("terminal")
+		term_buf = vim.api.nvim_get_current_buf()
+		-- Keep buffer unlisted so it never pollutes :bnext / :bprevious
+		vim.bo[term_buf].buflisted = false
+	end
+
+	vim.cmd("startinsert")
 end
 
 vim.keymap.set("n", "<leader>tt", toggle_terminal, { desc = "Toggle terminal (responsive size)" })
 keymap.set("t", "qq", "<C-\\><C-n>:hide<CR>", { desc = "Hide terminal" })
 
 vim.api.nvim_create_autocmd("TermOpen", {
-    callback = function()
-        local opts = { buffer = 0, desc = "Toggle terminal normal/insert mode" }
-        -- From live terminal -> enter normal mode (to select, copy, or view)
-        vim.keymap.set("t", "<C-c><C-t>", "<C-\\><C-n>", opts)
-        -- From normal mode -> return to live terminal
-        vim.keymap.set("n", "<C-c><C-t>", "<cmd>startinsert<CR>", opts)
-    end,
+	callback = function()
+		local opts = { buffer = 0, desc = "Toggle terminal normal/insert mode" }
+		-- From live terminal -> enter normal mode (to select, copy, or view)
+		vim.keymap.set("t", "<C-c><C-t>", "<C-\\><C-n>", opts)
+		-- From normal mode -> return to live terminal
+		vim.keymap.set("n", "<C-c><C-t>", "<cmd>startinsert<CR>", opts)
+	end,
 })

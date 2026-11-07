@@ -9,5 +9,5 @@ profile docked {
 }
 
 profile default {
-    output eDP-1 enable mode 2880x1800@120Hz scale 1.6 position 0,0
+    output eDP-1 enable mode 2880x1800@120Hz scale 1.5 position 0,0
 }
