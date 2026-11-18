@@ -16,14 +16,6 @@ add({
 
 require("hlslens").setup()
 
--- org.nvim
-add({ "https://github.com/xheisenbugx/org.nvim" })
-require("org").setup({
-	org_directory = "~/org",
-	agenda_files = { "~/org/**/*.org" },
-	default_notes_file = "~/org/refile.org",
-})
-
 -- which-key
 add({
 	{ src = "https://github.com/folke/which-key.nvim" },

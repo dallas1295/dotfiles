@@ -34,13 +34,11 @@ keymap.set("n", "<leader>ll", function()
 	vim.pack.update()
 end)
 
--- functions
-keymap.set("n", "<leader>cc", ":make!<CR>", { desc = "Compile C Project" })
-keymap.set("n", "<leader>co", ":copen<CR>", { desc = "Open Compiler Quickfix List" })
-keymap.set("n", "<leader>rr", ":Crun<CR>")
-keymap.set("n", "<leader>rb", ":Cbuild ")
-keymap.set("n", "<leader>rc", ":Ccheck<CR>")
-keymap.set("n", "<leader>rt", "<cmd>! cargo test -- --show-output<CR>")
+-- Normal mode
+vim.keymap.set("n", "<C-e>", "$", { desc = "End of line" })
+vim.keymap.set("n", "<C-a>", "^", { desc = "Start of line" })
+vim.keymap.set("i", "<C-e>", "<End>")
+vim.keymap.set("i", "<C-a>", "<Home>")
 
 -- exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })

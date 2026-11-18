@@ -46,6 +46,7 @@
 (global-set-key [escape] 'keyboard-escape-quit)
 (delete-selection-mode 1)
 (electric-indent-mode 1)
+(add-hook 'c-mode-hook #'(lambda () (electric-indent-mode -1)))
 (electric-pair-mode 1)
 (windmove-mode 1)
 (which-key-mode 1)
@@ -102,83 +103,10 @@
 (global-set-key (kbd "C-c o a") #'org-agenda)
 (global-set-key (kbd "C-c o c") #'org-capture)
 
-(global-set-key (kbd "C-c C-l") 'buf-move-right)
-(global-set-key (kbd "C-c C-h") 'buf-move-left)
-(global-set-key (kbd "C-c C-n") 'buf-move-down)
-(global-set-key (kbd "C-c C-p") 'buf-move-up)
-
 (global-set-key (kbd "C-c s e") 'sudo-edit)
 (global-set-key (kbd "C-c s f") 'sudo-edit-find-file)
 
 ;; Dependencies
-(require 'windmove)
-;;;###autoload
-(defun buf-move-up ()
-  "Swap the current buffer and the buffer above the split.
-If there is no split, ie now window above the current one, an
-error is signaled."
-  ;;  "Switches between the current buffer, and the buffer above the
-  ;;  split, if possible."
-  (interactive)
-  (let* ((other-win (windmove-find-other-window 'up))
-	     (buf-this-buf (window-buffer (selected-window))))
-    (if (null other-win)
-        (error "No window above this one")
-      ;; swap top with this one
-      (set-window-buffer (selected-window) (window-buffer other-win))
-      ;; move this one to top
-      (set-window-buffer other-win buf-this-buf)
-      (select-window other-win))))
-
-;;;###autoload
-(defun buf-move-down ()
-  "Swap the current buffer and the buffer under the split.
-If there is no split, ie now window under the current one, an
-error is signaled."
-  (interactive)
-  (let* ((other-win (windmove-find-other-window 'down))
-	     (buf-this-buf (window-buffer (selected-window))))
-    (if (or (null other-win)
-            (string-match "^ \\*Minibuf" (buffer-name (window-buffer other-win))))
-        (error "No window under this one")
-      ;; swap top with this one
-      (set-window-buffer (selected-window) (window-buffer other-win))
-      ;; move this one to top
-      (set-window-buffer other-win buf-this-buf)
-      (select-window other-win))))
-
-;;;###autoload
-(defun buf-move-left ()
-  "Swap the current buffer and the buffer on the left of the split.
-If there is no split, ie now window on the left of the current
-one, an error is signaled."
-  (interactive)
-  (let* ((other-win (windmove-find-other-window 'left))
-	     (buf-this-buf (window-buffer (selected-window))))
-    (if (null other-win)
-        (error "No left split")
-      ;; swap top with this one
-      (set-window-buffer (selected-window) (window-buffer other-win))
-      ;; move this one to top
-      (set-window-buffer other-win buf-this-buf)
-      (select-window other-win))))
-
-;;;###autoload
-(defun buf-move-right ()
-  "Swap the current buffer and the buffer on the right of the split.
-If there is no split, ie now window on the right of the current
-one, an error is signaled."
-  (interactive)
-  (let* ((other-win (windmove-find-other-window 'right))
-	     (buf-this-buf (window-buffer (selected-window))))
-    (if (null other-win)
-        (error "No right split")
-      ;; swap top with this one
-      (set-window-buffer (selected-window) (window-buffer other-win))
-      ;; move this one to top
-      (set-window-buffer other-win buf-this-buf)
-      (select-window other-win))))
-
 ;; org
 (setq org-directory (expand-file-name "~/org/"))
 (setq org-capture-templates
@@ -279,6 +207,16 @@ one, an error is signaled."
   :config
   (load-theme 'gruber-darker t))
 
+(use-package sleek-modeline
+  :ensure t
+  :custom
+  (sleek-modeline-size 'small)
+  (sleek-modeline-separator " | ")
+  (sleek-modeline-disabled-modes '(dired-mode vterm-mode help-mode))
+  :config
+  (sleek-modeline-mode 1)
+  (sleek-modeline-vc-enable))
+
 ;; QoL
 (use-package diminish
   :ensure t)
@@ -326,10 +264,6 @@ one, an error is signaled."
   (setq projectile-project-search-path '("~/Projects"))
   (setq projectile-enable-caching t))
 
-
-(use-package embrace
-  :ensure t
-  :bind ("C-," . embrace-commander))
 
 ;; Coding essentials
 (use-package completion-preview
@@ -420,12 +354,12 @@ one, an error is signaled."
   (setq eglot-code-action-indications nil)
   (setq eldoc-echo-area-use-multiline-p t)
   :hook ((go-mode . eglot-ensure)
-         (rust-mode . eglot-ensure)
+         ;; (rust-mode . eglot-ensure)
          (lua-mode . eglot-ensure)
          (html-mode . eglot-ensure)
          (odin-mode . eglot-ensure)
+         (c-mode .eglot-ensure)
          (css-mode . eglot-ensure)
-         (c-mode . eglot-ensure)
          (odin-mode . eglot-ensure))
   :bind (:map eglot-mode-map
               ("C-c k" . dallas/toggle-eldoc-box)
@@ -440,9 +374,6 @@ one, an error is signaled."
 
 ;; Add a hook to autostart OLS
 (add-hook 'odin-mode-hook #'eglot-ensure)
-
-
-
 
 (use-package eldoc
   :ensure nil
@@ -476,9 +407,6 @@ one, an error is signaled."
 (use-package toml-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
 (use-package lua-mode :ensure t)
-;; (defun my-odin-mode-setup ()
-;;   (setq-local indent-tabs-mode t)
-;;   (setq-local indent-line-function #'indent-relative))
 
 ;; Enable odin-mode and configure OLS as the language server
 (use-package odin-mode

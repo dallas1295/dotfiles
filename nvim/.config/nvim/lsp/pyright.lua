@@ -10,7 +10,7 @@ return {
 		"Pipfile",
 		".git",
 	},
-	settings = {
+	settings = {  
 		python = {
 			analysis = {
 				autoSearchPaths = true,
