@@ -34,14 +34,8 @@ keymap.set("n", "<leader>ll", function()
 	vim.pack.update()
 end)
 
--- Normal mode
-vim.keymap.set("n", "<C-e>", "$", { desc = "End of line" })
-vim.keymap.set("n", "<C-a>", "^", { desc = "Start of line" })
-vim.keymap.set("i", "<C-e>", "<End>")
-vim.keymap.set("i", "<C-a>", "<Home>")
-
 -- exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+-- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 -- -- pane navigation
 keymap.set({ "n", "t" }, "<M-j>", ":wincmd j<CR>")

@@ -89,28 +89,7 @@ hipatterns.setup({
 	},
 })
 
--- Oil
--- add({
--- 	{ src = "https://github.com/stevearc/oil.nvim", name = "oil" },
--- })
--- require("oil").setup({
--- 	default_file_explorer = false,
---   win_options = {
---     wrap = false,
---     signcolumn = "no",
---     cursorcolumn = false,
---     foldcolumn = "0",
---     spell = false,
---     list = false,
---     conceallevel = 3,
---     concealcursor = "nvic",
---   },
---   view_options = {
---     show_hidden = true,
---   },
--- })
---
--- fzf
+-- FZF
 add({
 	{ src = "https://github.com/ibhagwan/fzf-lua", name = "fzf-lua" },
 })

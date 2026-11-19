@@ -40,8 +40,8 @@ alias mu='~/thirdparty/data/mullvad/mullvad_up.sh'
 alias md='~/thirdparty/data/mullvad/mullvad_down.sh'
 
 alias grep='grep --color=auto'
-alias ls='ls -pA --color=auto'
-alias ll='ls -plhA --color=auto'
+alias ls='lsd -A --color=auto'
+alias ll='lsd -lhA --color=auto'
 alias hl='rg --passthru'
 
 export FZF_DEFAULT_COMMAND='fd --hidden --exclude .git --type f'

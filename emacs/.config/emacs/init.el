@@ -214,8 +214,7 @@
   (sleek-modeline-separator " | ")
   (sleek-modeline-disabled-modes '(dired-mode vterm-mode help-mode))
   :config
-  (sleek-modeline-mode 1)
-  (sleek-modeline-vc-enable))
+  (sleek-modeline-mode 1))
 
 ;; QoL
 (use-package diminish
@@ -358,7 +357,7 @@
          (lua-mode . eglot-ensure)
          (html-mode . eglot-ensure)
          (odin-mode . eglot-ensure)
-         (c-mode .eglot-ensure)
+         (c-mode . eglot-ensure)
          (css-mode . eglot-ensure)
          (odin-mode . eglot-ensure))
   :bind (:map eglot-mode-map

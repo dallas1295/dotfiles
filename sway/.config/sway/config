@@ -1,7 +1,7 @@
 set $mod Mod4
 
 set $terminal foot
-set $editor emacs
+# set $editor emacs
 set $fileManager thunar
 set $menu rofi -show drun
 set $browser librewolf
@@ -35,7 +35,7 @@ exec swaync
 exec lxqt-policykit-agent
 exec waybar
 exec keepassxc
-# exec_always --no-startup-id "pkill -x kanshi; kanshi"
+exec_always --no-startup-id "pkill -x kanshi; kanshi"
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec $terminal
@@ -50,7 +50,7 @@ exec_always pkill -x swayidle; swayidle -w \
 
 # output HDMI-A-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
 output eDP-1 bg ~/dotfiles/sway/.config/sway/bwsquiggly.png fill
-output eDP-1 mode 2880x1800@120Hz scale 1.5 position 0 0
+# output eDP-1 mode 2880x1800@120Hz scale 1.5 position 0 0
 
 
 # default_border normal 1
@@ -95,9 +95,9 @@ seat * hide_cursor 5000
 
 focus_on_window_activation urgent
 
-bindsym $mod+Return exec $editor
-bindsym $mod+t exec $terminal
-# bindsym $mod+Return exec $terminal
+# bindsym $mod+Return exec $editor
+# bindsym $mod+t exec $terminal
+bindsym $mod+Return exec $terminal
 bindsym $mod+q kill
 bindsym $mod+Shift+End exit
 bindsym $mod+e exec $fileManager
@@ -204,6 +204,7 @@ bindsym XF86AudioPrev exec playerctl previous
 for_window [app_id="^firefox$"] move to workspace 2, focus
 for_window [app_id="^librewolf$"] move to workspace 2, focus
 for_window [app_id="^brave-browser$"] move to workspace 2
+for_window [app_id="^org.mozilla.Thunderbird$"] move to workspace 2
 for_window [title="^Grayjay$"] \
 floating enable, \
 resize set 1300 900, \
