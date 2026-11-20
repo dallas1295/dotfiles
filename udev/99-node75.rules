@@ -1,0 +1,26 @@
+# Nuphy Node75 LP USB-udev rules
+# Install to /etc/udev/rules.d so Nuphy Node75 devices can be used and
+# firmware-updated without root:
+#
+#   sudo cp 99-node75.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload-rules
+#   sudo udevadm trigger
+#
+# Vendor id for all NuPhy devices is 19f5.
+#
+#   Nuphy Node75 LP             -> 1030  (the keyboard itself)
+#   Nuphy Node75 LP Upgrader    -> 0730  (firmware updater / DFU interface)
+#   Nuphy Node 75 LP Dongle     -> 2620  (wireless dongle/receiver)
+#   NuPhy Dongle Upgrader       -> 1020  (dongle bootloader/DFU mode during firmware update)
+
+# Access the keyboard and its updater over USB without being root.
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="19f5", ATTR{idProduct}=="1030", MODE="0666"
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="19f5", ATTR{idProduct}=="0730", MODE="0666"
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="19f5", ATTR{idProduct}=="2620", MODE="0666"
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="19f5", ATTR{idProduct}=="1020", MODE="0666"
+
+# Access the corresponding hidraw interfaces without being root.
+KERNEL=="hidraw*", ATTRS{idVendor}=="19f5", ATTRS{idProduct}=="1030", MODE="0666"
+KERNEL=="hidraw*", ATTRS{idVendor}=="19f5", ATTRS{idProduct}=="0730", MODE="0666"
+KERNEL=="hidraw*", ATTRS{idVendor}=="19f5", ATTRS{idProduct}=="2620", MODE="0666"
+KERNEL=="hidraw*", ATTRS{idVendor}=="19f5", ATTRS{idProduct}=="1020", MODE="0666"
