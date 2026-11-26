@@ -75,8 +75,8 @@
       "󰛨 "
     ],
     "on-click": "",
-    "on-scroll-up": "brightnessctl set 5%-",
-    "on-scroll-down": "brightnessctl set +5%"
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-"
   },
   "battery": {
     "adapter": "ADP1",

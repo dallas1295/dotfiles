@@ -58,6 +58,7 @@ require("mini.icons").mock_nvim_web_devicons()
 require("mini.surround").setup()
 require("mini.ai").setup()
 require("mini.pairs").setup()
+require("mini.tabline").setup()
 require("mini.statusline").setup()
 require("mini.statuscolumn").setup()
 require("mini.diff").setup({

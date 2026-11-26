@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t; -*-
+;; -*- lexical-binding: t; no-byte-compile: t; no-native-compile: t; -*-
 ;; lexical bindings
 (set-default-toplevel-value 'lexical-binding t)
 
@@ -27,6 +27,16 @@
 (setq confirm-kill-processes nil)
 (setq use-short-answers t)
 (setq org-edit-src-content-indentation 0)
+
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            ;; 1. Make sure *scratch* exists and remains untouched
+            (get-buffer-create "*scratch*")
+            ;; 2. Create a dedicated *vterm* buffer, switch to it, and start vterm inside it
+            (let ((buf (get-buffer-create "*vterm*")))
+              (switch-to-buffer buf)
+              (vterm-mode))))
 
 (add-hook 'org-mode-hook
           (lambda ()
@@ -91,6 +101,8 @@
 
 
 (global-set-key (kbd "C-c g") 'magit)
+(global-set-key (kbd "C-c t") 'vterm-toggle)
+
 
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -164,6 +176,7 @@
 ;; | <q                     | '#+BEGIN_QUOTE' … '#+END_QUOTE'         |
 ;; | <s                     | '#+BEGIN_SRC' … '#+END_SRC'             |
 ;; | <v                     | '#+BEGIN_VERSE' … '#+END_VERSE'         |
+
 (require 'org-tempo)
 
 ;; dired and ibuffer
@@ -202,10 +215,49 @@
   :ensure t)
 
 ;; Theme
-(use-package gruber-darker-theme
+(use-package modus-themes
+  :ensure t
+  :init
+  (modus-themes-include-derivatives-mode 1)
+  :config
+  ;; Your customizations here.  All customizations must be evaluated
+  ;; BEFORE loading the theme.  Reload the theme for new customizations
+  ;; to take effect.
+  (setq modus-themes-to-toggle '(ef-winter
+                                 ef-summer))
+  (modus-themes-include-derivatives-mode t)
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+
+  (modus-themes-load-theme 'ef-winter)
+
+  (define-key global-map (kbd "C-c m t") #'modus-themes-toggle)
+  (define-key global-map (kbd "C-c m r l") #'modus-themes-load-random-light)
+  (define-key global-map (kbd "C-c m r d") #'modus-themes-load-random-dark)
+  (define-key global-map (kbd "C-c m s") #'modus-themes-select))
+
+(use-package standard-themes
+  :ensure t)
+(use-package ef-themes
+  :ensure t)
+
+
+(use-package nerd-icons
+  :ensure t)
+
+(use-package nerd-icons-ibuffer
+  :ensure t
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+(use-package nerd-icons-completion
   :ensure t
   :config
-  (load-theme 'gruber-darker t))
+  (nerd-icons-completion-mode))
+
+(use-package nerd-icons-dired
+  :ensure t
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
 
 (use-package sleek-modeline
   :ensure t
@@ -263,6 +315,41 @@
   (setq projectile-project-search-path '("~/Projects"))
   (setq projectile-enable-caching t))
 
+;; vterm
+(use-package vterm
+  :ensure t
+  :config
+  (setq vterm-kill-buffer-on-exit t)
+  ;; This hook tells Emacs to follow the shell's current directory
+  (add-hook 'vterm-set-window-title-functions
+            (lambda (title)
+              (when (string-match-p "^vterm:" title)
+                ;; vterm passes directory info via title escape sequences
+                )))
+
+  ;; Alternatively, vterm has a built-in tracking mechanism:
+  (setq vterm-kill-buffer-on-exit t)
+  (add-hook 'vterm-mode-hook
+            (lambda ()
+              (setq-local vterm-directory-tracking t)
+              (display-line-numbers-mode -1)))
+  )
+
+(use-package vterm-toggle
+  :ensure t
+  :config
+  ;; Keep the toggle window neatly at the bottom using your display rules
+  (setq vterm-toggle-fullscreen-p nil)
+  (display-line-numbers-mode -1)
+  (add-to-list 'display-buffer-alist
+               '("\\*vterm\\*"
+                 (display-buffer-below-selected)
+                 (window-height . 0.3)
+                 (preserve-size . (nil . t)))))
+
+;; Allow vterm to trigger find-file directly in the host Emacs instance
+(with-eval-after-load 'vterm
+  (add-to-list 'vterm-eval-cmds '("find-file" find-file)))
 
 ;; Coding essentials
 (use-package completion-preview
@@ -353,13 +440,13 @@
   (setq eglot-code-action-indications nil)
   (setq eldoc-echo-area-use-multiline-p t)
   :hook ((go-mode . eglot-ensure)
-         ;; (rust-mode . eglot-ensure)
+         (rust-mode . eglot-ensure)
+         (zig-mode . eglot-ensure)
+         (c-mode . eglot-ensure)
+         (odin-mode . eglot-ensure)
          (lua-mode . eglot-ensure)
          (html-mode . eglot-ensure)
-         (odin-mode . eglot-ensure)
-         (c-mode . eglot-ensure)
-         (css-mode . eglot-ensure)
-         (odin-mode . eglot-ensure))
+         (css-mode . eglot-ensure))
   :bind (:map eglot-mode-map
               ("C-c k" . dallas/toggle-eldoc-box)
               ("C-c C-k" . dallas/show-and-focus-eldoc-buffer))               ; full docs in a help buffer
